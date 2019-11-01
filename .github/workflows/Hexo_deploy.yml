@@ -27,7 +27,8 @@ jobs:
           git config --global user.email 'Dreace@Foxmail.com'
       - name: Install dependencies
         run: |
-          sudo apt-get install pandoc -y
+          wget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb
+          sudo apt-get install -y ./pandoc-2.7.3-1-amd64.deb
           npm i -g hexo-cli
           npm i hexo-deployer-git --save
           npm i hexo-wordcount --save
