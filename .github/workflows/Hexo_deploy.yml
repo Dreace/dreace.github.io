@@ -27,8 +27,12 @@ jobs:
           git config --global user.email 'Dreace@Foxmail.com'
       - name: Install dependencies
         run: |
+          sudo apt-get install pandoc -y
           npm i -g hexo-cli
-          npm install hexo-deployer-git --save
+          npm i hexo-deployer-git --save
+          npm i hexo-wordcount --save
+          npm uninstall hexo-renderer-marked --save
+          npm install hexo-renderer-pandoc --save
           npm i
       - name: Deploy hexo
         run: |

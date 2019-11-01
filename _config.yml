@@ -8,7 +8,7 @@ subtitle: 幻冰の博客
 description: 一条咸鱼的垂死挣扎
 keywords: 博客,代码,日常
 author: Dreace
-language: zh-cn
+language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
@@ -44,7 +44,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
@@ -90,8 +90,11 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
-
+theme: nexmoe
+# plugins:
+# - hexo-math
+pandoc:
+  mathEngine: katex
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
