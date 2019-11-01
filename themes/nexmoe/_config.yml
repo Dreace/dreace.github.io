@@ -80,6 +80,11 @@ social:
     - icon-twitter
     - rgb(29, 161, 242)
     - rgba(29, 161, 242, .15)
+  Steam:
+    - https://steamcommunity.com/id/Dreace_Dreace/
+    - icon-steam
+    - rgb(37, 116, 196)
+    - rgba(37, 116, 196, .15)
 
 site_verification: # 向搜索引擎验证你对站点的所有权，用于向搜索引擎提交 sitemap 和管理站点被搜索引擎收录的情况。
   google:
