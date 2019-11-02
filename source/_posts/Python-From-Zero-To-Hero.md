@@ -1,7 +1,10 @@
 ---
 title: Python 从 Zero 到 Hero
 date: 2019-11-01 17:12:15
-tags: Python
+tags:  
+  - Python
+  - 编程
+  - 入门
 ---
 
 
@@ -560,3 +563,68 @@ if __name__ == '__main__':
 `bar.py` 导入了 `foo.py` 的所有内容并调用了函数 `func()` 函数。`bar.py` 与之前的内容有所不同，多了一个  `__name__ == '__main__'`，作用是判断当前文件是否直接使用运行而不是被其他模块调用。`__name__` 是 Python 的内部变量，若值为 `__main__` 则是被直接运行，相当于其他语言中 `mian()` 作为程序入口的作用。
 
 `import foo` 会导入 `foo.py` 中所有的函数、变量等，如要导入部分内容可以使用 `from foo import func` 只导入 `func()` 函数，若要导入多个内容需使用逗号（`,`）分隔。
+
+#### 0x08 面向对象
+
+在 Python 中进行面向对象编程也非常简单。如果你还不熟悉面向对象内容，先看这里🔗。
+
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self):
+        return "Hello, I'am %s" % self.name
+```
+
+首先建立一个名为 `Person` 的类，有两个方法。`__init__` 方法相当于其他语言中的构造函数，实例化对象时由系统调用。 Python 中使用 `self` 来访问内部成员，类似其他语言中的 `this` 指针，实例化之后指向对象本身。这个例子中 `__init__` 方法有两个参数，第一个是 `self`，这个参数不能手动指定，调用时由系统添加，第二个是 `name`，这个参数是需要在实例化时传入。构造函数被调用时将传入的 `name` 赋值给内部成员 `name`，这样在内部其他地方也能使用 `name` 的值。
+
+`Person` 类还有一个方法 `greet`，实例化之后调用这个方法会返回一个包含名字的字符串。这里用到了字符串格式化，原本的字符串中的 `%s` 会被替换成 `self.name` 的值。可以使用多个值进行字符串格式化，例如 `"%s + %s = %s" % (1, 2, 1 + 2)` 得到的字符串时 `1 + 2 = 3`。
+
+```python
+if __name__ == '__main__':
+    alice = Person("Alice")
+    print(alice.greet())
+```
+
+实例化一个对象并调用 `greet()` 方法。
+
+```txt
+Hello, I'am Alice
+```
+
+面向对象中少不了类的继承。
+
+```python
+class Student(Person):
+    def __init__(self, name, grade):
+        super().__init__(name)
+        self._grade = grade
+
+    def get_grade(self):
+        return self._grade
+```
+
+`class Student(Person)` 表明 `Student` 类继承自 `Person`，在 `__init__` 中新增了一个 `grade` 参数，并将它的值配给了内部变量 `_grade`。以下划线开头的变量和方法是内部方法，无法被外部访问 ，因此增加了 `get_grade` 方法来获取 `_grade` 的值。
+
+千万别忘了在 `__init__` 中调用父类的构造方法。
+
+```python
+if __name__ == '__main__':
+    bob = Student("Bob", 90)
+    print(bob.greet())
+    print(bob.get_grade())
+```
+
+和之前的使用方法相同，直接调用即可。
+
+```txt
+Hello, I'am Bob
+90
+```
+
+#### 0x09 写在最后
+
+这篇文章就到这里结束了。
+
+如果你花了三十分钟读完本文，相信你已经对 Python 已经有了基本的了解，接下来可以去查阅官方文档了解更深入的内容，或者学习一些 Python 实际应用。
