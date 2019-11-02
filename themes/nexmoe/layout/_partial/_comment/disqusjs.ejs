@@ -10,7 +10,7 @@ var dsqjs = new DisqusJS({
     url: '<%= page.permalink %>',
     title: '<%= page.title %>',
     api: '<%= theme.disqusjs.api %>',
-    apikey: '<%= theme.disqusjs.apikey %>',
+    apikey: '<%= theme.disqusjs.apikey %>'.split(","),
     admin: '<%= theme.disqusjs.admin %>',
     adminLabel: '<%= theme.disqusjs.adminLabel %>'
 });
