@@ -566,7 +566,7 @@ if __name__ == '__main__':
 
 #### 0x08 面向对象
 
-在 Python 中进行面向对象编程也非常简单。如果你还不熟悉面向对象内容，先看这里🔗。
+在 Python 中进行面向对象编程也非常简单。如果你还不熟悉面向对象内容，先看这里 [面向对象程序设计](https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)。
 
 ```python
 class Person:

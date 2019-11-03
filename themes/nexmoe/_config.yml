@@ -124,7 +124,7 @@ disqus:
 disqusjs:
   shortname: dreace # 你的 Disqus shortname
   sitename: DreaceのBlog # 你站点的名称，将会显示在「评论基础模式」的 header 中；该配置应该和 Disqus Admin - Settings - General - Website Name 一致
-  api: https://disqus.skk.moe/disqus/ # DisqusJS 请求的 API Endpoint，通常情况下你应该配置一个 Disqus API 的反代并填入反代的地址。你也可以直接使用 DISQUS 官方 API 的 Endpoint https://disqus.com/api/，或是使用SukkaW搭建的 Disqus API 反代 Endpoint https://disqus.skk.moe/disqus/。
+  api: https://disqus.dreace.top/api/ # DisqusJS 请求的 API Endpoint，通常情况下你应该配置一个 Disqus API 的反代并填入反代的地址。你也可以直接使用 DISQUS 官方 API 的 Endpoint https://disqus.com/api/，或是使用SukkaW搭建的 Disqus API 反代 Endpoint https://disqus.skk.moe/disqus/。
   apikey: 
     - wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs
     - 1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn
