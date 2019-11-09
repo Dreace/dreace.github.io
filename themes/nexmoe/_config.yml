@@ -41,9 +41,9 @@ menu:
   回到首页:
     - /
     - icon-home
-  #  文章归档:
-  #    - /archives
-  #    - icon-container
+  文章归档:
+    - /archives
+    - icon-container
   关于博客:
     - /about.html
     - icon-info-circle
@@ -51,13 +51,17 @@ menu:
     - /PY.html
 
 widgets:
+  - toc
   - social
   - category
   - tagcloud
   - archive
   - recent_posts
 
-maxTagcloud: 0 # 0 表示不限制
+
+maxTagcloud: 10 # 0 表示不限制
+
+toc: true
 
 social:
   哔哩哔哩:

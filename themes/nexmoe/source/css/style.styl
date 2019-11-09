@@ -40,6 +40,9 @@ body {
         display: block!important;
     }
 }
+// .mdui-drawer-body-left{
+//     padding-left: 150px;
+// }
 
 #nexmoe-header {
     margin-left: -240px;
@@ -559,7 +562,7 @@ article pre code::after  {
     padding-left: 6px;
     background: #282c34;
 }
-article a {
+article a, .toc-link{
     -webkit-transition:all .35s;
     transition:all .35s;
     color:#ff4e6a;
@@ -567,7 +570,7 @@ article a {
     position:relative;
     word-wrap:break-word
 }
-article a:hover, article a:focus {
+article a:hover, article a:focus,toc-link {
     color:#ff4e6a
 }
 article a::after {
@@ -935,3 +938,41 @@ font.douyin {
         text-shadow: 1px 0 rgba(0, 255, 255, .5), 3px 0 rgba(255, 0, 0, .5);
     }
 }
+.toc-article {
+    margin: 0 0 0 0.2em;
+    padding: 0.5em 0.5em;
+    color: #ff4e6a;
+    font-size: 1em;
+    float: right;
+    max-width: 32%;
+    min-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 1.3em;
+    strong {
+        padding: 0.3em 0;
+    }
+    ol,
+    li {
+        margin: 0 0 0 0.2em;
+        list-style-type: none;
+    }
+    ol li:before {
+        display: none;
+    }
+    .toc-child {
+        margin-left: 0.5em;
+    }
+
+}
+.toc-article ol{
+    padding-inline-start: 0px;
+}
+// .toc-link{
+//     -webkit-transition:all .35s;
+//     transition:all .35s;
+//     color:#ff4e6a;
+//     text-decoration:none;
+//     position:relative;
+//     word-wrap:break-word
+// }

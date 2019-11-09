@@ -5,6 +5,8 @@ tags:
   - Python
   - 编程
   - 入门
+categories:
+  - Python
 ---
 
 

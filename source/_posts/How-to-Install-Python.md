@@ -6,6 +6,9 @@ tags:
   - 教程
   - Windows
   - Linux
+  - macOS
+categories:
+  - Python
 typora-root-url: ../../source/
 ---
 
