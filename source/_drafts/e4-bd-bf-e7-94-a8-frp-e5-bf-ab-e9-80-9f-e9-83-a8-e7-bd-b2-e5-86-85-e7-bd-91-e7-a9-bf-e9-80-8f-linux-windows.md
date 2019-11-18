@@ -64,3 +64,4 @@ local_port = 8800 #本机 Web 服务端口
 custom_domains = xxx.com #提供外网访问的域名
 
 再次执行  `frpc -c frpc.ini` 即可生效
+
