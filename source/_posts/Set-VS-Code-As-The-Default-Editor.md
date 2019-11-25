@@ -16,7 +16,7 @@ tags:
 
 # 正文
 
-首先新建一个 `VS Code.txt` 文件然后修改后缀为 `.reg`，键入如下内容。
+首先新建一个 `code.txt` 文件然后修改后缀为 `.reg`，键入如下内容。
 
 ```shell
 Windows Registry Editor Version 5.00
