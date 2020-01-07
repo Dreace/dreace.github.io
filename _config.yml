@@ -93,7 +93,19 @@ ignore:
 theme: nexmoe
 
 plugins:
-- hexo-generator-sitemap
+  - hexo-deployer-git
+  - hexo-generator-archive
+  - hexo-generator-category
+  - hexo-generator-index
+  - hexo-generator-sitemap
+  - hexo-generator-tag
+  - hexo-katex
+  - hexo-renderer-ejs
+  - hexo-renderer-pandoc
+  - hexo-renderer-stylus
+  - hexo-server
+  - hexo-wordcount
+
 
 sitemap:
   path: sitemap.xml
