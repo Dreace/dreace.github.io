@@ -1,0 +1,10 @@
+<% if (true) { %>
+    <div class="beian" >
+        <% if (theme.beian.ICP) { %>
+            <a class="link" href="http://www.beian.miit.gov.cn/" target="_blank"><%= theme.beian.ICP%></a>
+        <% } %>
+        <% if (theme.beian.police.full) { %>
+            <a class="link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=<%= theme.beian.police.number %>" target="_blank"><i class="govimg"></i><%= theme.beian.police.full%></a>
+        <% } %>
+    </div>
+<% } %>
