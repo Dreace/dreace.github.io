@@ -91,8 +91,13 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: nexmoe
-# plugins:
-# - hexo-math
+
+plugins:
+- hexo-generator-sitemap
+
+sitemap:
+  path: sitemap.xml
+
 pandoc:
   mathEngine: katex
 # Deployment
