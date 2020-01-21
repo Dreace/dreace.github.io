@@ -105,7 +105,13 @@ plugins:
   - hexo-renderer-stylus
   - hexo-server
   - hexo-wordcount
+  - hexo-generator-feed
 
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  content: false
 
 sitemap:
   path: sitemap.xml

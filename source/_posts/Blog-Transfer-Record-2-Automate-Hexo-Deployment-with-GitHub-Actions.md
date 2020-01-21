@@ -2,7 +2,7 @@
 title: '博客迁移日志其二 使用 Github Actions 自动部署 Hexo'
 typora-root-url: ../../source/
 date: 2020-01-10 13:59:18
-cover: /images/Blog-Transfer-Record-1-Automate-Hexo-Deployment-with-GitHub-Actions/image-20200110161901448.png
+cover: /images/Blog-Transfer-Record-2-Automate-Hexo-Deployment-with-GitHub-Actions/image-20200110161901448.png
 tags:
   - Hexo
   - Github Actions
@@ -96,11 +96,11 @@ sudo mkdir hexo
 
 ```
 cd /var/
-sudo chmod -R 777 /www
+sudo chmod -R 777 www
 cd www
-sudo chmod -R 777 /html
+sudo chmod -R 777 html
 cd html
-sudo chmod -R 777 /hexo
+sudo chmod -R 777 hexo
 ```
 
 ### 0x07 配置 Git 钩子
@@ -156,7 +156,7 @@ git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
 
 如果存放 Hexo 源文件的仓库是公开的，为了不暴露私钥需要将之前生成的私钥保存到 `Secrets` 当中，需要时通过环境变量访问。
 
-![添加 Secrets](/images/Blog-Transfer-Record-1-Automate-Hexo-Deployment-with-GitHub-Actions/image-20200110155500166.png)
+![添加 Secrets](/images/Blog-Transfer-Record-2-Automate-Hexo-Deployment-with-GitHub-Actions/image-20200110155500166.png)
 
 `Name` 填写为 `id_rsa`， `Value` 中填写之前生成的 `id_rsa` 文件中的内容，形如：
 
@@ -174,7 +174,7 @@ rsTNxNy45COZWr7IBbrb0+WBXlXwTrSx+XioRxEyukk1U79aIk3uvSP6C/4F
 
 首先创建一个新的配置文件：
 
-![新建配置文件](/images/Blog-Transfer-Record-1-Automate-Hexo-Deployment-with-GitHub-Actions/image-20200110155919909.png)
+![新建配置文件](/images/Blog-Transfer-Record-2-Automate-Hexo-Deployment-with-GitHub-Actions/image-20200110155919909.png)
 
 写入[^3]：
 
@@ -275,7 +275,7 @@ server {
 
 将本地文件推送至远程仓库，可以在 Actions 选项下看到触发了一次 GitHub Actions。
 
-![Actions 执行成功](/images/Blog-Transfer-Record-1-Automate-Hexo-Deployment-with-GitHub-Actions/image-20200110161901448.png)
+![Actions 执行成功](/images/Blog-Transfer-Record-2-Automate-Hexo-Deployment-with-GitHub-Actions/image-20200110161901448.png)
 
 ## 最后
 
