@@ -2,6 +2,7 @@
 title: 'Electron + Vue.js 打造桌面端跨平台应用#1 环境搭建'
 typora-root-url: ../../source/
 date: 2020-01-20 22:03:48
+cover: /images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121135306530.png
 tags:
   - Vue.js
   - Electron
