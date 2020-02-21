@@ -56,7 +56,7 @@
       <%- partial('_partial/header') %>
   </div>
   <div id="nexmoe-content">
-    <div class="nexmoe-primary">
+    <div class="nexmoe-primary<% if (!is_post() && !is_page()){ %> index <% } %>">
         <%- body %>
         <%- partial('_partial/beian') %>
     </div>
