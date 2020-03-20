@@ -1,6 +1,5 @@
 ---
-title: >-
-  "解决“由于系统缓冲区空间不足或队列已满，不能执行套接字上的操作”"
+title: "解决“由于系统缓冲区空间不足或队列已满，不能执行套接字上的操作”"
 cover: /images/Solve-An-operation-on-a-socket-could-not-be-performed-because-the-system-lacked-sufficient-buffer-space-or-because-a-queue-was-full/image-20200221193501904.png
 typora-root-url: ../../source/
 date: 2020-02-21 19:05:53
@@ -27,7 +26,7 @@ categories:
 
 完成之后重启。
 
-再次运行问题，已经解决。
+再次运行，问题已经解决。
 
 [^1]: [https://support.microsoft.com/en-us/help/196271/when-you-try-to-connect-from-tcp-ports-greater-than-5000-you-receive-t](https://support.microsoft.com/en-us/help/196271/when-you-try-to-connect-from-tcp-ports-greater-than-5000-you-receive-t) "When you try to connect from TCP ports greater than 5000 you receive the error 'WSAENOBUFS (10055)'"
 
