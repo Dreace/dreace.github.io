@@ -8,8 +8,6 @@ tags:
   - VS Code
 ---
 
-## 写在前面
-
 在 Windows 下安装 [VS Code]( https://code.visualstudio.com/ ) 时会询问是否注册为受支持类型编辑器，这样右击文件就可以使用 VS Code 编辑文件。如果安装时没有选择可以通过修改注册表达到这种效果。
 
 <!-- more -->

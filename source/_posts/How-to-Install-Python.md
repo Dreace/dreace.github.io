@@ -12,8 +12,6 @@ categories:
 typora-root-url: ../../source/
 ---
 
-##  写在前面
-
 Python 2.x 将在「 **2020年1月1日**」停止支持，因此本文介绍的都是 Python 3.x 的安装。如果你还在用 Python 2.x，转向 Python 3.x 是一个明智的决定。
 
 <!--more-->

@@ -10,8 +10,6 @@ categories:
   - 建设日志
 ---
 
-## 写在前面
-
 上一篇博客{% post_link Blog-Transfer-Record-1-From-WordPress-to-Hexo%}中已经完成将 WordPress 中的数据迁移到 Hexo，但是每次修改内容后都要手动生成静态网页然后同步到服务器，这些步骤还是很繁琐的。因此需要一个自动化的流程来帮助部署博客，[GitHub Actions](https://github.com/features/actions) 可以很好的满足这个需求。
 
 <!-- more -->
