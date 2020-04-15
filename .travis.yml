@@ -3,13 +3,16 @@ script:
   - sudo apt-get install -y ./pandoc-2.7.3-1-amd64.deb
   - npm uninstall hexo-renderer-marked --save
   - ./node_modules/hexo/bin/hexo generate
-
+branches:
+  only:
+    - source
+     
 deploy:
   provider: pages
   skip-cleanup: true
   keep-history: true
   github-token: $GITHUB_TOKEN
   local-dir: public
-  target-branch: gh-pages
+  target-branch: master
   on:
-    branch: master
+    branch: source
