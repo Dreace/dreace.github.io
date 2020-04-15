@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>Python 从 Zero 到 Hero - DreaceのBlog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="一条咸鱼的垂死挣扎">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/images/avatar.png" type="image/png" />
+  <meta name="description" content="本文旨在快速介绍 Python 的特性帮助读者能够在短时间内了解如何使用 Python， 因此不会有很复杂的内容或者原理性剖析。本文会涉及 Python 基本的语法、操作和简单的面向对象内容，可能会与 C++，Java 中相应内容对比。不过也不用担心，只需要有一些 C 语言编程基础就可以开始阅读本文。后文给出的所有代码需要在 Python 3 下才能运行。">
+<meta name="keywords" content="Python,编程,入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 从 Zero 到 Hero">
+<meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2019&#x2F;Python-From-Zero-To-Hero&#x2F;index.html">
+<meta property="og:site_name" content="DreaceのBlog">
+<meta property="og:description" content="本文旨在快速介绍 Python 的特性帮助读者能够在短时间内了解如何使用 Python， 因此不会有很复杂的内容或者原理性剖析。本文会涉及 Python 基本的语法、操作和简单的面向对象内容，可能会与 C++，Java 中相应内容对比。不过也不用担心，只需要有一些 C 语言编程基础就可以开始阅读本文。后文给出的所有代码需要在 Python 3 下才能运行。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-15T16:14:49.754Z">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1586967308860">
+<link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url()"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img src="/images/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Dreace">
+            <img src="/images/avatar.png" alt="Dreace">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>10</div>
+        <div><span>标签</span>23</div>
+        <div><span>分类</span>5</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章目录</h3>
+    <div class="nexmoe-widget">
+      <div id="toc" class="toc-article">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#x00-输入与输出"><span class="toc-text">0x00 输入与输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x01-变量与数据类型"><span class="toc-text">0x01 变量与数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x02-注释"><span class="toc-text">0x02 注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x03-常用数据结构"><span class="toc-text">0x03 常用数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#列表list"><span class="toc-text">列表（List）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组tuple"><span class="toc-text">元组（Tuple）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字典dict"><span class="toc-text">字典（Dict）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合set"><span class="toc-text">集合（Set）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x04-函数"><span class="toc-text">0x04 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x05-流程控制"><span class="toc-text">0x05 流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if-语句"><span class="toc-text">if 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-语句"><span class="toc-text">for 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while-语句"><span class="toc-text">while 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#循环内部的控制"><span class="toc-text">循环内部的控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x06-文件操作"><span class="toc-text">0x06 文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#写文件"><span class="toc-text">写文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读文件"><span class="toc-text">读文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x07-模块"><span class="toc-text">0x07 模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x08-面向对象"><span class="toc-text">0x08 面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x09-写在最后"><span class="toc-text">0x09 写在最后</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">联系我</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/7686754" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Dreace233" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://www.zhihu.com/people/ni-xiang-42-96/activities" target="_blank" mdui-tooltip="{content: '知乎'}" style="color: rgb(30, 136, 229);background-color: rgba(30, 136, 229, .15);">
+            <i class="nexmoefont icon-zhihu"></i>
+        </a><a class="mdui-ripple" href="https://twitter.com/Dreace520" target="_blank" mdui-tooltip="{content: 'Twitter'}" style="color: rgb(29, 161, 242);background-color: rgba(29, 161, 242, .15);">
+            <i class="nexmoefont icon-twitter"></i>
+        </a><a class="mdui-ripple" href="https://steamcommunity.com/id/Dreace_Dreace/" target="_blank" mdui-tooltip="{content: 'Steam'}" style="color: rgb(37, 116, 196);background-color: rgba(37, 116, 196, .15);">
+            <i class="nexmoefont icon-steam"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/MySQL/">MySQL</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Python/">Python</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue-js/">Vue.js</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Windows/">Windows</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/建设日志/">建设日志</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">标签</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Windows/" style="font-size: 20px;">Windows</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/%E5%85%A5%E9%97%A8/" style="font-size: 10px;">入门</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 10px;">教程</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%A1%8C%E9%9D%A2%E7%AB%AF/" style="font-size: 10px;">桌面端</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/" style="font-size: 10px;">注册表</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">记录</a> <a href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/" style="font-size: 10px;">跨平台</a> <a href="/tags/%E8%BF%81%E7%A7%BB/" style="font-size: 10px;">迁移</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(10);
+        var tags_length = parseInt(23);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/DNS-Resolution-is-Slow-on-Windows-but-nslookup-is-Normal/">Windows 上 DNS 解析慢，但 nslookup 正常</a>
+          </li>
+        
+          <li>
+            <a href="/2020/MySQL-Multiple-Keyword-Matching/">MySQL 多关键词匹配</a>
+          </li>
+        
+          <li>
+            <a href="/2020/Solve-An-operation-on-a-socket-could-not-be-performed-because-the-system-lacked-sufficient-buffer-space-or-because-a-queue-was-full/">解决“由于系统缓冲区空间不足或队列已满，不能执行套接字上的操作”</a>
+          </li>
+        
+          <li>
+            <a href="/2020/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/">Electron + Vue.js 打造桌面端跨平台应用#1 环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2020/Blog-Transfer-Record-2-Automate-Hexo-Deployment-with-GitHub-Actions/">博客迁移日志其二 使用 Github Actions 自动部署 Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Dreace<br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+
+        <h1>Python 从 Zero 到 Hero</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年11月01日</a>
+    <a><i class="nexmoefont icon-areachart"></i>4.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 26 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/Python/">Python</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/Python/" rel="tag">Python</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a>
+    
+  </div>
+  <article>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous"><p>&#x672C;&#x6587;&#x65E8;&#x5728;&#x5FEB;&#x901F;&#x4ECB;&#x7ECD; Python &#x7684;&#x7279;&#x6027;&#x5E2E;&#x52A9;&#x8BFB;&#x8005;&#x80FD;&#x591F;&#x5728;&#x77ED;&#x65F6;&#x95F4;&#x5185;&#x4E86;&#x89E3;&#x5982;&#x4F55;&#x4F7F;&#x7528; Python&#xFF0C; &#x56E0;&#x6B64;&#x4E0D;&#x4F1A;&#x6709;&#x5F88;&#x590D;&#x6742;&#x7684;&#x5185;&#x5BB9;&#x6216;&#x8005;&#x539F;&#x7406;&#x6027;&#x5256;&#x6790;&#x3002;&#x672C;&#x6587;&#x4F1A;&#x6D89;&#x53CA; Python &#x57FA;&#x672C;&#x7684;&#x8BED;&#x6CD5;&#x3001;&#x64CD;&#x4F5C;&#x548C;&#x7B80;&#x5355;&#x7684;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x5185;&#x5BB9;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x4E0E; C++&#xFF0C;Java &#x4E2D;&#x76F8;&#x5E94;&#x5185;&#x5BB9;&#x5BF9;&#x6BD4;&#x3002;&#x4E0D;&#x8FC7;&#x4E5F;&#x4E0D;&#x7528;&#x62C5;&#x5FC3;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x6709;&#x4E00;&#x4E9B; C &#x8BED;&#x8A00;&#x7F16;&#x7A0B;&#x57FA;&#x7840;&#x5C31;&#x53EF;&#x4EE5;&#x5F00;&#x59CB;&#x9605;&#x8BFB;&#x672C;&#x6587;&#x3002;<strong>&#x540E;&#x6587;&#x7ED9;&#x51FA;&#x7684;&#x6240;&#x6709;&#x4EE3;&#x7801;&#x9700;&#x8981;&#x5728; Python 3 &#x4E0B;&#x624D;&#x80FD;&#x8FD0;&#x884C;&#x3002;</strong></p>
+<a id="more"></a>
+<p>&#x672C;&#x6587;&#x53EA;&#x80FD;&#x4ECB;&#x7ECD; Python &#x57FA;&#x7840;&#x53CA;&#x4E00;&#x4E9B;&#x5E38;&#x7528;&#x64CD;&#x4F5C;&#xFF0C;&#x5176;&#x4ED6;&#x8FDB;&#x9636;&#x5185;&#x5BB9;&#x9700;&#x8981;&#x8BFB;&#x8005;&#x81EA;&#x5DF1;&#x53D6;&#x63A2;&#x7D22;&#x6216;&#x67E5;&#x8BE2;&#x76F8;&#x5173;&#x8D44;&#x6599;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x5728;&#x5F00;&#x59CB;&#x9605;&#x8BFB;&#x4E4B;&#x524D;&#x5F97;&#x5148;&#x5B89;&#x88C5; Python &#x73AF;&#x5883;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x8FD9;&#x91CC; <a href="/2019/How-to-Install-Python/" title="&#x5B89;&#x88C5; Python">&#x5B89;&#x88C5; Python</a></p>
+<h2 id="x00-&#x8F93;&#x5165;&#x4E0E;&#x8F93;&#x51FA;">0x00 &#x8F93;&#x5165;&#x4E0E;&#x8F93;&#x51FA;</h2>
+<p>Python &#x4E2D;&#x8F93;&#x5165;&#x4E0E;&#x8F93;&#x51FA;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x662F;&#x7ECF;&#x5178;&#x7684; <code>Hello, world</code>&#x3002;</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="bu">print</span>(<span class="st">&quot;Hello, world&quot;</span>)</span></code></pre></div>
+<p>&#x5728; IDE &#x6216; Shell &#x4E2D;&#x8FD0;&#x884C;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4F60;&#x5C06;&#x770B;&#x5230;&#xFF1A;</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1"></a>Hello, world</span></code></pre></div>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x662F;&#x8F93;&#x5165;&#xFF0C;&#x5C06;&#x4F60;&#x7684;&#x8F93;&#x5165;&#x539F;&#x6837;&#x8F93;&#x51FA;&#x3002;Python 3 &#x9ED8;&#x8BA4;&#x4F7F;&#x7528; UTF-8 &#x7F16;&#x7801;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E2D;&#x6587;&#x3002;</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="bu">print</span>(<span class="bu">input</span>(<span class="st">&quot;&#x8F93;&#x5165;:&quot;</span>))</span></code></pre></div>
+<pre><code>&#x8F93;&#x5165;&#xFF1A;&#x4F60;&#x597D;
+&#x4F60;&#x597D;  </code></pre>
+<h2 id="x01-&#x53D8;&#x91CF;&#x4E0E;&#x6570;&#x636E;&#x7C7B;&#x578B;">0x01 &#x53D8;&#x91CF;&#x4E0E;&#x6570;&#x636E;&#x7C7B;&#x578B;</h2>
+<p>Python &#x4E2D;&#x4F7F;&#x7528;&#x53D8;&#x91CF;&#x65F6;&#x4E0D;&#x9700;&#x8981;&#x624B;&#x52A8;&#x6307;&#x5B9A;&#x7C7B;&#x578B;&#xFF0C;&#x7531;&#x7CFB;&#x7EDF;&#xFF08;&#x89E3;&#x91CA;&#x5668;&#xFF09;&#x81EA;&#x52A8;&#x63A8;&#x5BFC;&#x7C7B;&#x578B;&#x3002;</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>b <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>c <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>d <span class="op">=</span> <span class="st">&quot;345&quot;</span></span></code></pre></div>
+<p>&#x4E0A;&#x8FB9;&#x7684;&#x4EE3;&#x7801;&#x5206;&#x522B;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x6574;&#x578B;&#xFF08;int&#xFF09;,&#x6D6E;&#x70B9;&#x578B;&#xFF08;float&#xFF09;&#xFF0C;&#x5E03;&#x5C14;&#x578B;&#xFF08;bool&#xFF09;,&#x5B57;&#x7B26;&#x4E32;&#xFF08;str&#xFF09;&#x53D8;&#x91CF;&#x5E76;&#x4F7F;&#x7528; <code>print()</code> &#x5C06;&#x5176;&#x8F93;&#x51FA;&#x3002;</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1"></a>1</span>
+<span id="cb6-2"><a href="#cb6-2"></a>2.0</span>
+<span id="cb6-3"><a href="#cb6-3"></a>True</span>
+<span id="cb6-4"><a href="#cb6-4"></a>345</span></code></pre></div>
+<p>Python &#x63D0;&#x4F9B;&#x4E86;&#x4E0E;&#x5176;&#x4ED6;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x76F8;&#x4F3C;&#x7684;&#x8FD0;&#x7B97;&#x7B26;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">-</span> <span class="dv">3</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">*</span> <span class="dv">5</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">/</span> <span class="dv">3</span>)  <span class="co"># &#x7ED3;&#x679C;&#x4E3A;&#x6D6E;&#x70B9;&#x6570;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="bu">print</span>(<span class="dv">10</span> <span class="op">//</span> <span class="dv">3</span>)  <span class="co"># &#x7ED3;&#x679C;&#x4E3A;&#x6574;&#x6570;&#xFF0C;&#x5C0F;&#x6570;&#x70B9;&#x540E;&#x622A;&#x65AD;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="bu">print</span>(<span class="dv">10</span> <span class="op">%</span> <span class="dv">3</span>)</span>
+<span id="cb7-7"><a href="#cb7-7"></a></span>
+<span id="cb7-8"><a href="#cb7-8"></a>a <span class="op">=</span> <span class="dv">2</span> <span class="op">/</span> <span class="dv">7</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="bu">print</span>(a)</span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="bu">print</span>()</span>
+<span id="cb7-12"><a href="#cb7-12"></a></span>
+<span id="cb7-13"><a href="#cb7-13"></a>b <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>())</span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="bu">print</span>(b <span class="op">/</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>Python 3 &#x4E2D; <code>input</code> &#x5F97;&#x5230;&#x7684;&#x8F93;&#x5165;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5148;&#x8F6C;&#x5316;&#x4E3A;&#x6570;&#x5B57;&#xFF08;&#x8FD9;&#x91CC;&#x662F;&#x8F6C;&#x6362;&#x6210;&#x6D6E;&#x70B9;&#x6570;&#xFF09;&#x518D;&#x8BA1;&#x7B97;&#x3002;</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1"></a>3</span>
+<span id="cb8-2"><a href="#cb8-2"></a>-1</span>
+<span id="cb8-3"><a href="#cb8-3"></a>10</span>
+<span id="cb8-4"><a href="#cb8-4"></a>0.6666666666666666</span>
+<span id="cb8-5"><a href="#cb8-5"></a>3</span>
+<span id="cb8-6"><a href="#cb8-6"></a>1</span>
+<span id="cb8-7"><a href="#cb8-7"></a>0.2857142857142857</span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a>5</span>
+<span id="cb8-10"><a href="#cb8-10"></a>2.5</span></code></pre></div>
+<h2 id="x02-&#x6CE8;&#x91CA;">0x02 &#x6CE8;&#x91CA;</h2>
+<p>&#x6CE8;&#x91CA;&#x662F;&#x7F16;&#x7801;&#x4E2D;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x90E8;&#x5206;&#xFF0C;Python &#x4F7F;&#x7528; <code>#</code> &#x5F00;&#x59CB;&#x5355;&#x884C;&#x6CE8;&#x91CA;&#xFF0C;&#x4F7F;&#x7528; <code>&apos;&apos;&apos;</code> &#x6216; <code>&quot;&quot;&quot;</code> &#x5305;&#x88F9;&#x591A;&#x884C;&#x6CE8;&#x91CA;&#x3002;</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># &#x8FD9;&#x662F;&#x5355;&#x884C;&#x6CE8;&#x91CA;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="bu">print</span>(<span class="st">&quot;Hello, world&quot;</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">&apos;&apos;&apos;</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">&#x8FD9;&#x662F;&#x591A;&#x884C;</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">&#x6CE8;&#x91CA;</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">&#xFF01;</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="co">&apos;&apos;&apos;</span></span></code></pre></div>
+<h2 id="x03-&#x5E38;&#x7528;&#x6570;&#x636E;&#x7ED3;&#x6784;">0x03 &#x5E38;&#x7528;&#x6570;&#x636E;&#x7ED3;&#x6784;</h2>
+<h3 id="&#x5217;&#x8868;list">&#x5217;&#x8868;&#xFF08;List&#xFF09;</h3>
+<p>&#x5217;&#x8868;&#x662F; Python &#x4E2D;&#x6700;&#x5E38;&#x7528;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x4E0E;&#x6570;&#x7EC4;&#x7C7B;&#x4F3C;&#xFF0C;&#x5217;&#x8868;&#x7684;&#x4E0B;&#x6807;&#x4ECE; 0 &#x5F00;&#x59CB;&#xFF0C;&#x4E14;&#x5217;&#x8868;&#x4E2D;&#x5143;&#x7D20;&#x7684;&#x4E2A;&#x6570;&#x662F;&#x53EF;&#x53D8;&#x7684;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6F14;&#x793A;&#x4E86;&#x5217;&#x8868;&#x7684;&#x4E00;&#x4E9B;&#x5E38;&#x7528;&#x64CD;&#x4F5C;&#x3002;</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>the_list <span class="op">=</span> [<span class="st">&quot;I&quot;</span>, <span class="st">&quot;love&quot;</span>, <span class="st">&quot;Python&quot;</span>, <span class="dv">233</span>, [<span class="st">&quot;list&quot;</span>]]</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="bu">print</span>(the_list[<span class="dv">2</span>])  <span class="co"># &#x53D6;&#x5C0F;&#x6807;&#x4E3A; 2 &#x7684;&#x5143;&#x7D20;</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>the_list[<span class="dv">2</span>] <span class="op">=</span> <span class="st">&quot;Python!&quot;</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="bu">print</span>(the_list[<span class="dv">2</span>])</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="bu">print</span>(the_list[<span class="dv">1</span>:<span class="dv">3</span>])  <span class="co"># &#x622A;&#x53D6;&#x4E0B;&#x6807; 1 &#x5230;&#x4E0B;&#x6807;&#x4E3A; 3 &#x7684;&#x5143;&#x7D20;&#xFF08;&#x4E0D;&#x5305;&#x542B;&#x4E0B;&#x6807; 3&#xFF09;</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb10-9"><a href="#cb10-9"></a></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="bu">print</span>(the_list[<span class="dv">2</span>:])  <span class="co"># &#x622A;&#x53D6;&#x4E0B;&#x6807; 2 &#x4EE5;&#x540E;&#x7684;&#x6240;&#x6709;&#x5143;&#x7D20;</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb10-12"><a href="#cb10-12"></a></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="cf">for</span> i <span class="kw">in</span> the_list:</span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb10-16"><a href="#cb10-16"></a></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="kw">del</span> the_list[<span class="dv">3</span>] <span class="co"># &#x5220;&#x9664;&#x4E0B;&#x6807;&#x4E3A; 3 &#x7684;&#x5143;&#x7D20;</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="cf">for</span> i <span class="kw">in</span> the_list:</span>
+<span id="cb10-19"><a href="#cb10-19"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb10-21"><a href="#cb10-21"></a></span>
+<span id="cb10-22"><a href="#cb10-22"></a><span class="bu">print</span>(<span class="bu">len</span>(the_list))</span></code></pre></div>
+<p>&#x5217;&#x8868;&#x4E2D;&#x5143;&#x7D20;&#x53EF;&#x4EE5;&#x662F;&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#xFF0C;&#x751A;&#x81F3;&#x5217;&#x8868;&#x4E2D;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x53EF;&#x4EE5;&#x4E0D;&#x76F8;&#x540C;&#xFF0C;&#x4E0A;&#x4F8B;&#x4E2D;&#x7684; <code>the_list</code> &#x5305;&#x542B;&#x4E86;&#x5B57;&#x7B26;&#x4E32;&#x3001;&#x6570;&#x5B57;&#x548C;&#x53E6;&#x4E00;&#x4E2A;&#x5217;&#x8868;&#x3002;Python &#x4E2D;&#x4F7F;&#x7528;&#x65B9;&#x62EC;&#x53F7; <code>[]</code> &#x914D;&#x5408;&#x4E0B;&#x6807;&#x7684;&#x5F62;&#x5F0F;&#x8BBF;&#x95EE;&#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x5143;&#x7D20;&#x3002;&#x7B2C; 7 &#x884C;&#x4EE3;&#x7801;&#x5C55;&#x793A;&#x4E86;&#x5BF9;&#x5217;&#x8868;&#x7684;&#x5207;&#x7247;&#x64CD;&#x4F5C;&#xFF0C; <code>[a:b]</code> &#x8868;&#x793A;&#x622A;&#x53D6;&#x4E0B;&#x6807;&#x4ECE; <code>a</code> &#x5230; <code>b</code> &#x7684;&#x6240;&#x6709;&#x5143;&#x7D20;&#xFF0C;&#x82E5;&#x7701;&#x7565;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x5219;&#x8868;&#x793A;&#x5230;&#x5217;&#x8868;&#x5F00;&#x5934;&#x6216;&#x672B;&#x5C3E;&#x7684;&#x6700;&#x5927;&#x8303;&#x56F4;&#xFF0C;&#x4F8B;&#x5982; <code>[:5]</code> &#x8868;&#x793A;&#x622A;&#x53D6;&#x4E0B;&#x6807;&#x4ECE; 0 &#x5230; 4 &#x7684;&#x6240;&#x6709;&#x5143;&#x7D20;&#xFF0C;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x79F0;&#x4E4B;&#x4E3A;<strong>&#x5207;&#x7247;&#xFF08;Slice&#xFF09;</strong>&#x3002;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x8FD9;&#x4E2A;&#x8303;&#x56F4;&#x662F; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">[</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo fence="true">)</mo></mrow><annotation encoding="application/x-tex">\left[a,b\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span> &#x5373;&#x4E0D;&#x5305;&#x542B;&#x4E0B;&#x6807;&#x4E3A; <code>b</code> &#x7684;&#x5143;&#x7D20; &#x3002;<strong>&#x5207;&#x7247;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8D1F;&#x503C;&#x4E0B;&#x6807;&#xFF0C;&#x8868;&#x793A;&#x4ECE;&#x6700;&#x53F3;&#x4FA7;&#x5F00;&#x59CB;&#x8BA1;&#x6570;&#xFF0C;&#x6700;&#x53F3;&#x4FA7;&#x7B2C;&#x4E00;&#x4E2A;&#x4E0B;&#x6807;&#x4E3A; -1&#x3002;</strong></p>
+<p>&#x7B2C; 13&#x3001; 14 &#x884C;&#x5C55;&#x793A;&#x4E86; Python &#x7684; <code>for</code> &#x5FAA;&#x73AF;&#xFF0C;&#x8FD9;&#x548C; C/C++ &#x4E2D;&#x7684; <code>for</code> &#x4E0D;&#x592A;&#x4E00;&#x6837;&#xFF0C;Python &#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>for</code> &#x76F4;&#x63A5;&#x5BF9;&#x5217;&#x8868;&#x8FDB;&#x884C;&#x8FED;&#x4EE3;&#xFF0C;&#x4F9D;&#x6B21;&#x53D6;&#x51FA;&#x5176;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x503C;&#xFF0C;&#x800C;&#x4E0D;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E0B;&#x6807;&#x904D;&#x5386;&#x8BBF;&#x95EE;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x540C;&#x6837;&#x9002;&#x7528;&#x4E8E;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p>&#x518D;&#x4E4B;&#x540E;&#x4F7F;&#x7528; <code>del</code> &#x5220;&#x9664;&#x4E86;&#x5217;&#x8868;&#x4E2D;&#x4E0B;&#x6807;&#x4E3A; 3 &#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5E76;&#x518D;&#x6B21;&#x8FED;&#x4EE3;&#x8F93;&#x51FA;&#x3002;</p>
+<p>&#x4F60;&#x5E94;&#x8BE5;&#x5DF2;&#x7ECF;&#x6CE8;&#x610F;&#x5230;&#x4E86;&#x5728; <code>for</code> &#x5FAA;&#x73AF;&#x4E4B;&#x5185;&#x7684; <code>print</code> &#x524D;&#x9762;&#x6709;&#x56DB;&#x4E2A;&#x7A7A;&#x683C;&#xFF0C;&#x8FD9;&#x662F; Python &#x6700;&#x6709;&#x7279;&#x8272;&#x7684;&#x5730;&#x65B9;<strong>&#x300C;&#x5F3A;&#x5236;&#x7F29;&#x8FDB;&#x300D;</strong>&#xFF0C;Python &#x8981;&#x6C42;&#x4E0D;&#x540C;&#x5C42;&#x6B21;&#x7684;&#x8BED;&#x53E5;&#x5757;&#x4E4B;&#x95F4;&#x5FC5;&#x987B;&#x6709;&#x7F29;&#x8FDB;&#x3002;&#x4ED4;&#x7EC6;&#x89C2;&#x5BDF;&#x53EF;&#x4EE5;&#x53D1;&#x73B0; <code>for</code> &#x8BED;&#x53E5;&#x6240;&#x5728;&#x884C;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x90FD;&#x662F;&#x5192;&#x53F7;&#xFF08;<code>:</code>&#xFF09;&#xFF0C;&#x8868;&#x793A;&#x4E4B;&#x540E;&#x6709;&#x7F29;&#x8FDB;&#x7684;&#x8BED;&#x53E5;&#x5305;&#x542B;&#x5728; <code>for</code> &#x8BED;&#x53E5;&#x5185;&#x90E8;&#xFF0C;&#x76F4;&#x5230;&#x51FA;&#x73B0;&#x4E0E;&#x4E4B;&#x540C;&#x7EA7;&#x7F29;&#x8FDB;&#x7684;&#x8BED;&#x53E5;&#x3002;</p>
+<p><code>len</code> &#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x5217;&#x8868;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x8FD9;&#x91CC;&#x5DF2;&#x7ECF;&#x5220;&#x9664;&#x4E86;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x6240;&#x4EE5;&#x957F;&#x5EA6;&#x4E3A; 4&#x3002;</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1"></a>Python</span>
+<span id="cb11-2"><a href="#cb11-2"></a>Python!</span>
+<span id="cb11-3"><a href="#cb11-3"></a>-----</span>
+<span id="cb11-4"><a href="#cb11-4"></a>[&apos;love&apos;, &apos;Python!&apos;]</span>
+<span id="cb11-5"><a href="#cb11-5"></a>-----</span>
+<span id="cb11-6"><a href="#cb11-6"></a>[&apos;Python!&apos;, 233, [&apos;list&apos;]]</span>
+<span id="cb11-7"><a href="#cb11-7"></a>-----</span>
+<span id="cb11-8"><a href="#cb11-8"></a>I</span>
+<span id="cb11-9"><a href="#cb11-9"></a>love</span>
+<span id="cb11-10"><a href="#cb11-10"></a>Python!</span>
+<span id="cb11-11"><a href="#cb11-11"></a>233</span>
+<span id="cb11-12"><a href="#cb11-12"></a>[&apos;list&apos;]</span>
+<span id="cb11-13"><a href="#cb11-13"></a>-----</span>
+<span id="cb11-14"><a href="#cb11-14"></a>I</span>
+<span id="cb11-15"><a href="#cb11-15"></a>love</span>
+<span id="cb11-16"><a href="#cb11-16"></a>Python!</span>
+<span id="cb11-17"><a href="#cb11-17"></a>[&apos;list&apos;]</span>
+<span id="cb11-18"><a href="#cb11-18"></a>-----</span>
+<span id="cb11-19"><a href="#cb11-19"></a>4</span></code></pre></div>
+<h3 id="&#x5143;&#x7EC4;tuple">&#x5143;&#x7EC4;&#xFF08;Tuple&#xFF09;</h3>
+<p>&#x5143;&#x7EC4;&#x4E0E;&#x5217;&#x8868;&#x76F8;&#x4F3C;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E0B;&#x6807;&#x8BBF;&#x95EE;&#x3001;&#x5207;&#x7247;&#x64CD;&#x4F5C;&#x3001;&#x8FED;&#x4EE3;&#x5143;&#x7D20;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5143;&#x7EC4;<strong>&#x4E0D;&#x53EF;&#x4FEE;&#x6539;</strong>&#x3002;&#x5982;&#x5C1D;&#x8BD5;&#x4FEE;&#x6539;&#x5143;&#x7EC4;&#x5C06;&#x629B;&#x51FA; <code>TypeError: &apos;tuple&apos; object does not support item assignment</code> &#x9519;&#x8BEF;&#x3002;</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>the_tuple <span class="op">=</span> (<span class="st">&quot;I&quot;</span>, <span class="st">&quot;love&quot;</span>, <span class="st">&quot;Python&quot;</span>, <span class="dv">233</span>, [<span class="st">&quot;list&quot;</span>])</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="bu">print</span>(the_tuple[<span class="dv">2</span>])  <span class="co"># &#x53D6;&#x5C0F;&#x6807;&#x4E3A; 2 &#x7684;&#x5143;&#x7D20;</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="bu">print</span>(the_tuple[<span class="dv">1</span>:<span class="dv">3</span>])  <span class="co"># &#x622A;&#x53D6;&#x4E0B;&#x6807; 1 &#x5230;&#x4E0B;&#x6807;&#x4E3A; 3 &#x7684;&#x5143;&#x7D20;&#xFF08;&#x4E0D;&#x5305;&#x542B;&#x4E0B;&#x6807; 3&#xFF09;</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="bu">print</span>(the_tuple[<span class="dv">2</span>:])  <span class="co"># &#x622A;&#x53D6;&#x4E0B;&#x6807; 2 &#x4EE5;&#x540E;&#x7684;&#x6240;&#x6709;&#x5143;&#x7D20;</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb12-10"><a href="#cb12-10"></a></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="cf">for</span> i <span class="kw">in</span> the_tuple:</span>
+<span id="cb12-12"><a href="#cb12-12"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="bu">print</span>(<span class="bu">len</span>(the_tuple))</span></code></pre></div>
+<p>&#x56E0;&#x4E3A;&#x5143;&#x7EC4;&#x4E0D;&#x53EF;&#x4FEE;&#x6539;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x5B83;&#x5E38;&#x88AB;&#x7528;&#x6765;&#x4F5C;&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x4EE5;&#x9632;&#x8FD4;&#x56DE;&#x503C;&#x88AB;&#x610F;&#x5916;&#x4FEE;&#x6539;&#x3002;</p>
+<pre><code>Python
+-----
+(&apos;love&apos;, &apos;Python&apos;)
+-----
+(&apos;Python&apos;, 233, [&apos;list&apos;])
+-----
+I
+love
+Python
+233
+[&apos;list&apos;]
+-----
+5</code></pre>
+<h3 id="&#x5B57;&#x5178;dict">&#x5B57;&#x5178;&#xFF08;Dict&#xFF09;</h3>
+<p>&#x5B57;&#x5178;&#x662F;&#x4E00;&#x79CD;&#x952E;&#xFF08;key&#xFF09;&#x503C;&#xFF08;value&#xFF09;&#x5BF9;&#x7684;&#x6620;&#x5C04;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x952E;&#x786E;&#x5B9A;&#x552F;&#x4E00;&#x7684;&#x503C;&#x3002;</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>the_dict <span class="op">=</span> {<span class="st">&quot;Alice&quot;</span>: <span class="dv">18</span>, <span class="st">&quot;Bob&quot;</span>: <span class="dv">19</span>, <span class="st">&quot;Tom&quot;</span>: <span class="dv">21</span>}</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="bu">print</span>(the_dict[<span class="st">&quot;Alice&quot;</span>])</span>
+<span id="cb14-3"><a href="#cb14-3"></a>the_dict[<span class="st">&quot;Alice&quot;</span>] <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="bu">print</span>(the_dict[<span class="st">&quot;Alice&quot;</span>])</span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="cf">for</span> k <span class="kw">in</span> the_dict:</span>
+<span id="cb14-8"><a href="#cb14-8"></a>    <span class="bu">print</span>(k, the_dict[k])</span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="bu">print</span>(<span class="st">&quot;Peter&quot;</span> <span class="kw">in</span> the_dict.keys())</span>
+<span id="cb14-11"><a href="#cb14-11"></a>the_dict[<span class="st">&quot;Peter&quot;</span>] <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="bu">print</span>(<span class="st">&quot;Peter&quot;</span> <span class="kw">in</span> the_dict.keys())</span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="bu">print</span>(the_dict[<span class="st">&quot;Peter&quot;</span>])</span></code></pre></div>
+<p>&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x952E;&#x540D;&#x6765;&#x8BBF;&#x95EE;&#x5B57;&#x5178;&#x6216;&#x4FEE;&#x6539;&#x5B57;&#x5178;&#xFF0C;&#x901A;&#x8FC7; <code>for</code> &#x50CF;&#x5217;&#x8868;&#x548C;&#x5143;&#x7EC4;&#x4E00;&#x6837;&#x8FED;&#x4EE3;&#x5B57;&#x5178;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FED;&#x4EE3;&#x7684;&#x662F;&#x5B57;&#x5178;&#x4E2D;&#x7684;&#x952E;&#x3002;&#x5982;&#x679C;&#x8BBF;&#x95EE;&#x4E86;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x952E;&#x5C06;&#x629B;&#x51FA; <code>KeyError</code> &#x9519;&#x8BEF;&#xFF0C;&#x56E0;&#x6B64;&#x5728;&#x8BBF;&#x95EE;&#x4E4B;&#x524D;&#x53EF;&#x4EE5;&#x5148;&#x4F7F;&#x7528; <code>key in the_dict.keys()</code> &#x6765;&#x5224;&#x65AD;&#x952E; <code>key</code> &#x662F;&#x5426;&#x5728;&#x5B57;&#x5178; <code>the_dict</code> &#x7684;&#x952E;&#x96C6;&#x5408;&#x4E2D;&#xFF0C;&#x82E5;&#x5B58;&#x5728;&#x5219;&#x4E3A;&#x771F;&#xFF08;<code>True</code>&#xFF09;&#x5426;&#x5219;&#x4E3A;&#x5047;&#xFF08;<code>False</code>&#xFF09;&#x3002;&#x5982;&#x679C;&#x5728;&#x952E;&#x540D;&#x8FD8;&#x4E0D;&#x5B58;&#x5728;&#x65F6;&#x5BF9;&#x8FD9;&#x4E2A;&#x952E;&#x8D4B;&#x503C;&#xFF0C;&#x952E;&#x540D;&#x5C06;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x3002;</p>
+<pre><code>18
+20
+-----
+Alice 20
+Bob 19
+Tom 21
+-----
+False
+True
+30</code></pre>
+<h3 id="&#x96C6;&#x5408;set">&#x96C6;&#x5408;&#xFF08;Set&#xFF09;</h3>
+<p>&#x96C6;&#x5408;&#x662F;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x65E0;&#x5E8F;&#x4E14;&#x552F;&#x4E00;&#x7684;&#x5E8F;&#x5217;&#x3002;</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>the_set <span class="op">=</span> {<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;apple&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;banana&quot;</span>}</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="bu">print</span>(the_set)</span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="cf">for</span> i <span class="kw">in</span> the_set:</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="bu">print</span>(<span class="bu">len</span>(the_set))</span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb16-7"><a href="#cb16-7"></a></span>
+<span id="cb16-8"><a href="#cb16-8"></a>the_set.add(<span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="bu">print</span>(<span class="bu">len</span>(the_set))</span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb16-11"><a href="#cb16-11"></a></span>
+<span id="cb16-12"><a href="#cb16-12"></a>the_set.add(<span class="st">&quot;grape&quot;</span>)</span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="cf">for</span> i <span class="kw">in</span> the_set:</span>
+<span id="cb16-14"><a href="#cb16-14"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb16-16"><a href="#cb16-16"></a></span>
+<span id="cb16-17"><a href="#cb16-17"></a>the_set.remove(<span class="st">&quot;apple&quot;</span>)</span>
+<span id="cb16-18"><a href="#cb16-18"></a><span class="cf">for</span> i <span class="kw">in</span> the_set:</span>
+<span id="cb16-19"><a href="#cb16-19"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb16-20"><a href="#cb16-20"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb16-21"><a href="#cb16-21"></a></span>
+<span id="cb16-22"><a href="#cb16-22"></a><span class="bu">print</span>(<span class="st">&quot;apple&quot;</span> <span class="kw">in</span> the_set)</span></code></pre></div>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>{}</code> &#x6216; <code>set()</code> &#x521B;&#x5EFA;&#x96C6;&#x5408;&#xFF0C;&#x4F46;&#x8981;&#x521B;&#x5EFA;&#x7A7A;&#x96C6;&#x5408;&#x53EA;&#x80FD;&#x4F7F;&#x7528; <code>set()</code>&#xFF0C;&#x56E0;&#x4E3A; <code>{}</code> &#x521B;&#x5EFA;&#x7684;&#x662F;&#x7A7A;&#x5B57;&#x5178;&#x3002;&#x901A;&#x8FC7; <code>add()</code> &#x6216; <code>remove()</code> &#x5411;&#x96C6;&#x5408;&#x4E2D;&#x6DFB;&#x52A0;&#x3001;&#x5220;&#x9664;&#x5143;&#x7D20;&#xFF0C;&#x5982;&#x679C;&#x6DFB;&#x52A0;&#x91CD;&#x590D;&#x5143;&#x7D20;&#x5C06;&#x88AB;&#x5408;&#x5E76;&#x3002;&#x524D;&#x9762;&#x5DF2;&#x7ECF;&#x63D0;&#x5230;&#x8FC7;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>in</code> &#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x503C;&#x662F;&#x5426;&#x5728;&#x96C6;&#x5408;&#x4E2D;&#x3002;</p>
+<pre><code>{&apos;orange&apos;, &apos;banana&apos;, &apos;pear&apos;, &apos;apple&apos;}
+orange
+banana
+pear
+apple
+4
+-----
+4
+-----
+orange
+grape
+banana
+pear
+apple
+-----
+orange
+grape
+banana
+pear
+-----
+False</code></pre>
+<h2 id="x04-&#x51FD;&#x6570;">0x04 &#x51FD;&#x6570;</h2>
+<p>&#x5B9A;&#x4E49;&#x5E76;&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x51FD;&#x6570;&#xFF1A;</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">def</span> fun(a):</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="cf">return</span> a <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="bu">print</span>(fun(<span class="dv">10</span>))</span></code></pre></div>
+<p>&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x5E76;&#x5C06;&#x53C2;&#x6570;&#x503C;&#x4E58;&#x4EE5; 10 &#x8FD4;&#x56DE;&#x3002;</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1"></a>100</span></code></pre></div>
+<p>&#x5B9A;&#x4E49;&#x6709;&#x591A;&#x4E2A;&#x53C2;&#x6570;&#x5E76;&#x53C2;&#x6570;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x7684;&#x51FD;&#x6570;&#xFF1A;</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">def</span> fun(a, b<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb20-2"><a href="#cb20-2"></a>    <span class="cf">return</span> a <span class="op">**</span> b</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="bu">print</span>(fun(<span class="dv">5</span>))</span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="bu">print</span>(fun(<span class="dv">5</span>, <span class="dv">3</span>))</span></code></pre></div>
+<p>&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4E2D;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570; <code>b</code> &#x662F;&#x53EF;&#x9009;&#x7684;&#xFF0C;&#x82E5;&#x4E0D;&#x63D0;&#x4F9B;&#x5219;&#x9ED8;&#x8BA4;&#x4E3A; <code>2</code>&#xFF0C;&#x51FD;&#x6570;&#x5185;&#x7528;&#x5230;&#x7684; <code>**</code> &#x662F; Python &#x4E2D;&#x5E42;&#x8FD0;&#x7B97;&#x5373; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>a</mi><mi>b</mi></msup></mrow><annotation encoding="application/x-tex">{a^{b}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span></span></span></span></span></span>&#x3002;&#x82E5;&#x8C03;&#x7528;&#x65F6;&#x53EA;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x5219;&#x8BA1;&#x7B97; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><msup><mi>a</mi><mn>2</mn></msup></mstyle></mrow><annotation encoding="application/x-tex">{\displaystyle a^{2}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span>&#x3002;</p>
+<pre><code>25
+125</code></pre>
+<h2 id="x05-&#x6D41;&#x7A0B;&#x63A7;&#x5236;">0x05 &#x6D41;&#x7A0B;&#x63A7;&#x5236;</h2>
+<h3 id="if-&#x8BED;&#x53E5;">if &#x8BED;&#x53E5;</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>foo <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>bar <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="cf">if</span> foo <span class="op">==</span> bar:</span>
+<span id="cb22-4"><a href="#cb22-4"></a>    <span class="bu">print</span>(<span class="st">&quot;foo equals bar&quot;</span>)</span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="cf">elif</span> foo <span class="op">&gt;</span> bar:</span>
+<span id="cb22-6"><a href="#cb22-6"></a>    <span class="bu">print</span>(<span class="st">&quot;foo is greater than bar&quot;</span>)</span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="cf">else</span>:</span>
+<span id="cb22-8"><a href="#cb22-8"></a>    <span class="bu">print</span>(<span class="st">&quot;foo less than bar&quot;</span>)</span></code></pre></div>
+<p>&#x82E5; <code>if</code> &#x540E;&#x9762;&#x7684;&#x6761;&#x4EF6;&#x4E3A;&#x771F;&#x5219;&#x6267;&#x884C;&#x5176;&#x4E2D;&#x7684;&#x8BED;&#x53E5;&#x5757;&#xFF0C;&#x5426;&#x5219;&#x8FDB;&#x884C; <code>elif</code> &#x5224;&#x65AD;&#xFF0C;&#x82E5;&#x4E3A;&#x771F;&#x5219;&#x6267;&#x884C;&#x5176;&#x4E2D;&#x8BED;&#x53E5;&#xFF0C;&#x5982;&#x679C;&#x8FD8;&#x662F;&#x4E3A;&#x5047;&#x5C06;&#x6267;&#x884C; <code>else</code> &#x4E2D;&#x8BED;&#x53E5;&#x3002;</p>
+<pre><code>foo less than bar</code></pre>
+<h3 id="for-&#x8BED;&#x53E5;">for &#x8BED;&#x53E5;</h3>
+<p>&#x524D;&#x9762;&#x5DF2;&#x7ECF;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x8FC7; Python &#x4E2D;&#x7684; <code>for</code> &#x8BED;&#x53E5;&#xFF0C;&#x548C;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#x662F;&#x4E00;&#x79CD;&#x5FAA;&#x73AF;&#x8BED;&#x53E5;&#x3002;&#x4F8B;&#x5982;&#x53EF;&#x662F;&#x4F7F;&#x7528; <code>for in foo</code> &#x6765;&#x904D;&#x5386; <code>foo</code> &#x4E2D;&#x7684;&#x5143;&#x7D20;&#xFF0C; <code>foo</code> &#x53EF;&#x4EE5;&#x662F;&#x5217;&#x8868;&#x3001;&#x5143;&#x7EC4;&#x3001;&#x5B57;&#x5178;&#x3001;&#x96C6;&#x5408;&#xFF0C;&#x751A;&#x81F3;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>foo <span class="op">=</span> <span class="st">&quot;I love Python&quot;</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="cf">for</span> i <span class="kw">in</span> foo:</span>
+<span id="cb24-3"><a href="#cb24-3"></a>    <span class="bu">print</span>(i)</span></code></pre></div>
+<pre><code>I
+ 
+l
+o
+v
+e
+ 
+P
+y
+t
+h
+o
+n</code></pre>
+<p>&#x82E5;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x5FAA;&#x73AF;&#x6B21;&#x6570;&#x6216;&#x8005;&#x8981;&#x901A;&#x8FC7;&#x4E0B;&#x6807;&#x904D;&#x5386;&#x4E00;&#x4E2A;&#x5E8F;&#x5217;&#x5219;&#x8981;&#x4F7F;&#x7528; <code>range()</code>&#x3002;</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>, <span class="dv">9</span>):</span>
+<span id="cb26-2"><a href="#cb26-2"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb26-4"><a href="#cb26-4"></a></span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb26-6"><a href="#cb26-6"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb26-7"><a href="#cb26-7"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb26-8"><a href="#cb26-8"></a></span>
+<span id="cb26-9"><a href="#cb26-9"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">3</span>):</span>
+<span id="cb26-10"><a href="#cb26-10"></a>    <span class="bu">print</span>(i)</span></code></pre></div>
+<p>&#x5F53;&#x6709;&#x6709;&#x4E24;&#x4E2A;&#x53C2;&#x6570; <code>a</code>&#xFF0C;<code>b</code> &#x5219;&#x4ECE; <code>a</code> &#x8FED;&#x4EE3;&#x5230; <code>b</code>&#xFF08;&#x4E0D;&#x5305;&#x542B; <code>b</code>&#xFF09;&#xFF0C;&#x8FD9;&#x8DDF;&#x5207;&#x7247;&#x7684;&#x9650;&#x5236;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
+<p>&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x65F6;&#x4ECE; 0 &#x5F00;&#x59CB;&#x8FED;&#x4EE3;&#x3002;</p>
+<p>&#x82E5;&#x63D0;&#x4F9B;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570; <code>c</code> &#x8868;&#x793A;&#x6B65;&#x957F;&#x5373;&#x76F8;&#x90BB;&#x4E24;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x5DEE;&#x503C;&#x3002;</p>
+<pre><code>5
+6
+7
+8
+-----
+0
+1
+2
+3
+4
+-----
+0
+3
+6
+9</code></pre>
+<h3 id="while-&#x8BED;&#x53E5;">while &#x8BED;&#x53E5;</h3>
+<p>&#x5F53;&#x9700;&#x8981;&#x5FAA;&#x73AF;&#x5728;&#x67D0;&#x4E2A;&#x6761;&#x4EF6;&#x4E3A;&#x771F;&#x65F6;&#x4E00;&#x76F4;&#x8FD0;&#x884C;&#xFF0C;&#x76F4;&#x5230;&#x8FD9;&#x4E2A;&#x6761;&#x4EF6;&#x4E0D;&#x518D;&#x6EE1;&#x8DB3;&#x5219;&#x9000;&#x51FA;&#xFF0C;&#x4FBF;&#x9700;&#x8981; <code>while</code> &#x5FAA;&#x73AF;&#x4E86;&#x3002;</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>res <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>limit <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="cf">while</span> limit <span class="op">&lt;=</span> <span class="dv">50</span>:</span>
+<span id="cb28-4"><a href="#cb28-4"></a>    res <span class="op">*=</span> limit</span>
+<span id="cb28-5"><a href="#cb28-5"></a>    limit <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="bu">print</span>(res)</span></code></pre></div>
+<p><code>limit</code> &#x521D;&#x59CB;&#x503C;&#x4E3A; 1&#xFF0C;&#x6BCF;&#x8F6E;&#x5FAA;&#x73AF;&#x4F1A;&#x589E;&#x52A0; 1&#xFF0C;<code>while</code> &#x5185;&#x90E8;&#x7684;&#x8BED;&#x53E5;&#x4F1A;&#x4E00;&#x76F4;&#x5FAA;&#x73AF;&#x6267;&#x884C;&#xFF0C;&#x76F4;&#x5230; <code>limit &lt;= 50</code> &#x7684;&#x6761;&#x4EF6;&#x4E0D;&#x518D;&#x6EE1;&#x8DB3;&#x5373; <code>limit</code> &#x5927;&#x4E8E; 50 &#x65F6;&#x7EC8;&#x6B62;&#x3002;<code>res *= limit</code> &#x662F; <code>res = res * limit</code> &#x7684;&#x7B80;&#x5199;&#x5F62;&#x5F0F;&#xFF0C;&#x4E0B;&#x4E00;&#x884C;&#x7684; <code>+=</code> &#x540C;&#x7406;&#x3002;&#x4F60;&#x53EF;&#x80FD;&#x5DF2;&#x7ECF;&#x6CE8;&#x610F;&#x5230;&#x4E86;&#x8FD9;&#x6BB5;&#x7A0B;&#x5E8F;&#x8BA1;&#x7B97;&#x7684;&#x662F; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex">50!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mclose">!</span></span></span></span> &#x7684;&#x503C;&#xFF0C;&#x5176;&#x7ED3;&#x679C;&#x8FDC;&#x8FDC;&#x5927;&#x4E8E; 64 &#x4F4D;&#x6709;&#x7B26;&#x53F7;&#x6574;&#x6570;&#x6240;&#x80FD;&#x8868;&#x793A;&#x7684;&#x6700;&#x5927;&#x503C; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>23</mn></msup><mo>&#x2212;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">{2^{23}-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span></span></span>&#xFF0C;&#x4F46;&#x662F;&#x5728; Python &#x4E2D;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8BA1;&#x7B97;&#xFF0C;&#x56E0;&#x4E3A; Python &#x539F;&#x751F;&#x652F;&#x6301;&#x5927;&#x6570;&#x8FD0;&#x7B97;&#x3002;</p>
+<pre><code>30414093201713378043612608166064768844377641568960512000000000000</code></pre>
+<h3 id="&#x5FAA;&#x73AF;&#x5185;&#x90E8;&#x7684;&#x63A7;&#x5236;">&#x5FAA;&#x73AF;&#x5185;&#x90E8;&#x7684;&#x63A7;&#x5236;</h3>
+<p>&#x5728; <code>for</code> &#x5FAA;&#x73AF;&#x548C; <code>while</code> &#x5FAA;&#x73AF;&#x5185;&#x90E8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>break</code> &#x6765;&#x8DF3;&#x51FA;&#x5FAA;&#x73AF;&#xFF0C;&#x4F7F;&#x7528; <code>continue</code> &#x8DF3;&#x8FC7;&#x672C;&#x6B21;&#x5FAA;&#x73AF;&#x4F46;&#x4E0D;&#x7EC8;&#x6B62;&#x5FAA;&#x73AF;&#x3002;</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>foo <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="cf">while</span> foo <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb30-3"><a href="#cb30-3"></a>    <span class="cf">if</span> foo <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb30-4"><a href="#cb30-4"></a>        <span class="cf">break</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a>    <span class="bu">print</span>(foo)</span>
+<span id="cb30-6"><a href="#cb30-6"></a>    foo <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="bu">print</span>(<span class="st">&quot;-----&quot;</span>)</span>
+<span id="cb30-8"><a href="#cb30-8"></a></span>
+<span id="cb30-9"><a href="#cb30-9"></a>bar <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="cf">while</span> bar <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb30-11"><a href="#cb30-11"></a>    bar <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb30-12"><a href="#cb30-12"></a>    <span class="cf">if</span> bar <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb30-13"><a href="#cb30-13"></a>        <span class="cf">continue</span></span>
+<span id="cb30-14"><a href="#cb30-14"></a>    <span class="bu">print</span>(bar)</span></code></pre></div>
+<p>&#x7B2C;&#x4E00;&#x4E2A;&#x5FAA;&#x73AF;&#x4E2D;&#x5F53; <code>foo &gt;= 5</code> &#x65F6;&#x8DF3;&#x51FA;&#x5FAA;&#x73AF;&#xFF0C;&#x540E;&#x9762;&#x7684;&#x503C;&#x4E0D;&#x4F1A;&#x88AB;&#x6253;&#x5370;&#x3002;&#x7B2C;&#x4E8C;&#x4E2A;&#x5FAA;&#x73AF;&#x5F53; <code>bar == 2</code> &#x65F6;&#x8DF3;&#x8FC7;&#x672C;&#x6B21;&#x5FAA;&#x73AF;&#xFF0C;&#x53EA;&#x6709; 2 &#x4E0D;&#x4F1A;&#x88AB;&#x6253;&#x5370;&#x3002;</p>
+<pre><code>0
+1
+2
+3
+4
+-----
+1
+3
+4
+5</code></pre>
+<h2 id="x06-&#x6587;&#x4EF6;&#x64CD;&#x4F5C;">0x06 &#x6587;&#x4EF6;&#x64CD;&#x4F5C;</h2>
+<p>&#x6587;&#x4EF6;&#x64CD;&#x4F5C;&#x5728;&#x65E5;&#x5E38;&#x4E2D;&#x51FA;&#x73B0;&#x9891;&#x7387;&#x975E;&#x5E38;&#x9AD8;&#xFF0C; Python &#x63D0;&#x4F9B;&#x4E86;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#x7684;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;&#x3002;</p>
+<h3 id="&#x5199;&#x6587;&#x4EF6;">&#x5199;&#x6587;&#x4EF6;</h3>
+<p>&#x9996;&#x5148;&#x6253;&#x5F00;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5E76;&#x50CF;&#x5176;&#x4E2D;&#x5199;&#x5165;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#x3002;</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>foo <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;foo.txt&quot;</span>, <span class="st">&quot;w&quot;</span>)</span>
+<span id="cb32-2"><a href="#cb32-2"></a>foo.write(<span class="st">&quot;This is foo.txt&quot;</span>)</span>
+<span id="cb32-3"><a href="#cb32-3"></a>foo.close()</span></code></pre></div>
+<p>&#x8FD0;&#x884C;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x540E;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5728;&#x811A;&#x672C;&#x76F8;&#x540C;&#x8DEF;&#x5F84;&#x4E0B;&#x51FA;&#x73B0;&#x4E86; <code>foo.txt</code> &#x6587;&#x4EF6;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x662F; <code>This is foo.txt</code>&#x3002;</p>
+<p>Python &#x4E2D;&#x4F7F;&#x7528; <code>open()</code> &#x51FD;&#x6570;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6253;&#x5F00;&#x7684;&#x662F;&#x4E0E;&#x811A;&#x672C;&#x76F8;&#x540C;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x90A3;&#x4E2A;&#x6587;&#x4EF6;&#x3002;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x7684;&#x6A21;&#x5F0F;&#xFF0C;&#x8FD9;&#x91CC;&#x7684; <code>w</code> &#x8868;&#x793A;&#x8981;&#x5199;&#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x662F; <code>r</code> &#x8868;&#x793A;&#x8981;&#x8BFB;&#x6587;&#x4EF6;&#x3002;&#x8FD8;&#x6709;&#x5176;&#x4ED6;&#x7684;&#x6587;&#x4EF6;&#x6A21;&#x5F0F;&#x8BF7;&#x8BFB;&#x8005;&#x81EA;&#x884C;&#x4E86;&#x89E3;&#xFF0C;&#x672C;&#x6587;&#x4E0D;&#x518D;&#x505A;&#x4ECB;&#x7ECD;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>write()</code> &#x51FD;&#x6570;&#x50CF;&#x6587;&#x4EF6;&#x4E2D;&#x5199;&#x5165;&#x6570;&#x636E;&#xFF0C;&#x4F7F;&#x7528;&#x5B8C;&#x6587;&#x4EF6;&#x540E;&#x4E00;&#x5B9A;&#x8981;&#x8C03;&#x7528; <code>close()</code> &#x51FD;&#x6570;&#x5173;&#x95ED;&#x6587;&#x4EF6;&#x3002;</p>
+<h3 id="&#x8BFB;&#x6587;&#x4EF6;">&#x8BFB;&#x6587;&#x4EF6;</h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;foo.txt&quot;</span>,<span class="st">&quot;r&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb33-2"><a href="#cb33-2"></a>    foo <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb33-3"><a href="#cb33-3"></a>    <span class="bu">print</span>(foo)</span></code></pre></div>
+<p>&#x4E0E;&#x5199;&#x6587;&#x4EF6;&#x7C7B;&#x4F3C;&#xFF0C;&#x4F46;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x4E86; <code>with</code> &#x8BED;&#x53E5;&#x6765;&#x4FDD;&#x8BC1;&#x65E0;&#x8BBA;&#x4EC0;&#x4E48;&#x60C5;&#x51B5;&#x4E0B;&#x6587;&#x4EF6;&#x90FD;&#x4F1A;&#x88AB;&#x5173;&#x95ED;&#x3002;&#x901A;&#x5E38;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;&#x90FD;&#x662F;&#x4F7F;&#x7528; <code>with</code> &#x8BED;&#x53E5;&#x6765;&#x8FDB;&#x884C;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x4E0D;&#x4F1A;&#x5FD8;&#x8BB0;&#x5173;&#x95ED;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x4E14;&#x53D1;&#x751F;&#x5F02;&#x5E38;&#x65F6;&#x6587;&#x4EF6;&#x4E5F;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x5173;&#x95ED;&#x3002;</p>
+<pre><code>This is foo.txt</code></pre>
+<p>&#x6267;&#x884C;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x540E;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x4F1A;&#x88AB;&#x6253;&#x5370;&#x51FA;&#x6765;&#x3002;</p>
+<h2 id="x07-&#x6A21;&#x5757;">0x07 &#x6A21;&#x5757;</h2>
+<p>Python &#x4E2D;&#x53EF;&#x4EE5;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>import</code> &#x5BFC;&#x5165;&#x7CFB;&#x7EDF;&#x6A21;&#x5757;&#x6216;&#x5176;&#x4ED6;&#x5916;&#x90E8;&#x6A21;&#x5757;&#x3002;</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="im">import</span> sys</span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="cf">for</span> i <span class="kw">in</span> sys.argv:</span>
+<span id="cb35-3"><a href="#cb35-3"></a>    <span class="bu">print</span>(i)</span></code></pre></div>
+<p>&#x5BFC;&#x5165;&#x7CFB;&#x7EDF;&#x7684; <code>sys</code> &#x6A21;&#x5757;&#x5E76;&#x8F93;&#x51FA;&#x6267;&#x884C;&#x811A;&#x672C;&#x65F6;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x5047;&#x8BBE;&#x5C06;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4FDD;&#x5B58;&#x4E3A; <code>foo.py</code>&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x547D;&#x4EE4;&#x884C;&#x6267;&#x884C;</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1"></a><span class="ex">python</span> foo.py bar1 bar2</span></code></pre></div>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6253;&#x5370;&#x51FA;&#x4E86;&#x811A;&#x672C;&#x540D;&#x53CA;&#x540E;&#x9762;&#x7684;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
+<pre><code>foo.py
+bar1
+bar2</code></pre>
+<p><code>import</code> &#x9664;&#x4E86;&#x53EF;&#x4EE5;&#x5BFC;&#x5165;&#x7CFB;&#x7EDF;&#x6A21;&#x5757;&#x5916;&#xFF0C;&#x8FD8;&#x80FD;&#x5BFC;&#x5165;&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;&#x3002;&#x9996;&#x5148;&#x521B;&#x5EFA; <code>foo.py</code> &#x6587;&#x4EF6;&#x7F16;&#x5199;</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">def</span> func(a, b):</span>
+<span id="cb38-2"><a href="#cb38-2"></a>    <span class="cf">return</span> a <span class="op">**</span> b</span></code></pre></div>
+<p>&#x5728;&#x76F8;&#x540C;&#x76EE;&#x5F55;&#x4E0B;&#x521B;&#x5EFA; <code>bar.py</code> &#x7F16;&#x5199;</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="im">import</span> foo</span>
+<span id="cb39-2"><a href="#cb39-2"></a></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&apos;__main__&apos;</span>:</span>
+<span id="cb39-4"><a href="#cb39-4"></a>    <span class="bu">print</span>(foo.func(<span class="dv">10</span>, <span class="dv">3</span>))</span></code></pre></div>
+<p><code>bar.py</code> &#x5BFC;&#x5165;&#x4E86; <code>foo.py</code> &#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x5E76;&#x8C03;&#x7528;&#x4E86;&#x51FD;&#x6570; <code>func()</code> &#x51FD;&#x6570;&#x3002;<code>bar.py</code> &#x4E0E;&#x4E4B;&#x524D;&#x7684;&#x5185;&#x5BB9;&#x6709;&#x6240;&#x4E0D;&#x540C;&#xFF0C;&#x591A;&#x4E86;&#x4E00;&#x4E2A; <code>__name__ == &apos;__main__&apos;</code>&#xFF0C;&#x4F5C;&#x7528;&#x662F;&#x5224;&#x65AD;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x8FD0;&#x884C;&#x800C;&#x4E0D;&#x662F;&#x88AB;&#x5176;&#x4ED6;&#x6A21;&#x5757;&#x8C03;&#x7528;&#x3002;<code>__name__</code> &#x662F; Python &#x7684;&#x5185;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x82E5;&#x503C;&#x4E3A; <code>__main__</code> &#x5219;&#x662F;&#x88AB;&#x76F4;&#x63A5;&#x8FD0;&#x884C;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x4E2D; <code>mian()</code> &#x4F5C;&#x4E3A;&#x7A0B;&#x5E8F;&#x5165;&#x53E3;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+<p><code>import foo</code> &#x4F1A;&#x5BFC;&#x5165; <code>foo.py</code> &#x4E2D;&#x6240;&#x6709;&#x7684;&#x51FD;&#x6570;&#x3001;&#x53D8;&#x91CF;&#x7B49;&#xFF0C;&#x5982;&#x8981;&#x5BFC;&#x5165;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>from foo import func</code> &#x53EA;&#x5BFC;&#x5165; <code>func()</code> &#x51FD;&#x6570;&#xFF0C;&#x82E5;&#x8981;&#x5BFC;&#x5165;&#x591A;&#x4E2A;&#x5185;&#x5BB9;&#x9700;&#x4F7F;&#x7528;&#x9017;&#x53F7;&#xFF08;<code>,</code>&#xFF09;&#x5206;&#x9694;&#x3002;</p>
+<h2 id="x08-&#x9762;&#x5411;&#x5BF9;&#x8C61;">0x08 &#x9762;&#x5411;&#x5BF9;&#x8C61;</h2>
+<p>&#x5728; Python &#x4E2D;&#x8FDB;&#x884C;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x4E5F;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x3002;&#x5982;&#x679C;&#x4F60;&#x8FD8;&#x4E0D;&#x719F;&#x6089;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x5185;&#x5BB9;&#xFF0C;&#x5148;&#x770B;&#x8FD9;&#x91CC; <a href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1" target="_blank" rel="noopener">&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;</a>&#x3002;</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">class</span> Person:</span>
+<span id="cb40-2"><a href="#cb40-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):</span>
+<span id="cb40-3"><a href="#cb40-3"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb40-4"><a href="#cb40-4"></a></span>
+<span id="cb40-5"><a href="#cb40-5"></a>    <span class="kw">def</span> greet(<span class="va">self</span>):</span>
+<span id="cb40-6"><a href="#cb40-6"></a>        <span class="cf">return</span> <span class="st">&quot;Hello, I&apos;am </span><span class="sc">%s</span><span class="st">&quot;</span> <span class="op">%</span> <span class="va">self</span>.name</span></code></pre></div>
+<p>&#x9996;&#x5148;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x540D;&#x4E3A; <code>Person</code> &#x7684;&#x7C7B;&#xFF0C;&#x6709;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x3002;<code>__init__</code> &#x65B9;&#x6CD5;&#x76F8;&#x5F53;&#x4E8E;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5B9E;&#x4F8B;&#x5316;&#x5BF9;&#x8C61;&#x65F6;&#x7531;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x3002; Python &#x4E2D;&#x4F7F;&#x7528; <code>self</code> &#x6765;&#x8BBF;&#x95EE;&#x5185;&#x90E8;&#x6210;&#x5458;&#xFF0C;&#x7C7B;&#x4F3C;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x4E2D;&#x7684; <code>this</code> &#x6307;&#x9488;&#xFF0C;&#x5B9E;&#x4F8B;&#x5316;&#x4E4B;&#x540E;&#x6307;&#x5411;&#x5BF9;&#x8C61;&#x672C;&#x8EAB;&#x3002;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D; <code>__init__</code> &#x65B9;&#x6CD5;&#x6709;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x662F; <code>self</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x4E0D;&#x80FD;&#x624B;&#x52A8;&#x6307;&#x5B9A;&#xFF0C;&#x8C03;&#x7528;&#x65F6;&#x7531;&#x7CFB;&#x7EDF;&#x6DFB;&#x52A0;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x662F; <code>name</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x9700;&#x8981;&#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#x4F20;&#x5165;&#x3002;&#x6784;&#x9020;&#x51FD;&#x6570;&#x88AB;&#x8C03;&#x7528;&#x65F6;&#x5C06;&#x4F20;&#x5165;&#x7684; <code>name</code> &#x8D4B;&#x503C;&#x7ED9;&#x5185;&#x90E8;&#x6210;&#x5458; <code>name</code>&#xFF0C;&#x8FD9;&#x6837;&#x5728;&#x5185;&#x90E8;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#x4E5F;&#x80FD;&#x4F7F;&#x7528; <code>name</code> &#x7684;&#x503C;&#x3002;</p>
+<p><code>Person</code> &#x7C7B;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5; <code>greet</code>&#xFF0C;&#x5B9E;&#x4F8B;&#x5316;&#x4E4B;&#x540E;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4F1A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x540D;&#x5B57;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x8FD9;&#x91CC;&#x7528;&#x5230;&#x4E86;&#x5B57;&#x7B26;&#x4E32;&#x683C;&#x5F0F;&#x5316;&#xFF0C;&#x539F;&#x672C;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684; <code>%s</code> &#x4F1A;&#x88AB;&#x66FF;&#x6362;&#x6210; <code>self.name</code> &#x7684;&#x503C;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x591A;&#x4E2A;&#x503C;&#x8FDB;&#x884C;&#x5B57;&#x7B26;&#x4E32;&#x683C;&#x5F0F;&#x5316;&#xFF0C;&#x4F8B;&#x5982; <code>&quot;%s + %s = %s&quot; % (1, 2, 1 + 2)</code> &#x5F97;&#x5230;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x65F6; <code>1 + 2 = 3</code>&#x3002;</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&apos;__main__&apos;</span>:</span>
+<span id="cb41-2"><a href="#cb41-2"></a>    alice <span class="op">=</span> Person(<span class="st">&quot;Alice&quot;</span>)</span>
+<span id="cb41-3"><a href="#cb41-3"></a>    <span class="bu">print</span>(alice.greet())</span></code></pre></div>
+<p>&#x5B9E;&#x4F8B;&#x5316;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5E76;&#x8C03;&#x7528; <code>greet()</code> &#x65B9;&#x6CD5;&#x3002;</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb42-1"><a href="#cb42-1"></a>Hello, I&apos;am Alice</span></code></pre></div>
+<p>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x4E2D;&#x5C11;&#x4E0D;&#x4E86;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x3002;</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="kw">class</span> Student(Person):</span>
+<span id="cb43-2"><a href="#cb43-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, grade):</span>
+<span id="cb43-3"><a href="#cb43-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(name)</span>
+<span id="cb43-4"><a href="#cb43-4"></a>        <span class="va">self</span>._grade <span class="op">=</span> grade</span>
+<span id="cb43-5"><a href="#cb43-5"></a></span>
+<span id="cb43-6"><a href="#cb43-6"></a>    <span class="kw">def</span> get_grade(<span class="va">self</span>):</span>
+<span id="cb43-7"><a href="#cb43-7"></a>        <span class="cf">return</span> <span class="va">self</span>._grade</span></code></pre></div>
+<p><code>class Student(Person)</code> &#x8868;&#x660E; <code>Student</code> &#x7C7B;&#x7EE7;&#x627F;&#x81EA; <code>Person</code>&#xFF0C;&#x5728; <code>__init__</code> &#x4E2D;&#x65B0;&#x589E;&#x4E86;&#x4E00;&#x4E2A; <code>grade</code> &#x53C2;&#x6570;&#xFF0C;&#x5E76;&#x5C06;&#x5B83;&#x7684;&#x503C;&#x914D;&#x7ED9;&#x4E86;&#x5185;&#x90E8;&#x53D8;&#x91CF; <code>_grade</code>&#x3002;&#x4EE5;&#x4E0B;&#x5212;&#x7EBF;&#x5F00;&#x5934;&#x7684;&#x53D8;&#x91CF;&#x548C;&#x65B9;&#x6CD5;&#x662F;&#x5185;&#x90E8;&#x6210;&#x5458;&#xFF0C;&#x65E0;&#x6CD5;&#x88AB;&#x5916;&#x90E8;&#x8BBF;&#x95EE; &#xFF0C;&#x56E0;&#x6B64;&#x589E;&#x52A0;&#x4E86; <code>get_grade</code> &#x65B9;&#x6CD5;&#x6765;&#x83B7;&#x53D6; <code>_grade</code> &#x7684;&#x503C;&#x3002;</p>
+<p>&#x5343;&#x4E07;<strong>&#x522B;&#x5FD8;&#x4E86;</strong>&#x5728; <code>__init__</code> &#x4E2D;&#x8C03;&#x7528;&#x7236;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x3002;</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&apos;__main__&apos;</span>:</span>
+<span id="cb44-2"><a href="#cb44-2"></a>    bob <span class="op">=</span> Student(<span class="st">&quot;Bob&quot;</span>, <span class="dv">90</span>)</span>
+<span id="cb44-3"><a href="#cb44-3"></a>    <span class="bu">print</span>(bob.greet())</span>
+<span id="cb44-4"><a href="#cb44-4"></a>    <span class="bu">print</span>(bob.get_grade())</span></code></pre></div>
+<p>&#x548C;&#x4E4B;&#x524D;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x76F8;&#x540C;&#xFF0C;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x5373;&#x53EF;&#x3002;</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb45-1"><a href="#cb45-1"></a>Hello, I&apos;am Bob</span>
+<span id="cb45-2"><a href="#cb45-2"></a>90</span></code></pre></div>
+<h2 id="x09-&#x5199;&#x5728;&#x6700;&#x540E;">0x09 &#x5199;&#x5728;&#x6700;&#x540E;</h2>
+<p>&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x5C31;&#x5230;&#x8FD9;&#x91CC;&#x7ED3;&#x675F;&#x4E86;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x82B1;&#x4E86;&#x4E09;&#x5341;&#x5206;&#x949F;&#x8BFB;&#x5B8C;&#x672C;&#x6587;&#xFF0C;&#x76F8;&#x4FE1;&#x4F60;&#x5DF2;&#x7ECF;&#x5BF9; Python &#x5DF2;&#x7ECF;&#x6709;&#x4E86;&#x57FA;&#x672C;&#x7684;&#x4E86;&#x89E3;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x53EF;&#x4EE5;&#x53BB;&#x67E5;&#x9605;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x4E86;&#x89E3;&#x66F4;&#x6DF1;&#x5165;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x6216;&#x8005;&#x5B66;&#x4E60;&#x4E00;&#x4E9B; Python &#x5B9E;&#x9645;&#x5E94;&#x7528;&#x3002;</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Dreace<br>
+<strong>本文链接：</strong><a href="https://blog.dreace.top/2019/Python-From-Zero-To-Hero/" title="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2019&#x2F;Python-From-Zero-To-Hero&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dreace.top&#x2F;2019&#x2F;Python-From-Zero-To-Hero&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <!-- Unpkg -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.5/dist/disqusjs.min.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.5/dist/disqus.min.js"></script>
+<div id="disqus_thread"></div>
+<script>
+var dsqjs = new DisqusJS({
+    shortname: 'dreace',
+    siteName: 'DreaceのBlog',
+    identifier: 'https://blog.dreace.top/2019/Python-From-Zero-To-Hero/',
+    url: 'https://blog.dreace.top/2019/Python-From-Zero-To-Hero/',
+    title: 'Python 从 Zero 到 Hero',
+    api: 'https://disqus.dreace.top/api/',
+    apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
+    admin: 'Dreace233',
+    adminLabel: '书记！'
+});
+</script>
+</section>
+</div>
+        
+    <div class="beian" >
+        
+            <a class="link" href="http://www.beian.miit.gov.cn/" target="_blank">蜀ICP备17035453号-1</a>
+        
+        
+            &nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51202202000022" target="_blank"><i class="govimg"></i>川公网安备 51202202000022号</a>
+        
+    </div>
+
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1586967308888"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+  
+
+
+
+    <!-- Tencent Analytics -->
+<script>
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//tajs.qq.com/stats?sId=500701683";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+</body>
+
+</html>
