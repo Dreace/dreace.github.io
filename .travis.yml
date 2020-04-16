@@ -1,4 +1,6 @@
 language: node_js
+node_js:
+  - 12
 script:
   - wget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb
   - sudo apt-get install -y ./pandoc-2.7.3-1-amd64.deb
@@ -7,7 +9,7 @@ script:
 branches:
   only:
     - source
-     
+
 deploy:
   provider: pages
   cleanup: false
