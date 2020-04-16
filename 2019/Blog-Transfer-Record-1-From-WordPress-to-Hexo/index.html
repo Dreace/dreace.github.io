@@ -19,12 +19,12 @@
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="用 WordPress 写博客已经很长时间，虽然写的东西不多，从最开始的托管空间开始到迁移至阿里的 ECS 上，这个博客已经存在了四五年了。也从最开始感叹 WordPress 功能强大到现在抱怨种种问题，例如 Markdown 支持不完善、由于主机上传带宽很小后台管理打开很慢等等。越用越感觉 WordPress 似乎不适合我，操作过于繁琐。一句话就是「不够 Geek」。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Blog-Transfer-Record-1-From-WordPress-to-Hexo&#x2F;image-20191110180243358.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Blog-Transfer-Record-1-From-WordPress-to-Hexo&#x2F;image-20191110182226873.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Blog-Transfer-Record-1-From-WordPress-to-Hexo&#x2F;image-20191110182507063.png">
-<meta property="og:updated_time" content="2020-04-16T11:57:08.170Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Blog-Transfer-Record-1-From-WordPress-to-Hexo&#x2F;image-20191110180243358.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Blog-Transfer-Record-1-From-WordPress-to-Hexo&#x2F;image-20191110182226873.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Blog-Transfer-Record-1-From-WordPress-to-Hexo&#x2F;image-20191110182507063.png">
+<meta property="og:updated_time" content="2020-04-16T17:14:07.194Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Blog-Transfer-Record-1-From-WordPress-to-Hexo&#x2F;image-20191110180243358.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Blog-Transfer-Record-1-From-WordPress-to-Hexo&#x2F;image-20191110180243358.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
    
@@ -32,7 +32,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1587038256137">
+  <link rel="stylesheet" href="/css/style.css?v=1587057274686">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -45,7 +45,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png"></a>
        </div>
     </div>
   </div>
@@ -53,7 +53,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png" alt="Dreace">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -285,14 +285,14 @@
 <pre class="shell"><code>hexo migrate wordpress &lt;source&gt;</code></pre>
 <p>&#x5176;&#x4E2D; <code>&lt;source&gt;</code> &#x662F;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x3002;</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110180243358.png" alt><figcaption>&#x5BFC;&#x5165;&#x5B8C;&#x6210;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110180243358.png" alt><figcaption>&#x5BFC;&#x5165;&#x5B8C;&#x6210;</figcaption>
 </figure>
 <p>&#x5BFC;&#x5165;&#x6210;&#x529F;&#xFF0C;&#x867D;&#x7136;&#x5185;&#x5BB9;&#x8F6C;&#x79FB;&#x8FC7;&#x6765;&#x4E86;&#x4F46;&#x662F;&#x6392;&#x7248;&#x60E8;&#x4E0D;&#x5FCD;&#x7779;&#x3002;&#x6BD4;&#x5982;&#x6587;&#x7AE0;&#x4E2D;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x4E22;&#x5931;&#x3001;&#x4E0D;&#x5FCD;&#x76F4;&#x89C6;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x3002;</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182226873.png" alt><figcaption>&#x4E22;&#x5931;&#x6837;&#x5F0F;&#x7684; Python &#x4EE3;&#x7801;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182226873.png" alt><figcaption>&#x4E22;&#x5931;&#x6837;&#x5F0F;&#x7684; Python &#x4EE3;&#x7801;</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182507063.png" alt><figcaption>&#x4E0D;&#x5FCD;&#x76F4;&#x89C6;&#x7684;&#x6587;&#x4EF6;&#x540D;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182507063.png" alt><figcaption>&#x4E0D;&#x5FCD;&#x76F4;&#x89C6;&#x7684;&#x6587;&#x4EF6;&#x540D;</figcaption>
 </figure>
 <p>&#x53EA;&#x80FD;&#x5148;&#x628A;&#x8FD9;&#x4E9B;&#x6587;&#x7AE0;&#x79FB;&#x5230; <code>_drafts</code> &#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x4EE5;&#x540E;&#x6765;&#x6162;&#x6162;&#x6574;&#x7406;&#x3002;</p>
 <h2 id="&#x6700;&#x540E;">&#x6700;&#x540E;</h2>
@@ -362,30 +362,10 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1587038256145"></script>
+<script src="/js/app.js?v=1587057274694"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
-<script>
-
-function checkWebp(callback) {
-    var img = new Image();
-    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };
-    img.onerror = function () { callback(false); };
-    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
-}
-function showImage(useWebp) {
-    var imgs = [].slice.call(document.querySelectorAll('img'));
-    imgs.forEach(function (e) {
-        if (useWebp) {
-            var src = e.getAttribute('data-src')
-            src = src += "?imageView2/0/format/webp";
-            e.setAttribute('data-src', src);
-        }
-    });
-}
-checkWebp(showImage);
-</script>
 
   
 

@@ -19,25 +19,25 @@
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="最近突然有个想法打算做一个桌面应用，打算跨平台，技术选型在 Qt 和 Electron 之间定，经过一晚上的深思熟虑（并没有）最终决定采用 Electron + Vue.js 方案。谁让咱是个末流程序猿👨‍💻，UI &#x2F; UX 不会做，图也不会画，只能用用别人造好的轮子。Web 这边 UI 组件问题不用担心，起码做出来的东西外观看起来还可以，希望如此。 下面将使用最新的 Electron 和 V">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225427901.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225453779.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225857040.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225624117.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225701244.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225724202.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120231432550.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225816311.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121110345907.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121111053872.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121111846090.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121135306530.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121140443054.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121141255491.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121141916527.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121142011185.png">
-<meta property="og:updated_time" content="2020-04-16T11:57:08.170Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225427901.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225453779.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225857040.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225624117.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225701244.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225724202.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120231432550.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225816311.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121110345907.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121111053872.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121111846090.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121135306530.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121140443054.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121141255491.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121141916527.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121142011185.png">
+<meta property="og:updated_time" content="2020-04-16T17:14:07.194Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225427901.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225427901.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
    
@@ -45,7 +45,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1587038256113">
+  <link rel="stylesheet" href="/css/style.css?v=1587057274658">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -58,7 +58,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png"></a>
        </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png" alt="Dreace">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -298,43 +298,43 @@ npm config set electron_mirror https://cdn.npm.taobao.org/dist/electron/</code><
 <p>&#x63A5;&#x4E0B;&#x6765;&#x8BBE;&#x7F6E;&#x9879;&#x76EE;&#x7684;&#x57FA;&#x7840;&#x914D;&#x7F6E;&#x3002;</p>
 <h4 id="&#x9009;&#x62E9;&#x9884;&#x8BBE;">&#x9009;&#x62E9;&#x9884;&#x8BBE;</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225427901.png" alt><figcaption>&#x9009;&#x62E9;&#x9884;&#x8BBE;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225427901.png" alt><figcaption>&#x9009;&#x62E9;&#x9884;&#x8BBE;</figcaption>
 </figure>
 <p>&#x8FD9;&#x91CC;&#x6211;&#x9009;&#x62E9;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;&#xFF08;Manually select features&#xFF09;&#x3002;</p>
 <h4 id="&#x9009;&#x62E9;&#x5DE5;&#x5177;">&#x9009;&#x62E9;&#x5DE5;&#x5177;</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225453779.png" alt><figcaption>&#x9009;&#x62E9;&#x5DE5;&#x5177;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225453779.png" alt><figcaption>&#x9009;&#x62E9;&#x5DE5;&#x5177;</figcaption>
 </figure>
 <p>&#x6839;&#x636E;&#x9879;&#x76EE;&#x7684;&#x9700;&#x8981;&#x9009;&#x62E9;&#x5DE5;&#x5177;&#xFF08;<code>&#x7A7A;&#x683C;</code> &#x9009;&#x62E9;&#xFF09;&#xFF0C;&#x7136;&#x540E; <code>&#x56DE;&#x8F66;</code> &#x786E;&#x8BA4;&#x3002;</p>
 <h4 id="&#x9009;&#x62E9;&#x8DEF;&#x7531;&#x6A21;&#x5F0F;">&#x9009;&#x62E9;&#x8DEF;&#x7531;&#x6A21;&#x5F0F;</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225857040.png" alt><figcaption>&#x9009;&#x62E9;&#x8DEF;&#x7531;&#x6A21;&#x5F0F;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225857040.png" alt><figcaption>&#x9009;&#x62E9;&#x8DEF;&#x7531;&#x6A21;&#x5F0F;</figcaption>
 </figure>
 <p>&#x9009;&#x62E9; history &#x8FD8;&#x662F; hash &#x6837;&#x5F0F;&#x7684;&#x8DEF;&#x7531;&#xFF0C;history &#x94FE;&#x63A5;&#x683C;&#x5F0F;&#x6BD4;&#x8F83;&#x597D;&#x770B;&#xFF0C;&#x4F46;&#x662F;&#x9700;&#x8981;&#x670D;&#x52A1;&#x5668;&#x652F;&#x6301;&#xFF0C;&#x7531;&#x4E8E;&#x8FD9;&#x662F; Electron &#x9879;&#x76EE;&#x53EA;&#x80FD;&#x9009;&#x62E9; hash &#x6837;&#x5F0F;&#xFF08;<code>n</code>&#xFF09;&#x3002;&#x53CD;&#x6B63;&#x7528;&#x6237;&#x770B;&#x4E0D;&#x5230;&#x5177;&#x4F53;&#x7684;&#x94FE;&#x63A5;&#xFF0C;&#x96BE;&#x770B;&#x70B9;&#x4E5F;&#x80FD;&#x63A5;&#x53D7;&#x3002;</p>
 <h4 id="&#x9009;&#x62E9;-eslint-&#x914D;&#x7F6E;">&#x9009;&#x62E9; ESLint &#x914D;&#x7F6E;</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225624117.png" alt><figcaption>&#x9009;&#x62E9; ESLint &#x914D;&#x7F6E;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225624117.png" alt><figcaption>&#x9009;&#x62E9; ESLint &#x914D;&#x7F6E;</figcaption>
 </figure>
 <p>&#x8FD9;&#x91CC;&#x9009;&#x62E9;&#x6807;&#x51C6;&#x914D;&#x7F6E;&#xFF08;ESLint + Standard config&#xFF09;&#x3002;</p>
 <h4 id="&#x9009;&#x62E9;&#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x683C;&#x5F0F;&#x68C0;&#x67E5;">&#x9009;&#x62E9;&#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x683C;&#x5F0F;&#x68C0;&#x67E5;</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225701244.png" alt><figcaption>&#x9009;&#x62E9;&#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x683C;&#x5F0F;&#x68C0;&#x67E5;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225701244.png" alt><figcaption>&#x9009;&#x62E9;&#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x683C;&#x5F0F;&#x68C0;&#x67E5;</figcaption>
 </figure>
 <p>&#x8FD9;&#x91CC;&#x9009;&#x62E9;&#x4EC5;&#x5728;&#x4FDD;&#x5B58;&#x65F6;&#x68C0;&#x67E5;&#xFF08;Lint on save&#xFF09;&#x3002;</p>
 <h4 id="&#x9009;&#x62E9;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x65B9;&#x6848;">&#x9009;&#x62E9;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x65B9;&#x6848;</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225724202.png" alt><figcaption>&#x9009;&#x62E9;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x65B9;&#x6848;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225724202.png" alt><figcaption>&#x9009;&#x62E9;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x65B9;&#x6848;</figcaption>
 </figure>
 <p>&#x5982;&#x679C;&#x4E4B;&#x524D;&#x672A;&#x9009;&#x62E9;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x5219;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x8FD9;&#x4E2A;&#x9009;&#x9879;&#x3002;</p>
 <p>&#x8FD9;&#x91CC;&#x9009;&#x62E9; Mocha + Chai&#x3002;</p>
 <h4 id="&#x9009;&#x62E9;&#x5728;&#x4F55;&#x5904;&#x5B58;&#x653E;&#x914D;&#x7F6E;&#x4FE1;&#x606F;">&#x9009;&#x62E9;&#x5728;&#x4F55;&#x5904;&#x5B58;&#x653E;&#x914D;&#x7F6E;&#x4FE1;&#x606F;</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120231432550.png" alt><figcaption>&#x9009;&#x62E9;&#x5728;&#x4F55;&#x5904;&#x5B58;&#x653E;&#x914D;&#x7F6E;&#x4FE1;&#x606F;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120231432550.png" alt><figcaption>&#x9009;&#x62E9;&#x5728;&#x4F55;&#x5904;&#x5B58;&#x653E;&#x914D;&#x7F6E;&#x4FE1;&#x606F;</figcaption>
 </figure>
 <p>&#x8FD9;&#x91CC;&#x9009;&#x62E9;&#x653E;&#x5728; <code>package.json</code> &#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
 <h4 id="&#x9009;&#x62E9;&#x662F;&#x5426;&#x4FDD;&#x5B58;&#x914D;&#x7F6E;">&#x9009;&#x62E9;&#x662F;&#x5426;&#x4FDD;&#x5B58;&#x914D;&#x7F6E;</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225816311.png" alt><figcaption>&#x9009;&#x62E9;&#x662F;&#x5426;&#x4FDD;&#x5B58;&#x914D;&#x7F6E;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225816311.png" alt><figcaption>&#x9009;&#x62E9;&#x662F;&#x5426;&#x4FDD;&#x5B58;&#x914D;&#x7F6E;</figcaption>
 </figure>
 <p>&#x5982;&#x679C;&#x9009;&#x62E9; <code>y</code> &#x5148;&#x524D;&#x7684;&#x914D;&#x7F6E;&#x4F1A;&#x4FDD;&#x5B58;&#x4E3A;&#x9884;&#x8BBE;&#x5907;&#x4EE5;&#x540E;&#x7684;&#x9879;&#x76EE;&#x4F7F;&#x7528;&#xFF0C;&#x8FD9;&#x91CC;&#x9009;&#x62E9; <code>n</code>&#x3002;</p>
 <h4 id="&#x7B49;&#x5F85;&#x5B89;&#x88C5;">&#x7B49;&#x5F85;&#x5B89;&#x88C5;</h4>
@@ -345,16 +345,16 @@ npm config set electron_mirror https://cdn.npm.taobao.org/dist/electron/</code><
 <pre><code>vue add electron-builder</code></pre>
 <p>&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x66F4;&#x6539;&#x672A;&#x63D0;&#x4EA4;&#x7684;&#x63D0;&#x793A;&#xFF0C;&#x8DF3;&#x8FC7;&#x5373;&#x53EF;&#x3002;</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121110345907.png" alt><figcaption>&#x66F4;&#x6539;&#x672A;&#x63D0;&#x4EA4;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121110345907.png" alt><figcaption>&#x66F4;&#x6539;&#x672A;&#x63D0;&#x4EA4;</figcaption>
 </figure>
 <h4 id="&#x9009;&#x62E9;-electron-&#x7248;&#x672C;">&#x9009;&#x62E9; Electron &#x7248;&#x672C;</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111053872.png" alt><figcaption>&#x9009;&#x62E9; Electron &#x7248;&#x672C;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111053872.png" alt><figcaption>&#x9009;&#x62E9; Electron &#x7248;&#x672C;</figcaption>
 </figure>
 <p>&#x76EE;&#x524D; Electron &#x6700;&#x65B0;&#x7248;&#x672C;&#x662F; 7.x&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x91CC;&#x6CA1;&#x6709; 7.0.0 &#x9009;&#x62E9;&#xFF0C;&#x5148;&#x9009;&#x62E9; 6.0.0 &#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#x518D;&#x624B;&#x52A8;&#x5347;&#x7EA7;&#x3002;</p>
 <h4 id="&#x662F;&#x5426;&#x6DFB;&#x52A0;&#x6D4B;&#x8BD5;">&#x662F;&#x5426;&#x6DFB;&#x52A0;&#x6D4B;&#x8BD5;</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111846090.png" alt><figcaption>&#x662F;&#x5426;&#x6DFB;&#x52A0;&#x6D4B;&#x8BD5;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111846090.png" alt><figcaption>&#x662F;&#x5426;&#x6DFB;&#x52A0;&#x6D4B;&#x8BD5;</figcaption>
 </figure>
 <p>&#x6839;&#x636E;&#x9879;&#x76EE;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x6D4B;&#x8BD5;&#xFF0C;&#x8FD9;&#x91CC;&#x9009;&#x62E9; <code>y</code>&#x3002;</p>
 <h4 id="&#x542F;&#x7528;-devtools">&#x542F;&#x7528; Devtools</h4>
@@ -402,7 +402,7 @@ npm config set electron_mirror https://cdn.npm.taobao.org/dist/electron/</code><
 <pre><code>npm run electron:serve</code></pre>
 <p>&#x5373;&#x53EF;&#x8FD0;&#x884C;&#x5F00;&#x53D1;&#x7248;&#x672C;&#x7684;&#x5E94;&#x7528;&#xFF0C; Devtools &#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x3002;</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121135306530.png" alt><figcaption>&#x8FD0;&#x884C;&#x6210;&#x529F;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121135306530.png" alt><figcaption>&#x8FD0;&#x884C;&#x6210;&#x529F;</figcaption>
 </figure>
 <h3 id="x02-&#x6784;&#x5EFA;&#x751F;&#x4EA7;&#x7248;">0x02 &#x6784;&#x5EFA;&#x751F;&#x4EA7;&#x7248;</h3>
 <p>&#x5728;&#x9879;&#x76EE;&#x6839;&#x76EE;&#x5F55;&#x65B0;&#x5EFA; <code>vue.config.js</code> &#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x5199;&#x5165;<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>&#xFF1A;</p>
@@ -460,7 +460,7 @@ npm config set electron_mirror https://cdn.npm.taobao.org/dist/electron/</code><
 }</code></pre>
 <p>&#x5E76;&#x5C06;&#x56FE;&#x6807;&#x653E;&#x7F6E;&#x5728; <code>./public</code> &#x8DEF;&#x5F84;&#x4E0B;&#x3002;</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121140443054.png" alt><figcaption>&#x56FE;&#x6807;&#x4F4D;&#x7F6E;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121140443054.png" alt><figcaption>&#x56FE;&#x6807;&#x4F4D;&#x7F6E;</figcaption>
 </figure>
 <p>&#x8FD9;&#x91CC;&#x914D;&#x7F6E;&#x5728; Windows &#x73AF;&#x5883;&#x4E0B;&#x5C06;&#x6784;&#x5EFA; NSIS &#x5B89;&#x88C5;&#x5305;&#xFF0C;&#x5E76;&#x5141;&#x8BB8;&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x5B89;&#x76EE;&#x5F55;&#xFF0C;&#x66F4;&#x591A;&#x7684;&#x914D;&#x7F6E;&#x9009;&#x9879;&#x53EF;&#x67E5;&#x770B; <a href="https://www.electron.build/" target="_blank" rel="noopener">electron-builder &#x6587;&#x6863;</a>&#x3002;</p>
 <p>&#x7136;&#x540E;&#x6267;&#x884C;&#xFF1A;</p>
@@ -468,13 +468,13 @@ npm config set electron_mirror https://cdn.npm.taobao.org/dist/electron/</code><
 <p><strong>&#x82E5;&#x9996;&#x6B21;&#x8FD0;&#x884C;&#x51FA;&#x73B0; winCodeSign &#x4E0B;&#x8F7D;&#x5931;&#x8D25;&#xFF0C;&#x53EF;&#x5C1D;&#x8BD5;&#x5C06;&#x5B89;&#x5168;&#x8F6F;&#x4EF6;&#x5173;&#x95ED;&#x540E;&#x91CD;&#x8BD5;</strong></p>
 <p>&#x6267;&#x884C;&#x5B8C;&#x6210;&#x540E;&#x5728; <code>./dist_electron</code> &#x8DEF;&#x5F84;&#x4E0B;&#x53EF;&#x627E;&#x5230;&#x6784;&#x5EFA;&#x7684;&#x5B89;&#x88C5;&#x5305;&#xFF0C;&#x53CC;&#x51FB;&#x5373;&#x53EF;&#x6267;&#x884C;&#x5B89;&#x88C5;&#x3002;</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141255491.png" alt><figcaption>&#x6784;&#x5EFA;&#x7684;&#x5B89;&#x88C5;&#x5305;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141255491.png" alt><figcaption>&#x6784;&#x5EFA;&#x7684;&#x5B89;&#x88C5;&#x5305;</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141916527.png" alt><figcaption>&#x5B89;&#x88C5;&#x540E;&#x7684;&#x684C;&#x9762;&#x56FE;&#x6807;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141916527.png" alt><figcaption>&#x5B89;&#x88C5;&#x540E;&#x7684;&#x684C;&#x9762;&#x56FE;&#x6807;</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121142011185.png" alt><figcaption>&#x8FD0;&#x884C;&#x751F;&#x4EA7;&#x6784;&#x5EFA;&#x7248;&#x672C;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121142011185.png" alt><figcaption>&#x8FD0;&#x884C;&#x751F;&#x4EA7;&#x6784;&#x5EFA;&#x7248;&#x672C;</figcaption>
 </figure>
 <h2 id="&#x5199;&#x5728;&#x540E;&#x9762;">&#x5199;&#x5728;&#x540E;&#x9762;</h2>
 <p>&#x5230;&#x6B64;&#x4E3A;&#x6B62;&#xFF0C;&#x4E00;&#x4E2A;&#x6700;&#x57FA;&#x7840;&#x7684; Electron + Vue.js &#x8DE8;&#x5E73;&#x53F0;&#x5E94;&#x7528;&#x642D;&#x5EFA;&#x5B8C;&#x6210;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x662F;&#x5177;&#x4F53;&#x7684;&#x903B;&#x8F91;&#x7F16;&#x5199;&#xFF0C;&#x5E0C;&#x671B;&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x4E0D;&#x4F1A;&#x6D41;&#x4EA7;&#x3002;</p>
@@ -545,30 +545,10 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1587038256124"></script>
+<script src="/js/app.js?v=1587057274666"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
-<script>
-
-function checkWebp(callback) {
-    var img = new Image();
-    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };
-    img.onerror = function () { callback(false); };
-    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
-}
-function showImage(useWebp) {
-    var imgs = [].slice.call(document.querySelectorAll('img'));
-    imgs.forEach(function (e) {
-        if (useWebp) {
-            var src = e.getAttribute('data-src')
-            src = src += "?imageView2/0/format/webp";
-            e.setAttribute('data-src', src);
-        }
-    });
-}
-checkWebp(showImage);
-</script>
 
   
 
