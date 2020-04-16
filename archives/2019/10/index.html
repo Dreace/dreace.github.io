@@ -27,7 +27,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1587036339390">
+  <link rel="stylesheet" href="/css/style.css?v=1587038256198">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -282,30 +282,30 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1587036339393"></script>
+<script src="/js/app.js?v=1587038256201"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
 <script>
 
-<!--function checkWebp(callback) {-->
-<!--    var img = new Image();-->
-<!--    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };-->
-<!--    img.onerror = function () { callback(false); };-->
-<!--    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';-->
-<!--}-->
-<!--function showImage(useWebp) {-->
-<!--    var imgs = [].slice.call(document.querySelectorAll('img'));-->
-<!--    imgs.forEach(function (e) {-->
-<!--        if (useWebp) {-->
-<!--            var src = e.getAttribute('data-src')-->
-<!--            src = src += "?imageView2/0/format/webp";-->
-<!--            e.setAttribute('data-src', src);-->
-<!--        }-->
-<!--    });-->
-<!--}-->
-<!--checkWebp(showImage);-->
-<!--</script>-->
+function checkWebp(callback) {
+    var img = new Image();
+    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };
+    img.onerror = function () { callback(false); };
+    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
+}
+function showImage(useWebp) {
+    var imgs = [].slice.call(document.querySelectorAll('img'));
+    imgs.forEach(function (e) {
+        if (useWebp) {
+            var src = e.getAttribute('data-src')
+            src = src += "?imageView2/0/format/webp";
+            e.setAttribute('data-src', src);
+        }
+    });
+}
+checkWebp(showImage);
+</script>
 
   
 

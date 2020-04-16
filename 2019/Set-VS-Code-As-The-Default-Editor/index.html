@@ -20,7 +20,7 @@
 <meta property="og:description" content="在 Windows 下安装 VS Code 时会询问是否注册为受支持类型编辑器，这样右击文件就可以使用 VS Code 编辑文件。如果安装时没有选择可以通过修改注册表达到这种效果。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Set-VS-Code-As-The-Default-Editor&#x2F;image-20191118171606890.png">
-<meta property="og:updated_time" content="2020-04-16T11:25:13.871Z">
+<meta property="og:updated_time" content="2020-04-16T11:57:08.174Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Set-VS-Code-As-The-Default-Editor&#x2F;image-20191118171606890.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
@@ -30,7 +30,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1587036339320">
+  <link rel="stylesheet" href="/css/style.css?v=1587038256132">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -358,30 +358,30 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1587036339324"></script>
+<script src="/js/app.js?v=1587038256136"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
 <script>
 
-<!--function checkWebp(callback) {-->
-<!--    var img = new Image();-->
-<!--    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };-->
-<!--    img.onerror = function () { callback(false); };-->
-<!--    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';-->
-<!--}-->
-<!--function showImage(useWebp) {-->
-<!--    var imgs = [].slice.call(document.querySelectorAll('img'));-->
-<!--    imgs.forEach(function (e) {-->
-<!--        if (useWebp) {-->
-<!--            var src = e.getAttribute('data-src')-->
-<!--            src = src += "?imageView2/0/format/webp";-->
-<!--            e.setAttribute('data-src', src);-->
-<!--        }-->
-<!--    });-->
-<!--}-->
-<!--checkWebp(showImage);-->
-<!--</script>-->
+function checkWebp(callback) {
+    var img = new Image();
+    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };
+    img.onerror = function () { callback(false); };
+    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
+}
+function showImage(useWebp) {
+    var imgs = [].slice.call(document.querySelectorAll('img'));
+    imgs.forEach(function (e) {
+        if (useWebp) {
+            var src = e.getAttribute('data-src')
+            src = src += "?imageView2/0/format/webp";
+            e.setAttribute('data-src', src);
+        }
+    });
+}
+checkWebp(showImage);
+</script>
 
   
 

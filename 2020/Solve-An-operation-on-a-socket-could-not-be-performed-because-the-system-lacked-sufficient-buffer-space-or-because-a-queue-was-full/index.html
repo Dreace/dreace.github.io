@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="最近写了个小工具，需要往 MySQL 中快速写入数据（5000 条数据左右）。刚开始很正常，跑了几分钟后报了一个错误 由于系统缓冲区空间不足或队列已满，不能执行套接字上的操作，这个问题以前也遇到过，只是通过简单的重启解决。虽然这次也通过重启把系统恢复正常了，可数据还没写到数据库里呢，于是花了点事件把这个问题彻底解决。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-16T11:25:13.871Z">
+<meta property="og:updated_time" content="2020-04-16T11:57:08.174Z">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
@@ -28,7 +28,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1587036339290">
+  <link rel="stylesheet" href="/css/style.css?v=1587038256104">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -334,30 +334,30 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1587036339296"></script>
+<script src="/js/app.js?v=1587038256112"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
 <script>
 
-<!--function checkWebp(callback) {-->
-<!--    var img = new Image();-->
-<!--    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };-->
-<!--    img.onerror = function () { callback(false); };-->
-<!--    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';-->
-<!--}-->
-<!--function showImage(useWebp) {-->
-<!--    var imgs = [].slice.call(document.querySelectorAll('img'));-->
-<!--    imgs.forEach(function (e) {-->
-<!--        if (useWebp) {-->
-<!--            var src = e.getAttribute('data-src')-->
-<!--            src = src += "?imageView2/0/format/webp";-->
-<!--            e.setAttribute('data-src', src);-->
-<!--        }-->
-<!--    });-->
-<!--}-->
-<!--checkWebp(showImage);-->
-<!--</script>-->
+function checkWebp(callback) {
+    var img = new Image();
+    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };
+    img.onerror = function () { callback(false); };
+    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
+}
+function showImage(useWebp) {
+    var imgs = [].slice.call(document.querySelectorAll('img'));
+    imgs.forEach(function (e) {
+        if (useWebp) {
+            var src = e.getAttribute('data-src')
+            src = src += "?imageView2/0/format/webp";
+            e.setAttribute('data-src', src);
+        }
+    });
+}
+checkWebp(showImage);
+</script>
 
   
 

@@ -35,7 +35,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121141255491.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121141916527.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200121142011185.png">
-<meta property="og:updated_time" content="2020-04-16T11:25:13.871Z">
+<meta property="og:updated_time" content="2020-04-16T11:57:08.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup&#x2F;image-20200120225427901.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
@@ -45,7 +45,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1587036339298">
+  <link rel="stylesheet" href="/css/style.css?v=1587038256113">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -545,30 +545,30 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1587036339307"></script>
+<script src="/js/app.js?v=1587038256124"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
 <script>
 
-<!--function checkWebp(callback) {-->
-<!--    var img = new Image();-->
-<!--    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };-->
-<!--    img.onerror = function () { callback(false); };-->
-<!--    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';-->
-<!--}-->
-<!--function showImage(useWebp) {-->
-<!--    var imgs = [].slice.call(document.querySelectorAll('img'));-->
-<!--    imgs.forEach(function (e) {-->
-<!--        if (useWebp) {-->
-<!--            var src = e.getAttribute('data-src')-->
-<!--            src = src += "?imageView2/0/format/webp";-->
-<!--            e.setAttribute('data-src', src);-->
-<!--        }-->
-<!--    });-->
-<!--}-->
-<!--checkWebp(showImage);-->
-<!--</script>-->
+function checkWebp(callback) {
+    var img = new Image();
+    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };
+    img.onerror = function () { callback(false); };
+    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
+}
+function showImage(useWebp) {
+    var imgs = [].slice.call(document.querySelectorAll('img'));
+    imgs.forEach(function (e) {
+        if (useWebp) {
+            var src = e.getAttribute('data-src')
+            src = src += "?imageView2/0/format/webp";
+            e.setAttribute('data-src', src);
+        }
+    });
+}
+checkWebp(showImage);
+</script>
 
   
 
