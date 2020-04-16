@@ -124,6 +124,10 @@ lazyload:
   enable: true
   loadingImg: "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs="
 
+imgCDN:
+  enable: true
+  url: "https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master"
+
 deploy:
   type: git
   repo: git@dreace.top:/var/repo/blog.git
