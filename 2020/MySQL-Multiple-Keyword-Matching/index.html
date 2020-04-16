@@ -10,7 +10,7 @@
   
   
 
-  <link rel="shortcut icon" href="/images/avatar.png" type="image/png" />
+  <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
   <meta name="description" content="在 MySQL 中像搜索引擎一样查找多个关键词只使用 LIKE 实现比较困难，如果硬写也可以拼接很长的 SQL 实现，但有点太暴力了。因此需要一个简洁的方法来实现这个需求，这就是这篇文章要探讨的问题。">
 <meta name="keywords" content="MySQL,数据库,SQL,正则表达式">
 <meta property="og:type" content="article">
@@ -20,7 +20,7 @@
 <meta property="og:description" content="在 MySQL 中像搜索引擎一样查找多个关键词只使用 LIKE 实现比较困难，如果硬写也可以拼接很长的 SQL 实现，但有点太暴力了。因此需要一个简洁的方法来实现这个需求，这就是这篇文章要探讨的问题。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;MySQL-Multiple-Keyword-Matching&#x2F;image-20200320183837050.png">
-<meta property="og:updated_time" content="2020-04-15T16:14:49.754Z">
+<meta property="og:updated_time" content="2020-04-16T11:25:13.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;MySQL-Multiple-Keyword-Matching&#x2F;image-20200320183837050.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
@@ -30,7 +30,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1586967308793">
+  <link rel="stylesheet" href="/css/style.css?v=1587036339267">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -43,7 +43,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img src="/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
        </div>
     </div>
   </div>
@@ -51,7 +51,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img src="/images/avatar.png" alt="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -297,7 +297,7 @@
 <p>&#x5176;&#x4E2D; <code>CONCAT_WS(&apos;&apos;, `&#x5B66;&#x9662;`, `&#x8BFE;&#x7A0B;&#x540D;`, `&#x6559;&#x5E08;`)</code> &#x5C06;&#x6BCF;&#x884C;&#x4E2D; <code>&#x5B66;&#x9662;</code>&#x3001; <code>&#x8BFE;&#x7A0B;&#x540D;</code>&#x3001;<code>&#x6559;&#x5E08;</code> &#x5B57;&#x6BB5;&#x7684;&#x503C;&#x8FDE;&#x63A5;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F5C;&#x4E3A;&#x5269;&#x4F59;&#x53C2;&#x6570;&#x95F4;&#x7684;&#x5206;&#x9694;&#x7B26;<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>&#xFF0C;<code>CONCAT_WS</code> &#x7684;&#x4F5C;&#x7528;&#x7C7B;&#x4F3C; Python &#x548C; JavaScript &#x4E2D;&#x7684; <code>join</code>&#x3002;&#x8FD9;&#x91CC;&#x4E0D;&#x4F7F;&#x7528; <code>CONCAT</code> &#x662F;&#x56E0;&#x4E3A; <code>&#x6559;&#x5E08;</code> &#x5B57;&#x6BB5;&#x53EF;&#x80FD;&#x4E3A;&#x7A7A;&#x503C;&#xFF0C;&#x8FDB;&#x800C;&#x5BFC;&#x81F4; <code>CONCAT</code> &#x7684;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x4E5F;&#x4E3A;&#x7A7A;&#xFF0C; &#x800C; <code>CONCAT_WS</code> &#x4F1A;&#x5FFD;&#x7565;&#x7A7A;&#x503C;&#x3002;</p>
 <p>&#x641C;&#x7D22;&#x7ED3;&#x679C;&#x4E3A;&#xFF1A;</p>
 <figure>
-<img src="/images/MySQL-Multiple-Keyword-Matching/image-20200320183837050.png" alt><figcaption>&#x5173;&#x952E;&#x8BCD;&quot;&#x5DE5;&#x7A0B; &#x6570;&#x636E;&quot;&#x7684;&#x641C;&#x7D22;&#x7ED3;&#x679C;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/MySQL-Multiple-Keyword-Matching/image-20200320183837050.png" alt><figcaption>&#x5173;&#x952E;&#x8BCD;&quot;&#x5DE5;&#x7A0B; &#x6570;&#x636E;&quot;&#x7684;&#x641C;&#x7D22;&#x7ED3;&#x679C;</figcaption>
 </figure>
 <p>&#x5B8C;&#x7F8E;&#x5B9E;&#x73B0;&#xFF01;&#x4E0B;&#x9762;&#x662F;&#x8F93;&#x5165;&#x5173;&#x952E;&#x8BCD;&#x5B57;&#x7B26;&#x4E32;&#x751F;&#x6210;&#x5BF9;&#x5E94; SQL &#x7684; Python &#x4EE3;&#x7801;&#xFF1A;</p>
 <pre><code>keywords_map = &quot;&quot;.join(map(lambda k: &quot;(?=.*%s)&quot; % k, keywords.split(&quot; &quot;)))
@@ -350,7 +350,7 @@ var dsqjs = new DisqusJS({
             <a class="link" href="http://www.beian.miit.gov.cn/" target="_blank">蜀ICP备17035453号-1</a>
         
         
-            &nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51202202000022" target="_blank"><i class="govimg"></i>川公网安备 51202202000022号</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51202202000022" target="_blank"><i class="govimg"></i>川公网安备 51202202000022 号</a>
         
     </div>
 
@@ -359,7 +359,7 @@ var dsqjs = new DisqusJS({
   </div>
   <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
- 
+
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 
@@ -368,9 +368,30 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1586967308800"></script>
+<script src="/js/app.js?v=1587036339289"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
+
+<script>
+
+<!--function checkWebp(callback) {-->
+<!--    var img = new Image();-->
+<!--    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };-->
+<!--    img.onerror = function () { callback(false); };-->
+<!--    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';-->
+<!--}-->
+<!--function showImage(useWebp) {-->
+<!--    var imgs = [].slice.call(document.querySelectorAll('img'));-->
+<!--    imgs.forEach(function (e) {-->
+<!--        if (useWebp) {-->
+<!--            var src = e.getAttribute('data-src')-->
+<!--            src = src += "?imageView2/0/format/webp";-->
+<!--            e.setAttribute('data-src', src);-->
+<!--        }-->
+<!--    });-->
+<!--}-->
+<!--checkWebp(showImage);-->
+<!--</script>-->
 
   
 

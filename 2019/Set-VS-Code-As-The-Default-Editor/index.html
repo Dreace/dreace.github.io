@@ -10,7 +10,7 @@
   
   
 
-  <link rel="shortcut icon" href="/images/avatar.png" type="image/png" />
+  <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
   <meta name="description" content="在 Windows 下安装 VS Code 时会询问是否注册为受支持类型编辑器，这样右击文件就可以使用 VS Code 编辑文件。如果安装时没有选择可以通过修改注册表达到这种效果。">
 <meta name="keywords" content="Windows,VS Code">
 <meta property="og:type" content="article">
@@ -20,7 +20,7 @@
 <meta property="og:description" content="在 Windows 下安装 VS Code 时会询问是否注册为受支持类型编辑器，这样右击文件就可以使用 VS Code 编辑文件。如果安装时没有选择可以通过修改注册表达到这种效果。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Set-VS-Code-As-The-Default-Editor&#x2F;image-20191118171606890.png">
-<meta property="og:updated_time" content="2020-04-15T16:14:49.754Z">
+<meta property="og:updated_time" content="2020-04-16T11:25:13.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;images&#x2F;Set-VS-Code-As-The-Default-Editor&#x2F;image-20191118171606890.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
@@ -30,7 +30,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1586967308840">
+  <link rel="stylesheet" href="/css/style.css?v=1587036339320">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -43,7 +43,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img src="/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
        </div>
     </div>
   </div>
@@ -51,7 +51,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img src="/images/avatar.png" alt="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -294,7 +294,7 @@ Windows Registry Editor Version 5.00
 <p>&#x6CE8;&#x610F;&#x5C06;&#x91CC;&#x9762;&#x7684;&#x8DEF;&#x5F84;&#x8BBE;&#x7F6E;&#x4E3A;&#x81EA;&#x5DF1;&#x7684; VS Code &#x5B89;&#x88C5;&#x8DEF;&#x5F84;&#xFF0C;<strong>&#x8DEF;&#x5F84;&#x5206;&#x5272;&#x8981;&#x4F7F;&#x7528; <code>\\</code> &#x6216;&#x8005; <code>/</code></strong>&#x3002;</p>
 <p>&#x4FDD;&#x5B58;&#x4E4B;&#x540E;&#x53CC;&#x51FB;&#x6267;&#x884C;&#x53EF;&#x4EE5;&#x4E3A;<strong>&#x6240;&#x6709;&#x7684;</strong>&#x6587;&#x4EF6;&#x3001;&#x76EE;&#x5F55;&#x3001;&#x76EE;&#x5F55;&#x80CC;&#x666F;&#x53F3;&#x51FB;&#x83DC;&#x5355;&#x6DFB;&#x52A0; <code>&#x4F7F;&#x7528; VS Code &#x6253;&#x5F00;</code> &#x9009;&#x9879;&#x3002;</p>
 <figure>
-<img src="/images/Set-VS-Code-As-The-Default-Editor/image-20191118171606890.png" alt><figcaption>&#x6DFB;&#x52A0;&#x4E4B;&#x540E;&#x53F3;&#x51FB;&#x6587;&#x4EF6;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Set-VS-Code-As-The-Default-Editor/image-20191118171606890.png" alt><figcaption>&#x6DFB;&#x52A0;&#x4E4B;&#x540E;&#x53F3;&#x51FB;&#x6587;&#x4EF6;</figcaption>
 </figure>
 <p>&#x6587;&#x4EF6;&#x5206;&#x4E3A;&#x4E09;&#x6BB5;&#xFF0C;&#x5185;&#x5BB9;&#x57FA;&#x672C;&#x76F8;&#x540C;&#xFF0C;&#x8FD9;&#x91CC;&#x62FF;&#x7B2C;&#x4E00;&#x6BB5;&#x4F5C;&#x4E3A;&#x4F8B;&#x5B50;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#x3002;</p>
 <p><code>[HKEY_CLASSES_ROOT\*\shell\VSCode]</code> &#x8868;&#x793A;&#x7684;&#x662F;&#x6587;&#x4EF6;&#x53F3;&#x51FB;&#x83DC;&#x5355;&#x4E2D;&#x7684;&#x540D;&#x79F0;&#x53CA;&#x56FE;&#x6807;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x4FEE;&#x6539;&#x3002;</p>
@@ -340,7 +340,7 @@ var dsqjs = new DisqusJS({
             <a class="link" href="http://www.beian.miit.gov.cn/" target="_blank">蜀ICP备17035453号-1</a>
         
         
-            &nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51202202000022" target="_blank"><i class="govimg"></i>川公网安备 51202202000022号</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51202202000022" target="_blank"><i class="govimg"></i>川公网安备 51202202000022 号</a>
         
     </div>
 
@@ -349,7 +349,7 @@ var dsqjs = new DisqusJS({
   </div>
   <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
- 
+
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 
@@ -358,9 +358,30 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1586967308844"></script>
+<script src="/js/app.js?v=1587036339324"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
+
+<script>
+
+<!--function checkWebp(callback) {-->
+<!--    var img = new Image();-->
+<!--    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };-->
+<!--    img.onerror = function () { callback(false); };-->
+<!--    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';-->
+<!--}-->
+<!--function showImage(useWebp) {-->
+<!--    var imgs = [].slice.call(document.querySelectorAll('img'));-->
+<!--    imgs.forEach(function (e) {-->
+<!--        if (useWebp) {-->
+<!--            var src = e.getAttribute('data-src')-->
+<!--            src = src += "?imageView2/0/format/webp";-->
+<!--            e.setAttribute('data-src', src);-->
+<!--        }-->
+<!--    });-->
+<!--}-->
+<!--checkWebp(showImage);-->
+<!--</script>-->
 
   
 
