@@ -1,10 +1,10 @@
 <script src="<%- theme.cdn.mdui.js %>"></script>
 <script src="<%- theme.cdn.jquery.js %>"></script>
-<% if(theme.function.fancybox == true) { %> 
+<% if(theme.function.fancybox == true) { %>
     <script src="<%- theme.cdn.fancybox.js %>"></script>
 <% } %>
 
-<% if(theme.function.SmoothScroll == true) { %> 
+<% if(theme.function.SmoothScroll == true) { %>
     <script src="<%- theme.cdn.SmoothScroll.js %>"></script>
 <% } %>
 
@@ -17,3 +17,23 @@
 <% if (theme.cdn.copy) { %>
     <script type="text/javascript" src="<%- theme.cdn.copy %>"></script>
 <% } %>
+<script>
+
+<!--function checkWebp(callback) {-->
+<!--    var img = new Image();-->
+<!--    img.onload = function () { callback((img.width > 0) && (img.height > 0)); };-->
+<!--    img.onerror = function () { callback(false); };-->
+<!--    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';-->
+<!--}-->
+<!--function showImage(useWebp) {-->
+<!--    var imgs = [].slice.call(document.querySelectorAll('img'));-->
+<!--    imgs.forEach(function (e) {-->
+<!--        if (useWebp) {-->
+<!--            var src = e.getAttribute('data-src')-->
+<!--            src = src += "?imageView2/0/format/webp";-->
+<!--            e.setAttribute('data-src', src);-->
+<!--        }-->
+<!--    });-->
+<!--}-->
+<!--checkWebp(showImage);-->
+<!--</script>-->

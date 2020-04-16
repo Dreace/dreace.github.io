@@ -1,7 +1,7 @@
 avatar: /images/avatar.png # 网站 Logo
 # background: https://i.loli.net/2019/01/13/5c3aec85a4343.jpg # 既是博客的背景，又是文章默认头图
 favicon:
-  href: /images/avatar.png # 网站图标
+  href: /favicon-32x32.png # 网站图标
   type: image/png # 图标类型，可能的值有(image/png, image/vnd.microsoft.icon, image/x-icon, image/gif)
 
 function: # 功能开关，可选值（true,false）
@@ -94,68 +94,27 @@ site_verification: # 向搜索引擎验证你对站点的所有权，用于向�
   google:
   baidu:
 
-analytics: # 统计系统，目前支持 Google analytics.js 统计、Google Tag Manager 统计、CNZZ 统计、腾讯统计、51.La统计、百度统计
-  google_site_id: #<ID>
-  gtags_site_id: #<ID>
-  cnzz_site_id: #<ID>
+analytics:
   tencent_site_id: 500701683
-  la_site_id: #<ID>
-  baidu_site_id: #<ID>
-  gtm_container_id: #<ID>
 
 comment: disqusjs # 评论框，目前支持 gitalk,gitment,valine,disqus,disqusjs,changyan,livere,DiscussBot
 
-gitalk:
-  admin: nexmoe # 拥有对该repo进行操作的 GitHub username
-  owner: nexmoe # 持有该 repo 的 GitHub username
-  repo: nexmoe.github.io # 存放评论的 issue 所在的 repo
-  clientID: 80b2453b6d5f37ad6225 # GitHub Client ID
-  clientSecret: 43e99fa852795c9a7b3eb924b2558c64b84bbdeb # GitHub Client Secret
-
-gitment:
-  owner: nexmoe # 持有该 repo 的 GitHub username
-  repo: nexmoe.github.io # 存放评论的 issue 所在的 repo
-  clientID: 80b2453b6d5f37ad6225 # GitHub Client ID
-  clientSecret: 43e99fa852795c9a7b3eb924b2558c64b84bbdeb # GitHub Client Secret
-
-valine:
-  appId: <API_ID> # leancloud application app id
-  appKey: <API_Key> # leancloud application app key
-
-disqus:
-  shortname: <shortname> # 你的 Disqus shortname
 
 disqusjs:
   shortname: dreace # 你的 Disqus shortname
   sitename: DreaceのBlog # 你站点的名称，将会显示在「评论基础模式」的 header 中；该配置应该和 Disqus Admin - Settings - General - Website Name 一致
   api: https://disqus.dreace.top/api/ # DisqusJS 请求的 API Endpoint，通常情况下你应该配置一个 Disqus API 的反代并填入反代的地址。你也可以直接使用 DISQUS 官方 API 的 Endpoint https://disqus.com/api/，或是使用SukkaW搭建的 Disqus API 反代 Endpoint https://disqus.skk.moe/disqus/。
-  apikey: 
+  apikey:
     - wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs
     - 1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn
     # DisqusJS 向 API 发起请求时使用的 API Key，你应该在配置 Disqus Application 时获取了 API Key;DisqusJS 支持填入一个 包含多个 API Key 的 Array，在每次请求时会随机使用其中一个；如果你只需要填入一个 API Key，则可以填入 String 或 Array。
   admin: Dreace233 # 你的站点的 Disqus Moderator 的用户名（也就是你的用户名）。你可以在 Disqus - Settings - Account - Username 获取你的 Username
   adminLabel: 书记！ # 你想显示在 Disqus Moderator Badge 中的文字。该配置应和 Disqus Admin - Settings - Community - Moderator Badge Text 相同
 
-changyan:
-  appid: <APP_ID> # 畅言的 APPID
-  conf: <CONF> # 畅言的 CONF
-  thread_key_type: path # 可选 id 或 path
-
-livere:
-  data_uid: <data_uid> # 你的来必力 UID，可以在来必力后台获取
-
-DiscussBot:
-  id: <id> # 站点id
-  comments: 5 # 可能是限制每位用户单页面评论最多条数？
-  color: # 评论框主色调
-  dislike: 0 # 显示差评按钮
-  icons: 0 # 图标主题
-  diff: 0 # 每位用户name不同颜色
-
 copyright: '<strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可'
 
 beian:
   ICP: 蜀ICP备17035453号-1 #工信部备案号
   police:
-    full: 川公网安备 51202202000022号 #公安部备案
+    full: 川公网安备 51202202000022 号 #公安部备案
     number: 51202202000022

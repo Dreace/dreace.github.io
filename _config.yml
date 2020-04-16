@@ -120,6 +120,10 @@ pandoc:
   mathEngine: katex
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+lazyload:
+  enable: true
+  loadingImg: "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs="
+
 deploy:
   type: git
   repo: git@dreace.top:/var/repo/blog.git

@@ -1,3 +1,4 @@
+language: node_js
 script:
   - wget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb
   - sudo apt-get install -y ./pandoc-2.7.3-1-amd64.deb
@@ -9,10 +10,12 @@ branches:
      
 deploy:
   provider: pages
-  skip-cleanup: true
-  keep-history: true
-  github-token: $GITHUB_TOKEN
-  local-dir: public
-  target-branch: master
+  cleanup: false
+  keep_history: true
+  github_token: $GITHUB_TOKEN
+  local_dir: public
+  target_branch: master
   on:
     branch: source
+notifications:
+   webhooks: https://oapi.dingtalk.com/robot/send?access_token=$DINGTALK_TOKEN
