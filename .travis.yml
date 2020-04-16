@@ -12,11 +12,11 @@ branches:
 
 deploy:
   provider: pages
-  cleanup: false
-  keep_history: true
-  github_token: $GITHUB_TOKEN
-  local_dir: public
-  target_branch: master
+  skip-cleanup: true
+  keep-history: true
+  github-token: $GITHUB_TOKEN
+  local-dir: public
+  target-branch: master
   on:
     branch: source
 notifications:
