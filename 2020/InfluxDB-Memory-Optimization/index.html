@@ -20,14 +20,14 @@
 <meta property="og:description" content="最近给小程序的后端日志加上了实时输出到前端功能，为了展示就得保存日志，又考虑到日志是时序数据，自然就选择了时序数据库 InfluxDB，并且通过 Docker 部署。刚上线的一两天没有什么问题，各方面运行都很平稳，没过几天的一个早上突然收到了阿里云的报警，说内存占用超过了 95%。 这便是噩梦的开始。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;InfluxDB-Memory-Optimization&#x2F;image-20200508120656188.png">
-<meta property="og:updated_time" content="2020-05-08T08:28:10.542Z">
+<meta property="og:updated_time" content="2020-05-08T14:27:27.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;InfluxDB-Memory-Optimization&#x2F;image-20200508120656188.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1588926516773">
+  <link rel="stylesheet" href="/css/style.css?v=1588948073612">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -257,7 +257,7 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年05月08日</a>
-    <a><i class="nexmoefont icon-areachart"></i>752 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>794 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/Docker/">Docker</a>
@@ -284,7 +284,7 @@
     limits:
         memory: 500M
 restart: always</code></pre>
-<p>&#x5C06; InfluxDB &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x9650;&#x5236;&#x5728; 500M&#xFF0C;&#x8D85;&#x8FC7;&#x8FD9;&#x4E2A;&#x6570;&#x503C;&#x5C31;&#x4F1A;&#x88AB; kill&#xFF0C;&#x7136;&#x540E;&#x53C8;&#x81EA;&#x52A8;&#x91CD;&#x542F;&#x3002;&#x867D;&#x7136;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x907F;&#x514D; InfluxDB &#x5C06;&#x7CFB;&#x7EDF;&#x62D6;&#x57AE;&#xFF0C;&#x4F46;&#x9891;&#x7E41; OOM &#x53C8;&#x91CD;&#x542F;&#x7EC8;&#x7A76;&#x4E0D;&#x662F;&#x4EC0;&#x4E48;&#x597D;&#x529E;&#x6CD5;&#x3002;</p>
+<p>&#x5C06; InfluxDB &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x9650;&#x5236;&#x5728; 500MiB&#xFF0C;&#x8D85;&#x8FC7;&#x8FD9;&#x4E2A;&#x6570;&#x503C;&#x5C31;&#x4F1A;&#x88AB; kill&#xFF0C;&#x7136;&#x540E;&#x53C8;&#x81EA;&#x52A8;&#x91CD;&#x542F;&#x3002;&#x867D;&#x7136;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x907F;&#x514D; InfluxDB &#x5C06;&#x7CFB;&#x7EDF;&#x62D6;&#x57AE;&#xFF0C;&#x4F46;&#x9891;&#x7E41; OOM &#x53C8;&#x91CD;&#x542F;&#x7EC8;&#x7A76;&#x4E0D;&#x662F;&#x4EC0;&#x4E48;&#x597D;&#x529E;&#x6CD5;&#x3002;</p>
 <h2 id="&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;">&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;</h2>
 <p>&#x67E5;&#x4E86;&#x4E00;&#x4E9B;&#x8D44;&#x6599;&#x540E;&#x5F97;&#x77E5; InfluxDB &#x9ED8;&#x8BA4;&#x7684;&#x7D22;&#x5F15;&#x662F;&#x5728;&#x5185;&#x5B58;&#x4E0A;&#x7EF4;&#x62A4;&#x7684;&#xFF0C;&#x4E0D;&#x65AD;&#x5730;&#x6570;&#x636E;&#x589E;&#x957F;&#x4F1A;&#x4F7F;&#x7528;&#x8D8A;&#x6765;&#x8D8A;&#x591A;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x5E76;&#x6709;&#x4E00;&#x4E2A;&#x53C2;&#x6570; <code>index-version</code> &#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>&#x3002;&#x5982;&#x679C;&#x662F;&#x76F4;&#x63A5;&#x5728;&#x4E3B;&#x673A;&#x4E0A;&#x90E8;&#x7F72;&#x7684;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;Docker &#x90E8;&#x7F72;&#x5219;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x8BBE;&#x7F6E;&#xFF1A;</p>
 <pre><code>environment:
@@ -297,7 +297,8 @@ restart: always</code></pre>
 [root@izuf6czs1dw6siz3zokdiez 15]# ls
 000000001-000000001.tsm  fields.idx  index</code></pre>
 <h2 id="&#x6548;&#x679C;&#x9A8C;&#x8BC1;">&#x6548;&#x679C;&#x9A8C;&#x8BC1;</h2>
-<p>&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;&#x540E;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x4F9D;&#x7136;&#x5728;&#x7F13;&#x6162;&#x589E;&#x957F;&#xFF0C;&#x4F46;&#x662F;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#x8BBE;&#x7F6E;&#x7684;&#x662F;&#x4E00;&#x5929;&#xFF0C;&#x9700;&#x8981;&#x7B49;&#x5230;&#x66F4;&#x6539;&#x751F;&#x6548;&#x4E00;&#x5929;&#x540E;&#x624D;&#x80FD;&#x770B;&#x51FA;&#x771F;&#x5B9E;&#x7684;&#x6548;&#x679C;&#xFF08;&#x5F85;&#x66F4;&#x65B0;&#xFF09;&#x3002;</p>
+<p><del>&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;&#x540E;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x4F9D;&#x7136;&#x5728;&#x7F13;&#x6162;&#x589E;&#x957F;&#xFF0C;&#x4F46;&#x662F;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#x8BBE;&#x7F6E;&#x7684;&#x662F;&#x4E00;&#x5929;&#xFF0C;&#x9700;&#x8981;&#x7B49;&#x5230;&#x66F4;&#x6539;&#x751F;&#x6548;&#x4E00;&#x5929;&#x540E;&#x624D;&#x80FD;&#x770B;&#x51FA;&#x771F;&#x5B9E;&#x7684;&#x6548;&#x679C;&#xFF08;&#x5F85;&#x66F4;&#x65B0;&#xFF09;&#x3002;</del></p>
+<p>&#x8D85;&#x8FC7;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#xFF08;24 &#x5C0F;&#x65F6;&#xFF09;&#x7684;&#x65F6;&#x95F4;&#x540E;&#xFF08;27 &#x5C0F;&#x65F6;&#xFF09;&#x5185;&#x5B58;&#x589E;&#x957F;&#x505C;&#x6B62;&#xFF0C;&#x76EE;&#x524D;&#x7A33;&#x5B9A;&#x5728; 235.3MiB&#xFF0C;&#x5927;&#x81F4;&#x7B26;&#x5408;&#x9884;&#x671F;&#x3002;</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -357,7 +358,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1588926516794"></script>
+<script src="/js/app.js?v=1588948073634"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
