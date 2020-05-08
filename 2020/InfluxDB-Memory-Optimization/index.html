@@ -3,7 +3,7 @@
 
 <head>
   
-  <title>标签：macOS - DreaceのBlog</title>
+  <title>InfluxDB 内存优化 - DreaceのBlog</title>
   <meta charset="UTF-8">
   <meta name="description" content="一条咸鱼的垂死挣扎">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,15 +11,18 @@
   
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
-  <meta name="description" content="一条咸鱼的垂死挣扎">
-<meta name="keywords" content="博客,代码,日常">
-<meta property="og:type" content="website">
-<meta property="og:title" content="DreaceのBlog">
-<meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;tags&#x2F;macOS&#x2F;index.html">
+  <meta name="description" content="最近给小程序的后端日志加上了实时输出到前端功能，为了展示就得保存日志，又考虑到日志是时序数据，自然就选择了时序数据库 InfluxDB，并且通过 Docker 部署。刚上线的一两天没有什么问题，各方面运行都很平稳，没过几天的一个早上突然收到了阿里云的报警，说内存占用超过了 95%。 这便是噩梦的开始。">
+<meta name="keywords" content="Linux,Docker,InfluxDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="InfluxDB 内存优化">
+<meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;InfluxDB-Memory-Optimization&#x2F;index.html">
 <meta property="og:site_name" content="DreaceのBlog">
-<meta property="og:description" content="一条咸鱼的垂死挣扎">
+<meta property="og:description" content="最近给小程序的后端日志加上了实时输出到前端功能，为了展示就得保存日志，又考虑到日志是时序数据，自然就选择了时序数据库 InfluxDB，并且通过 Docker 部署。刚上线的一两天没有什么问题，各方面运行都很平稳，没过几天的一个早上突然收到了阿里云的报警，说内存占用超过了 95%。 这便是噩梦的开始。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;InfluxDB-Memory-Optimization&#x2F;image-20200508120656188.png">
+<meta property="og:updated_time" content="2020-05-08T04:40:25.696Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;InfluxDB-Memory-Optimization&#x2F;image-20200508120656188.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
    
@@ -27,7 +30,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1588912862081">
+  <link rel="stylesheet" href="/css/style.css?v=1588912861813">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -83,6 +86,15 @@
     <aside id="nexmoe-sidebar">
   
   
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章目录</h3>
+    <div class="nexmoe-widget">
+      <div id="toc" class="toc-article">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#罪魁祸首"><span class="toc-text">罪魁祸首</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试解决"><span class="toc-text">尝试解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更改索引方式"><span class="toc-text">更改索引方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果验证"><span class="toc-text">效果验证</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+
 
   
   <div class="nexmoe-widget-wrap">
@@ -240,35 +252,96 @@
 </div><!-- .nexmoe-drawer -->
   </div>
   <div id="nexmoe-content">
-    <div class="nexmoe-primary index ">
-        <section class="nexmoe-posts" id="brand-waterfall">
-    
-    <div class="nexmoe-post">
-        <a href="/2019/How-to-Install-Python/">
-            <div class="nexmoe-post-cover"> 
-                <h1>安装 Python</h1>
-            </div>
-        </a>
-        <div class="nexmoe-post-meta">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2019年11月03日</a>
-            <a><i class="nexmoefont icon-areachart"></i>580 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/Python/">Python</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/Linux/" rel="tag">Linux</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/Python/" rel="tag">Python</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/Windows/" rel="tag">Windows</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/macOS/" rel="tag">macOS</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a>
-            
-        </div>
-        <article>
-            
-            <p>Python 2.x 将在「 <strong>2020年1月1日</strong>」停止支持，因此本文介绍的都是 Python 3.x 的安装。如果你还在用 Python 2.x，转向 Python 3.x 是一个明智的决定。</p>
-            
-        </article>
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+
+        <h1>InfluxDB 内存优化</h1>
     </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年05月08日</a>
+    <a><i class="nexmoefont icon-areachart"></i>752 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
     
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/Docker/">Docker</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/Docker/" rel="tag">Docker</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/InfluxDB/" rel="tag">InfluxDB</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/Linux/" rel="tag">Linux</a>
+    
+  </div>
+  <article>
+    <p>&#x6700;&#x8FD1;&#x7ED9;&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;&#x540E;&#x7AEF;&#x65E5;&#x5FD7;&#x52A0;&#x4E0A;&#x4E86;&#x5B9E;&#x65F6;&#x8F93;&#x51FA;&#x5230;&#x524D;&#x7AEF;&#x529F;&#x80FD;&#xFF0C;&#x4E3A;&#x4E86;&#x5C55;&#x793A;&#x5C31;&#x5F97;&#x4FDD;&#x5B58;&#x65E5;&#x5FD7;&#xFF0C;&#x53C8;&#x8003;&#x8651;&#x5230;&#x65E5;&#x5FD7;&#x662F;&#x65F6;&#x5E8F;&#x6570;&#x636E;&#xFF0C;&#x81EA;&#x7136;&#x5C31;&#x9009;&#x62E9;&#x4E86;&#x65F6;&#x5E8F;&#x6570;&#x636E;&#x5E93; <a href="https://www.influxdata.com/" target="_blank" rel="noopener">InfluxDB</a>&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7; Docker &#x90E8;&#x7F72;&#x3002;&#x521A;&#x4E0A;&#x7EBF;&#x7684;&#x4E00;&#x4E24;&#x5929;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF0C;&#x5404;&#x65B9;&#x9762;&#x8FD0;&#x884C;&#x90FD;&#x5F88;&#x5E73;&#x7A33;&#xFF0C;&#x6CA1;&#x8FC7;&#x51E0;&#x5929;&#x7684;&#x4E00;&#x4E2A;&#x65E9;&#x4E0A;&#x7A81;&#x7136;&#x6536;&#x5230;&#x4E86;&#x963F;&#x91CC;&#x4E91;&#x7684;&#x62A5;&#x8B66;&#xFF0C;&#x8BF4;&#x5185;&#x5B58;&#x5360;&#x7528;&#x8D85;&#x8FC7;&#x4E86; 95%&#x3002;</p>
+<p>&#x8FD9;&#x4FBF;&#x662F;&#x5669;&#x68A6;&#x7684;&#x5F00;&#x59CB;&#x3002;</p>
+<a id="more"></a>
+<h2 id="&#x7F6A;&#x9B41;&#x7978;&#x9996;">&#x7F6A;&#x9B41;&#x7978;&#x9996;</h2>
+<p>&#x6536;&#x5230;&#x62A5;&#x8B66;&#x540E;&#x770B;&#x4E86;&#x4E00;&#x4E0B;&#x7CFB;&#x7EDF;&#x5404;&#x9879;&#x6307;&#x6807;&#xFF0C;&#x4E0D;&#x4EC5;&#x5185;&#x5B58;&#x5360;&#x7528;&#x9AD8;&#xFF0C;CPU&#x3001;&#x78C1;&#x76D8;&#x4F7F;&#x7528;&#x7387;&#x90FD;&#x662F;&#x6EE1;&#x8D1F;&#x8377;&#x3002;</p>
+<figure>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/InfluxDB-Memory-Optimization/image-20200508120656188.png" alt><figcaption>&#x62A5;&#x8B66;&#x65F6;&#x7CFB;&#x7EDF;&#x6307;&#x6807;</figcaption>
+</figure>
+<p>&#x5728;&#x51CC;&#x6668;&#x4E00;&#x70B9;&#x534A;&#x5DE6;&#x53F3;&#x5185;&#x5B58;&#x66B4;&#x6DA8;&#xFF0C;&#x7D27;&#x63A5;&#x7740; CPU &#x4F7F;&#x7528;&#x7387;&#x4E5F;&#x8FBE;&#x5230; 100%&#x3002;&#x8FD9;&#x4E2A;&#x573A;&#x666F;&#x4F3C;&#x66FE;&#x76F8;&#x8BC6;&#xFF0C;&#x56E0;&#x4E3A;&#x4E4B;&#x524D;&#x4F7F;&#x7528;&#x8FC7; InfluxDB&#xFF0C;&#x4E5F;&#x9047;&#x5230;&#x8FC7;&#x5185;&#x5B58;&#x66B4;&#x6DA8;&#xFF0C;&#x7ED3;&#x5408;&#x524D;&#x51E0;&#x5929;&#x53C8;&#x7528;&#x4E0A;&#x4E86; InfluxDB&#xFF0C;&#x57FA;&#x672C;&#x53EF;&#x4EE5;&#x65AD;&#x5B9A;&#x662F; InfluxDB &#x7684;&#x9505;&#x3002;</p>
+<p>&#x91CD;&#x542F;&#x670D;&#x52A1;&#x5668;&#x540E;&#x4E00;&#x5207;&#x90FD;&#x6062;&#x590D;&#x6B63;&#x5E38;&#xFF0C;&#x4F46;&#x662F; InfluxDB &#x53EF;&#x80FD;&#x968F;&#x65F6;&#x53C8;&#x51FA;&#x73B0;&#x72B6;&#x51B5;&#xFF0C;&#x53EA;&#x80FD;&#x4E00;&#x76F4;&#x76EF;&#x7740;&#x5404;&#x79CD;&#x6307;&#x6807;&#xFF0C;&#x76EF;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x53D1;&#x73B0; InfluxDB &#x7684;&#x5185;&#x5B58;&#x5360;&#x7528;&#x8089;&#x773C;&#x53EF;&#x89C1;&#x5730;&#x589E;&#x957F;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;&#x5F88;&#x6050;&#x6016;&#x4E86;&#x3002;</p>
+<h2 id="&#x5C1D;&#x8BD5;&#x89E3;&#x51B3;">&#x5C1D;&#x8BD5;&#x89E3;&#x51B3;</h2>
+<p>&#x597D;&#x5728; InfluxDB &#x662F;&#x901A;&#x8FC7; Docker &#x90E8;&#x7F72;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x5730;&#x9650;&#x5236;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#xFF0C;&#x5C1D;&#x8BD5;&#x901A;&#x8FC7; <code>docker-compose.yml</code> &#x914D;&#x7F6E;&#xFF1A;</p>
+<pre><code>deploy:
+    resources:
+    limits:
+        memory: 500M
+restart: always</code></pre>
+<p>&#x5C06; InfluxDB &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x9650;&#x5236;&#x5728; 500M&#xFF0C;&#x8D85;&#x8FC7;&#x8FD9;&#x4E2A;&#x6570;&#x503C;&#x5C31;&#x4F1A;&#x88AB; kill&#xFF0C;&#x7136;&#x540E;&#x53C8;&#x81EA;&#x52A8;&#x91CD;&#x542F;&#x3002;&#x867D;&#x7136;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x907F;&#x514D; InfluxDB &#x5C06;&#x7CFB;&#x7EDF;&#x62D6;&#x57AE;&#xFF0C;&#x4F46;&#x9891;&#x7E41; OOM &#x53C8;&#x91CD;&#x542F;&#x7EC8;&#x7A76;&#x4E0D;&#x662F;&#x4EC0;&#x4E48;&#x597D;&#x529E;&#x6CD5;&#x3002;</p>
+<h2 id="&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;">&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;</h2>
+<p>&#x67E5;&#x4E86;&#x4E00;&#x4E9B;&#x8D44;&#x6599;&#x540E;&#x5F97;&#x77E5; InfluxDB &#x9ED8;&#x8BA4;&#x7684;&#x7D22;&#x5F15;&#x662F;&#x5728;&#x5185;&#x5B58;&#x4E0A;&#x7EF4;&#x62A4;&#x7684;&#xFF0C;&#x4E0D;&#x65AD;&#x5730;&#x6570;&#x636E;&#x589E;&#x957F;&#x4F1A;&#x4F7F;&#x7528;&#x8D8A;&#x6765;&#x8D8A;&#x591A;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x5E76;&#x6709;&#x4E00;&#x4E2A;&#x53C2;&#x6570; <code>index-version</code> &#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>&#x3002;&#x5982;&#x679C;&#x662F;&#x76F4;&#x63A5;&#x5728;&#x4E3B;&#x673A;&#x4E0A;&#x90E8;&#x7F72;&#x7684;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;Docker &#x90E8;&#x7F72;&#x5219;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x8BBE;&#x7F6E;&#xFF1A;</p>
+<pre><code>environment:
+    INFLUXDB_DATA_INDEX_VERSION: tsi1</code></pre>
+<p>&#x5C06;&#x7D22;&#x5F15;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;&#x78C1;&#x76D8;&#x4E0A;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x65E5;&#x5FD7;&#x6216;&#x8005;&#x67E5;&#x770B;&#x5206;&#x7247;&#x7684;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x9A8C;&#x8BC1;&#x4FEE;&#x6539;&#x662F;&#x5426;&#x751F;&#x6548;&#xFF0C;&#x82E5;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;&#x4E3A; <code>tsi1</code>&#xFF0C;&#x5728;&#x5206;&#x7247;&#x76EE;&#x5F55;&#x4E0B;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x540D;&#x4E3A; <code>index</code> &#x7684;&#x76EE;&#x5F55;&#xFF0C;<code>inmem</code> &#x7D22;&#x5F15;&#x5219;&#x6CA1;&#x6709;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x4F4D;&#x7F6E;&#x662F; <code>/var/lib/influxdb/data/&lt;&#x6570;&#x636E;&#x5E93;&gt;/&lt;&#x4FDD;&#x7559;&#x7B56;&#x7565;&gt;/&lt;&#x5206;&#x7247;&gt;</code>&#x3002;</p>
+<pre class="shell"><code>[root@izuf6czs1dw6siz3zokdiez 1_day]# ls
+1  10  11  12  13  14  15  16  18  19  20  21  3  4  5  6  7  8  9
+[root@izuf6czs1dw6siz3zokdiez 1_day]# cd 15
+[root@izuf6czs1dw6siz3zokdiez 15]# ls
+000000001-000000001.tsm  fields.idx  index</code></pre>
+<h2 id="&#x6548;&#x679C;&#x9A8C;&#x8BC1;">&#x6548;&#x679C;&#x9A8C;&#x8BC1;</h2>
+<p>&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;&#x540E;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x4F9D;&#x7136;&#x5728;&#x7F13;&#x6162;&#x589E;&#x957F;&#xFF0C;&#x4F46;&#x662F;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#x8BBE;&#x7F6E;&#x7684;&#x662F;&#x4E00;&#x5929;&#xFF0C;&#x9700;&#x8981;&#x7B49;&#x5230;&#x66F4;&#x6539;&#x751F;&#x6548;&#x4E00;&#x5929;&#x540E;&#x624D;&#x80FD;&#x770B;&#x51FA;&#x771F;&#x5B9E;&#x7684;&#x6548;&#x679C;&#xFF08;&#x5F85;&#x66F4;&#x65B0;&#xFF09;&#x3002;</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1" role="doc-endnote"><p><a href="https://www.jianshu.com/p/dbbb73b537e1" target="_blank" rel="noopener">https://www.jianshu.com/p/dbbb73b537e1</a> &quot;InfluxDB&#x9891;&#x7E41;OOM&#x95EE;&#x9898;&#x6392;&#x67E5; - &#x7B80;&#x4E66;&quot;<a href="#fnref1" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
+</ol>
 </section>
 
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Dreace<br>
+<strong>本文链接：</strong><a href="https://blog.dreace.top/2020/InfluxDB-Memory-Optimization/" title="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;InfluxDB-Memory-Optimization&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;InfluxDB-Memory-Optimization&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <!-- Unpkg -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.5/dist/disqusjs.min.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.5/dist/disqus.min.js"></script>
+<div id="disqus_thread"></div>
+<script>
+var dsqjs = new DisqusJS({
+    shortname: 'dreace',
+    siteName: 'DreaceのBlog',
+    identifier: 'https://blog.dreace.top/2020/InfluxDB-Memory-Optimization/',
+    url: 'https://blog.dreace.top/2020/InfluxDB-Memory-Optimization/',
+    title: 'InfluxDB 内存优化',
+    api: 'https://disqus.dreace.top/api/',
+    apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
+    admin: 'Dreace233',
+    adminLabel: '书记！'
+});
+</script>
+</section>
+</div>
         
     <div class="beian" >
         
@@ -293,7 +366,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1588912862084"></script>
+<script src="/js/app.js?v=1588912861834"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
