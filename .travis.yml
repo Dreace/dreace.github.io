@@ -20,4 +20,4 @@ deploy:
   on:
     branch: source
 notifications:
-   webhooks: https://oapi.dingtalk.com/robot/send?access_token=$DINGTALK_TOKEN
+  webhooks: https://oapi.dingtalk.com/robot/send?access_token=$DINGTALK_TOKEN
