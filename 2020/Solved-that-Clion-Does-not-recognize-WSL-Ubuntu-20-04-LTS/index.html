@@ -19,13 +19,13 @@
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="注：本文提到的 WSL 均为 WSL 1。 最近在学网络编程，需要在 Linux 下编译 C 源码，可我日常使用 Windows，在虚拟机里操作又不是很方便。于是 Clion + WSL 成了几乎完美的解决方案，在 Windows 下编码，Linux 环境下编译运行。 但是由于一个意外需要卸载已安装的 WSL（Ubuntu 18.04 LTS），凑巧巨硬最近发布了 Ubuntu 20.04 LTS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-10T14:28:25.754Z">
+<meta property="og:updated_time" content="2020-05-10T14:36:17.414Z">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1589120934188">
+  <link rel="stylesheet" href="/css/style.css?v=1589121405940">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -262,7 +262,7 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年05月10日</a>
-    <a><i class="nexmoefont icon-areachart"></i>531 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>510 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/Linux/">Linux</a>
@@ -289,7 +289,7 @@
 <p>&#x5728;&#x5347;&#x7EA7; 20.04 &#x7684;&#x5305;&#x65F6;&#x9047;&#x5230; <code>sleep: cannot read realtime clock: Invalid argument</code> &#x9519;&#x8BEF;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x4E00;&#x4E2A; WSL &#x7684; bug&#xFF0C;&#x636E;&#x8BF4;&#x5DF2;&#x7ECF;&#x5728; Windows 2004 &#x4FEE;&#x590D;&#xFF0C;&#x4F46;&#x662F; 2004 &#x8981;&#x8FD8;&#x6CA1;&#x6B63;&#x5F0F;&#x53D1;&#x5E03;&#x3002;&#x76EE;&#x524D;&#x7684;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#x662F;&#x964D;&#x7EA7;&#x5BFC;&#x81F4;&#x95EE;&#x9898;&#x7684; <code>libc6</code> &#x5305;<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>&#xFF1A;</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">wget</span> <span class="st">&quot;https://launchpad.net/~rafaeldtinoco/+archive/ubuntu/lp1871129/+build/19152555/+files/libc6_2.31-0ubuntu8+lp1871129~1_amd64.deb&quot;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">sudo</span> dpkg -i libc6_2.31-0ubuntu8+lp1871129~1_amd64.deb</span></code></pre></div>
-<p>&#x5728;&#x5347;&#x7EA7;&#x524D;&#x5C06;&#x5176;&#x7248;&#x672C;&#x51BB;&#x7ED3;<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>&#xFF1A;</p>
+<p>&#x5728;&#x5347;&#x7EA7;&#x524D;&#x5C06;&#x5176;&#x7248;&#x672C;&#x51BB;&#x7ED3;&#xFF1A;</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">apt-mark</span> hold libc6</span></code></pre></div>
 <p>&#x8FD9;&#x6837;&#x8BE5;&#x95EE;&#x9898;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x3002;&#x4F46;&#x662F;&#x964D;&#x7EA7;&#x4F1A;&#x5BFC;&#x81F4; gcc&#x3001;cmake &#x7B49;&#x4E00;&#x5927;&#x7968;&#x7F16;&#x8BD1;&#x5DE5;&#x5177;<strong>&#x65E0;&#x6CD5;</strong>&#x6B63;&#x5E38;&#x5B89;&#x88C5;&#x3002;</p>
 <h2 id="&#x6700;&#x540E;">&#x6700;&#x540E;</h2>
@@ -299,7 +299,6 @@
 <ol>
 <li id="fn1" role="doc-endnote"><p><a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/360004135320-CLion-not-picking-up-WSL" target="_blank" rel="noopener">https://intellij-support.jetbrains.com/hc/en-us/community/posts/360004135320-CLion-not-picking-up-WSL</a> &quot;CLion not picking up WSL &#x2013; IDEs Support (IntelliJ Platform) | JetBrains&quot;<a href="#fnref1" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
 <li id="fn2" role="doc-endnote"><p><a href="https://github.com/microsoft/WSL/issues/4898" target="_blank" rel="noopener">https://github.com/microsoft/WSL/issues/4898</a> &quot;[WSL1] [glibc] sleep: cannot read realtime clock: Invalid argument&quot;<a href="#fnref2" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
-<li id="fn3" role="doc-endnote"><p><a href="https://github.com/microsoft/WSL/issues/4898" target="_blank" rel="noopener">https://github.com/microsoft/WSL/issues/4898</a> &quot;[WSL1] [glibc] sleep: cannot read realtime clock: Invalid argument&quot;<a href="#fnref3" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
 </ol>
 </section>
 
@@ -355,7 +354,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1589120934208"></script>
+<script src="/js/app.js?v=1589121405958"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
