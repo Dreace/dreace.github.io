@@ -22,7 +22,7 @@ categories:
 
 直接安装：
 
-```
+```bash
 sudo yum install git
 ```
 
@@ -30,7 +30,7 @@ sudo yum install git
 
 为了控制权限，可新建立一个名为 git 的用户：
 
-```
+```bash
 sudo adduser git
 ```
 
@@ -38,7 +38,7 @@ sudo adduser git
 
 SSH 密钥用于部署时免密登录。使用 `ssh-keygen` 生成密钥，注意将 `your_email@example.com` 替换成自己的邮箱。
 
-```
+```bash
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
@@ -67,7 +67,7 @@ Enter same passphrase again:
 
 在 `/var/repo` 新建名为 `blog.git` 的仓库：
 
-```
+```bash
 sudo mkdir /var/repo
 cd /var/repo
 sudo git init --bare blog.git
@@ -79,7 +79,7 @@ sudo git init --bare blog.git
 
 创建目录：
 
-```
+```bash
 cd /var/
 sudo mkdir www
 cd www
@@ -92,7 +92,7 @@ sudo mkdir hexo
 
 更改权限：
 
-```
+```bash
 cd /var/
 sudo chmod -R 777 www
 cd www
@@ -105,14 +105,14 @@ sudo chmod -R 777 hexo
 
 进入 `/var/repo/blog.git/hooks`，创建编辑 `post-receive` 文件：
 
-```
+```bash
 cd /var/repo/blog.git/hooks
 sudo vim post-receive
 ```
 
 在 `post-receive` 写入：
 
-```
+```bash
 git --work-tree=/var/www/html/hexo --git-dir=/var/repo/blog.git checkout -f
 ```
 
@@ -120,7 +120,7 @@ git --work-tree=/var/www/html/hexo --git-dir=/var/repo/blog.git checkout -f
 
 保存后赋予  `post-receive` 可执行权限：
 
-```
+```bash
 chmod +x post-receive
 ```
 
@@ -128,7 +128,7 @@ chmod +x post-receive
 
 将 `blog.git` 目录的所有者更改为 git 用户：
 
-```
+```bash
 sudo chown -R git:git blog.git
 ```
 
@@ -176,7 +176,7 @@ rsTNxNy45COZWr7IBbrb0+WBXlXwTrSx+XioRxEyukk1U79aIk3uvSP6C/4F
 
 写入[^3]：
 
-```
+```yaml
 name: Node CI
 
 on: [push]
@@ -219,18 +219,18 @@ jobs:
 
 修改 Hexo 根目录下的 `_config.yml` 文件，添加：
 
-```
+```yaml
 deploy:
   type: git
   repo: git@<your_host>:/var/repo/blog.git
-  ranch: master
+  branch: master
 ```
 
 将 `<your_host>` 替换成自己的域名。
 
 最后别忘了安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git) 插件[^4]。
 
-```shell
+```bash
 npm install hexo-deployer-git --save
 ```
 
@@ -238,7 +238,7 @@ npm install hexo-deployer-git --save
 
 在 `/etc/nginx/conf.d` 下新增配置 `blog.conf`。
 
-```
+```nginx
 server {
     listen 443 ssl;
     server_name <your_host>;
@@ -258,7 +258,7 @@ server {
 
 如果没有配置 SSL，`blog.conf` 应该写入：
 
-```
+```nginx
 server {
     listen 80;
     server_name <your_host>;

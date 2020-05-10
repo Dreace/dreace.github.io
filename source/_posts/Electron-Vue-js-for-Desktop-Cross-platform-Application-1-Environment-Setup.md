@@ -28,7 +28,7 @@ Node.js 是必须的，如果还没有安装请看[这里](https://nodejs.org/zh
 
 设置 NPM 的环境变量：
 
-```
+```bash
 npm config set registry http://registry.npm.taobao.org/
 npm config set electron_mirror https://cdn.npm.taobao.org/dist/electron/
 ```
@@ -37,7 +37,7 @@ npm config set electron_mirror https://cdn.npm.taobao.org/dist/electron/
 
 执行：
 
-```
+```bash
 npm install @vue/cli -g
 ```
 
@@ -47,7 +47,7 @@ npm install @vue/cli -g
 
 创建项目：
 
-```
+```bash
 vue create electron-vue-demo
 ```
 
@@ -113,7 +113,7 @@ electron-builder 是一个功能强大的 Electron 打包工具。
 
 使用 Vue CLI 添加：
 
-```
+```bash
 vue add electron-builder
 ```
 
@@ -141,7 +141,7 @@ vue add electron-builder
 
 在 `background.js` 找到如下代码：
 
-```
+```javascript
 app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools
@@ -163,7 +163,7 @@ app.on('ready', async () => {
 
 取消注释：
 
-```
+```javascript
 app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
     try {
@@ -182,13 +182,13 @@ app.on('ready', async () => {
 
 修改 `package.json` 中：
 
-```
+```json
 "electron": "^6.0.0",
 ```
 
 为
 
-```
+```json
 "electron": "^7.0.0",
 ```
 
@@ -200,7 +200,7 @@ app.on('ready', async () => {
 
 执行：
 
-```
+```bash
 npm run electron:serve
 ```
 
@@ -212,7 +212,7 @@ npm run electron:serve
 
 在项目根目录新建 `vue.config.js` 文件，并写入[^2]：
 
-```
+```javascript
 module.exports = {
   pluginOptions: {
     electronBuilder: {
@@ -275,7 +275,7 @@ module.exports = {
 
 然后执行：
 
-```
+```bash
 npm run electron:build
 ```
 

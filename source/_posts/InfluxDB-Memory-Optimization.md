@@ -30,7 +30,7 @@ categories:
 
 好在 InfluxDB 是通过 Docker 部署的，可以很方便地限制内存使用，尝试通过 `docker-compose.yml` 配置：
 
-```
+```yaml
 deploy:
     resources:
     limits:
@@ -44,7 +44,7 @@ restart: always
 
 查了一些资料后得知 InfluxDB 默认的索引是在内存上维护的，不断地数据增长会使用越来越多的内存，并有一个参数 `index-version` 可以设置索引方式[^1]。如果是直接在主机上部署的可以修改配置文件，Docker 部署则需要通过环境变量设置：
 
-```
+```yaml
 environment:
     INFLUXDB_DATA_INDEX_VERSION: tsi1
 ```
@@ -53,7 +53,7 @@ environment:
 
 具体位置是 `/var/lib/influxdb/data/<数据库>/<保留策略>/<分片>`。
 
-```shell
+```bash
 [root@izuf6czs1dw6siz3zokdiez 1_day]# ls
 1  10  11  12  13  14  15  16  18  19  20  21  3  4  5  6  7  8  9
 [root@izuf6czs1dw6siz3zokdiez 1_day]# cd 15
