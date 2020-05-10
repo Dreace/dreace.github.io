@@ -20,14 +20,14 @@
 <meta property="og:description" content="最近给小程序的后端日志加上了实时输出到前端功能，为了展示就得保存日志，又考虑到日志是时序数据，自然就选择了时序数据库 InfluxDB，并且通过 Docker 部署。刚上线的一两天没有什么问题，各方面运行都很平稳，没过几天的一个早上突然收到了阿里云的报警，说内存占用超过了 95%。 这便是噩梦的开始。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;InfluxDB-Memory-Optimization&#x2F;image-20200508120656188.png">
-<meta property="og:updated_time" content="2020-05-08T14:27:27.748Z">
+<meta property="og:updated_time" content="2020-05-10T14:28:25.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;InfluxDB-Memory-Optimization&#x2F;image-20200508120656188.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1588948073612">
+  <link rel="stylesheet" href="/css/style.css?v=1589120934209">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -52,9 +52,9 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>11</div>
-        <div><span>标签</span>25</div>
-        <div><span>分类</span>6</div>
+        <div><span>文章</span>12</div>
+        <div><span>标签</span>28</div>
+        <div><span>分类</span>7</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -133,6 +133,13 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Linux/">Linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/MySQL/">MySQL</a>
           <span class="category-list-count">1</span>
         </li>
@@ -177,12 +184,12 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">标签</h3>
     <div id="randomtagcloud" class="nexmoe-widget tagcloud">
-      <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/InfluxDB/" style="font-size: 10px;">InfluxDB</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Windows/" style="font-size: 20px;">Windows</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/%E5%85%A5%E9%97%A8/" style="font-size: 10px;">入门</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 10px;">教程</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%A1%8C%E9%9D%A2%E7%AB%AF/" style="font-size: 10px;">桌面端</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/" style="font-size: 10px;">注册表</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">记录</a> <a href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/" style="font-size: 10px;">跨平台</a> <a href="/tags/%E8%BF%81%E7%A7%BB/" style="font-size: 10px;">迁移</a>
+      <a href="/tags/Clion/" style="font-size: 10px;">Clion</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/InfluxDB/" style="font-size: 10px;">InfluxDB</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/WSL/" style="font-size: 10px;">WSL</a> <a href="/tags/Windows/" style="font-size: 20px;">Windows</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/%E5%85%A5%E9%97%A8/" style="font-size: 10px;">入门</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 10px;">教程</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%A1%8C%E9%9D%A2%E7%AB%AF/" style="font-size: 10px;">桌面端</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 10px;">正则表达式</a> <a href="/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/" style="font-size: 10px;">注册表</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">记录</a> <a href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/" style="font-size: 10px;">跨平台</a> <a href="/tags/%E8%BF%81%E7%A7%BB/" style="font-size: 10px;">迁移</a>
     </div>
     
       <script>
         var maxTagcloud = parseInt(10);
-        var tags_length = parseInt(25);
+        var tags_length = parseInt(28);
         var tags_arr = [];
         for(var i = 0; i < tags_length; i++){
           tags_arr.push(i);
@@ -216,6 +223,10 @@
       <ul>
         
           <li>
+            <a href="/2020/Solved-that-Clion-Does-not-recognize-WSL-Ubuntu-20-04-LTS/">解决 Clion 无法识别 WSL Ubuntu 20.04 LTS</a>
+          </li>
+        
+          <li>
             <a href="/2020/InfluxDB-Memory-Optimization/">InfluxDB 内存优化</a>
           </li>
         
@@ -229,10 +240,6 @@
         
           <li>
             <a href="/2020/Solve-An-operation-on-a-socket-could-not-be-performed-because-the-system-lacked-sufficient-buffer-space-or-because-a-queue-was-full/">解决“由于系统缓冲区空间不足或队列已满，不能执行套接字上的操作”</a>
-          </li>
-        
-          <li>
-            <a href="/2020/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/">Electron + Vue.js 打造桌面端跨平台应用#1 环境搭建</a>
           </li>
         
       </ul>
@@ -279,23 +286,23 @@
 <p>&#x91CD;&#x542F;&#x670D;&#x52A1;&#x5668;&#x540E;&#x4E00;&#x5207;&#x90FD;&#x6062;&#x590D;&#x6B63;&#x5E38;&#xFF0C;&#x4F46;&#x662F; InfluxDB &#x53EF;&#x80FD;&#x968F;&#x65F6;&#x53C8;&#x51FA;&#x73B0;&#x72B6;&#x51B5;&#xFF0C;&#x53EA;&#x80FD;&#x4E00;&#x76F4;&#x76EF;&#x7740;&#x5404;&#x79CD;&#x6307;&#x6807;&#xFF0C;&#x76EF;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x53D1;&#x73B0; InfluxDB &#x7684;&#x5185;&#x5B58;&#x5360;&#x7528;&#x8089;&#x773C;&#x53EF;&#x89C1;&#x5730;&#x589E;&#x957F;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;&#x5F88;&#x6050;&#x6016;&#x4E86;&#x3002;</p>
 <h2 id="&#x5C1D;&#x8BD5;&#x89E3;&#x51B3;">&#x5C1D;&#x8BD5;&#x89E3;&#x51B3;</h2>
 <p>&#x597D;&#x5728; InfluxDB &#x662F;&#x901A;&#x8FC7; Docker &#x90E8;&#x7F72;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x5730;&#x9650;&#x5236;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#xFF0C;&#x5C1D;&#x8BD5;&#x901A;&#x8FC7; <code>docker-compose.yml</code> &#x914D;&#x7F6E;&#xFF1A;</p>
-<pre><code>deploy:
-    resources:
-    limits:
-        memory: 500M
-restart: always</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">deploy</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="at">    </span><span class="fu">resources</span><span class="kw">:</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="at">    </span><span class="fu">limits</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="at">        </span><span class="fu">memory</span><span class="kw">:</span><span class="at"> 500M</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">restart</span><span class="kw">:</span><span class="at"> always</span></span></code></pre></div>
 <p>&#x5C06; InfluxDB &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x9650;&#x5236;&#x5728; 500MiB&#xFF0C;&#x8D85;&#x8FC7;&#x8FD9;&#x4E2A;&#x6570;&#x503C;&#x5C31;&#x4F1A;&#x88AB; kill&#xFF0C;&#x7136;&#x540E;&#x53C8;&#x81EA;&#x52A8;&#x91CD;&#x542F;&#x3002;&#x867D;&#x7136;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x907F;&#x514D; InfluxDB &#x5C06;&#x7CFB;&#x7EDF;&#x62D6;&#x57AE;&#xFF0C;&#x4F46;&#x9891;&#x7E41; OOM &#x53C8;&#x91CD;&#x542F;&#x7EC8;&#x7A76;&#x4E0D;&#x662F;&#x4EC0;&#x4E48;&#x597D;&#x529E;&#x6CD5;&#x3002;</p>
 <h2 id="&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;">&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;</h2>
 <p>&#x67E5;&#x4E86;&#x4E00;&#x4E9B;&#x8D44;&#x6599;&#x540E;&#x5F97;&#x77E5; InfluxDB &#x9ED8;&#x8BA4;&#x7684;&#x7D22;&#x5F15;&#x662F;&#x5728;&#x5185;&#x5B58;&#x4E0A;&#x7EF4;&#x62A4;&#x7684;&#xFF0C;&#x4E0D;&#x65AD;&#x5730;&#x6570;&#x636E;&#x589E;&#x957F;&#x4F1A;&#x4F7F;&#x7528;&#x8D8A;&#x6765;&#x8D8A;&#x591A;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x5E76;&#x6709;&#x4E00;&#x4E2A;&#x53C2;&#x6570; <code>index-version</code> &#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>&#x3002;&#x5982;&#x679C;&#x662F;&#x76F4;&#x63A5;&#x5728;&#x4E3B;&#x673A;&#x4E0A;&#x90E8;&#x7F72;&#x7684;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;Docker &#x90E8;&#x7F72;&#x5219;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x8BBE;&#x7F6E;&#xFF1A;</p>
-<pre><code>environment:
-    INFLUXDB_DATA_INDEX_VERSION: tsi1</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="at">    </span><span class="fu">INFLUXDB_DATA_INDEX_VERSION</span><span class="kw">:</span><span class="at"> tsi1</span></span></code></pre></div>
 <p>&#x5C06;&#x7D22;&#x5F15;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;&#x78C1;&#x76D8;&#x4E0A;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x65E5;&#x5FD7;&#x6216;&#x8005;&#x67E5;&#x770B;&#x5206;&#x7247;&#x7684;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x9A8C;&#x8BC1;&#x4FEE;&#x6539;&#x662F;&#x5426;&#x751F;&#x6548;&#xFF0C;&#x82E5;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;&#x4E3A; <code>tsi1</code>&#xFF0C;&#x5728;&#x5206;&#x7247;&#x76EE;&#x5F55;&#x4E0B;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x540D;&#x4E3A; <code>index</code> &#x7684;&#x76EE;&#x5F55;&#xFF0C;<code>inmem</code> &#x7D22;&#x5F15;&#x5219;&#x6CA1;&#x6709;&#x3002;</p>
 <p>&#x5177;&#x4F53;&#x4F4D;&#x7F6E;&#x662F; <code>/var/lib/influxdb/data/&lt;&#x6570;&#x636E;&#x5E93;&gt;/&lt;&#x4FDD;&#x7559;&#x7B56;&#x7565;&gt;/&lt;&#x5206;&#x7247;&gt;</code>&#x3002;</p>
-<pre class="shell"><code>[root@izuf6czs1dw6siz3zokdiez 1_day]# ls
-1  10  11  12  13  14  15  16  18  19  20  21  3  4  5  6  7  8  9
-[root@izuf6czs1dw6siz3zokdiez 1_day]# cd 15
-[root@izuf6czs1dw6siz3zokdiez 15]# ls
-000000001-000000001.tsm  fields.idx  index</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a>[<span class="ex">root@izuf6czs1dw6siz3zokdiez</span> 1_day]# ls</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">1</span>  10  11  12  13  14  15  16  18  19  20  21  3  4  5  6  7  8  9</span>
+<span id="cb3-3"><a href="#cb3-3"></a>[<span class="ex">root@izuf6czs1dw6siz3zokdiez</span> 1_day]# cd 15</span>
+<span id="cb3-4"><a href="#cb3-4"></a>[<span class="ex">root@izuf6czs1dw6siz3zokdiez</span> 15]# ls</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="ex">000000001-000000001.tsm</span>  fields.idx  index</span></code></pre></div>
 <h2 id="&#x6548;&#x679C;&#x9A8C;&#x8BC1;">&#x6548;&#x679C;&#x9A8C;&#x8BC1;</h2>
 <p><del>&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;&#x540E;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x4F9D;&#x7136;&#x5728;&#x7F13;&#x6162;&#x589E;&#x957F;&#xFF0C;&#x4F46;&#x662F;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#x8BBE;&#x7F6E;&#x7684;&#x662F;&#x4E00;&#x5929;&#xFF0C;&#x9700;&#x8981;&#x7B49;&#x5230;&#x66F4;&#x6539;&#x751F;&#x6548;&#x4E00;&#x5929;&#x540E;&#x624D;&#x80FD;&#x770B;&#x51FA;&#x771F;&#x5B9E;&#x7684;&#x6548;&#x679C;&#xFF08;&#x5F85;&#x66F4;&#x65B0;&#xFF09;&#x3002;</del></p>
 <p>&#x8D85;&#x8FC7;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#xFF08;24 &#x5C0F;&#x65F6;&#xFF09;&#x7684;&#x65F6;&#x95F4;&#x540E;&#xFF08;27 &#x5C0F;&#x65F6;&#xFF09;&#x5185;&#x5B58;&#x589E;&#x957F;&#x505C;&#x6B62;&#xFF0C;&#x76EE;&#x524D;&#x7A33;&#x5B9A;&#x5728; 235.3MiB&#xFF0C;&#x5927;&#x81F4;&#x7B26;&#x5408;&#x9884;&#x671F;&#x3002;</p>
@@ -358,7 +365,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1588948073634"></script>
+<script src="/js/app.js?v=1589120934224"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
