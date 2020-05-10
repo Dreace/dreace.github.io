@@ -42,7 +42,7 @@ wget "https://launchpad.net/~rafaeldtinoco/+archive/ubuntu/lp1871129/+build/1915
 sudo dpkg -i libc6_2.31-0ubuntu8+lp1871129~1_amd64.deb
 ```
 
-在升级前将其版本冻结[^2]：
+在升级前将其版本冻结：
 
 ```bash
 apt-mark hold libc6
