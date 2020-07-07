@@ -27,12 +27,12 @@ cdn: # 这里可以修改站点使用的库的CDN
   # copy: https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js
 
 menu:
-  回到首页:
-    - /
-    - icon-home
-  文章归档:
-    - /archives
-    - icon-container
+  # 回到首页:
+  #   - /
+  #   - icon-home
+  # 文章归档:
+  #   - /archives
+  #   - icon-container
   # 关于博客:
   #   - /about.html
   #   - icon-info-circle
@@ -43,9 +43,9 @@ widgets:
   - toc
   - social
   - category
-  - tagcloud
-  - archive
-  - recent_posts
+  # - tagcloud
+  # - archive
+  # - recent_posts
 
 
 maxTagcloud: 10 # 0 表示不限制
@@ -68,11 +68,6 @@ social:
     - icon-zhihu
     - rgb(30, 136, 229)
     - rgba(30, 136, 229, .15)
-  Twitter:
-    - https://twitter.com/Dreace520
-    - icon-twitter
-    - rgb(29, 161, 242)
-    - rgba(29, 161, 242, .15)
   Steam:
     - https://steamcommunity.com/id/Dreace_Dreace/
     - icon-steam
