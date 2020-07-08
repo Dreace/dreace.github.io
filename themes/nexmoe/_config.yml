@@ -80,6 +80,7 @@ site_verification: # 向搜索引擎验证你对站点的所有权，用于向�
 
 analytics:
   tencent_site_id: 500701683
+  google_site_id: UA-89152702-3
 
 comment: disqusjs # 评论框，目前支持 gitalk,gitment,valine,disqus,disqusjs,changyan,livere,DiscussBot
 
