@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1594360904659">
+  <link rel="stylesheet" href="/css/style.css?v=1595671759811">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -49,9 +49,9 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>14</div>
-        <div><span>标签</span>31</div>
-        <div><span>分类</span>8</div>
+        <div><span>文章</span>15</div>
+        <div><span>标签</span>33</div>
+        <div><span>分类</span>9</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -126,6 +126,13 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TypeScript/">TypeScript</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/Vue-js/">Vue.js</a>
           <span class="category-list-count">1</span>
         </li>
@@ -170,6 +177,31 @@
   <div id="nexmoe-content">
     <div class="nexmoe-primary index ">
         <section class="nexmoe-posts" id="brand-waterfall">
+    
+    <div class="nexmoe-post">
+        <a href="/2020/Use-TypeScript-to-Write-Command-Line-Tools-and-Publish-to-npm/">
+            <div class="nexmoe-post-cover"> 
+                <h1>使用 TypeScript 编写命令行工具并发布到 npm</h1>
+            </div>
+        </a>
+        <div class="nexmoe-post-meta">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2020年07月25日</a>
+            <a><i class="nexmoefont icon-areachart"></i>2.3k 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
+            
+                <a class="nexmoefont icon-appstore-fill -link" href="/categories/TypeScript/">TypeScript</a>
+            
+            
+                <a class="nexmoefont icon-tag-fill -link" href="/tags/TypeScript/" rel="tag">TypeScript</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/npm/" rel="tag">npm</a>
+            
+        </div>
+        <article>
+            
+            <p>最近在研究优化在国内访问静态博客的时间，其中有一个方案是将生成的文件存储在对象存储，然后再通过 CDN 回源对象存储。确定方案后使用 <a href="https://www.qiniu.com/" target="_blank" rel="noopener">七牛云</a> 做一个加速实验，由于要将生成的文件上传，又要将这个过程尽可能自动化，而七牛云只提供 SDK，要上传只能将密钥硬编码在代码中，这是很危险的。</p>
+<p>因此有了编写一个命令行工具的想法，由于最近在学习 TypeScript，就决定用它来写。</p>
+            
+        </article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2020/Two-Solutions-to-the-Topk-Problem-Heap-Quick-Sort/">
@@ -391,28 +423,6 @@
         </article>
     </div>
     
-    <div class="nexmoe-post">
-        <a href="/2019/Set-VS-Code-As-The-Default-Editor/">
-            <div class="nexmoe-post-cover"> 
-                <h1>Windows 下将“使用 VS Code 打开”注册到右键菜单</h1>
-            </div>
-        </a>
-        <div class="nexmoe-post-meta">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2019年11月18日</a>
-            <a><i class="nexmoefont icon-areachart"></i>420 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/VS-Code/" rel="tag">VS Code</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/Windows/" rel="tag">Windows</a>
-            
-        </div>
-        <article>
-            
-            <p>在 Windows 下安装 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a> 时会询问是否注册为受支持类型编辑器，这样右击文件就可以使用 VS Code 编辑文件。如果安装时没有选择可以通过修改注册表达到这种效果。</p>
-            
-        </article>
-    </div>
-    
 </section>
 
     <nav class="nexmoe-page-nav">
@@ -438,7 +448,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1594360904661"></script>
+<script src="/js/app.js?v=1595671759812"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

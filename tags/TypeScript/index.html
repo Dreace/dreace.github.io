@@ -3,7 +3,7 @@
 
 <head>
   
-  <title>标签：记录 - DreaceのBlog</title>
+  <title>标签：TypeScript - DreaceのBlog</title>
   <meta charset="UTF-8">
   <meta name="description" content="一条咸鱼的垂死挣扎">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,7 +15,7 @@
 <meta name="keywords" content="博客,代码,日常">
 <meta property="og:type" content="website">
 <meta property="og:title" content="DreaceのBlog">
-<meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;tags&#x2F;%E8%AE%B0%E5%BD%95&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;tags&#x2F;TypeScript&#x2F;index.html">
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="一条咸鱼的垂死挣扎">
 <meta property="og:locale" content="zh-CN">
@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1595671759869">
+  <link rel="stylesheet" href="/css/style.css?v=1595671759949">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -179,25 +179,26 @@
         <section class="nexmoe-posts" id="brand-waterfall">
     
     <div class="nexmoe-post">
-        <a href="/2019/Blog-Transfer-Record-1-From-WordPress-to-Hexo/">
+        <a href="/2020/Use-TypeScript-to-Write-Command-Line-Tools-and-Publish-to-npm/">
             <div class="nexmoe-post-cover"> 
-                <h1>博客迁移日志其一 从 WordPress 到 Hexo</h1>
+                <h1>使用 TypeScript 编写命令行工具并发布到 npm</h1>
             </div>
         </a>
         <div class="nexmoe-post-meta">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2019年11月10日</a>
-            <a><i class="nexmoefont icon-areachart"></i>614 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+            <a><i class="nexmoefont icon-calendar-fill"></i>2020年07月25日</a>
+            <a><i class="nexmoefont icon-areachart"></i>2.3k 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
             
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%BB%BA%E8%AE%BE%E6%97%A5%E5%BF%97/">建设日志</a>
+                <a class="nexmoefont icon-appstore-fill -link" href="/categories/TypeScript/">TypeScript</a>
             
             
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/Hexo/" rel="tag">Hexo</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E8%BF%81%E7%A7%BB/" rel="tag">迁移</a>
+                <a class="nexmoefont icon-tag-fill -link" href="/tags/TypeScript/" rel="tag">TypeScript</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/npm/" rel="tag">npm</a>
             
         </div>
         <article>
             
-            <p>用 WordPress 写博客已经很长时间，虽然写的东西不多，从最开始的托管空间开始到迁移至阿里的 ECS 上，这个博客已经存在了四五年了。也从最开始感叹 WordPress 功能强大到现在抱怨种种问题，例如 Markdown 支持不完善、由于主机上传带宽很小后台管理打开很慢等等。越用越感觉 WordPress 似乎不适合我，操作过于繁琐。一句话就是「<strong>不够 Geek</strong>」。</p>
+            <p>最近在研究优化在国内访问静态博客的时间，其中有一个方案是将生成的文件存储在对象存储，然后再通过 CDN 回源对象存储。确定方案后使用 <a href="https://www.qiniu.com/" target="_blank" rel="noopener">七牛云</a> 做一个加速实验，由于要将生成的文件上传，又要将这个过程尽可能自动化，而七牛云只提供 SDK，要上传只能将密钥硬编码在代码中，这是很危险的。</p>
+<p>因此有了编写一个命令行工具的想法，由于最近在学习 TypeScript，就决定用它来写。</p>
             
         </article>
     </div>
@@ -223,7 +224,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1595671759870"></script>
+<script src="/js/app.js?v=1595671759951"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
