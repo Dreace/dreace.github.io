@@ -2,114 +2,121 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.dreace.top/2019/Blog-Transfer-Record-1-From-WordPress-to-Hexo/</loc>
-    
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.dreace.top/2020/Blog-Transfer-Record-2-Automate-Hexo-Deployment-with-GitHub-Actions/</loc>
-    
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.dreace.top/2020/DNS-Resolution-is-Slow-on-Windows-but-nslookup-is-Normal/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2020/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2019/How-to-Install-Python/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2020/InfluxDB-Memory-Optimization/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2020/MySQL-Multiple-Keyword-Matching/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2019/Python-From-Zero-To-Hero/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2019/Set-VS-Code-As-The-Default-Editor/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2020/Solve-An-operation-on-a-socket-could-not-be-performed-because-the-system-lacked-sufficient-buffer-space-or-because-a-queue-was-full/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2020/Solved-that-Clion-Does-not-recognize-WSL-Ubuntu-20-04-LTS/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2020/Two-Solutions-to-the-Topk-Problem-Heap-Quick-Sort/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.dreace.top/2020/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/</loc>
+    
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2020/Use-Python-to-implement-the-DES-algorithm/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2020/Use-TypeScript-to-Write-Command-Line-Tools-and-Publish-to-npm/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/2019/hello-world/</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.dreace.top/friends.html</loc>
     
-    <lastmod>2020-07-27T13:47:41.420Z</lastmod>
+    <lastmod>2020-07-27T15:30:04.551Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.dreace.top/2019/Blog-Transfer-Record-1-From-WordPress-to-Hexo/</loc>
+    
+    <lastmod>2020-07-27T15:30:04.547Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.dreace.top/2020/Blog-Transfer-Record-2-Automate-Hexo-Deployment-with-GitHub-Actions/</loc>
+    
+    <lastmod>2020-07-27T15:30:04.547Z</lastmod>
     
   </url>
   
