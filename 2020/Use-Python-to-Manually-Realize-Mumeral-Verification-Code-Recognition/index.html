@@ -11,13 +11,13 @@
   
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
-  <meta name="description" content="（迁移文章，本文写于2020年8月3日）本人维护的一个项目 中北信息 小程序需要模拟登录来获取信息，这就需要在后台识别验证码。需要识别的验证码比较简单且为纯数字，有简单到可以忽略不计的变形，像下面这个样子。">
+  <meta name="description" content="（迁移文章，本文写于2019年8月3日）本人维护的一个项目 中北信息 小程序需要模拟登录来获取信息，这就需要在后台识别验证码。需要识别的验证码比较简单且为纯数字，有简单到可以忽略不计的变形，像下面这个样子。">
 <meta name="keywords" content="Python,网络,验证码识别">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 手动实现数字验证码识别">
 <meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition&#x2F;index.html">
 <meta property="og:site_name" content="DreaceのBlog">
-<meta property="og:description" content="（迁移文章，本文写于2020年8月3日）本人维护的一个项目 中北信息 小程序需要模拟登录来获取信息，这就需要在后台识别验证码。需要识别的验证码比较简单且为纯数字，有简单到可以忽略不计的变形，像下面这个样子。">
+<meta property="og:description" content="（迁移文章，本文写于2019年8月3日）本人维护的一个项目 中北信息 小程序需要模拟登录来获取信息，这就需要在后台识别验证码。需要识别的验证码比较简单且为纯数字，有简单到可以忽略不计的变形，像下面这个样子。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition&#x2F;example.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition&#x2F;&amp;#x56FE;2.png">
@@ -27,14 +27,14 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition&#x2F;&amp;#x56FE;5-2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition&#x2F;&amp;#x56FE;5-3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition&#x2F;&amp;#x56FE;5-4.png">
-<meta property="og:updated_time" content="2020-07-27T16:12:32.657Z">
+<meta property="og:updated_time" content="2020-07-28T03:43:17.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dreace&#x2F;dreace.github.io@master&#x2F;images&#x2F;Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition&#x2F;example.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1595866382421">
+  <link rel="stylesheet" href="/css/style.css?v=1595907826433">
 <link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -212,7 +212,7 @@
     
   </div>
   <article>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous"><p>&#xFF08;&#x8FC1;&#x79FB;&#x6587;&#x7AE0;&#xFF0C;&#x672C;&#x6587;&#x5199;&#x4E8E;2020&#x5E74;8&#x6708;3&#x65E5;&#xFF09;&#x672C;&#x4EBA;&#x7EF4;&#x62A4;&#x7684;&#x4E00;&#x4E2A;&#x9879;&#x76EE; <a href="https://github.com/Dreace/NUC-Information" target="_blank" rel="noopener">&#x4E2D;&#x5317;&#x4FE1;&#x606F;</a> &#x5C0F;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x6A21;&#x62DF;&#x767B;&#x5F55;&#x6765;&#x83B7;&#x53D6;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x5C31;&#x9700;&#x8981;&#x5728;&#x540E;&#x53F0;&#x8BC6;&#x522B;&#x9A8C;&#x8BC1;&#x7801;&#x3002;&#x9700;&#x8981;&#x8BC6;&#x522B;&#x7684;&#x9A8C;&#x8BC1;&#x7801;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#x4E14;&#x4E3A;&#x7EAF;&#x6570;&#x5B57;&#xFF0C;&#x6709;&#x7B80;&#x5355;&#x5230;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x4E0D;&#x8BA1;&#x7684;&#x53D8;&#x5F62;&#xFF0C;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x6837;&#x5B50;&#x3002;</p>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous"><p>&#xFF08;&#x8FC1;&#x79FB;&#x6587;&#x7AE0;&#xFF0C;&#x672C;&#x6587;&#x5199;&#x4E8E;2019&#x5E74;8&#x6708;3&#x65E5;&#xFF09;&#x672C;&#x4EBA;&#x7EF4;&#x62A4;&#x7684;&#x4E00;&#x4E2A;&#x9879;&#x76EE; <a href="https://github.com/Dreace/NUC-Information" target="_blank" rel="noopener">&#x4E2D;&#x5317;&#x4FE1;&#x606F;</a> &#x5C0F;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x6A21;&#x62DF;&#x767B;&#x5F55;&#x6765;&#x83B7;&#x53D6;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x5C31;&#x9700;&#x8981;&#x5728;&#x540E;&#x53F0;&#x8BC6;&#x522B;&#x9A8C;&#x8BC1;&#x7801;&#x3002;&#x9700;&#x8981;&#x8BC6;&#x522B;&#x7684;&#x9A8C;&#x8BC1;&#x7801;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#x4E14;&#x4E3A;&#x7EAF;&#x6570;&#x5B57;&#xFF0C;&#x6709;&#x7B80;&#x5355;&#x5230;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x4E0D;&#x8BA1;&#x7684;&#x53D8;&#x5F62;&#xFF0C;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x6837;&#x5B50;&#x3002;</p>
 <a id="more"></a>
 <figure>
 <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png" alt><figcaption>&#x9A8C;&#x8BC1;&#x7801;&#x6837;&#x4F8B;</figcaption>
@@ -427,7 +427,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1595866382467"></script>
+<script src="/js/app.js?v=1595907826501"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
