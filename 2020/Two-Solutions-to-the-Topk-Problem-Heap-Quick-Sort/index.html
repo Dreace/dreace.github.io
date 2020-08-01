@@ -19,7 +19,7 @@
 <meta property="og:description" content="这里的 TopK 不单指最大的 k 个元素，也可以是最小的 k 个元素，具体的例题可以看 剑指 Offer 40. 最小的k个数。本文的代码均为可以在力扣提交的题解，故不包含头文件和 main 函数。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-10T04:31:47.000Z">
-<meta property="article:modified_time" content="2020-08-01T10:15:25.953Z">
+<meta property="article:modified_time" content="2020-08-01T10:57:01.736Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="C++">
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596277000392">
+  <link rel="stylesheet" href="/css/style.css?v=1596279502727">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -74,7 +74,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5806;"><span class="toc-text">&amp;#x5806;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5FEB;&#x6392;"><span class="toc-text">&amp;#x5FEB;&amp;#x6392;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x4E24;&#x79CD;&#x7B97;&#x6CD5;&#x7684;&#x9009;&#x62E9;"><span class="toc-text">&amp;#x4E24;&amp;#x79CD;&amp;#x7B97;&amp;#x6CD5;&amp;#x7684;&amp;#x9009;&amp;#x62E9;</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#堆"><span class="toc-text">堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快排"><span class="toc-text">快排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两种算法的选择"><span class="toc-text">两种算法的选择</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -196,8 +196,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年07月10日</a>
-    <a><i class="nexmoefont icon-areachart"></i>994 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>937 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
     
@@ -206,12 +206,12 @@
     
   </div>
   <article>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous"><p>&#x8FD9;&#x91CC;&#x7684; TopK &#x4E0D;&#x5355;&#x6307;&#x6700;&#x5927;&#x7684; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> &#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x6700;&#x5C0F;&#x7684; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> &#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x5177;&#x4F53;&#x7684;&#x4F8B;&#x9898;&#x53EF;&#x4EE5;&#x770B; <a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/" target="_blank" rel="noopener">&#x5251;&#x6307; Offer 40. &#x6700;&#x5C0F;&#x7684;k&#x4E2A;&#x6570;</a>&#x3002;&#x672C;&#x6587;&#x7684;&#x4EE3;&#x7801;&#x5747;&#x4E3A;&#x53EF;&#x4EE5;&#x5728;&#x529B;&#x6263;&#x63D0;&#x4EA4;&#x7684;&#x9898;&#x89E3;&#xFF0C;&#x6545;&#x4E0D;&#x5305;&#x542B;&#x5934;&#x6587;&#x4EF6;&#x548C; <code>main</code> &#x51FD;&#x6570;&#x3002;</p>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous"><p>这里的 TopK 不单指最大的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个元素，也可以是最小的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个元素，具体的例题可以看 <a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/" target="_blank" rel="noopener">剑指 Offer 40. 最小的k个数</a>。本文的代码均为可以在力扣提交的题解，故不包含头文件和 <code>main</code> 函数。</p>
 <a id="more"></a>
-<h2 id="&#x5806;">&#x5806;</h2>
-<p>&#x770B;&#x5230;&#x8FD9;&#x79CD;&#x9898;&#xFF0C;&#x6700;&#x5148;&#x60F3;&#x5230;&#x7684;&#x53EF;&#x80FD;&#x662F;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5DF2;&#x6709;&#x7684;&#x6392;&#x5E8F;&#x51FD;&#x6570;&#xFF0C;&#x4F46;&#x662F;&#x5176;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>&#x2061;</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>&#xFF0C;&#x5927;&#x91CF;&#x7684;&#x6392;&#x5E8F;&#x5DE5;&#x4F5C;&#x662F;&#x591A;&#x4F59;&#x3002;</p>
-<p>&#x4E00;&#x4E2A;&#x4F18;&#x5316;&#x7684;&#x60F3;&#x6CD5;&#x662F;&#xFF0C;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x5927;&#x5C0F;&#x4E3A; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> &#x7684;&#x5806;&#xFF08;&#x9488;&#x5BF9;&#x6C42;&#x6700;&#x5C0F;&#x7684; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> &#x4E2A;&#x5143;&#x7D20;&#x4F7F;&#x7528;&#x6700;&#x5927;&#x5806;&#xFF09;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x4E00;&#x6B21;&#x904D;&#x5386;&#x5C06;&#x904D;&#x5386;&#x5230;&#x7684;&#x5143;&#x7D20;&#x548C;&#x5806;&#x9876;&#x5143;&#x7D20;&#x6BD4;&#x8F83;&#xFF0C;&#x82E5;&#x6BD4;&#x5806;&#x9876;&#x5C0F;&#xFF0C;&#x5219;&#x66FF;&#x6362;&#x5806;&#x9876;&#xFF0C;&#x7136;&#x540E;&#x8FDB;&#x884C;&#x5806;&#x8C03;&#x6574;&#x3002;&#x904D;&#x5386;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5806;&#x4E2D;&#x5C31;&#x662F;&#x8981;&#x6C42;&#x7684;&#x6700;&#x5C0F;&#x7684; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> &#x4E2A;&#x5143;&#x7D20;&#xFF08;&#x65E0;&#x5E8F;&#x7684;&#xFF09;&#x3002;</p>
-<p>&#x901A;&#x8FC7;&#x5806;&#x4F18;&#x5316;&#x540E;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>&#x2061;</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span>&#x3002;</p>
+<h2 id="堆">堆</h2>
+<p>看到这种题，最先想到的可能是直接使用已有的排序函数，但是其时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，大量的排序工作是多余。</p>
+<p>一个优化的想法是，建立一个大小为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的堆（针对求最小的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个元素使用最大堆），只需要一次遍历将遍历到的元素和堆顶元素比较，若比堆顶小，则替换堆顶，然后进行堆调整。遍历完成后，堆中就是要求的最小的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个元素（无序的）。</p>
+<p>通过堆优化后时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span>。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">class</span> Solution {</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">public</span>:</span>
 <span id="cb1-3"><a href="#cb1-3"></a>    vector&lt;<span class="dt">int</span>&gt; getLeastNumbers(<span class="at">const</span> vector&lt;<span class="dt">int</span>&gt; &amp;arr, <span class="dt">int</span> k) {</span>
@@ -219,7 +219,7 @@
 <span id="cb1-5"><a href="#cb1-5"></a>        <span class="cf">if</span> (k == <span class="dv">0</span>) {</span>
 <span id="cb1-6"><a href="#cb1-6"></a>            <span class="cf">return</span> ans;</span>
 <span id="cb1-7"><a href="#cb1-7"></a>        }</span>
-<span id="cb1-8"><a href="#cb1-8"></a>        <span class="co">// &#x5EFA;&#x5806;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>        <span class="co">// 建堆</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; k; ++i) {</span>
 <span id="cb1-10"><a href="#cb1-10"></a>            ans[i] = arr[i];</span>
 <span id="cb1-11"><a href="#cb1-11"></a>        }</span>
@@ -228,11 +228,11 @@
 <span id="cb1-14"><a href="#cb1-14"></a>        }</span>
 <span id="cb1-15"><a href="#cb1-15"></a>        <span class="dt">int</span> n = arr.size();</span>
 <span id="cb1-16"><a href="#cb1-16"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = k; i &lt; n; ++i) {</span>
-<span id="cb1-17"><a href="#cb1-17"></a>            <span class="co">// &#x6BD4;&#x5806;&#x4E2D;&#x6700;&#x5927;&#x7684;&#x8981;&#x5C0F;</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>            <span class="co">// 比堆中最大的要小</span></span>
 <span id="cb1-18"><a href="#cb1-18"></a>            <span class="cf">if</span> (arr[i] &lt; ans[<span class="dv">0</span>]) {</span>
-<span id="cb1-19"><a href="#cb1-19"></a>                <span class="co">// &#x66FF;&#x6362;</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>                <span class="co">// 替换</span></span>
 <span id="cb1-20"><a href="#cb1-20"></a>                ans[<span class="dv">0</span>] = arr[i];</span>
-<span id="cb1-21"><a href="#cb1-21"></a>                <span class="co">// &#x8C03;&#x6574;&#x540E;&#x5806;&#x9876;&#x662F;&#x6700;&#x5927;&#x7684;&#x5143;&#x7D20;</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>                <span class="co">// 调整后堆顶是最大的元素</span></span>
 <span id="cb1-22"><a href="#cb1-22"></a>                adjust(ans, <span class="dv">0</span><span class="bu">u</span>);</span>
 <span id="cb1-23"><a href="#cb1-23"></a>            }</span>
 <span id="cb1-24"><a href="#cb1-24"></a>        }</span>
@@ -242,25 +242,25 @@
 <span id="cb1-28"><a href="#cb1-28"></a></span>
 <span id="cb1-29"><a href="#cb1-29"></a>    <span class="dt">void</span> adjust(vector&lt;<span class="dt">int</span>&gt; &amp;heap, <span class="dt">uint32_t</span> index) {</span>
 <span id="cb1-30"><a href="#cb1-30"></a>        <span class="dt">uint32_t</span> t = index;</span>
-<span id="cb1-31"><a href="#cb1-31"></a>        <span class="co">// &#x5DE6;&#x5B69;&#x5B50;</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>        <span class="co">// 左孩子</span></span>
 <span id="cb1-32"><a href="#cb1-32"></a>        <span class="cf">if</span> ((index &lt;&lt; <span class="dv">1</span><span class="bu">u</span>) + <span class="dv">1</span> &lt; heap.size() &amp;&amp; heap[(index &lt;&lt; <span class="dv">1</span><span class="bu">u</span>) + <span class="dv">1</span>] &gt; heap[t]) {</span>
 <span id="cb1-33"><a href="#cb1-33"></a>            t = (index &lt;&lt; <span class="dv">1</span><span class="bu">u</span>) + <span class="dv">1</span>;</span>
 <span id="cb1-34"><a href="#cb1-34"></a>        }</span>
-<span id="cb1-35"><a href="#cb1-35"></a>        <span class="co">// &#x53F3;&#x5B69;&#x5B50;</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>        <span class="co">// 右孩子</span></span>
 <span id="cb1-36"><a href="#cb1-36"></a>        <span class="cf">if</span> ((index &lt;&lt; <span class="dv">1</span><span class="bu">u</span>) + <span class="dv">2</span> &lt; heap.size() &amp;&amp; heap[(index &lt;&lt; <span class="dv">1</span><span class="bu">u</span>) + <span class="dv">2</span>] &gt; heap[t]) {</span>
 <span id="cb1-37"><a href="#cb1-37"></a>            t = (index &lt;&lt; <span class="dv">1</span><span class="bu">u</span>) + <span class="dv">2</span>;</span>
 <span id="cb1-38"><a href="#cb1-38"></a>        }</span>
-<span id="cb1-39"><a href="#cb1-39"></a>        <span class="co">// &#x5B69;&#x5B50;&#x8282;&#x70B9;&#x6BD4;&#x7236;&#x8282;&#x70B9;&#x5927;</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>        <span class="co">// 孩子节点比父节点大</span></span>
 <span id="cb1-40"><a href="#cb1-40"></a>        <span class="cf">if</span> (t != index) {</span>
 <span id="cb1-41"><a href="#cb1-41"></a>            <span class="bu">std::</span>swap(heap[index], heap[t]);</span>
-<span id="cb1-42"><a href="#cb1-42"></a>            <span class="co">// &#x9012;&#x5F52;&#x8C03;&#x6574;</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a>            <span class="co">// 递归调整</span></span>
 <span id="cb1-43"><a href="#cb1-43"></a>            adjust(heap, t);</span>
 <span id="cb1-44"><a href="#cb1-44"></a>        }</span>
 <span id="cb1-45"><a href="#cb1-45"></a>    }</span>
 <span id="cb1-46"><a href="#cb1-46"></a>};</span></code></pre></div>
-<h2 id="&#x5FEB;&#x6392;">&#x5FEB;&#x6392;</h2>
-<p>&#x8FD9;&#x91CC;&#x4E0D;&#x662F;&#x771F;&#x7684;&#x5FEB;&#x6392;&#xFF0C;&#x800C;&#x662F;&#x501F;&#x52A9;&#x5FEB;&#x6392;&#x7684;&#x601D;&#x60F3;&#xFF0C;&#x5C06;&#x5143;&#x7D20;&#x5212;&#x5206;&#x6210;&#x6BD4;&#x4E2D;&#x95F4;&#x5143;&#x7D20;&#x540E;&#x5927;&#x6216;&#x5C0F;&#x7684;&#x4E24;&#x90E8;&#x5206;&#x540E;&#xFF0C;&#x518D;&#x5BF9;&#x5176;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x90E8;&#x5206;&#x518D;&#x6B21;&#x5212;&#x5206;&#x3002;&#x5FEB;&#x6392;&#x7684;&#x601D;&#x60F3;&#x662F;&#x5206;&#x6CBB;&#xFF0C;&#x8FD9;&#x91CC;&#x89E3;&#x51B3; TopK &#x7684;&#x601D;&#x60F3;&#x662F;&#x51CF;&#x6CBB;&#xFF0C;&#x56E0;&#x4E3A;&#x5212;&#x5206;&#x540E;&#x4E0D;&#x7B26;&#x5408;&#x6761;&#x4EF6;&#x7684;&#x90E8;&#x5206;&#x76F4;&#x63A5;&#x820D;&#x5F03;&#x6389;&#x3002;</p>
-<p>&#x8BE5;&#x65B9;&#x6CD5;&#x7684;&#x671F;&#x671B;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>&#xFF0C;&#x6700;&#x574F;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>&#xFF0C;&#x56E0;&#x4E3A;&#x53EF;&#x80FD;&#x6BCF;&#x6B21;&#x9009;&#x53D6;&#x7684;&#x4E2D;&#x95F4;&#x503C;&#x90FD;&#x662F;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x968F;&#x673A;&#x9009;&#x62E9;&#x4E2D;&#x95F4;&#x503C;&#xFF08;&#x88AB;&#x6CE8;&#x91CA;&#x6389;&#x7684;&#x4E09;&#x884C;&#x4EE3;&#x7801;&#xFF09;&#x3002;</p>
+<h2 id="快排">快排</h2>
+<p>这里不是真的快排，而是借助快排的思想，将元素划分成比中间元素后大或小的两部分后，再对其中的一个部分再次划分。快排的思想是分治，这里解决 TopK 的思想是减治，因为划分后不符合条件的部分直接舍弃掉。</p>
+<p>该方法的期望时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，最坏时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，因为可能每次选取的中间值都是最大值，为了解决这个问题，可以随机选择中间值（被注释掉的三行代码）。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> Solution {</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">public</span>:</span>
 <span id="cb2-3"><a href="#cb2-3"></a>    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; getLeastNumbers(<span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; &amp;arr, <span class="dt">int</span> k) {</span>
@@ -271,13 +271,13 @@
 <span id="cb2-8"><a href="#cb2-8"></a><span class="co">//            std::swap(arr[left], arr[t]);</span></span>
 <span id="cb2-9"><a href="#cb2-9"></a>            <span class="dt">int</span> pivot = arr[left];</span>
 <span id="cb2-10"><a href="#cb2-10"></a>            <span class="dt">int</span> i = left, j = right;</span>
-<span id="cb2-11"><a href="#cb2-11"></a>            <span class="co">// &#x5B8C;&#x6210;&#x540E;&#x4EE5; i &#x4E3A;&#x5206;&#x754C;&#xFF0C;&#x5DE6;&#x534A;&#x90E8;&#x5206;&#x6BD4; arr[i] &#x5C0F;&#xFF0C;&#x53F3;&#x534A;&#x90E8;&#x5206;&#x6BD4; arr[i] &#x5927;</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>            <span class="co">// 完成后以 i 为分界，左半部分比 arr[i] 小，右半部分比 arr[i] 大</span></span>
 <span id="cb2-12"><a href="#cb2-12"></a>            <span class="cf">while</span> (i &lt;= j) {</span>
-<span id="cb2-13"><a href="#cb2-13"></a>                <span class="co">// &#x5BFB;&#x627E;&#x5DE6;&#x534A;&#x90E8;&#x5206;&#x6BD4; pivot &#x5927;&#x7684;&#x5143;&#x7D20;</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>                <span class="co">// 寻找左半部分比 pivot 大的元素</span></span>
 <span id="cb2-14"><a href="#cb2-14"></a>                <span class="cf">while</span> (i &lt;= j &amp;&amp; arr[i] &lt; pivot) {</span>
 <span id="cb2-15"><a href="#cb2-15"></a>                    ++i;</span>
 <span id="cb2-16"><a href="#cb2-16"></a>                }</span>
-<span id="cb2-17"><a href="#cb2-17"></a>                <span class="co">// &#x5BFB;&#x627E;&#x53F3;&#x534A;&#x90E8;&#x5206;&#x6BD4; pivot &#x5C0F;&#x7684;&#x5143;&#x7D20;</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>                <span class="co">// 寻找右半部分比 pivot 小的元素</span></span>
 <span id="cb2-18"><a href="#cb2-18"></a>                <span class="cf">while</span> (i &lt;= j &amp;&amp; arr[j] &gt; pivot) {</span>
 <span id="cb2-19"><a href="#cb2-19"></a>                    --j;</span>
 <span id="cb2-20"><a href="#cb2-20"></a>                }</span>
@@ -288,21 +288,21 @@
 <span id="cb2-25"><a href="#cb2-25"></a>                }</span>
 <span id="cb2-26"><a href="#cb2-26"></a>            }</span>
 <span id="cb2-27"><a href="#cb2-27"></a>            <span class="cf">if</span> (i &gt;= k) {</span>
-<span id="cb2-28"><a href="#cb2-28"></a>                <span class="co">// &#x5927;&#x4E8E;&#x7B49;&#x4E8E; k &#x4E2A;</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>                <span class="co">// 大于等于 k 个</span></span>
 <span id="cb2-29"><a href="#cb2-29"></a>                right = i - <span class="dv">1</span>;</span>
 <span id="cb2-30"><a href="#cb2-30"></a>            } <span class="cf">else</span> {</span>
-<span id="cb2-31"><a href="#cb2-31"></a>                <span class="co">// &#x5C0F;&#x4E8E; k &#x4E2A;</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>                <span class="co">// 小于 k 个</span></span>
 <span id="cb2-32"><a href="#cb2-32"></a>                left = i;</span>
 <span id="cb2-33"><a href="#cb2-33"></a>            }</span>
 <span id="cb2-34"><a href="#cb2-34"></a>        }</span>
 <span id="cb2-35"><a href="#cb2-35"></a>        <span class="cf">return</span> <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt;(arr.begin(), arr.begin() + k);</span>
 <span id="cb2-36"><a href="#cb2-36"></a>    }</span>
 <span id="cb2-37"><a href="#cb2-37"></a>};</span></code></pre></div>
-<h2 id="&#x4E24;&#x79CD;&#x7B97;&#x6CD5;&#x7684;&#x9009;&#x62E9;">&#x4E24;&#x79CD;&#x7B97;&#x6CD5;&#x7684;&#x9009;&#x62E9;</h2>
-<p>&#x5728;&#x6570;&#x636E;&#x91CF;&#x6BD4;&#x8F83;&#x5C0F;&#x65F6;&#xFF0C;&#x4E24;&#x4E2A;&#x7B97;&#x6CD5;&#x6CA1;&#x6709;&#x592A;&#x5927;&#x7684;&#x533A;&#x522B;&#x3002;</p>
-<p>&#x4F46;&#x662F;&#x5F53;&#x6570;&#x636E;&#x91CF;&#x8FBE;&#x5230;&#x5341;&#x4EBF;&#x7EA7;&#x522B;&#xFF08;&#x817E;&#x8BAF;&#x9762;&#x8BD5;&#x88AB;&#x95EE;&#x8FC7;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF09;&#x4F7F;&#x7528;&#x5FEB;&#x6392;&#x9700;&#x8981;&#x5C06;&#x6240;&#x6709;&#x6570;&#x636E;&#x8BFB;&#x5165;&#x5185;&#x5B58;&#xFF08;&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x4F18;&#x5316;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x66F4;&#x590D;&#x6742;&#xFF09;&#x3002;</p>
-<p>&#x800C;&#x4F7F;&#x7528;&#x5806;&#x53EA;&#x9700;&#x8981;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;&#x5927;&#x5C0F;&#x4E3A; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> &#x7684;&#x5806;&#xFF08;&#x5B9E;&#x9645;&#x6765;&#x8BF4;&#x662F;&#x6570;&#x7EC4;&#xFF09;&#xFF0C;&#x7531;&#x4E8E;&#x53EA;&#x9700;&#x8981;&#x904D;&#x5386;&#x4E00;&#x6B21;&#x6570;&#x636E;&#xFF0C;&#x6570;&#x636E;&#x8BFB;&#x5165;&#x4E00;&#x6B21;&#x5C31;&#x884C;&#x4E86;&#xFF0C;&#x5BF9;&#x78C1;&#x76D8;&#x7684;&#x64CD;&#x4F5C;&#x53EF;&#x4EE5;&#x5F88;&#x5C11;&#x3002;&#x76F8;&#x6BD4; CPU &#x7684;&#x901F;&#x5EA6;&#xFF0C;&#x78C1;&#x76D8; I/O &#x7684;&#x65F6;&#x95F4;&#x6709;&#x6570;&#x91CF;&#x7EA7;&#x4E0A;&#x7684;&#x5DEE;&#x5F02;&#x3002;</p>
-<p>&#x56E0;&#x6B64;&#x5728;&#x5927;&#x6570;&#x636E;&#x91CF;&#x4E0A;&#x5E94;&#x8BE5;&#x9009;&#x62E9;&#x5806;&#x3002;</p>
+<h2 id="两种算法的选择">两种算法的选择</h2>
+<p>在数据量比较小时，两个算法没有太大的区别。</p>
+<p>但是当数据量达到十亿级别（腾讯面试被问过这个问题）使用快排需要将所有数据读入内存（当然也可以优化，但是会更复杂）。</p>
+<p>而使用堆只需要维护一个大小为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的堆（实际来说是数组），由于只需要遍历一次数据，数据读入一次就行了，对磁盘的操作可以很少。相比 CPU 的速度，磁盘 I/O 的时间有数量级上的差异。</p>
+<p>因此在大数据量上应该选择堆。</p>
 
   </article>
   
@@ -356,7 +356,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596277000406"></script>
+<script src="/js/app.js?v=1596279502744"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

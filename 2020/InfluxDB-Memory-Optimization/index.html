@@ -20,7 +20,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/InfluxDB-Memory-Optimization/image-20200508120656188.png">
 <meta property="article:published_time" content="2020-05-08T03:27:20.000Z">
-<meta property="article:modified_time" content="2020-08-01T10:15:25.953Z">
+<meta property="article:modified_time" content="2020-08-01T10:57:01.736Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Docker">
@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596277000426">
+  <link rel="stylesheet" href="/css/style.css?v=1596279502758">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -77,7 +77,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x7F6A;&#x9B41;&#x7978;&#x9996;"><span class="toc-text">&amp;#x7F6A;&amp;#x9B41;&amp;#x7978;&amp;#x9996;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5C1D;&#x8BD5;&#x89E3;&#x51B3;"><span class="toc-text">&amp;#x5C1D;&amp;#x8BD5;&amp;#x89E3;&amp;#x51B3;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;"><span class="toc-text">&amp;#x66F4;&amp;#x6539;&amp;#x7D22;&amp;#x5F15;&amp;#x65B9;&amp;#x5F0F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x66F4;&#x6FC0;&#x8FDB;&#x65B9;&#x6CD5;"><span class="toc-text">&amp;#x66F4;&amp;#x6FC0;&amp;#x8FDB;&amp;#x65B9;&amp;#x6CD5;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x6548;&#x679C;&#x9A8C;&#x8BC1;"><span class="toc-text">&amp;#x6548;&amp;#x679C;&amp;#x9A8C;&amp;#x8BC1;</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#罪魁祸首"><span class="toc-text">罪魁祸首</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试解决"><span class="toc-text">尝试解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#更改索引方式"><span class="toc-text">更改索引方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更激进方法"><span class="toc-text">更激进方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果验证"><span class="toc-text">效果验证</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -199,8 +199,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年05月08日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>937 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/Docker/">Docker</a>
     
@@ -209,53 +209,53 @@
     
   </div>
   <article>
-    <p>&#x6700;&#x8FD1;&#x7ED9;&#x5C0F;&#x7A0B;&#x5E8F;&#x7684;&#x540E;&#x7AEF;&#x65E5;&#x5FD7;&#x52A0;&#x4E0A;&#x4E86;&#x5B9E;&#x65F6;&#x8F93;&#x51FA;&#x5230;&#x524D;&#x7AEF;&#x529F;&#x80FD;&#xFF0C;&#x4E3A;&#x4E86;&#x5C55;&#x793A;&#x5C31;&#x5F97;&#x4FDD;&#x5B58;&#x65E5;&#x5FD7;&#xFF0C;&#x53C8;&#x8003;&#x8651;&#x5230;&#x65E5;&#x5FD7;&#x662F;&#x65F6;&#x5E8F;&#x6570;&#x636E;&#xFF0C;&#x81EA;&#x7136;&#x5C31;&#x9009;&#x62E9;&#x4E86;&#x65F6;&#x5E8F;&#x6570;&#x636E;&#x5E93; <a href="https://www.influxdata.com/" target="_blank" rel="noopener">InfluxDB</a>&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7; Docker &#x90E8;&#x7F72;&#x3002;&#x521A;&#x4E0A;&#x7EBF;&#x7684;&#x4E00;&#x4E24;&#x5929;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF0C;&#x5404;&#x65B9;&#x9762;&#x8FD0;&#x884C;&#x90FD;&#x5F88;&#x5E73;&#x7A33;&#xFF0C;&#x6CA1;&#x8FC7;&#x51E0;&#x5929;&#x7684;&#x4E00;&#x4E2A;&#x65E9;&#x4E0A;&#x7A81;&#x7136;&#x6536;&#x5230;&#x4E86;&#x963F;&#x91CC;&#x4E91;&#x7684;&#x62A5;&#x8B66;&#xFF0C;&#x8BF4;&#x5185;&#x5B58;&#x5360;&#x7528;&#x8D85;&#x8FC7;&#x4E86; 95%&#x3002;</p>
-<p>&#x8FD9;&#x4FBF;&#x662F;&#x5669;&#x68A6;&#x7684;&#x5F00;&#x59CB;&#x3002;</p>
+    <p>最近给小程序的后端日志加上了实时输出到前端功能，为了展示就得保存日志，又考虑到日志是时序数据，自然就选择了时序数据库 <a href="https://www.influxdata.com/" target="_blank" rel="noopener">InfluxDB</a>，并且通过 Docker 部署。刚上线的一两天没有什么问题，各方面运行都很平稳，没过几天的一个早上突然收到了阿里云的报警，说内存占用超过了 95%。</p>
+<p>这便是噩梦的开始。</p>
 <a id="more"></a>
-<h2 id="&#x7F6A;&#x9B41;&#x7978;&#x9996;">&#x7F6A;&#x9B41;&#x7978;&#x9996;</h2>
-<p>&#x6536;&#x5230;&#x62A5;&#x8B66;&#x540E;&#x770B;&#x4E86;&#x4E00;&#x4E0B;&#x7CFB;&#x7EDF;&#x5404;&#x9879;&#x6307;&#x6807;&#xFF0C;&#x4E0D;&#x4EC5;&#x5185;&#x5B58;&#x5360;&#x7528;&#x9AD8;&#xFF0C;CPU&#x3001;&#x78C1;&#x76D8;&#x4F7F;&#x7528;&#x7387;&#x90FD;&#x662F;&#x6EE1;&#x8D1F;&#x8377;&#x3002;</p>
+<h2 id="罪魁祸首">罪魁祸首</h2>
+<p>收到报警后看了一下系统各项指标，不仅内存占用高，CPU、磁盘使用率都是满负荷。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/InfluxDB-Memory-Optimization/image-20200508120656188.png" alt><figcaption>&#x62A5;&#x8B66;&#x65F6;&#x7CFB;&#x7EDF;&#x6307;&#x6807;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/InfluxDB-Memory-Optimization/image-20200508120656188.png" alt><figcaption>报警时系统指标</figcaption>
 </figure>
-<p>&#x5728;&#x51CC;&#x6668;&#x4E00;&#x70B9;&#x534A;&#x5DE6;&#x53F3;&#x5185;&#x5B58;&#x66B4;&#x6DA8;&#xFF0C;&#x7D27;&#x63A5;&#x7740; CPU &#x4F7F;&#x7528;&#x7387;&#x4E5F;&#x8FBE;&#x5230; 100%&#x3002;&#x8FD9;&#x4E2A;&#x573A;&#x666F;&#x4F3C;&#x66FE;&#x76F8;&#x8BC6;&#xFF0C;&#x56E0;&#x4E3A;&#x4E4B;&#x524D;&#x4F7F;&#x7528;&#x8FC7; InfluxDB&#xFF0C;&#x4E5F;&#x9047;&#x5230;&#x8FC7;&#x5185;&#x5B58;&#x66B4;&#x6DA8;&#xFF0C;&#x7ED3;&#x5408;&#x524D;&#x51E0;&#x5929;&#x53C8;&#x7528;&#x4E0A;&#x4E86; InfluxDB&#xFF0C;&#x57FA;&#x672C;&#x53EF;&#x4EE5;&#x65AD;&#x5B9A;&#x662F; InfluxDB &#x7684;&#x9505;&#x3002;</p>
-<p>&#x91CD;&#x542F;&#x670D;&#x52A1;&#x5668;&#x540E;&#x4E00;&#x5207;&#x90FD;&#x6062;&#x590D;&#x6B63;&#x5E38;&#xFF0C;&#x4F46;&#x662F; InfluxDB &#x53EF;&#x80FD;&#x968F;&#x65F6;&#x53C8;&#x51FA;&#x73B0;&#x72B6;&#x51B5;&#xFF0C;&#x53EA;&#x80FD;&#x4E00;&#x76F4;&#x76EF;&#x7740;&#x5404;&#x79CD;&#x6307;&#x6807;&#xFF0C;&#x76EF;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x53D1;&#x73B0; InfluxDB &#x7684;&#x5185;&#x5B58;&#x5360;&#x7528;&#x8089;&#x773C;&#x53EF;&#x89C1;&#x5730;&#x589E;&#x957F;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;&#x5F88;&#x6050;&#x6016;&#x4E86;&#x3002;</p>
-<h2 id="&#x5C1D;&#x8BD5;&#x89E3;&#x51B3;">&#x5C1D;&#x8BD5;&#x89E3;&#x51B3;</h2>
-<p>&#x597D;&#x5728; InfluxDB &#x662F;&#x901A;&#x8FC7; Docker &#x90E8;&#x7F72;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x5730;&#x9650;&#x5236;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#xFF0C;&#x5C1D;&#x8BD5;&#x901A;&#x8FC7; <code>docker-compose.yml</code> &#x914D;&#x7F6E;&#xFF1A;</p>
+<p>在凌晨一点半左右内存暴涨，紧接着 CPU 使用率也达到 100%。这个场景似曾相识，因为之前使用过 InfluxDB，也遇到过内存暴涨，结合前几天又用上了 InfluxDB，基本可以断定是 InfluxDB 的锅。</p>
+<p>重启服务器后一切都恢复正常，但是 InfluxDB 可能随时又出现状况，只能一直盯着各种指标，盯数据的时候发现 InfluxDB 的内存占用肉眼可见地增长，可以说很恐怖了。</p>
+<h2 id="尝试解决">尝试解决</h2>
+<p>好在 InfluxDB 是通过 Docker 部署的，可以很方便地限制内存使用，尝试通过 <code>docker-compose.yml</code> 配置：</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">deploy</span><span class="kw">:</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="at">    </span><span class="fu">resources</span><span class="kw">:</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="at">    </span><span class="fu">limits</span><span class="kw">:</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="at">        </span><span class="fu">memory</span><span class="kw">:</span><span class="at"> 500M</span></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="fu">restart</span><span class="kw">:</span><span class="at"> always</span></span></code></pre></div>
-<p>&#x5C06; InfluxDB &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x9650;&#x5236;&#x5728; 500MiB&#xFF0C;&#x8D85;&#x8FC7;&#x8FD9;&#x4E2A;&#x6570;&#x503C;&#x5C31;&#x4F1A;&#x88AB; kill&#xFF0C;&#x7136;&#x540E;&#x53C8;&#x81EA;&#x52A8;&#x91CD;&#x542F;&#x3002;&#x867D;&#x7136;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x907F;&#x514D; InfluxDB &#x5C06;&#x7CFB;&#x7EDF;&#x62D6;&#x57AE;&#xFF0C;&#x4F46;&#x9891;&#x7E41; OOM &#x53C8;&#x91CD;&#x542F;&#x7EC8;&#x7A76;&#x4E0D;&#x662F;&#x4EC0;&#x4E48;&#x597D;&#x529E;&#x6CD5;&#x3002;</p>
-<h3 id="&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;">&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;</h3>
-<p>&#x67E5;&#x4E86;&#x4E00;&#x4E9B;&#x8D44;&#x6599;&#x540E;&#x5F97;&#x77E5; InfluxDB &#x9ED8;&#x8BA4;&#x7684;&#x7D22;&#x5F15;&#x662F;&#x5728;&#x5185;&#x5B58;&#x4E0A;&#x7EF4;&#x62A4;&#x7684;&#xFF0C;&#x4E0D;&#x65AD;&#x5730;&#x6570;&#x636E;&#x589E;&#x957F;&#x4F1A;&#x4F7F;&#x7528;&#x8D8A;&#x6765;&#x8D8A;&#x591A;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x5E76;&#x6709;&#x4E00;&#x4E2A;&#x53C2;&#x6570; <code>index-version</code> &#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>&#x3002;&#x5982;&#x679C;&#x662F;&#x76F4;&#x63A5;&#x5728;&#x4E3B;&#x673A;&#x4E0A;&#x90E8;&#x7F72;&#x7684;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;Docker &#x90E8;&#x7F72;&#x5219;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x8BBE;&#x7F6E;&#xFF1A;</p>
+<p>将 InfluxDB 可以使用的内存限制在 500MiB，超过这个数值就会被 kill，然后又自动重启。虽然这样可以避免 InfluxDB 将系统拖垮，但频繁 OOM 又重启终究不是什么好办法。</p>
+<h3 id="更改索引方式">更改索引方式</h3>
+<p>查了一些资料后得知 InfluxDB 默认的索引是在内存上维护的，不断地数据增长会使用越来越多的内存，并有一个参数 <code>index-version</code> 可以设置索引方式<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。如果是直接在主机上部署的可以修改配置文件，Docker 部署则需要通过环境变量设置：</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">environment</span><span class="kw">:</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="at">    </span><span class="fu">INFLUXDB_DATA_INDEX_VERSION</span><span class="kw">:</span><span class="at"> tsi1</span></span></code></pre></div>
-<p>&#x5C06;&#x7D22;&#x5F15;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;&#x78C1;&#x76D8;&#x4E0A;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x65E5;&#x5FD7;&#x6216;&#x8005;&#x67E5;&#x770B;&#x5206;&#x7247;&#x7684;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x9A8C;&#x8BC1;&#x4FEE;&#x6539;&#x662F;&#x5426;&#x751F;&#x6548;&#xFF0C;&#x82E5;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;&#x4E3A; <code>tsi1</code>&#xFF0C;&#x5728;&#x5206;&#x7247;&#x76EE;&#x5F55;&#x4E0B;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x540D;&#x4E3A; <code>index</code> &#x7684;&#x76EE;&#x5F55;&#xFF0C;<code>inmem</code> &#x7D22;&#x5F15;&#x5219;&#x6CA1;&#x6709;&#x3002;</p>
-<p>&#x5177;&#x4F53;&#x4F4D;&#x7F6E;&#x662F; <code>/var/lib/influxdb/data/&lt;&#x6570;&#x636E;&#x5E93;&gt;/&lt;&#x4FDD;&#x7559;&#x7B56;&#x7565;&gt;/&lt;&#x5206;&#x7247;&gt;</code>&#x3002;</p>
+<p>将索引数据存储在磁盘上，可以通过日志或者查看分片的目录结构验证修改是否生效，若索引方式为 <code>tsi1</code>，在分片目录下会有一个名为 <code>index</code> 的目录，<code>inmem</code> 索引则没有。</p>
+<p>具体位置是 <code>/var/lib/influxdb/data/&lt;数据库&gt;/&lt;保留策略&gt;/&lt;分片&gt;</code>。</p>
 <pre class="text"><code>[root@izuf6czs1dw6siz3zokdiez 1_day]# ls
 1  10  11  12  13  14  15  16  18  19  20  21  3  4  5  6  7  8  9
 [root@izuf6czs1dw6siz3zokdiez 1_day]# cd 15
 [root@izuf6czs1dw6siz3zokdiez 15]# ls
 000000001-000000001.tsm  fields.idx  index</code></pre>
-<h3 id="&#x66F4;&#x6FC0;&#x8FDB;&#x65B9;&#x6CD5;">&#x66F4;&#x6FC0;&#x8FDB;&#x65B9;&#x6CD5;</h3>
-<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B; InfluxDB &#x4F1A;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A; <code>_internal</code> &#x5E93;&#xFF0C;&#x6765;&#x76D1;&#x63A7;&#x7CFB;&#x7EDF;&#x72B6;&#x6001;&#xFF0C;&#x5982;&#x679C;&#x7981;&#x7528;&#x8FD9;&#x4E2A;&#x5E93;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x78C1;&#x76D8;&#x548C;&#x5185;&#x5BB9;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x4F1A;&#x53D1;&#x751F;&#x4E00;&#x4E9B;&#x4E0D;&#x53EF;&#x9884;&#x6599;&#x7684;&#x4E8B;&#x6545;&#xFF0C;&#x56E0;&#x6B64;&#x5B98;&#x65B9;<strong>&#x4E0D;&#x63A8;&#x8350;</strong>&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0B;&#x7981;&#x7528; <code>_internal</code> &#x5E93;<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>&#x3002;</p>
+<h3 id="更激进方法">更激进方法</h3>
+<p>默认情况下 InfluxDB 会维护一个 <code>_internal</code> 库，来监控系统状态，如果禁用这个库可以减少磁盘和内容的使用，但是可以会发生一些不可预料的事故，因此官方<strong>不推荐</strong>在生产环境下禁用 <code>_internal</code> 库<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。</p>
 <blockquote>
 <p>InfluxData does <strong>not</strong> recommend using the <code>_internal</code> database in a production cluster. It creates unnecessary overhead, particularly for busy clusters, that can overload an already loaded cluster. Metrics stored in the <code>_internal</code> database primarily measure workload performance and should only be tested in non-production environments.</p>
 </blockquote>
-<p>&#x4F46;&#x662F;&#x5728;&#x5185;&#x5B58;&#x6781;&#x5EA6;&#x7D27;&#x5F20;&#x7684;&#x65F6;&#x5019;&#x8FD8;&#x662F;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x7981;&#x7528; <code>_internal</code> &#x5E93;&#x7684;&#x3002;&#x7531;&#x4E8E;&#x9700;&#x8981; InfluxDB &#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5C0F;&#x9879;&#x76EE;&#xFF0C;&#x90E8;&#x7F72;&#x7684;&#x673A;&#x5668;&#x5185;&#x5B58;&#x53C8;&#x5F88;&#x5C0F;&#xFF0C;&#x5C31;&#x51B3;&#x5B9A;&#x7981;&#x7528; <code>_internal</code> &#x4E86;&#x3002;</p>
-<p>&#x6DFB;&#x52A0;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF1A;</p>
+<p>但是在内存极度紧张的时候还是可以考虑禁用 <code>_internal</code> 库的。由于需要 InfluxDB 的是一个小项目，部署的机器内存又很小，就决定禁用 <code>_internal</code> 了。</p>
+<p>添加环境变量：</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">environment</span><span class="kw">:</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="at">    </span><span class="fu">INFLUXDB_DATA_INDEX_VERSION</span><span class="kw">:</span><span class="at"> tsi1</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="at">    </span><span class="fu">INFLUXDB_MONITOR_STORE_ENABLED</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;false&quot;</span></span></code></pre></div>
-<h2 id="&#x6548;&#x679C;&#x9A8C;&#x8BC1;">&#x6548;&#x679C;&#x9A8C;&#x8BC1;</h2>
-<p><del>&#x66F4;&#x6539;&#x7D22;&#x5F15;&#x65B9;&#x5F0F;&#x540E;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x4F9D;&#x7136;&#x5728;&#x7F13;&#x6162;&#x589E;&#x957F;&#xFF0C;&#x4F46;&#x662F;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#x8BBE;&#x7F6E;&#x7684;&#x662F;&#x4E00;&#x5929;&#xFF0C;&#x9700;&#x8981;&#x7B49;&#x5230;&#x66F4;&#x6539;&#x751F;&#x6548;&#x4E00;&#x5929;&#x540E;&#x624D;&#x80FD;&#x770B;&#x51FA;&#x771F;&#x5B9E;&#x7684;&#x6548;&#x679C;&#xFF08;&#x5F85;&#x66F4;&#x65B0;&#xFF09;&#x3002;</del></p>
-<p>&#x8D85;&#x8FC7;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#xFF08;24 &#x5C0F;&#x65F6;&#xFF09;&#x7684;&#x65F6;&#x95F4;&#x540E;&#xFF08;27 &#x5C0F;&#x65F6;&#xFF09;&#x5185;&#x5B58;&#x589E;&#x957F;&#x505C;&#x6B62;&#xFF0C;&#x76EE;&#x524D;&#x7A33;&#x5B9A;&#x5728; 235.3MiB&#xFF0C;&#x5927;&#x81F4;&#x7B26;&#x5408;&#x9884;&#x671F;&#x3002;</p>
+<h2 id="效果验证">效果验证</h2>
+<p><del>更改索引方式后内存使用依然在缓慢增长，但是保留策略设置的是一天，需要等到更改生效一天后才能看出真实的效果（待更新）。</del></p>
+<p>超过保留策略（24 小时）的时间后（27 小时）内存增长停止，目前稳定在 235.3MiB，大致符合预期。</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1" role="doc-endnote"><p><a href="https://www.jianshu.com/p/dbbb73b537e1" target="_blank" rel="noopener">https://www.jianshu.com/p/dbbb73b537e1</a> &quot;InfluxDB&#x9891;&#x7E41;OOM&#x95EE;&#x9898;&#x6392;&#x67E5; - &#x7B80;&#x4E66;&quot;<a href="#fnref1" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
-<li id="fn2" role="doc-endnote"><p><a href="https://docs.influxdata.com/platform/monitoring/influxdata-platform/tools/measurements-internal/" target="_blank" rel="noopener">https://docs.influxdata.com/platform/monitoring/influxdata-platform/tools/measurements-internal/</a> &quot;InfluxDB _internal measurements and fields&quot;<a href="#fnref2" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
+<li id="fn1" role="doc-endnote"><p><a href="https://www.jianshu.com/p/dbbb73b537e1" target="_blank" rel="noopener">https://www.jianshu.com/p/dbbb73b537e1</a> "InfluxDB频繁OOM问题排查 - 简书"<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://docs.influxdata.com/platform/monitoring/influxdata-platform/tools/measurements-internal/" target="_blank" rel="noopener">https://docs.influxdata.com/platform/monitoring/influxdata-platform/tools/measurements-internal/</a> "InfluxDB _internal measurements and fields"<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -311,7 +311,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596277000435"></script>
+<script src="/js/app.js?v=1596279502763"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

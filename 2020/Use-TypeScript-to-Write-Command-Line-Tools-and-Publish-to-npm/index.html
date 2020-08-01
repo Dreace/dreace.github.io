@@ -19,7 +19,7 @@
 <meta property="og:description" content="最近在研究优化在国内访问静态博客的时间，其中有一个方案是将生成的文件存储在对象存储，然后再通过 CDN 回源对象存储。确定方案后使用 七牛云 做一个加速实验，由于要将生成的文件上传，又要将这个过程尽可能自动化，而七牛云只提供 SDK，要上传只能将密钥硬编码在代码中，这是很危险的。 因此有了编写一个命令行工具的想法，由于最近在学习 TypeScript，就决定用它来写。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-25T02:01:41.000Z">
-<meta property="article:modified_time" content="2020-08-01T10:15:25.953Z">
+<meta property="article:modified_time" content="2020-08-01T10:57:01.736Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="npm">
 <meta property="article:tag" content="TypeScript">
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596277000366">
+  <link rel="stylesheet" href="/css/style.css?v=1596279502709">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -74,7 +74,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x51C6;&#x5907;&#x73AF;&#x5883;"><span class="toc-text">&amp;#x51C6;&amp;#x5907;&amp;#x73AF;&amp;#x5883;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x4F7F;&#x7528;-eslint2"><span class="toc-text">&amp;#x4F7F;&amp;#x7528; ESLint2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x4F7F;&#x7528;-prettier"><span class="toc-text">&amp;#x4F7F;&amp;#x7528; Prettier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x5728;-webstorm-&#x4E2D;&#x542F;&#x7528;-eslint-&#x548C;-prettier"><span class="toc-text">&amp;#x5728; WebStorm &amp;#x4E2D;&amp;#x542F;&amp;#x7528; ESLint &amp;#x548C; Prettier</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#&#x542F;&#x7528;-eslint"><span class="toc-text">&amp;#x542F;&amp;#x7528; ESLint</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#&#x542F;&#x7528;-prettier"><span class="toc-text">&amp;#x542F;&amp;#x7528; Prettier</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#&#x4F7F;&#x7528;-editorconfig"><span class="toc-text">&amp;#x4F7F;&amp;#x7528; EditorConfig</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x914D;&#x7F6E;-typescript"><span class="toc-text">&amp;#x914D;&amp;#x7F6E; TypeScript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x7F16;&#x5199;&#x4EE3;&#x7801;"><span class="toc-text">&amp;#x7F16;&amp;#x5199;&amp;#x4EE3;&amp;#x7801;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x4F7F;&#x7528;-commander.js"><span class="toc-text">&amp;#x4F7F;&amp;#x7528; Commander.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x7F16;&#x5199;&#x903B;&#x8F91;&#x4EE3;&#x7801;"><span class="toc-text">&amp;#x7F16;&amp;#x5199;&amp;#x903B;&amp;#x8F91;&amp;#x4EE3;&amp;#x7801;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x53D1;&#x5E03;-npm-&#x5305;"><span class="toc-text">&amp;#x53D1;&amp;#x5E03; npm &amp;#x5305;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x586B;&#x5199;&#x5305;&#x4FE1;&#x606F;"><span class="toc-text">&amp;#x586B;&amp;#x5199;&amp;#x5305;&amp;#x4FE1;&amp;#x606F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x672C;&#x5730;&#x6D4B;&#x8BD5;"><span class="toc-text">&amp;#x672C;&amp;#x5730;&amp;#x6D4B;&amp;#x8BD5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x53D1;&#x5E03;"><span class="toc-text">&amp;#x53D1;&amp;#x5E03;</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备环境"><span class="toc-text">准备环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-eslint2"><span class="toc-text">使用 ESLint2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-prettier"><span class="toc-text">使用 Prettier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在-webstorm-中启用-eslint-和-prettier"><span class="toc-text">在 WebStorm 中启用 ESLint 和 Prettier</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#启用-eslint"><span class="toc-text">启用 ESLint</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启用-prettier"><span class="toc-text">启用 Prettier</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-editorconfig"><span class="toc-text">使用 EditorConfig</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-typescript"><span class="toc-text">配置 TypeScript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编写代码"><span class="toc-text">编写代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-commander.js"><span class="toc-text">使用 Commander.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写逻辑代码"><span class="toc-text">编写逻辑代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布-npm-包"><span class="toc-text">发布 npm 包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#填写包信息"><span class="toc-text">填写包信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地测试"><span class="toc-text">本地测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布"><span class="toc-text">发布</span></a></li></ol></li></ol>
       </div>
     </div>
   </div>
@@ -196,8 +196,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年07月25日</a>
-    <a><i class="nexmoefont icon-areachart"></i>2.3k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/TypeScript/">TypeScript</a>
     
@@ -206,88 +206,88 @@
     
   </div>
   <article>
-    <p>&#x6700;&#x8FD1;&#x5728;&#x7814;&#x7A76;&#x4F18;&#x5316;&#x5728;&#x56FD;&#x5185;&#x8BBF;&#x95EE;&#x9759;&#x6001;&#x535A;&#x5BA2;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;&#x65B9;&#x6848;&#x662F;&#x5C06;&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x5728;&#x5BF9;&#x8C61;&#x5B58;&#x50A8;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x901A;&#x8FC7; CDN &#x56DE;&#x6E90;&#x5BF9;&#x8C61;&#x5B58;&#x50A8;&#x3002;&#x786E;&#x5B9A;&#x65B9;&#x6848;&#x540E;&#x4F7F;&#x7528; <a href="https://www.qiniu.com/" target="_blank" rel="noopener">&#x4E03;&#x725B;&#x4E91;</a> &#x505A;&#x4E00;&#x4E2A;&#x52A0;&#x901F;&#x5B9E;&#x9A8C;&#xFF0C;&#x7531;&#x4E8E;&#x8981;&#x5C06;&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#xFF0C;&#x53C8;&#x8981;&#x5C06;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x5C3D;&#x53EF;&#x80FD;&#x81EA;&#x52A8;&#x5316;&#xFF0C;&#x800C;&#x4E03;&#x725B;&#x4E91;&#x53EA;&#x63D0;&#x4F9B; SDK&#xFF0C;&#x8981;&#x4E0A;&#x4F20;&#x53EA;&#x80FD;&#x5C06;&#x5BC6;&#x94A5;&#x786C;&#x7F16;&#x7801;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x8FD9;&#x662F;&#x5F88;&#x5371;&#x9669;&#x7684;&#x3002;</p>
-<p>&#x56E0;&#x6B64;&#x6709;&#x4E86;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x7684;&#x60F3;&#x6CD5;&#xFF0C;&#x7531;&#x4E8E;&#x6700;&#x8FD1;&#x5728;&#x5B66;&#x4E60; TypeScript&#xFF0C;&#x5C31;&#x51B3;&#x5B9A;&#x7528;&#x5B83;&#x6765;&#x5199;&#x3002;</p>
+    <p>最近在研究优化在国内访问静态博客的时间，其中有一个方案是将生成的文件存储在对象存储，然后再通过 CDN 回源对象存储。确定方案后使用 <a href="https://www.qiniu.com/" target="_blank" rel="noopener">七牛云</a> 做一个加速实验，由于要将生成的文件上传，又要将这个过程尽可能自动化，而七牛云只提供 SDK，要上传只能将密钥硬编码在代码中，这是很危险的。</p>
+<p>因此有了编写一个命令行工具的想法，由于最近在学习 TypeScript，就决定用它来写。</p>
 <a id="more"></a>
-<h2 id="&#x51C6;&#x5907;&#x73AF;&#x5883;">&#x51C6;&#x5907;&#x73AF;&#x5883;</h2>
-<p>&#x5728;&#x5F00;&#x59CB;&#x7F16;&#x5199;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#x524D;&#x9700;&#x8981;&#x51C6;&#x5907;&#x4E00;&#x4E0B;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x3002;</p>
-<p>&#x9996;&#x5148;&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>&#xFF1A;</p>
+<h2 id="准备环境">准备环境</h2>
+<p>在开始编写逻辑代码前需要准备一下开发环境。</p>
+<p>首先初始化项目<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>：</p>
 <pre class="shell"><code>yarn init -y</code></pre>
-<p>&#x672C;&#x6587;&#x5C06;&#x4F7F;&#x7528; yarn &#x4F5C;&#x4E3A;&#x5305;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#x3002;</p>
-<p>&#x5B89;&#x88C5; TypeScript &#x652F;&#x6301;&#xFF1A;</p>
+<p>本文将使用 yarn 作为包管理工具。</p>
+<p>安装 TypeScript 支持：</p>
 <pre class="shell"><code>yarn add global typescript ts-node-dev</code></pre>
-<p><code>ts-node-dev</code> &#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x542F;&#x52A8; <code>.ts</code> &#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528; <code>tsc &amp;&amp; node &quot;path/to/file.js&quot;</code> &#x81EA;&#x884C;&#x7F16;&#x8BD1;&#x5E76;&#x542F;&#x52A8;&#x5219;&#x4E0D;&#x9700;&#x8981;&#x8FD9;&#x4E2A;&#x4F9D;&#x8D56;&#x3002;</p>
-<p>&#x8FD9;&#x4E24;&#x4E2A;&#x4F9D;&#x8D56;&#x9700;&#x8981;&#x5168;&#x5C40;&#x5B89;&#x88C5;&#xFF0C;&#x56E0;&#x4E3A;&#x4ED6;&#x4EEC;&#x5206;&#x522B;&#x63D0;&#x4F9B; <code>tsc</code> &#x548C; <code>ts-node-dev</code> &#x547D;&#x4EE4;&#x3002;</p>
-<p>&#x5B89;&#x88C5; Node.js &#x7C7B;&#x578B;&#x58F0;&#x660E;&#x6587;&#x4EF6;&#xFF1A;</p>
+<p><code>ts-node-dev</code> 可以直接启动 <code>.ts</code> 文件，如果使用 <code>tsc &amp;&amp; node "path/to/file.js"</code> 自行编译并启动则不需要这个依赖。</p>
+<p>这两个依赖需要全局安装，因为他们分别提供 <code>tsc</code> 和 <code>ts-node-dev</code> 命令。</p>
+<p>安装 Node.js 类型声明文件：</p>
 <pre class="shell"><code>yarn add --dev @types/node</code></pre>
-<p>&#x4EE5;&#x4E0A;&#x662F;&#x5FC5;&#x5907;&#x7684;&#x5F00;&#x53D1;&#x4F9D;&#x8D56;&#xFF0C;&#x9664;&#x6B64;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; ESLint &#x548C; Prettier &#x6765;&#x68C0;&#x67E5;&#x8BED;&#x6CD5;&#x548C;&#x89C4;&#x8303;&#x683C;&#x5F0F;&#x3002;</p>
-<p>&#x4EE5;&#x4E0B;&#x914D;&#x7F6E;&#x5185;&#x5BB9;&#x5747;&#x4E3A;&#x53EF;&#x9009;&#xFF0C;&#x53EF;&#x4EE5;&#x5355;&#x72EC;&#x4F7F;&#x7528;&#x6216;&#x7EC4;&#x5408;&#x4F7F;&#x7528;&#x3002;</p>
-<h3 id="&#x4F7F;&#x7528;-eslint2">&#x4F7F;&#x7528; ESLint<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></h3>
-<p>ESLint &#x53EF;&#x4EE5;&#x9759;&#x6001;&#x5206;&#x6790;&#x4EE3;&#x7801;&#xFF0C;&#x80FD;&#x591F;&#x5C3D;&#x65E9;&#x53D1;&#x73B0;&#x7F16;&#x7801;&#x4E2D;&#x7684;&#x9519;&#x8BEF;&#x3002;</p>
-<p>&#x9996;&#x5148;&#x5B89;&#x88C5;&#x9700;&#x8981;&#x7684;&#x4F9D;&#x8D56;&#xFF1A;</p>
+<p>以上是必备的开发依赖，除此还可以使用 ESLint 和 Prettier 来检查语法和规范格式。</p>
+<p>以下配置内容均为可选，可以单独使用或组合使用。</p>
+<h3 id="使用-eslint2">使用 ESLint<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></h3>
+<p>ESLint 可以静态分析代码，能够尽早发现编码中的错误。</p>
+<p>首先安装需要的依赖：</p>
 <pre class="shell"><code>yarn add --dev @typescript-eslint/parser @typescript-eslint/eslint-plugin</code></pre>
-<p>&#x5728;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x521B;&#x5EFA; <code>.eslintrc.js</code> &#x6587;&#x4EF6;&#x5E76;&#x5199;&#x5165;&#xFF1A;</p>
+<p>在根目录下创建 <code>.eslintrc.js</code> 文件并写入：</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1"></a><span class="va">module</span>.<span class="at">exports</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="dt">parser</span><span class="op">:</span> <span class="st">&apos;@typescript-eslint/parser&apos;</span><span class="op">,</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="dt">extends</span><span class="op">:</span> [<span class="st">&apos;plugin:@typescript-eslint/recommended&apos;</span>]<span class="op">,</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="dt">plugins</span><span class="op">:</span> [<span class="st">&apos;@typescript-eslint&apos;</span>]<span class="op">,</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="dt">parser</span><span class="op">:</span> <span class="st">&#39;@typescript-eslint/parser&#39;</span><span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="dt">extends</span><span class="op">:</span> [<span class="st">&#39;plugin:@typescript-eslint/recommended&#39;</span>]<span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="dt">plugins</span><span class="op">:</span> [<span class="st">&#39;@typescript-eslint&#39;</span>]<span class="op">,</span></span>
 <span id="cb5-5"><a href="#cb5-5"></a>    <span class="dt">env</span><span class="op">:</span> <span class="op">{</span></span>
 <span id="cb5-6"><a href="#cb5-6"></a>        <span class="dt">node</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
 <span id="cb5-7"><a href="#cb5-7"></a>    <span class="op">}</span></span>
 <span id="cb5-8"><a href="#cb5-8"></a><span class="op">}</span></span></code></pre></div>
-<p>&#x66F4;&#x591A;&#x7684;&#x914D;&#x7F6E;&#x53EF;&#x4EE5;&#x67E5;&#x770B; <a href="https://eslint.org/docs/user-guide/configuring" target="_blank" rel="noopener">Configuring ESLint</a>&#x3002;</p>
-<h3 id="&#x4F7F;&#x7528;-prettier">&#x4F7F;&#x7528; Prettier</h3>
-<p>Prettier &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6765;&#x683C;&#x5F0F;&#x5316;&#x4EE3;&#x7801;&#xFF0C;&#x975E;&#x5E38;&#x9002;&#x5408;&#x56E2;&#x961F;&#x5185;&#x89C4;&#x8303;&#x4EE3;&#x7801;&#x3002;</p>
-<p>&#x9996;&#x5148;&#x5B89;&#x88C5; Prettier&#xFF1A;</p>
+<p>更多的配置可以查看 <a href="https://eslint.org/docs/user-guide/configuring" target="_blank" rel="noopener">Configuring ESLint</a>。</p>
+<h3 id="使用-prettier">使用 Prettier</h3>
+<p>Prettier 可以通过配置文件来格式化代码，非常适合团队内规范代码。</p>
+<p>首先安装 Prettier：</p>
 <pre class="shell"><code>yarn add --dev prettier</code></pre>
-<p>&#x5728;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x521B;&#x5EFA; <code>prettier.config.js</code> &#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x5199;&#x5165;<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>&#xFF1A;</p>
+<p>在根目录下创建 <code>prettier.config.js</code> 文件，并写入<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>：</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1"></a><span class="va">module</span>.<span class="at">exports</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="co">// &#x4E00;&#x884C;&#x6700;&#x591A; 100 &#x5B57;&#x7B26;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="co">// 一行最多 100 字符</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a>  <span class="dt">printWidth</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>  <span class="co">// &#x4F7F;&#x7528; 4 &#x4E2A;&#x7A7A;&#x683C;&#x7F29;&#x8FDB;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="co">// 使用 4 个空格缩进</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a>  <span class="dt">tabWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>  <span class="co">// &#x4E0D;&#x4F7F;&#x7528;&#x7F29;&#x8FDB;&#x7B26;&#xFF0C;&#x800C;&#x4F7F;&#x7528;&#x7A7A;&#x683C;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="co">// 不使用缩进符，而使用空格</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a>  <span class="dt">useTabs</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>  <span class="co">// &#x884C;&#x5C3E;&#x9700;&#x8981;&#x6709;&#x5206;&#x53F7;</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="co">// 行尾需要有分号</span></span>
 <span id="cb7-9"><a href="#cb7-9"></a>  <span class="dt">semi</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>  <span class="co">// &#x4F7F;&#x7528;&#x5355;&#x5F15;&#x53F7;</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="co">// 使用单引号</span></span>
 <span id="cb7-11"><a href="#cb7-11"></a>  <span class="dt">singleQuote</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a>  <span class="co">// &#x5BF9;&#x8C61;&#x7684; key &#x4EC5;&#x5728;&#x5FC5;&#x8981;&#x65F6;&#x7528;&#x5F15;&#x53F7;</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a>  <span class="dt">quoteProps</span><span class="op">:</span> <span class="st">&apos;as-needed&apos;</span><span class="op">,</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>  <span class="co">// jsx &#x4E0D;&#x4F7F;&#x7528;&#x5355;&#x5F15;&#x53F7;&#xFF0C;&#x800C;&#x4F7F;&#x7528;&#x53CC;&#x5F15;&#x53F7;</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="co">// 对象的 key 仅在必要时用引号</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="dt">quoteProps</span><span class="op">:</span> <span class="st">&#39;as-needed&#39;</span><span class="op">,</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="co">// jsx 不使用单引号，而使用双引号</span></span>
 <span id="cb7-15"><a href="#cb7-15"></a>  <span class="dt">jsxSingleQuote</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a>  <span class="co">// &#x672B;&#x5C3E;&#x4E0D;&#x9700;&#x8981;&#x9017;&#x53F7;</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a>  <span class="dt">trailingComma</span><span class="op">:</span> <span class="st">&apos;all&apos;</span><span class="op">,</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a>  <span class="co">// &#x5927;&#x62EC;&#x53F7;&#x5185;&#x7684;&#x9996;&#x5C3E;&#x9700;&#x8981;&#x7A7A;&#x683C;</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>  <span class="co">// 末尾不需要逗号</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>  <span class="dt">trailingComma</span><span class="op">:</span> <span class="st">&#39;all&#39;</span><span class="op">,</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="co">// 大括号内的首尾需要空格</span></span>
 <span id="cb7-19"><a href="#cb7-19"></a>  <span class="dt">bracketSpacing</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a>  <span class="co">// jsx &#x6807;&#x7B7E;&#x7684;&#x53CD;&#x5C16;&#x62EC;&#x53F7;&#x9700;&#x8981;&#x6362;&#x884C;</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a>  <span class="co">// jsx 标签的反尖括号需要换行</span></span>
 <span id="cb7-21"><a href="#cb7-21"></a>  <span class="dt">jsxBracketSameLine</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a>  <span class="co">// &#x7BAD;&#x5934;&#x51FD;&#x6570;&#xFF0C;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E5F;&#x9700;&#x8981;&#x62EC;&#x53F7;</span></span>
-<span id="cb7-23"><a href="#cb7-23"></a>  <span class="dt">arrowParens</span><span class="op">:</span> <span class="st">&apos;always&apos;</span><span class="op">,</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a>  <span class="co">// &#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x683C;&#x5F0F;&#x5316;&#x7684;&#x8303;&#x56F4;&#x662F;&#x6587;&#x4EF6;&#x7684;&#x5168;&#x90E8;&#x5185;&#x5BB9;</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>  <span class="co">// 箭头函数，只有一个参数的时候，也需要括号</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a>  <span class="dt">arrowParens</span><span class="op">:</span> <span class="st">&#39;always&#39;</span><span class="op">,</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a>  <span class="co">// 每个文件格式化的范围是文件的全部内容</span></span>
 <span id="cb7-25"><a href="#cb7-25"></a>  <span class="dt">rangeStart</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
 <span id="cb7-26"><a href="#cb7-26"></a>  <span class="dt">rangeEnd</span><span class="op">:</span> <span class="kw">Infinity</span><span class="op">,</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a>  <span class="co">// &#x4E0D;&#x9700;&#x8981;&#x5199;&#x6587;&#x4EF6;&#x5F00;&#x5934;&#x7684; @prettier</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a>  <span class="co">// 不需要写文件开头的 @prettier</span></span>
 <span id="cb7-28"><a href="#cb7-28"></a>  <span class="dt">requirePragma</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb7-29"><a href="#cb7-29"></a>  <span class="co">// &#x4E0D;&#x9700;&#x8981;&#x81EA;&#x52A8;&#x5728;&#x6587;&#x4EF6;&#x5F00;&#x5934;&#x63D2;&#x5165; @prettier</span></span>
+<span id="cb7-29"><a href="#cb7-29"></a>  <span class="co">// 不需要自动在文件开头插入 @prettier</span></span>
 <span id="cb7-30"><a href="#cb7-30"></a>  <span class="dt">insertPragma</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb7-31"><a href="#cb7-31"></a>  <span class="co">// &#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x6298;&#x884C;&#x6807;&#x51C6;</span></span>
-<span id="cb7-32"><a href="#cb7-32"></a>  <span class="dt">proseWrap</span><span class="op">:</span> <span class="st">&apos;preserve&apos;</span><span class="op">,</span></span>
-<span id="cb7-33"><a href="#cb7-33"></a>  <span class="co">// &#x6839;&#x636E;&#x663E;&#x793A;&#x6837;&#x5F0F;&#x51B3;&#x5B9A; html &#x8981;&#x4E0D;&#x8981;&#x6298;&#x884C;</span></span>
-<span id="cb7-34"><a href="#cb7-34"></a>  <span class="dt">htmlWhitespaceSensitivity</span><span class="op">:</span> <span class="st">&apos;css&apos;</span><span class="op">,</span></span>
-<span id="cb7-35"><a href="#cb7-35"></a>  <span class="co">// &#x6362;&#x884C;&#x7B26;&#x4F7F;&#x7528; lf</span></span>
-<span id="cb7-36"><a href="#cb7-36"></a>  <span class="dt">endOfLine</span><span class="op">:</span> <span class="st">&apos;lf&apos;</span><span class="op">,</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a>  <span class="co">// 使用默认的折行标准</span></span>
+<span id="cb7-32"><a href="#cb7-32"></a>  <span class="dt">proseWrap</span><span class="op">:</span> <span class="st">&#39;preserve&#39;</span><span class="op">,</span></span>
+<span id="cb7-33"><a href="#cb7-33"></a>  <span class="co">// 根据显示样式决定 html 要不要折行</span></span>
+<span id="cb7-34"><a href="#cb7-34"></a>  <span class="dt">htmlWhitespaceSensitivity</span><span class="op">:</span> <span class="st">&#39;css&#39;</span><span class="op">,</span></span>
+<span id="cb7-35"><a href="#cb7-35"></a>  <span class="co">// 换行符使用 lf</span></span>
+<span id="cb7-36"><a href="#cb7-36"></a>  <span class="dt">endOfLine</span><span class="op">:</span> <span class="st">&#39;lf&#39;</span><span class="op">,</span></span>
 <span id="cb7-37"><a href="#cb7-37"></a><span class="op">};</span></span></code></pre></div>
-<p>&#x66F4;&#x591A;&#x914D;&#x7F6E;&#x53EF;&#x67E5;&#x770B; <a href="https://prettier.io/docs/en/index.html" target="_blank" rel="noopener">What is Prettier?</a>&#x3002;</p>
-<h3 id="&#x5728;-webstorm-&#x4E2D;&#x542F;&#x7528;-eslint-&#x548C;-prettier">&#x5728; WebStorm &#x4E2D;&#x542F;&#x7528; ESLint &#x548C; Prettier</h3>
-<h4 id="&#x542F;&#x7528;-eslint">&#x542F;&#x7528; ESLint</h4>
-<p>&#x627E;&#x5230; File | Settings | Languages &amp; Frameworks | JavaScript | Code Quality Tools | ESLint &#x914D;&#x7F6E;&#x9879;&#xFF0C;&#x9009;&#x62E9; Automatic ESLint configuration&#x3002;</p>
-<p>WebStorm &#x4F1A;&#x81EA;&#x52A8;&#x67E5;&#x627E; ESLint &#x8DEF;&#x5F84;&#x5E76;&#x6267;&#x884C;&#x68C0;&#x67E5;&#x3002;</p>
-<h4 id="&#x542F;&#x7528;-prettier">&#x542F;&#x7528; Prettier</h4>
-<p>&#x627E;&#x5230; File | Settings | Languages &amp; Frameworks | JavaScript | Prettier &#x914D;&#x7F6E;&#x9879;&#xFF0C;&#x9009;&#x62E9; Prettier &#x8DEF;&#x5F84;&#xFF0C;&#x53EF;&#x4EE5;&#x52FE;&#x9009; Run on save for files&#xFF0C;&#x5728;&#x4FDD;&#x5B58;&#x65F6;&#x81EA;&#x52A8;&#x6267;&#x884C;&#x68C0;&#x67E5;&#x3002;</p>
-<h4 id="&#x4F7F;&#x7528;-editorconfig">&#x4F7F;&#x7528; EditorConfig</h4>
-<p>EditorConfig &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6765;&#x6307;&#x5B9A;&#x4E0D;&#x540C; IDE &#x6216;&#x7F16;&#x8F91;&#x5668;&#x7684;&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x5316;&#x884C;&#x4E3A;&#xFF0C;&#x5728;&#x7F16;&#x7801;&#x671F;&#x95F4;&#x5C31;&#x80FD;&#x6839;&#x636E;&#x56E2;&#x961F;&#x89C4;&#x8303;&#x683C;&#x5F0F;&#x5316;&#x4EE3;&#x7801;&#x3002;</p>
-<p>WebStorm &#x5DF2;&#x7ECF;&#x5185;&#x7F6E;&#x5B9E;&#x73B0; EditorConfig &#x652F;&#x6301;&#xFF0C;&#x5728;&#x6839;&#x76EE;&#x5F55;&#x521B;&#x5EFA; <code>.editorconfig</code> &#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x5199;&#x5165;&#xFF1A;</p>
+<p>更多配置可查看 <a href="https://prettier.io/docs/en/index.html" target="_blank" rel="noopener">What is Prettier?</a>。</p>
+<h3 id="在-webstorm-中启用-eslint-和-prettier">在 WebStorm 中启用 ESLint 和 Prettier</h3>
+<h4 id="启用-eslint">启用 ESLint</h4>
+<p>找到 File | Settings | Languages &amp; Frameworks | JavaScript | Code Quality Tools | ESLint 配置项，选择 Automatic ESLint configuration。</p>
+<p>WebStorm 会自动查找 ESLint 路径并执行检查。</p>
+<h4 id="启用-prettier">启用 Prettier</h4>
+<p>找到 File | Settings | Languages &amp; Frameworks | JavaScript | Prettier 配置项，选择 Prettier 路径，可以勾选 Run on save for files，在保存时自动执行检查。</p>
+<h4 id="使用-editorconfig">使用 EditorConfig</h4>
+<p>EditorConfig 可以通过配置文件来指定不同 IDE 或编辑器的代码格式化行为，在编码期间就能根据团队规范格式化代码。</p>
+<p>WebStorm 已经内置实现 EditorConfig 支持，在根目录创建 <code>.editorconfig</code> 文件，并写入：</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode ini"><code class="sourceCode ini"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># http://editorconfig.org</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="dt">root </span><span class="ot">=</span><span class="st"> </span><span class="kw">true</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
@@ -307,9 +307,9 @@
 <span id="cb8-17"><a href="#cb8-17"></a></span>
 <span id="cb8-18"><a href="#cb8-18"></a><span class="kw">[Makefile]</span></span>
 <span id="cb8-19"><a href="#cb8-19"></a><span class="dt">indent_style </span><span class="ot">=</span><span class="st"> tab</span></span></code></pre></div>
-<p>&#x4EE5;&#x4E0A;&#x914D;&#x7F6E;&#x6548;&#x679C;&#x548C; Prettier &#x76F8;&#x540C;&#xFF0C;&#x66F4;&#x591A;&#x914D;&#x7F6E;&#x53EF;&#x67E5;&#x770B; <a href="https://editorconfig.org/#overview" target="_blank" rel="noopener">EditorConfig</a>&#x3002;</p>
-<h3 id="&#x914D;&#x7F6E;-typescript">&#x914D;&#x7F6E; TypeScript</h3>
-<p>&#x5728;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x521B;&#x5EFA; <code>tsconfig.json</code> &#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x5199;&#x5165;&#xFF1A;</p>
+<p>以上配置效果和 Prettier 相同，更多配置可查看 <a href="https://editorconfig.org/#overview" target="_blank" rel="noopener">EditorConfig</a>。</p>
+<h3 id="配置-typescript">配置 TypeScript</h3>
+<p>在根目录下创建 <code>tsconfig.json</code> 文件，并写入：</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">{</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="dt">&quot;compilerOptions&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="st">&quot;es5&quot;</span><span class="fu">,</span></span>
@@ -321,37 +321,37 @@
 <span id="cb9-9"><a href="#cb9-9"></a>    <span class="dt">&quot;forceConsistentCasingInFileNames&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
 <span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">}</span></span>
 <span id="cb9-11"><a href="#cb9-11"></a><span class="fu">}</span></span></code></pre></div>
-<p><code>outDir</code> &#x6307;&#x5B9A; <code>tsc</code> &#x547D;&#x4EE4;&#x7F16;&#x8BD1;&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#x8DEF;&#x5F84;&#x3002;</p>
-<h2 id="&#x7F16;&#x5199;&#x4EE3;&#x7801;">&#x7F16;&#x5199;&#x4EE3;&#x7801;</h2>
-<h3 id="&#x4F7F;&#x7528;-commander.js">&#x4F7F;&#x7528; Commander.js</h3>
-<p>&#x8981;&#x7F16;&#x5199;&#x7684;&#x662F;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#xFF0C;&#x81EA;&#x7136;&#x8981;&#x89E3;&#x6790;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#xFF0C;&#x51FA;&#x4E8E;&#x4E0D;&#x91CD;&#x590D;&#x9020;&#x8F6E;&#x5B50;&#x7684;&#x76EE;&#x7684;&#x9009;&#x62E9; <a href="https://github.com/tj/commander.js" target="_blank" rel="noopener">Commander.js</a> &#x6765;&#x89E3;&#x6790;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x3002;</p>
-<p>&#x5B89;&#x88C5; Commander.js&#xFF1A;</p>
+<p><code>outDir</code> 指定 <code>tsc</code> 命令编译结果输出路径。</p>
+<h2 id="编写代码">编写代码</h2>
+<h3 id="使用-commander.js">使用 Commander.js</h3>
+<p>要编写的是命令行工具，自然要解析命令行参数，出于不重复造轮子的目的选择 <a href="https://github.com/tj/commander.js" target="_blank" rel="noopener">Commander.js</a> 来解析命令行参数。</p>
+<p>安装 Commander.js：</p>
 <pre class="shell"><code>yarn add commander</code></pre>
-<p>Commander.js &#x4F7F;&#x7528;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> <span class="op">{</span> program <span class="op">}</span> <span class="im">from</span> <span class="st">&apos;commander&apos;</span><span class="op">;</span></span>
+<p>Commander.js 使用很简单，一个例子：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> <span class="op">{</span> program <span class="op">}</span> <span class="im">from</span> <span class="st">&#39;commander&#39;</span><span class="op">;</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a>program</span>
-<span id="cb11-4"><a href="#cb11-4"></a>  .<span class="fu">version</span>(<span class="st">&apos;1.0.3&apos;</span>)</span>
-<span id="cb11-5"><a href="#cb11-5"></a>  .<span class="fu">name</span>(<span class="st">&apos;upload-to-qiniu&apos;</span>)</span>
-<span id="cb11-6"><a href="#cb11-6"></a>  .<span class="fu">requiredOption</span>(<span class="st">&apos;-a, --access-key [ak]&apos;</span><span class="op">,</span> <span class="st">&apos;access key&apos;</span>)</span>
-<span id="cb11-7"><a href="#cb11-7"></a>  .<span class="fu">requiredOption</span>(<span class="st">&apos;-s, --secret-key [sk]&apos;</span><span class="op">,</span> <span class="st">&apos;secret key&apos;</span>)</span>
-<span id="cb11-8"><a href="#cb11-8"></a>  .<span class="fu">option</span>(<span class="st">&apos;-d, --upload-dir &lt;dir&gt;&apos;</span><span class="op">,</span> <span class="st">&apos;&#x8981;&#x4E0A;&#x4F20;&#x7684;&#x76EE;&#x5F55;&apos;</span><span class="op">,</span> <span class="st">&apos;./&apos;</span>)</span>
-<span id="cb11-9"><a href="#cb11-9"></a>  .<span class="fu">requiredOption</span>(<span class="st">&apos;-b, --bucket [bucket]&apos;</span><span class="op">,</span> <span class="st">&apos;&#x5BF9;&#x8C61;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#x540D;&apos;</span>)</span>
-<span id="cb11-10"><a href="#cb11-10"></a>  .<span class="fu">option</span>(<span class="st">&apos;-e, --exclude-prefix &lt;prefixs...&gt;&apos;</span><span class="op">,</span> <span class="st">&apos;&#x5FFD;&#x7565;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x524D;&#x7F00;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x591A;&#x4E2A;&apos;</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a>  .<span class="fu">version</span>(<span class="st">&#39;1.0.3&#39;</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>  .<span class="fu">name</span>(<span class="st">&#39;upload-to-qiniu&#39;</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>  .<span class="fu">requiredOption</span>(<span class="st">&#39;-a, --access-key [ak]&#39;</span><span class="op">,</span> <span class="st">&#39;access key&#39;</span>)</span>
+<span id="cb11-7"><a href="#cb11-7"></a>  .<span class="fu">requiredOption</span>(<span class="st">&#39;-s, --secret-key [sk]&#39;</span><span class="op">,</span> <span class="st">&#39;secret key&#39;</span>)</span>
+<span id="cb11-8"><a href="#cb11-8"></a>  .<span class="fu">option</span>(<span class="st">&#39;-d, --upload-dir &lt;dir&gt;&#39;</span><span class="op">,</span> <span class="st">&#39;要上传的目录&#39;</span><span class="op">,</span> <span class="st">&#39;./&#39;</span>)</span>
+<span id="cb11-9"><a href="#cb11-9"></a>  .<span class="fu">requiredOption</span>(<span class="st">&#39;-b, --bucket [bucket]&#39;</span><span class="op">,</span> <span class="st">&#39;对象存储空间名&#39;</span>)</span>
+<span id="cb11-10"><a href="#cb11-10"></a>  .<span class="fu">option</span>(<span class="st">&#39;-e, --exclude-prefix &lt;prefixs...&gt;&#39;</span><span class="op">,</span> <span class="st">&#39;忽略的文件名前缀，可以设置多个&#39;</span>)</span>
 <span id="cb11-11"><a href="#cb11-11"></a>  .<span class="fu">parse</span>()<span class="op">;</span></span></code></pre></div>
-<p><code>import { program } from &apos;commander&apos;;</code> &#x5BFC;&#x5165;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF0C;<code>version</code> &#x6307;&#x5B9A;&#x7248;&#x672C;&#x53F7;&#xFF0C;<code>name</code> &#x6307;&#x5B9A; <code>-h</code> &#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#x7684;&#x540D;&#x79F0;&#x3002;</p>
-<p><code>option</code> &#x5B9A;&#x4E49;&#x9009;&#x9879;&#xFF0C;&#x4E00;&#x5171;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;</p>
+<p><code>import { program } from 'commander';</code> 导入全局对象，<code>version</code> 指定版本号，<code>name</code> 指定 <code>-h</code> 帮助信息的名称。</p>
+<p><code>option</code> 定义选项，一共三个参数：</p>
 <ul>
-<li>&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x9009;&#x9879;&#x540D;&#x79F0;&#xFF0C;&#x6307;&#x5B9A;&#x9009;&#x9879;&#x7684;&#x77ED;&#x540D;&#x79F0;&#x548C;&#x957F;&#x540D;&#x79F0;&#xFF0C;&#x4F7F;&#x7528;&#x9017;&#x53F7;&#x3001;&#x7A7A;&#x683C;&#x6216; <code>|</code> &#x5206;&#x5272;&#xFF0C;&#x5FC5;&#x9009;</li>
-<li>&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;&#x9009;&#x9879;&#x63CF;&#x8FF0;&#xFF0C;&#x53EF;&#x9009;</li>
-<li>&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x53EF;&#x9009;</li>
+<li>第一个参数指定选项名称，指定选项的短名称和长名称，使用逗号、空格或 <code>|</code> 分割，必选</li>
+<li>第二个参数为选项描述，可选</li>
+<li>第三个参数为默认值，可选</li>
 </ul>
-<p><code>option</code> &#x5B9A;&#x4E49;&#x7684;&#x9009;&#x9879;&#x662F;&#x975E;&#x5FC5;&#x9009;&#x7684;&#xFF0C;&#x5982;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x5FC5;&#x9009;&#x9009;&#x9879;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>requiredOption</code>&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x65F6;&#x6CA1;&#x6709;&#x6307;&#x5B9A;&#x5FC5;&#x9009;&#x9009;&#x9879;&#x4F1A;&#x6709;&#x62A5;&#x9519;&#x3002;</p>
-<p>&#x6709;&#x4E24;&#x79CD;&#x6700;&#x5E38;&#x7528;&#x7684;&#x9009;&#x9879;&#xFF0C;&#x4E00;&#x7C7B;&#x662F; boolean &#x578B;&#x9009;&#x9879;&#xFF0C;&#x9009;&#x9879;&#x65E0;&#x9700;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#xFF0C;&#x53E6;&#x4E00;&#x7C7B;&#x9009;&#x9879;&#x5219;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x53C2;&#x6570;&#xFF08;&#x4F7F;&#x7528;&#x5C16;&#x62EC;&#x53F7;&#x58F0;&#x660E;&#xFF09;&#x3002;&#x5982;&#x679C;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x4E0D;&#x6307;&#x5B9A;&#x5177;&#x4F53;&#x7684;&#x9009;&#x9879;&#x53CA;&#x53C2;&#x6570;&#xFF0C;&#x5219;&#x4F1A;&#x88AB;&#x5B9A;&#x4E49;&#x4E3A; <code>undefined</code>&#x3002;</p>
-<p>&#x4EE3;&#x7801;&#x4E2D;&#x5C06;&#x957F;&#x540D;&#x79F0;&#x8F6C;&#x5316;&#x6210;&#x5C0F;&#x9A7C;&#x5CF0;&#x6765;&#x83B7;&#x53D6;&#x7528;&#x6237;&#x6307;&#x5B9A;&#x7684;&#x53C2;&#x6570;&#x503C;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<p><code>option</code> 定义的选项是非必选的，如需要定义必选选项可以使用 <code>requiredOption</code>，如果使用命令行时没有指定必选选项会有报错。</p>
+<p>有两种最常用的选项，一类是 boolean 型选项，选项无需配置参数，另一类选项则可以设置参数（使用尖括号声明）。如果在命令行中不指定具体的选项及参数，则会被定义为 <code>undefined</code>。</p>
+<p>代码中将长名称转化成小驼峰来获取用户指定的参数值，例如：</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">const</span> mac <span class="op">=</span> <span class="kw">new</span> <span class="va">qiniu</span><span class="op">.</span><span class="va">auth</span><span class="op">.</span><span class="va">digest</span><span class="op">.</span><span class="fu">Mac</span>(<span class="va">program</span><span class="op">.</span><span class="at">accessKey</span><span class="op">,</span> <span class="va">program</span><span class="op">.</span><span class="at">secretKey</span>)<span class="op">;</span></span></code></pre></div>
-<p><code>program.accessKey</code> &#x83B7;&#x53D6;&#x7684;&#x662F; <code>-a</code> &#x53C2;&#x6570;&#x6307;&#x5B9A;&#x7684;&#x503C;&#x3002;</p>
-<p>&#x5B9A;&#x4E49;&#x597D;&#x9009;&#x9879;&#x540E;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>-h</code> &#x67E5;&#x770B;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#xFF1A;</p>
+<p><code>program.accessKey</code> 获取的是 <code>-a</code> 参数指定的值。</p>
+<p>定义好选项后可以使用 <code>-h</code> 查看帮助信息：</p>
 <pre class="text"><code>&gt; upload-to-qiniu -h
 Usage: upload-to-qiniu [options]
 
@@ -359,16 +359,16 @@ Options:
   -V, --version                      output the version number
   -a, --access-key [ak]              access key
   -s, --secret-key [sk]              secret key
-  -d, --upload-dir &lt;dir&gt;             &#x8981;&#x4E0A;&#x4F20;&#x7684;&#x76EE;&#x5F55; (default: &quot;./&quot;)
-  -b, --bucket [bucket]              &#x5BF9;&#x8C61;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#x540D;
-  -e, --exclude-prefix &lt;prefixs...&gt;  &#x5FFD;&#x7565;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x524D;&#x7F00;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x591A;&#x4E2A;
+  -d, --upload-dir &lt;dir&gt;             要上传的目录 (default: &quot;./&quot;)
+  -b, --bucket [bucket]              对象存储空间名
+  -e, --exclude-prefix &lt;prefixs...&gt;  忽略的文件名前缀，可以设置多个
   -h, --help                         display help for command</code></pre>
-<h3 id="&#x7F16;&#x5199;&#x903B;&#x8F91;&#x4EE3;&#x7801;">&#x7F16;&#x5199;&#x903B;&#x8F91;&#x4EE3;&#x7801;</h3>
-<p>&#x505A;&#x4E86;&#x8FD9;&#x4E48;&#x591A;&#x51C6;&#x5907;&#x7EC8;&#x4E8E;&#x53EF;&#x4EE5;&#x6B63;&#x5F0F;&#x5F00;&#x59CB;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#x4E86;&#xFF0C;&#x5728;&#x6839;&#x76EE;&#x5F55;&#x521B;&#x5EFA; <code>src</code> &#x76EE;&#x5F55;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x5176;&#x4E2D;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#x5373;&#x53EF;&#x3002;</p>
-<p>&#x6BCF;&#x4E2A;&#x9879;&#x76EE;&#x5177;&#x4F53;&#x7EC6;&#x8282;&#x6709;&#x5F88;&#x5927;&#x5DEE;&#x5F02;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x5199;&#x5177;&#x4F53;&#x7EC6;&#x8282;&#x4E86;&#xFF0C;&#x4E0D;&#x8FC7;&#x6709;&#x4E00;&#x70B9;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x9996;&#x884C;&#x4E00;&#x5B9A;&#x8981;&#x52A0;&#x4E0A; <code>#!/usr/bin/env node</code> &#x6765;&#x6307;&#x5B9A;&#x89E3;&#x91CA;&#x5668;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x4F7F;&#x7528;&#x7CFB;&#x7EDF;&#x89E3;&#x91CA;&#x5668;&#xFF0C;&#x5728; Windows &#x4E0B;&#x4E0D;&#x80FD;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x3002;</p>
-<p>&#x672C;&#x6587;&#x6D89;&#x53CA;&#x7684;&#x5177;&#x4F53;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x5728; <a href="https://github.com/Dreace/upload-to-qiniu" target="_blank" rel="noopener">Dreace/upload-to-qiniu</a> &#x627E;&#x5230;&#x3002;</p>
-<h2 id="&#x53D1;&#x5E03;-npm-&#x5305;">&#x53D1;&#x5E03; npm &#x5305;</h2>
-<h3 id="&#x586B;&#x5199;&#x5305;&#x4FE1;&#x606F;">&#x586B;&#x5199;&#x5305;&#x4FE1;&#x606F;</h3>
+<h3 id="编写逻辑代码">编写逻辑代码</h3>
+<p>做了这么多准备终于可以正式开始编写代码了，在根目录创建 <code>src</code> 目录，然后在其中编写代码即可。</p>
+<p>每个项目具体细节有很大差异，这里就不写具体细节了，不过有一点要注意，入口文件首行一定要加上 <code>#!/usr/bin/env node</code> 来指定解释器，否则会使用系统解释器，在 Windows 下不能正常使用。</p>
+<p>本文涉及的具体代码可以在 <a href="https://github.com/Dreace/upload-to-qiniu" target="_blank" rel="noopener">Dreace/upload-to-qiniu</a> 找到。</p>
+<h2 id="发布-npm-包">发布 npm 包</h2>
+<h3 id="填写包信息">填写包信息</h3>
 <div class="sourceCode" id="cb14"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">{</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;upload-to-qiniu&quot;</span><span class="fu">,</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a>  <span class="dt">&quot;version&quot;</span><span class="fu">:</span> <span class="st">&quot;1.0.4&quot;</span><span class="fu">,</span></span>
@@ -396,16 +396,16 @@ Options:
 <span id="cb14-25"><a href="#cb14-25"></a>    <span class="dt">&quot;prettier&quot;</span><span class="fu">:</span> <span class="st">&quot;^2.0.5&quot;</span></span>
 <span id="cb14-26"><a href="#cb14-26"></a>  <span class="fu">}</span></span>
 <span id="cb14-27"><a href="#cb14-27"></a><span class="fu">}</span></span></code></pre></div>
-<p><code>name</code> &#x6307;&#x5B9A;&#x5305;&#x540D;&#xFF0C;&#x5728; npm &#x4E2D;&#x5168;&#x5C40;&#x552F;&#x4E00;&#xFF0C;<code>version</code> &#x6307;&#x5B9A;&#x5F53;&#x524D;&#x7248;&#x672C;&#xFF0C;<code>license</code> &#x6307;&#x5B9A;&#x8BB8;&#x53EF;&#x8BC1;&#x3002;</p>
-<p><code>bin</code> &#x6307;&#x5B9A;&#x547D;&#x4EE4;&#x884C;&#x548C;&#x8981;&#x6267;&#x884C;&#x7684; <code>.js</code> &#x811A;&#x672C;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#xFF0C;&#x4E00;&#x4E2A;&#x5305;&#x53EF;&#x4EE5;&#x63D0;&#x4F9B;&#x591A;&#x4E2A;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x3002;</p>
-<p><code>files</code> &#x6307;&#x5B9A;&#x6253;&#x5305;&#x65F6;&#x8981;&#x5305;&#x542B;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x9664;&#x6B64; <code>README.md</code> &#x548C; <code>LICENSE</code> &#x4E5F;&#x4F1A;&#x88AB;&#x6253;&#x5305;&#x3002;</p>
-<h3 id="&#x672C;&#x5730;&#x6D4B;&#x8BD5;">&#x672C;&#x5730;&#x6D4B;&#x8BD5;</h3>
-<p>&#x7F16;&#x5199;&#x5B8C;&#x4EE3;&#x7801;&#x540E;&#x9700;&#x8981;&#x5B89;&#x88C5;&#x4E3A;&#x5168;&#x5C40;&#x5305;&#x8FDB;&#x884C;&#x6D4B;&#x8BD5;&#x3002;</p>
+<p><code>name</code> 指定包名，在 npm 中全局唯一，<code>version</code> 指定当前版本，<code>license</code> 指定许可证。</p>
+<p><code>bin</code> 指定命令行和要执行的 <code>.js</code> 脚本对应关系，一个包可以提供多个命令行工具。</p>
+<p><code>files</code> 指定打包时要包含的文件，除此 <code>README.md</code> 和 <code>LICENSE</code> 也会被打包。</p>
+<h3 id="本地测试">本地测试</h3>
+<p>编写完代码后需要安装为全局包进行测试。</p>
 <pre class="shell"><code>npm i -g .</code></pre>
-<p>&#x5C06;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x5B89;&#x88C5;&#x4E3A;&#x5168;&#x5C40;&#x5305;&#xFF0C;&#x5B89;&#x88C5;&#x540E;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>bin</code> &#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x540D;&#x79F0;&#x6765;&#x4F7F;&#x7528;&#x3002;</p>
-<h3 id="&#x53D1;&#x5E03;">&#x53D1;&#x5E03;</h3>
-<p>&#x9996;&#x5148; <a href="https://www.npmjs.com/signup" target="_blank" rel="noopener">&#x6CE8;&#x518C;&#x4E00;&#x4E2A; npm &#x8D26;&#x53F7;</a>&#x3002;&#x7136;&#x540E;&#x4F7F;&#x7528; <code>npm login</code> &#x767B;&#x5F55;&#x5230; npm&#x3002;</p>
-<p>&#x767B;&#x5F55;&#x540E;&#x4F7F;&#x7528; <code>npm publish</code> &#x53D1;&#x5E03;&#x5305;&#xFF0C;&#x8F93;&#x51FA;&#x4FE1;&#x606F;&#x5927;&#x81F4;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>将当前目录下的文件安装为全局包，安装后可以通过 <code>bin</code> 中指定的名称来使用。</p>
+<h3 id="发布">发布</h3>
+<p>首先 <a href="https://www.npmjs.com/signup" target="_blank" rel="noopener">注册一个 npm 账号</a>。然后使用 <code>npm login</code> 登录到 npm。</p>
+<p>登录后使用 <code>npm publish</code> 发布包，输出信息大致如下：</p>
 <pre class="text"><code>&gt; npm publish
 npm notice
 npm notice package: upload-to-qiniu@1.0.5
@@ -425,13 +425,13 @@ npm notice integrity:     sha512-qHdhXhV/JjzMv[...]x6wD4OY1ysFnQ==
 npm notice total files:   5
 npm notice
 + upload-to-qiniu@1.0.5</code></pre>
-<p>&#x53D1;&#x5E03;&#x6210;&#x529F;&#x540E;&#x53EF;&#x4EE5;&#x5728; <a href="https://www.npmjs.com/" target="_blank" rel="noopener">https://www.npmjs.com/</a> &#x770B;&#x5230;&#x5305;&#x4FE1;&#x606F;&#x3002;</p>
+<p>发布成功后可以在 <a href="https://www.npmjs.com/" target="_blank" rel="noopener">https://www.npmjs.com/</a> 看到包信息。</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1" role="doc-endnote"><p><a href="https://juejin.im/post/5ecdd5185188254329780b0f" target="_blank" rel="noopener">https://juejin.im/post/5ecdd5185188254329780b0f</a> &quot;&#x7528; Node.js &#x5199;&#x4E2A;&#x547D;&#x4EE4;&#x884C;&#x7FFB;&#x8BD1;&#x5DE5;&#x5177;, &#x53D1;&#x5E03;&#x5230; npm&quot;<a href="#fnref1" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
-<li id="fn2" role="doc-endnote"><p><a href="https://github.com/forthealllight/blog/issues/45" target="_blank" rel="noopener">https://github.com/forthealllight/blog/issues/45</a> &quot;&#x5728;Typescript&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x5982;&#x4F55;&#x4F18;&#x96C5;&#x7684;&#x4F7F;&#x7528;ESLint&#x548C;Prettier&quot;<a href="#fnref2" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
-<li id="fn3" role="doc-endnote"><p><a href="https://ts.xcatliu.com/engineering/lint.html" target="_blank" rel="noopener">https://ts.xcatliu.com/engineering/lint.html</a> &quot;&#x4EE3;&#x7801;&#x68C0;&#x67E5; &#xB7; TypeScript &#x5165;&#x95E8;&#x6559;&#x7A0B;&quot;<a href="#fnref3" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
+<li id="fn1" role="doc-endnote"><p><a href="https://juejin.im/post/5ecdd5185188254329780b0f" target="_blank" rel="noopener">https://juejin.im/post/5ecdd5185188254329780b0f</a> "用 Node.js 写个命令行翻译工具, 发布到 npm"<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://github.com/forthealllight/blog/issues/45" target="_blank" rel="noopener">https://github.com/forthealllight/blog/issues/45</a> "在Typescript项目中，如何优雅的使用ESLint和Prettier"<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p><a href="https://ts.xcatliu.com/engineering/lint.html" target="_blank" rel="noopener">https://ts.xcatliu.com/engineering/lint.html</a> "代码检查 · TypeScript 入门教程"<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -487,7 +487,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596277000391"></script>
+<script src="/js/app.js?v=1596279502727"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

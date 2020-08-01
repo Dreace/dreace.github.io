@@ -20,7 +20,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/MySQL-Multiple-Keyword-Matching/image-20200320183837050.png">
 <meta property="article:published_time" content="2020-03-20T08:47:09.000Z">
-<meta property="article:modified_time" content="2020-08-01T10:15:25.953Z">
+<meta property="article:modified_time" content="2020-08-01T10:57:01.736Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="数据库">
@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596277000440">
+  <link rel="stylesheet" href="/css/style.css?v=1596279502768">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -78,7 +78,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5206;&#x6790;"><span class="toc-text">&amp;#x5206;&amp;#x6790;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x4EE3;&#x7801;&#x5B9E;&#x73B0;"><span class="toc-text">&amp;#x4EE3;&amp;#x7801;&amp;#x5B9E;&amp;#x73B0;</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -200,8 +200,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月20日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>998 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/MySQL/">MySQL</a>
     
@@ -210,50 +210,50 @@
     
   </div>
   <article>
-    <p>&#x5728; MySQL &#x4E2D;&#x50CF;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x4E00;&#x6837;&#x67E5;&#x627E;&#x591A;&#x4E2A;&#x5173;&#x952E;&#x8BCD;&#x53EA;&#x4F7F;&#x7528; <code>LIKE</code> &#x5B9E;&#x73B0;&#x6BD4;&#x8F83;&#x56F0;&#x96BE;&#xFF0C;&#x5982;&#x679C;&#x786C;&#x5199;&#x4E5F;&#x53EF;&#x4EE5;&#x62FC;&#x63A5;&#x5F88;&#x957F;&#x7684; SQL &#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x6709;&#x70B9;&#x592A;&#x66B4;&#x529B;&#x4E86;&#x3002;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x7B80;&#x6D01;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x9700;&#x6C42;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x8981;&#x63A2;&#x8BA8;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+    <p>在 MySQL 中像搜索引擎一样查找多个关键词只使用 <code>LIKE</code> 实现比较困难，如果硬写也可以拼接很长的 SQL 实现，但有点太暴力了。因此需要一个简洁的方法来实现这个需求，这就是这篇文章要探讨的问题。</p>
 <a id="more"></a>
-<h2 id="&#x5206;&#x6790;">&#x5206;&#x6790;</h2>
-<p>&#x4F7F;&#x7528;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x53EF;&#x4EE5;&#x641C;&#x7D22;&#x4F7F;&#x7528;&#x7A7A;&#x683C;&#x5206;&#x5272;&#x7684;&#x591A;&#x4E2A;&#x5173;&#x952E;&#x8BCD;&#xFF0C;&#x4F8B;&#x5982; <code>Python MySQL &#x56DE;&#x6EDA;</code> &#x80FD;&#x591F;&#x641C;&#x7D22;&#x5230;&#x540C;&#x65F6;&#x5305;&#x542B;&#x8FD9;&#x4E2A;&#x4E09;&#x4E2A;&#x5173;&#x952E;&#x8BCD;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x5E76;&#x4E14;&#x662F;&#x987A;&#x5E8F;&#x65E0;&#x5173;&#x7684;&#x3002;&#x8981;&#x662F;&#x7528; <code>LIKE</code> &#x6765;&#x8FDB;&#x884C;&#x6A21;&#x7CCA;&#x5339;&#x914D;&#x5C31;&#x8981;&#x62FC;&#x63A5;&#x4E00;&#x4E2A;&#x53C8;&#x81ED;&#x53C8;&#x957F;&#x7684; SQL&#xFF0C;&#x8FD9;&#x4E2A;&#x53EF;&#x80FD;&#x5E76;&#x4E0D;&#x662F;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;&#xFF0C;&#x9664;&#x4E86; <code>LIKE</code> &#x8FD8;&#x6709;&#x4EC0;&#x4E48;&#x597D;&#x7684;&#x529E;&#x6CD5;&#x5462;&#x3002;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF01;&#x7528;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x5F88;&#x5BB9;&#x6613;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x9700;&#x6C42;&#x3002;</p>
-<p>&#x65E2;&#x7136;&#x6709;&#x4E86;&#x529E;&#x6CD5;&#x5F00;&#x59CB;&#x5199;&#x4EE3;&#x7801;&#xFF0C;&#x9996;&#x5148;&#x8003;&#x8651;&#x5982;&#x4F55;&#x6839;&#x636E;&#x641C;&#x7D22;&#x8F93;&#x5165; <code>Python MySQL &#x56DE;&#x6EDA;</code> &#x5339;&#x914D;&#x4E0B;&#x9762;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF1A;</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>Python &#x4E2D;&#x56DE;&#x6EDA; MySQL &#x64CD;&#x4F5C;&#x3002;</span></code></pre></div>
-<p>&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x5173;&#x952E;&#x8BCD;&#x8F93;&#x5165;&#x987A;&#x5E8F;&#x548C;&#x8F93;&#x5165;&#x7684;&#x5173;&#x952E;&#x8BCD;&#x987A;&#x5E8F;&#x4E0D;&#x540C;&#xFF0C;&#x4F46;&#x662F;&#x987A;&#x5E8F;&#x5BF9;&#x7ED3;&#x679C;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x5F71;&#x54CD;&#x3002;&#x4E3A;&#x4E86;&#x540C;&#x65F6;&#x5339;&#x914D;&#x591A;&#x4E2A;&#x5173;&#x952E;&#x8BCD;&#x53EF;&#x4EE5;&#x5148;&#x62C6;&#x5206;&#x4E3A;&#x591A;&#x4E2A;&#x72EC;&#x7ACB;&#x7684;&#x5173;&#x952E;&#x8BCD;&#x5206;&#x5F00;&#x5339;&#x914D;&#xFF0C;&#x82E5;&#x524D;&#x4E00;&#x4E2A;&#x6210;&#x529F;&#x5219;&#x7EE7;&#x7EED;&#x5339;&#x914D;&#x77E5;&#x9053;&#x6240;&#x6709;&#x5173;&#x952E;&#x8BCD;&#x90FD;&#x6210;&#x529F;&#x5339;&#x914D;&#x3002;</p>
-<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B63;&#x5219;&#x4E2D;&#x7684;&#x96F6;&#x5BBD;&#x5148;&#x884C;&#x65AD;&#x8A00;&#xFF08;<code>(?=exp)</code>&#xFF09;<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x5339;&#x914D;&#x4EE5; <code>exp</code> &#x4E3A;&#x540E;&#x7F00;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4E4B;&#x540E;&#x7684;&#x5339;&#x914D;&#x5C06;&#x4ECE; <code>exp</code> &#x524D;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#x7EE7;&#x7EED;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x5199;&#x6210; <code>(?=.*exp)</code>&#xFF0C;&#x5B83;&#x5C06;&#x4ECE;&#x540E;&#x5411;&#x524D;&#x5339;&#x914D;&#x4EE5; <code>exp</code> &#x4E3A;&#x540E;&#x7F00;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x82E5;&#x5339;&#x914D;&#x5F0F;&#x4E2D;&#x5305;&#x542B;&#x591A;&#x4E2A;&#x96F6;&#x5BBD;&#x5148;&#x884C;&#x65AD;&#x8A00;&#x6BCF;&#x4E00;&#x6B21;&#x5339;&#x914D;&#x90FD;&#x4ECE;&#x6700;&#x540E;&#x5F00;&#x59CB;&#x3002;</p>
-<p>&#x8FD9;&#x6837;&#x5173;&#x952E;&#x95EE;&#x9898;&#x5DF2;&#x89E3;&#x51B3;&#xFF0C;&#x5BF9;&#x4E8E; <code>Python MySQL &#x56DE;&#x6EDA;</code> &#x5B8C;&#x6574;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x4E3A;&#xFF1A;</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>(?<span class="op">=</span>.<span class="op">*</span>Python)(?<span class="op">=</span>.<span class="op">*</span>MySQL)(?<span class="op">=</span>.<span class="op">*</span>&#x56DE;&#x6EDA;)</span></code></pre></div>
-<p>&#x4E0A;&#x9762;&#x8FD9;&#x4E2A;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5426;&#x5305;&#x542B;&#x8FD9;&#x4E09;&#x4E2A;&#x5173;&#x952E;&#x8BCD;&#xFF0C;&#x82E5;&#x8981;&#x63D0;&#x53D6;&#x6210;&#x529F;&#x5339;&#x914D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x53EF;&#x4EE5;&#x5199;&#x6210;&#xFF1A;</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>(?<span class="op">=</span>.<span class="op">*</span>Python)(?<span class="op">=</span>.<span class="op">*</span>MySQL)(?<span class="op">=</span>.<span class="op">*</span>&#x56DE;&#x6EDA;)<span class="op">^</span>.<span class="op">*</span>$</span></code></pre></div>
-<h2 id="&#x4EE3;&#x7801;&#x5B9E;&#x73B0;">&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</h2>
-<p>&#x4E0B;&#x9762;&#x5199;&#x4E00;&#x4E2A;&#x7528;&#x6B63;&#x5219;&#x5728; MySQL &#x4E2D;&#x8FDB;&#x884C;&#x591A;&#x5173;&#x952E;&#x8BCD;&#x67E5;&#x627E;&#x7684;&#x5B9E;&#x4F8B;&#x3002;</p>
-<p>&#x5047;&#x8BBE;&#x6709;&#x4E00;&#x5F20;&#x8868;&#xFF0C;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code>CREATE TABLE `&#x8BFE;&#x7A0B;-2020-1`  (
-  `&#x6559;&#x5B66;&#x73ED;&#x7F16;&#x53F7;` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `&#x5B66;&#x9662;` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `&#x8BFE;&#x7A0B;&#x540D;` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `&#x6559;&#x5E08;` varchar(25) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `&#x5468;&#x6B21;` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `&#x661F;&#x671F;` int(11) NOT NULL,
-  `&#x5F00;&#x59CB;&#x8282;&#x6B21;` int(11) NULL DEFAULT NULL,
-  `&#x65F6;&#x957F;&#x8282;&#x6B21;` int(11) NULL DEFAULT NULL,
-  `&#x6559;&#x5B66;&#x697C;` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `&#x6559;&#x5BA4;` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`&#x6559;&#x5B66;&#x73ED;&#x7F16;&#x53F7;`, `&#x8BFE;&#x7A0B;&#x540D;`, `&#x661F;&#x671F;`) USING BTREE
+<h2 id="分析">分析</h2>
+<p>使用搜索引擎可以搜索使用空格分割的多个关键词，例如 <code>Python MySQL 回滚</code> 能够搜索到同时包含这个三个关键词的结果，并且是顺序无关的。要是用 <code>LIKE</code> 来进行模糊匹配就要拼接一个又臭又长的 SQL，这个可能并不是我们想要的，除了 <code>LIKE</code> 还有什么好的办法呢。正则表达式！用正则表达式可以很容易实现这个需求。</p>
+<p>既然有了办法开始写代码，首先考虑如何根据搜索输入 <code>Python MySQL 回滚</code> 匹配下面的字符串：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>Python 中回滚 MySQL 操作。</span></code></pre></div>
+<p>这个字符串中关键词输入顺序和输入的关键词顺序不同，但是顺序对结果不会产生影响。为了同时匹配多个关键词可以先拆分为多个独立的关键词分开匹配，若前一个成功则继续匹配知道所有关键词都成功匹配。</p>
+<p>我们可以使用正则中的零宽先行断言（<code>(?=exp)</code>）<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>，它可以匹配以 <code>exp</code> 为后缀的字符串，之后的匹配将从 <code>exp</code> 前一个位置继续。</p>
+<p>如果写成 <code>(?=.*exp)</code>，它将从后向前匹配以 <code>exp</code> 为后缀的字符串，若匹配式中包含多个零宽先行断言每一次匹配都从最后开始。</p>
+<p>这样关键问题已解决，对于 <code>Python MySQL 回滚</code> 完整的表达式为：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>(?<span class="op">=</span>.<span class="op">*</span>Python)(?<span class="op">=</span>.<span class="op">*</span>MySQL)(?<span class="op">=</span>.<span class="op">*</span>回滚)</span></code></pre></div>
+<p>上面这个正则表达式可以判断一个字符串是否包含这三个关键词，若要提取成功匹配的字符串可以写成：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>(?<span class="op">=</span>.<span class="op">*</span>Python)(?<span class="op">=</span>.<span class="op">*</span>MySQL)(?<span class="op">=</span>.<span class="op">*</span>回滚)<span class="op">^</span>.<span class="op">*</span>$</span></code></pre></div>
+<h2 id="代码实现">代码实现</h2>
+<p>下面写一个用正则在 MySQL 中进行多关键词查找的实例。</p>
+<p>假设有一张表，结构如下：</p>
+<pre><code>CREATE TABLE `课程-2020-1`  (
+  `教学班编号` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `学院` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `课程名` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `教师` varchar(25) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `周次` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `星期` int(11) NOT NULL,
+  `开始节次` int(11) NULL DEFAULT NULL,
+  `时长节次` int(11) NULL DEFAULT NULL,
+  `教学楼` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `教室` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  PRIMARY KEY (`教学班编号`, `课程名`, `星期`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;</code></pre>
-<p>&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x80FD;&#x591F;&#x540C;&#x65F6;&#x5339;&#x914D; <code>&#x5B66;&#x9662;</code>&#x3001; <code>&#x8BFE;&#x7A0B;&#x540D;</code>&#x3001;<code>&#x6559;&#x5E08;</code>&#x4E09;&#x4E2A;&#x5B57;&#x6BB5;&#x4E2D;&#x7684;&#x503C;&#xFF0C;&#x4F8B;&#x5982;&#x8F93;&#x5165; <code>&#x5DE5;&#x7A0B; &#x6570;&#x636E;</code>&#xFF0C;&#x80FD;&#x591F;&#x540C;&#x65F6;&#x67E5;&#x627E;&#x51FA;&#x300C;&#x5927;&#x6570;&#x636E;&#x5B66;&#x9662;&#x300D;&#x7684;&#x300C;&#x7269;&#x8054;&#x7F51;&#x5DE5;&#x7A0B;&#x6280;&#x672F;&#x57FA;&#x7840;&#x300D; &#x548C;&#x300C;&#x4FE1;&#x606F;&#x4E0E;&#x901A;&#x4FE1;&#x5DE5;&#x7A0B;&#x5B66;&#x9662;&#x300D;&#x7684;&#x300C;&#x5927;&#x6570;&#x636E;&#x4E0E;&#x4E91;&#x8BA1;&#x7B97;&#x300D;&#x8BFE;&#x7A0B;&#xFF0C;&#x5BF9;&#x5E94;&#x7684; SQL &#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code>SELECT * FROM `&#x8BFE;&#x7A0B;-2020-1` WHERE CONCAT_WS(&apos;&apos;, `&#x5B66;&#x9662;`, `&#x8BFE;&#x7A0B;&#x540D;`, `&#x6559;&#x5E08;`) REGEXP &apos;(?=.*&#x5DE5;&#x7A0B;)(?=.*&#x6570;&#x636E;)&apos;</code></pre>
-<p>&#x5176;&#x4E2D; <code>CONCAT_WS(&apos;&apos;, `&#x5B66;&#x9662;`, `&#x8BFE;&#x7A0B;&#x540D;`, `&#x6559;&#x5E08;`)</code> &#x5C06;&#x6BCF;&#x884C;&#x4E2D; <code>&#x5B66;&#x9662;</code>&#x3001; <code>&#x8BFE;&#x7A0B;&#x540D;</code>&#x3001;<code>&#x6559;&#x5E08;</code> &#x5B57;&#x6BB5;&#x7684;&#x503C;&#x8FDE;&#x63A5;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F5C;&#x4E3A;&#x5269;&#x4F59;&#x53C2;&#x6570;&#x95F4;&#x7684;&#x5206;&#x9694;&#x7B26;<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>&#xFF0C;<code>CONCAT_WS</code> &#x7684;&#x4F5C;&#x7528;&#x7C7B;&#x4F3C; Python &#x548C; JavaScript &#x4E2D;&#x7684; <code>join</code>&#x3002;&#x8FD9;&#x91CC;&#x4E0D;&#x4F7F;&#x7528; <code>CONCAT</code> &#x662F;&#x56E0;&#x4E3A; <code>&#x6559;&#x5E08;</code> &#x5B57;&#x6BB5;&#x53EF;&#x80FD;&#x4E3A;&#x7A7A;&#x503C;&#xFF0C;&#x8FDB;&#x800C;&#x5BFC;&#x81F4; <code>CONCAT</code> &#x7684;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x4E5F;&#x4E3A;&#x7A7A;&#xFF0C; &#x800C; <code>CONCAT_WS</code> &#x4F1A;&#x5FFD;&#x7565;&#x7A7A;&#x503C;&#x3002;</p>
-<p>&#x641C;&#x7D22;&#x7ED3;&#x679C;&#x4E3A;&#xFF1A;</p>
+<p>我们希望能够同时匹配 <code>学院</code>、 <code>课程名</code>、<code>教师</code>三个字段中的值，例如输入 <code>工程 数据</code>，能够同时查找出「大数据学院」的「物联网工程技术基础」 和「信息与通信工程学院」的「大数据与云计算」课程，对应的 SQL 如下：</p>
+<pre><code>SELECT * FROM `课程-2020-1` WHERE CONCAT_WS(&#39;&#39;, `学院`, `课程名`, `教师`) REGEXP &#39;(?=.*工程)(?=.*数据)&#39;</code></pre>
+<p>其中 <code>CONCAT_WS('', `学院`, `课程名`, `教师`)</code> 将每行中 <code>学院</code>、 <code>课程名</code>、<code>教师</code> 字段的值连接形成一个字符串，第一个参数作为剩余参数间的分隔符<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>，<code>CONCAT_WS</code> 的作用类似 Python 和 JavaScript 中的 <code>join</code>。这里不使用 <code>CONCAT</code> 是因为 <code>教师</code> 字段可能为空值，进而导致 <code>CONCAT</code> 的返回结果也为空， 而 <code>CONCAT_WS</code> 会忽略空值。</p>
+<p>搜索结果为：</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/MySQL-Multiple-Keyword-Matching/image-20200320183837050.png" alt><figcaption>&#x5173;&#x952E;&#x8BCD;&quot;&#x5DE5;&#x7A0B; &#x6570;&#x636E;&quot;&#x7684;&#x641C;&#x7D22;&#x7ED3;&#x679C;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/MySQL-Multiple-Keyword-Matching/image-20200320183837050.png" alt><figcaption>关键词"工程 数据"的搜索结果</figcaption>
 </figure>
-<p>&#x5B8C;&#x7F8E;&#x5B9E;&#x73B0;&#xFF01;&#x4E0B;&#x9762;&#x662F;&#x8F93;&#x5165;&#x5173;&#x952E;&#x8BCD;&#x5B57;&#x7B26;&#x4E32;&#x751F;&#x6210;&#x5BF9;&#x5E94; SQL &#x7684; Python &#x4EE3;&#x7801;&#xFF1A;</p>
+<p>完美实现！下面是输入关键词字符串生成对应 SQL 的 Python 代码：</p>
 <pre><code>keywords_map = &quot;&quot;.join(map(lambda k: &quot;(?=.*%s)&quot; % k, keywords.split(&quot; &quot;)))
-sql = &quot;SELECT * FROM `&#x8BFE;&#x7A0B;-2020-1` WHERE CONCAT_WS(&apos;&apos;, `&#x5B66;&#x9662;`, `&#x8BFE;&#x7A0B;&#x540D;`, `&#x6559;&#x5E08;`) REGEXP &apos;%s^.*$&apos;&quot; % keywords_map</code></pre>
+sql = &quot;SELECT * FROM `课程-2020-1` WHERE CONCAT_WS(&#39;&#39;, `学院`, `课程名`, `教师`) REGEXP &#39;%s^.*$&#39;&quot; % keywords_map</code></pre>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1" role="doc-endnote"><p><a href="https://www.cnblogs.com/symbol441/articles/957950.html" target="_blank" rel="noopener">https://www.cnblogs.com/symbol441/articles/957950.html</a> &quot;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x5206;&#x7EC4;&quot;<a href="#fnref1" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
-<li id="fn2" role="doc-endnote"><p><a href="https://www.cnblogs.com/locoy/archive/2006/10/28/542751.html" target="_blank" rel="noopener">https://www.cnblogs.com/locoy/archive/2006/10/28/542751.html</a> &quot;CONCAT_WS&#x7684;&#x7528;&#x6CD5;&quot;<a href="#fnref2" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
+<li id="fn1" role="doc-endnote"><p><a href="https://www.cnblogs.com/symbol441/articles/957950.html" target="_blank" rel="noopener">https://www.cnblogs.com/symbol441/articles/957950.html</a> "正则表达式的分组"<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://www.cnblogs.com/locoy/archive/2006/10/28/542751.html" target="_blank" rel="noopener">https://www.cnblogs.com/locoy/archive/2006/10/28/542751.html</a> "CONCAT_WS的用法"<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -309,7 +309,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596277000444"></script>
+<script src="/js/app.js?v=1596279502769"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

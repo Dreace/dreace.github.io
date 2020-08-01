@@ -19,18 +19,18 @@
 <meta property="og:description" content="（迁移文章，本文写于2019年8月3日）本人维护的一个项目 中北信息 小程序需要模拟登录来获取信息，这就需要在后台识别验证码。需要识别的验证码比较简单且为纯数字，有简单到可以忽略不计的变形，像下面这个样子。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;2.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;3-1595862311679.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;4.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;5-1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;5-2.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;5-3.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;5-4.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE3-1595862311679.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE4.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-3.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-4.png">
 <meta property="article:published_time" content="2020-07-27T14:11:37.000Z">
-<meta property="article:modified_time" content="2020-08-01T10:15:25.953Z">
+<meta property="article:modified_time" content="2020-08-01T10:57:01.736Z">
 <meta property="article:author" content="Dreace">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="网络">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="验证码识别">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png">
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596277000298">
+  <link rel="stylesheet" href="/css/style.css?v=1596279502677">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -84,7 +84,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5BFC;&#x5165;&#x9700;&#x8981;&#x7528;&#x5230;&#x5E93;"><span class="toc-text">&amp;#x5BFC;&amp;#x5165;&amp;#x9700;&amp;#x8981;&amp;#x7528;&amp;#x5230;&amp;#x5E93;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x7070;&#x5EA6;&#x5316;"><span class="toc-text">&amp;#x7070;&amp;#x5EA6;&amp;#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x4E8C;&#x503C;&#x5316;"><span class="toc-text">&amp;#x4E8C;&amp;#x503C;&amp;#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5207;&#x5272;&#x4E3A;&#x5355;&#x4E2A;&#x6570;&#x5B57;"><span class="toc-text">&amp;#x5207;&amp;#x5272;&amp;#x4E3A;&amp;#x5355;&amp;#x4E2A;&amp;#x6570;&amp;#x5B57;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x548C;&#x5B57;&#x5E93;&#x5BF9;&#x6BD4;"><span class="toc-text">&amp;#x548C;&amp;#x5B57;&amp;#x5E93;&amp;#x5BF9;&amp;#x6BD4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x6700;&#x540E;"><span class="toc-text">&amp;#x6700;&amp;#x540E;</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导入需要用到库"><span class="toc-text">导入需要用到库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#灰度化"><span class="toc-text">灰度化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二值化"><span class="toc-text">二值化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切割为单个数字"><span class="toc-text">切割为单个数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#和字库对比"><span class="toc-text">和字库对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-text">最后</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -206,8 +206,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年07月27日</a>
-    <a><i class="nexmoefont icon-areachart"></i>3.1k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 19 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>3k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/Python/">Python</a>
     
@@ -216,24 +216,24 @@
     
   </div>
   <article>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous"><p>&#xFF08;&#x8FC1;&#x79FB;&#x6587;&#x7AE0;&#xFF0C;&#x672C;&#x6587;&#x5199;&#x4E8E;2019&#x5E74;8&#x6708;3&#x65E5;&#xFF09;&#x672C;&#x4EBA;&#x7EF4;&#x62A4;&#x7684;&#x4E00;&#x4E2A;&#x9879;&#x76EE; <a href="https://github.com/Dreace/NUC-Information" target="_blank" rel="noopener">&#x4E2D;&#x5317;&#x4FE1;&#x606F;</a> &#x5C0F;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x6A21;&#x62DF;&#x767B;&#x5F55;&#x6765;&#x83B7;&#x53D6;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x5C31;&#x9700;&#x8981;&#x5728;&#x540E;&#x53F0;&#x8BC6;&#x522B;&#x9A8C;&#x8BC1;&#x7801;&#x3002;&#x9700;&#x8981;&#x8BC6;&#x522B;&#x7684;&#x9A8C;&#x8BC1;&#x7801;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#x4E14;&#x4E3A;&#x7EAF;&#x6570;&#x5B57;&#xFF0C;&#x6709;&#x7B80;&#x5355;&#x5230;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x4E0D;&#x8BA1;&#x7684;&#x53D8;&#x5F62;&#xFF0C;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x6837;&#x5B50;&#x3002;</p>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous"><p>（迁移文章，本文写于2019年8月3日）本人维护的一个项目 <a href="https://github.com/Dreace/NUC-Information" target="_blank" rel="noopener">中北信息</a> 小程序需要模拟登录来获取信息，这就需要在后台识别验证码。需要识别的验证码比较简单且为纯数字，有简单到可以忽略不计的变形，像下面这个样子。</p>
 <a id="more"></a>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png" alt><figcaption>&#x9A8C;&#x8BC1;&#x7801;&#x6837;&#x4F8B;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png" alt><figcaption>验证码样例</figcaption>
 </figure>
-<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x7A0D;&#x5FAE;&#x6709;&#x4E00;&#x70B9;&#x566A;&#x70B9;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x538B;&#x7F29;&#x89E3;&#x538B;&#x8FC7;&#x7A0B;&#x9020;&#x6210;&#x7684;&#xFF08;<a href="https://zh.wikipedia.org/zh-cn/JPEG" target="_blank" rel="noopener">JPG</a> &#x662F;&#x6709;&#x635F;&#x538B;&#x7F29;&#xFF09;&#x3002;</p>
-<p>&#x8FD9;&#x662F;&#x8FD1;&#x4E4E;&#x6807;&#x51C6;&#x5370;&#x5237;&#x4F53;&#x7684;&#x56DB;&#x4F4D;&#x6570;&#x5B57;&#xFF0C;&#x53EA;&#x662F;&#x6709;&#x7A0D;&#x5FAE;&#x503E;&#x659C;&#xFF0C;&#x6700;&#x5F00;&#x59CB;&#x60F3;&#x5230;&#x7684;&#x529E;&#x6CD5;&#x662F; OCR &#x3002;</p>
-<p>&#x6700;&#x521D;&#x4F7F;&#x7528; <a href="https://github.com/tesseract-ocr/tesseract" target="_blank" rel="noopener">Tesseract</a> &#x8FDB;&#x884C;&#x672C;&#x5730; OCR &#x3002;&#x6548;&#x679C;&#x4E0D;&#x662F;&#x5F88;&#x7406;&#x60F3;&#xFF0C;&#x91CD;&#x8981;&#x95EE;&#x9898;&#x662F; Tesseract &#x662F;&#x901A;&#x7528; OCR&#xFF0C;&#x4ED6;&#x4F1A;&#x8BC6;&#x522B;&#x6240;&#x6709;&#x7684;&#x82F1;&#x6587;&#x5B57;&#x7B26;&#x548C;&#x6807;&#x70B9;&#xFF0C;&#x8FD9;&#x5C31;&#x9020;&#x6210;&#x5927;&#x91CF;&#x7684;&#x8BC6;&#x522B;&#x4E0D;&#x51C6;&#x786E;&#x3002;&#x800C;&#x4E14; Tesseract &#x662F;&#x4E00;&#x4E2A;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#xFF0C;&#x5728;&#x672C;&#x5730;&#x8FD0;&#x884C;&#x76F8;&#x5F53;&#x8017;&#x8D39;&#x8D44;&#x6E90;&#x3002;&#x5728;&#x5E73;&#x65F6;&#x53EF;&#x4EE5;&#x5E94;&#x4ED8;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x5728;&#x8BBF;&#x95EE;&#x9AD8;&#x5CF0;&#x65F6;&#x4F1A;&#x6D88;&#x8017;&#x5927;&#x91CF;&#x65F6;&#x95F4;&#x5728;&#x591A;&#x4E2A;&#x8BC6;&#x522B;&#x7EBF;&#x7A0B;&#x4E2D;&#x5207;&#x6362;&#xFF0C;&#x751A;&#x81F3;&#x76F4;&#x63A5;&#x9020;&#x6210;&#x670D;&#x52A1;&#x5668;&#x5B95;&#x673A;&#x3002; &#x5728;&#x6CA1;&#x6709;&#x65B0;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E4B;&#x524D;&#x4F7F;&#x7528;&#x4E86;&#x63A5;&#x8FD1;&#x4E00;&#x5E74;&#xFF0C;&#x53EA;&#x80FD;&#x8BF4;&#x52C9;&#x5F3A;&#x80FD;&#x7528;&#x3002;</p>
-<p>&#x524D;&#x4E0D;&#x4E45;&#xFF0C;&#x53D1;&#x73B0;&#x767E;&#x5EA6;&#x4E91;&#x7684; OCR &#x63D0;&#x4F9B;&#x6BCF;&#x5929; 5 &#x4E07;&#x6B21;&#x7684;&#x514D;&#x8D39;&#x8C03;&#x7528;&#xFF0C;&#x6D4B;&#x8BD5;&#x53D1;&#x73B0;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E14;&#x6548;&#x679C;&#x4E0D;&#x9519;&#x3002;&#x4F7F;&#x7528;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x540E;&#x53D1;&#x73B0;&#x4E00;&#x4E9B;&#x95EE;&#x9898;&#xFF0C;&#x5F02;&#x6B65;&#x7684;&#x8C03;&#x7528;&#x65B9;&#x5F0F;&#x9020;&#x6210;&#x7684;&#x5EF6;&#x8FDF;&#x4E0D;&#x53EF;&#x5FFD;&#x7565;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x7F51;&#x7EDC;&#x5EF6;&#x8FDF;&#x3002;&#x6D4B;&#x8BD5;&#x53D1;&#x73B0;&#x8FD9;&#x4E2A;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x6BCF;&#x4E2A;&#x9A8C;&#x8BC1;&#x7801;&#x8BC6;&#x522B;&#x6709;&#x5C06;&#x8FD1; 1s &#x7684;&#x7F51;&#x7EDC;&#x5EF6;&#x8FDF;&#xFF0C;&#x8FD9;&#x4F7F;&#x5F97;&#x540E;&#x53F0;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#x88AB;&#x5EF6;&#x957F;&#xFF0C;&#x5F71;&#x54CD;&#x7528;&#x6237;&#x4F53;&#x9A8C;&#x3002;&#x867D;&#x7136;&#x767E;&#x5EA6;&#x4E91;&#x4E0D;&#x4F1A;&#x5C06;&#x6570;&#x5B57;&#x8BC6;&#x522B;&#x6210;&#x5176;&#x4ED6;&#x5B57;&#x7B26;&#xFF0C;&#x4F46;&#x7ECF;&#x5E38;&#x51FA;&#x73B0;&#x53EA;&#x8BC6;&#x522B;&#x51FA;&#x4E24;&#x4F4D;&#x6570;&#x5B57;&#x7684;&#x60C5;&#x51B5;&#x9020;&#x6210;&#x5927;&#x91CF;&#x91CD;&#x8BD5;&#xFF0C;&#x66F4;&#x52A0;&#x5F71;&#x54CD;&#x6027;&#x80FD;&#x3002;</p>
-<p>&#x4E24;&#x5EA6;&#x66F4;&#x6362;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x540E;&#xFF0C;&#x8FD8;&#x662F;&#x6CA1;&#x80FD;&#x627E;&#x5230;&#x4EE4;&#x4EBA;&#x6EE1;&#x610F;&#x7684;&#x65B9;&#x6848;&#x3002;&#x51B3;&#x5B9A;&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#x9A8C;&#x8BC1;&#x7801;&#x7684;&#x8BC6;&#x522B;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x9700;&#x8981;&#x8BAD;&#x7EC3;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#xFF0C;&#x76F4;&#x63A5;&#x901A;&#x8FC7;&#x89C4;&#x5219;&#x5339;&#x914D;&#x80FD;&#x5F97;&#x5230;&#x5F88;&#x597D;&#x7684;&#x6027;&#x80FD;&#x4E0E;&#x6548;&#x679C;&#xFF0C;&#x6700;&#x7EC8;&#x5355;&#x4E2A;&#x9A8C;&#x8BC1;&#x7801;&#x8BC6;&#x522B;&#x65F6;&#x95F4;&#x4E3A; 4-5ms&#xFF0C;&#x6B63;&#x786E;&#x7387; 100%&#x3002;</p>
-<p>&#x8BC6;&#x522B;&#x6B65;&#x9AA4;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>可以看到稍微有一点噪点，应该是压缩解压过程造成的（<a href="https://zh.wikipedia.org/zh-cn/JPEG" target="_blank" rel="noopener">JPG</a> 是有损压缩）。</p>
+<p>这是近乎标准印刷体的四位数字，只是有稍微倾斜，最开始想到的办法是 OCR 。</p>
+<p>最初使用 <a href="https://github.com/tesseract-ocr/tesseract" target="_blank" rel="noopener">Tesseract</a> 进行本地 OCR 。效果不是很理想，重要问题是 Tesseract 是通用 OCR，他会识别所有的英文字符和标点，这就造成大量的识别不准确。而且 Tesseract 是一个神经网络，在本地运行相当耗费资源。在平时可以应付大部分情况，但在访问高峰时会消耗大量时间在多个识别线程中切换，甚至直接造成服务器宕机。 在没有新的解决方案之前使用了接近一年，只能说勉强能用。</p>
+<p>前不久，发现百度云的 OCR 提供每天 5 万次的免费调用，测试发现可以使用且效果不错。使用一段时间后发现一些问题，异步的调用方式造成的延迟不可忽略，尤其是网络延迟。测试发现这个解决方案每个验证码识别有将近 1s 的网络延迟，这使得后台响应时间被延长，影响用户体验。虽然百度云不会将数字识别成其他字符，但经常出现只识别出两位数字的情况造成大量重试，更加影响性能。</p>
+<p>两度更换解决方案后，还是没能找到令人满意的方案。决定自己实现验证码的识别，这里不需要训练神经网络，直接通过规则匹配能得到很好的性能与效果，最终单个验证码识别时间为 4-5ms，正确率 100%。</p>
+<p>识别步骤如下：</p>
 <ol type="1">
-<li>&#x7070;&#x5EA6;&#x5316;</li>
-<li>&#x4E8C;&#x503C;&#x5316;</li>
-<li>&#x5207;&#x5272;&#x4E3A;&#x5355;&#x4E2A;&#x6570;&#x5B57;</li>
-<li>&#x548C;&#x5B57;&#x5E93;&#x5BF9;&#x6BD4;</li>
+<li>灰度化</li>
+<li>二值化</li>
+<li>切割为单个数字</li>
+<li>和字库对比</li>
 </ol>
-<h2 id="&#x5BFC;&#x5165;&#x9700;&#x8981;&#x7528;&#x5230;&#x5E93;">&#x5BFC;&#x5165;&#x9700;&#x8981;&#x7528;&#x5230;&#x5E93;</h2>
+<h2 id="导入需要用到库">导入需要用到库</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> time</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> io <span class="im">import</span> BytesIO</span>
@@ -242,95 +242,95 @@
 <span id="cb1-6"><a href="#cb1-6"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
 <span id="cb1-7"><a href="#cb1-7"></a></span>
 <span id="cb1-8"><a href="#cb1-8"></a><span class="im">import</span> data</span></code></pre></div>
-<p>&#x6700;&#x540E;&#x4E00;&#x884C;&#x5BFC;&#x5165;&#x7684;&#x662F;&#x5B57;&#x5E93;&#xFF0C;&#x540E;&#x9762;&#x4F1A;&#x5199;&#x5230;&#x3002;</p>
-<h2 id="&#x7070;&#x5EA6;&#x5316;">&#x7070;&#x5EA6;&#x5316;</h2>
-<p>&#x4ECE;&#x4E4B;&#x524D;&#x7684;&#x4F8B;&#x5B50;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x56FE;&#x50CF;&#x6709;&#x4E00;&#x4E9B;&#x566A;&#x70B9;&#xFF0C;&#x4E3A;&#x4E86;&#x4E0D;&#x8BA9;&#x5176;&#x5E72;&#x6270;&#x8BC6;&#x522B;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x964D;&#x566A;&#x5904;&#x7406;&#xFF0C;&#x7B2C;&#x4E00;&#x6B65;&#x662F;&#x5C06;&#x56FE;&#x7247;&#x7070;&#x5EA6;&#x5316;&#x3002;&#x6240;&#x8C13;&#x7070;&#x5EA6;&#x5316;&#x662F;&#x5C06; RGB &#x8272;&#x5F69;&#x7A7A;&#x95F4;&#x4E2D;&#x4E09;&#x4E2A;&#x91CF;&#x5408;&#x5E76;&#x6210;&#x4E00;&#x4E2A;&#x91CF; L&#xFF0C;&#x8FD9;&#x6837;&#x539F;&#x672C;&#x7684;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x53D8;&#x6210;&#x7070;&#x5EA6;&#x56FE;&#x4E86;&#x3002;&#x6BCF;&#x4E2A;&#x50CF;&#x7D20;&#x7684;&#x53D6;&#x503C;&#x4E5F;&#x7531; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>25</mn><msup><mn>6</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">256^{3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">5</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span>&#xFF08;16777216&#xFF09;&#x4E2A;&#x51CF;&#x5C11;&#x5230; 256 &#x4E2A;&#xFF0C;&#x80FD;&#x591F;&#x51CF;&#x5C11;&#x540E;&#x7EE7;&#x7684;&#x8BA1;&#x7B97;&#x91CF;&#x3002;&#x5C06;&#x4E0A;&#x9762;&#x7684;&#x56FE;&#x7247;&#x7070;&#x5EA6;&#x5316;&#x4E4B;&#x540E;&#x53D8;&#x6210;&#x4E0B;&#x9762;&#x7684;&#x6837;&#x5B50;&#x3002;</p>
+<p>最后一行导入的是字库，后面会写到。</p>
+<h2 id="灰度化">灰度化</h2>
+<p>从之前的例子可以看到图像有一些噪点，为了不让其干扰识别需要进行降噪处理，第一步是将图片灰度化。所谓灰度化是将 RGB 色彩空间中三个量合并成一个量 L，这样原本的彩色图像变成灰度图了。每个像素的取值也由 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>25</mn><msup><mn>6</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">256^{3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">5</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span>（16777216）个减少到 256 个，能够减少后继的计算量。将上面的图片灰度化之后变成下面的样子。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;2.png" alt><figcaption>&#x7070;&#x5EA6;&#x5316;&#x540E;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图2.png" alt><figcaption>灰度化后</figcaption>
 </figure>
-<p>&#x5904;&#x7406;&#x4EE3;&#x7801;&#xFF1A;</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># &#x7070;&#x5EA6;&#x5904;&#x7406;&#x5E76;&#x521B;&#x5EFA;&#x4E8C;&#x7EF4;&#x77E9;&#x9635;</span></span>
+<p>处理代码：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 灰度处理并创建二维矩阵</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>img_matrix <span class="op">=</span> np.array(Image.<span class="bu">open</span>(BytesIO(image_bytes)).convert(<span class="st">&quot;L&quot;</span>))</span></code></pre></div>
-<p>&#x5176;&#x4E2D; <code>Image.open(BytesIO(image_bytes)).convert(&quot;L&quot;)</code> &#x662F;&#x4ECE; <code>image_bytes</code> &#x4E2D;&#x521B;&#x5EFA;&#x56FE;&#x50CF;&#x5E76;&#x8F6C;&#x4E3A;&#x7070;&#x5EA6;&#x56FE;&#xFF0C; <code>image_bytes</code>&#xA0; &#x53EF;&#x4EE5;&#x662F;&#x4ECE;&#x7F51;&#x7EDC;&#x52A0;&#x8F7D;&#x6216;&#x4ECE;&#x672C;&#x5730;&#x6587;&#x4EF6;&#x8BFB;&#x5165;&#x7684;&#x5B57;&#x8282;&#x6570;&#x636E;&#x3002;&#x7136;&#x540E;&#x6839;&#x636E;&#x7070;&#x5EA6;&#x56FE;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <a href="https://numpy.org/" target="_blank" rel="noopener">NumPy</a> &#x77E9;&#x9635;&#x65B9;&#x4FBF;&#x540E;&#x9762;&#x7684;&#x8FD0;&#x7B97;&#x3002;</p>
-<p>&#x7070;&#x5EA6;&#x5316;&#x4E4B;&#x540E;&#x4E0E;&#x539F;&#x56FE;&#x597D;&#x50CF;&#x6CA1;&#x6709;&#x533A;&#x522B;&#x662F;&#x56E0;&#x4E3A;&#x539F;&#x56FE;&#x672C;&#x8EAB;&#x662F;&#x9ED1;&#x767D;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x539F;&#x56FE;&#x662F;&#x5F69;&#x8272;&#x7684;&#x8BDD;&#x80FD;&#x591F;&#x5F88;&#x660E;&#x663E;&#x5730;&#x770B;&#x51FA;&#x533A;&#x522B;&#x3002;</p>
-<h2 id="&#x4E8C;&#x503C;&#x5316;">&#x4E8C;&#x503C;&#x5316;</h2>
-<p>&#x4E8C;&#x503C;&#x5316;&#x662F;&#x5C06;&#x56FE;&#x50CF;&#x7684;&#x50CF;&#x7D20;&#x4E0E;&#x67D0;&#x4E2A;&#x9608;&#x503C;&#x6BD4;&#x8F83;&#xFF0C;&#x82E5;&#x5927;&#x4E8E;&#x8FD9;&#x4E2A;&#x9608;&#x503C;&#x5219;&#x8BBE;&#x7F6E;&#x4E3A;&#x7070;&#x5EA6;&#x6700;&#x5927;&#x503C;&#xFF08;&#x8FD9;&#x91CC;&#x662F; 1&#xFF0C;&#x767D;&#x8272;&#xFF09;&#xFF0C;&#x5C0F;&#x4E8E;&#x67D0;&#x4E2A;&#x503C;&#x5219;&#x8BBE;&#x4E3A;&#x7070;&#x5EA6;&#x6700;&#x5C0F;&#x503C;&#xFF08;&#x8FD9;&#x91CC;&#x662F; 0&#xFF0C;&#x9ED1;&#x8272;&#xFF09;&#x3002;&#x8FD9;&#x6837;&#x4E0A;&#x4E00;&#x6B65;&#x7684;&#x7070;&#x5EA6;&#x56FE;&#x5C31;&#x8F6C;&#x5316;&#x4E3A;&#x4E8C;&#x503C;&#x56FE;&#xFF0C;&#x4FBF;&#x4E8E;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x56FE;&#x50CF;&#x5206;&#x5272;&#x3002;&#x9009;&#x62E9;&#x5408;&#x9002;&#x7684;&#x9608;&#x503C;&#x8FD8;&#x53EF;&#x4EE5;&#x53BB;&#x9664;&#x56FE;&#x50CF;&#x566A;&#x70B9;&#x3002;</p>
+<p>其中 <code>Image.open(BytesIO(image_bytes)).convert("L")</code> 是从 <code>image_bytes</code> 中创建图像并转为灰度图， <code>image_bytes</code>  可以是从网络加载或从本地文件读入的字节数据。然后根据灰度图创建一个 <a href="https://numpy.org/" target="_blank" rel="noopener">NumPy</a> 矩阵方便后面的运算。</p>
+<p>灰度化之后与原图好像没有区别是因为原图本身是黑白的，如果原图是彩色的话能够很明显地看出区别。</p>
+<h2 id="二值化">二值化</h2>
+<p>二值化是将图像的像素与某个阈值比较，若大于这个阈值则设置为灰度最大值（这里是 1，白色），小于某个值则设为灰度最小值（这里是 0，黑色）。这样上一步的灰度图就转化为二值图，便于接下来的图像分割。选择合适的阈值还可以去除图像噪点。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;3-1595862311679.png" alt><figcaption>&#x4E8C;&#x503C;&#x5316;&#x540E;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图3-1595862311679.png" alt><figcaption>二值化后</figcaption>
 </figure>
-<p>&#x4E8C;&#x503C;&#x5316;&#x540E;&#x566A;&#x70B9;&#x5DF2;&#x7ECF;&#x5B8C;&#x5168;&#x6D88;&#x5931;&#xFF0C;&#x6570;&#x5B57;&#x7684;&#x8FB9;&#x754C;&#x66F4;&#x52A0;&#x9510;&#x5229;&#x3002;</p>
-<p>&#x5904;&#x7406;&#x4EE3;&#x7801;&#xFF1A;</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># &#x83B7;&#x53D6;&#x77E9;&#x9635;&#xFF08;&#x56FE;&#x50CF;&#xFF09;&#x7684;&#x957F;&#x5BBD;</span></span>
+<p>二值化后噪点已经完全消失，数字的边界更加锐利。</p>
+<p>处理代码：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 获取矩阵（图像）的长宽</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>rows, cols <span class="op">=</span> img_matrix.shape</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(rows):</span>
 <span id="cb3-4"><a href="#cb3-4"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(cols):</span>
-<span id="cb3-5"><a href="#cb3-5"></a>        <span class="co"># &#x4E0E;&#x9608;&#x503C;&#x6BD4;&#x8F83;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="co"># 与阈值比较</span></span>
 <span id="cb3-6"><a href="#cb3-6"></a>        <span class="cf">if</span> img_matrix[i, j] <span class="op">&lt;=</span> <span class="dv">128</span>:</span>
-<span id="cb3-7"><a href="#cb3-7"></a>            <span class="co"># &#x8BBE;&#x4E3A;&#x7070;&#x5EA6;&#x6700;&#x5C0F;&#x503C;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>            <span class="co"># 设为灰度最小值</span></span>
 <span id="cb3-8"><a href="#cb3-8"></a>            img_matrix[i, j] <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-9"><a href="#cb3-9"></a>        <span class="cf">else</span>:</span>
-<span id="cb3-10"><a href="#cb3-10"></a>            <span class="co"># &#x8BBE;&#x4E3A;&#x7070;&#x5EA6;&#x6700;&#x5927;&#x503C;</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>            <span class="co"># 设为灰度最大值</span></span>
 <span id="cb3-11"><a href="#cb3-11"></a>            img_matrix[i, j] <span class="op">=</span> <span class="dv">1</span></span></code></pre></div>
-<h2 id="&#x5207;&#x5272;&#x4E3A;&#x5355;&#x4E2A;&#x6570;&#x5B57;">&#x5207;&#x5272;&#x4E3A;&#x5355;&#x4E2A;&#x6570;&#x5B57;</h2>
-<p>&#x4E8C;&#x503C;&#x5316;&#x540E;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x56FE;&#x50CF;&#x4E2D;&#x6709;&#x5927;&#x91CF;&#x7684;&#x7A7A;&#x767D;&#xFF0C;&#x8FD9;&#x5BF9;&#x4E8E;&#x8BC6;&#x522B;&#x4F1A;&#x9020;&#x6210;&#x4E00;&#x4E9B;&#x5F71;&#x54CD;&#xFF0C;&#x5E76;&#x4E14;&#x5BF9;&#x6BD4;&#x591A;&#x4E2A;&#x9A8C;&#x8BC1;&#x7801;&#x53D1;&#x73B0;&#x6570;&#x5B57;&#x7684;&#x5782;&#x76F4;&#x4F4D;&#x7F6E;&#x5E76;&#x975E;&#x56FA;&#x5B9A;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E0A;&#x4E0B;&#x8FB9;&#x8DDD;&#x662F;&#x6D6E;&#x52A8;&#x7684;&#x3002;&#x56E0;&#x6B64;&#x8981;&#x5C06;&#x7A7A;&#x767D;&#x90E8;&#x5206;&#x5220;&#x6389;&#x53EA;&#x4FDD;&#x7559;&#x6709;&#x56FE;&#x50CF;&#x7684;&#x90E8;&#x5206; &#x3002; &#x5148;&#x770B;&#x5B9E;&#x73B0;&#xFF1A;</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># &#x6BCF;&#x884C;&#x6700;&#x5C0F;&#x503C;</span></span>
+<h2 id="切割为单个数字">切割为单个数字</h2>
+<p>二值化后可以看到图像中有大量的空白，这对于识别会造成一些影响，并且对比多个验证码发现数字的垂直位置并非固定，也就是上下边距是浮动的。因此要将空白部分删掉只保留有图像的部分 。 先看实现：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 每行最小值</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>row_min <span class="op">=</span> np.<span class="bu">min</span>(img_matrix, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># &#x627E;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;&#x6709;&#x56FE;&#x50CF;&#x7684;&#x884C;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># 找到第一个有图像的行</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a>row_start <span class="op">=</span> np.argmin(row_min)</span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># &#x627E;&#x5230;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x6709;&#x56FE;&#x50CF;&#x7684;&#x884C;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># 找到最后一个有图像的行</span></span>
 <span id="cb4-6"><a href="#cb4-6"></a>row_end <span class="op">=</span> np.argmin(np.flip(row_min))</span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># &#x53EA;&#x53D6;&#x6709;&#x56FE;&#x50CF;&#x7684;&#x884C;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># 只取有图像的行</span></span>
 <span id="cb4-8"><a href="#cb4-8"></a>img_matrix <span class="op">=</span> img_matrix[row_start:<span class="op">-</span>row_end, :]</span></code></pre></div>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;4.png" alt><figcaption>&#x53BB;&#x9664;&#x4E0A;&#x4E0B;&#x7A7A;&#x767D;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图4.png" alt><figcaption>去除上下空白</figcaption>
 </figure>
-<p><code>row_min</code> &#x7684;&#x503C;&#x4E3A;</p>
+<p><code>row_min</code> 的值为</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>[<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span>]</span></code></pre></div>
-<p>&#x5176;&#x4E2D; 1 &#x8868;&#x793A;&#x8BE5;&#x884C;&#x6700;&#x5C0F;&#x503C;&#x4E3A; 1 &#xFF0C;&#x5728;&#x672C;&#x4F8B;&#x4E2D;&#x8868;&#x793A;&#x8FD9;&#x4E00;&#x884C;&#x90FD;&#x662F; 1 &#xFF0C;&#x5373;&#x6CA1;&#x6709;&#x9ED1;&#x8272;&#x50CF;&#x7D20;&#x3002;0 &#x5219;&#x8868;&#x793A;&#x8FD9;&#x4E00;&#x884C;&#x6709; 0 &#x7684;&#x5B58;&#x5728;&#xFF0C;&#x5373;&#x5B58;&#x5728;&#x9ED1;&#x8272;&#x50CF;&#x7D20;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8FD9;&#x4E00;&#x884C;&#x6709;&#x56FE;&#x50CF;&#xFF0C;&#x9700;&#x8981;&#x4FDD;&#x7559;&#x3002;<code>np.argmin()</code> &#x5728; <code>row_min</code> &#x4E2D;&#x67E5;&#x627E;&#x6700;&#x5C0F;&#x503C;&#x7B2C;&#x4E00;&#x6B21;&#x51FA;&#x73B0;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x5373;&#x4E3A;&#x56FE;&#x50CF;&#x5F00;&#x59CB;&#x884C;&#x3002;&#x5C06; <code>row_min</code> &#x53CD;&#x8F6C;&#x4E4B;&#x540E;&#x518D;&#x6B21;&#x67E5;&#x627E;&#x6700;&#x5C0F;&#x503C;&#x4E0B;&#x6807;&#x5C31;&#x5F97;&#x5230;&#x4E86;&#x7ED3;&#x675F;&#x4E0B;&#x6807;&#xFF0C;&#x8FD9;&#x4E2A;&#x4E0B;&#x6807;&#x7684;&#x662F;&#x4ECE;&#x53F3;&#x5411;&#x5DE6;&#x8BA1;&#x6570;&#x7684;&#x3002; &#x5F97;&#x5230; <code>row_start</code> &#x548C; <code>row_end</code> &#x540E;&#x5BF9;&#x77E9;&#x9635;&#x8FDB;&#x884C;&#x5207;&#x7247;&#xFF0C;<code>row_end</code> &#x8981;&#x53D6;&#x8D1F;&#x503C;&#x8868;&#x793A;&#x8868;&#x793A;&#x4ECE;&#x53F3;&#x5F00;&#x59CB;&#x8BA1;&#x6570;&#x3002;</p>
-<p>&#x63A5;&#x4E0B;&#x6765;&#x5C06;&#x6570;&#x5B57;&#x5207;&#x7247;&#x6210;&#x5355;&#x4E2A;&#xFF1A;</p>
+<p>其中 1 表示该行最小值为 1 ，在本例中表示这一行都是 1 ，即没有黑色像素。0 则表示这一行有 0 的存在，即存在黑色像素，也就是这一行有图像，需要保留。<code>np.argmin()</code> 在 <code>row_min</code> 中查找最小值第一次出现的位置，即为图像开始行。将 <code>row_min</code> 反转之后再次查找最小值下标就得到了结束下标，这个下标的是从右向左计数的。 得到 <code>row_start</code> 和 <code>row_end</code> 后对矩阵进行切片，<code>row_end</code> 要取负值表示表示从右开始计数。</p>
+<p>接下来将数字切片成单个：</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>codes <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> <span class="dv">4</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
-<span id="cb6-3"><a href="#cb6-3"></a>    <span class="co"># &#x5207;&#x7247;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="co"># 切片</span></span>
 <span id="cb6-4"><a href="#cb6-4"></a>    imag_matrix_spited <span class="op">=</span> img_matrix[:, <span class="dv">19</span> <span class="op">*</span> i:<span class="dv">19</span> <span class="op">*</span> (i <span class="op">+</span> <span class="dv">1</span>)]</span>
 <span id="cb6-5"><a href="#cb6-5"></a>    col_min <span class="op">=</span> np.<span class="bu">min</span>(imag_matrix_spited, axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-6"><a href="#cb6-6"></a>    col_start <span class="op">=</span> np.argmin(col_min)</span>
 <span id="cb6-7"><a href="#cb6-7"></a>    col_end <span class="op">=</span> np.argmin(np.flip(col_min))</span>
-<span id="cb6-8"><a href="#cb6-8"></a>    <span class="co"># &#x56FE;&#x50CF;&#x5BBD;&#x5EA6;</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="co"># 图像宽度</span></span>
 <span id="cb6-9"><a href="#cb6-9"></a>    width <span class="op">=</span> col_min.shape[<span class="dv">0</span>] <span class="op">-</span> (col_start <span class="op">+</span> col_end)</span>
-<span id="cb6-10"><a href="#cb6-10"></a>    <span class="co"># &#x5BBD;&#x5EA6;&#x6269;&#x5BBD;&#x5230; 9 &#x50CF;&#x7D20;</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="co"># 宽度扩宽到 9 像素</span></span>
 <span id="cb6-11"><a href="#cb6-11"></a>    width_rest <span class="op">=</span> <span class="dv">9</span> <span class="op">-</span> width</span>
-<span id="cb6-12"><a href="#cb6-12"></a>    <span class="co"># &#x5DE6;&#x8FB9;&#x754C;</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>    <span class="co"># 左边界</span></span>
 <span id="cb6-13"><a href="#cb6-13"></a>    col_start <span class="op">-=</span> <span class="bu">int</span>(math.ceil(width_rest <span class="op">/</span> <span class="fl">2.0</span>))</span>
-<span id="cb6-14"><a href="#cb6-14"></a>    <span class="co"># &#x53F3;&#x8FB9;&#x754C;</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="co"># 右边界</span></span>
 <span id="cb6-15"><a href="#cb6-15"></a>    col_end <span class="op">-=</span> <span class="bu">int</span>(math.floor(width_rest <span class="op">/</span> <span class="fl">2.0</span>))</span>
-<span id="cb6-16"><a href="#cb6-16"></a>    <span class="co"># &#x88C1;&#x526A;&#x4E3A; 9 &#x50CF;&#x7D20;&#x5BBD;&#x7684;&#x56FE;&#x50CF;</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>    <span class="co"># 裁剪为 9 像素宽的图像</span></span>
 <span id="cb6-17"><a href="#cb6-17"></a>    imag_matrix_spited <span class="op">=</span> imag_matrix_spited[:, col_start:<span class="op">-</span>col_end]</span></code></pre></div>
-<p>&#x5148;&#x7C97;&#x7565;&#x88C1;&#x526A;&#x4E3A;&#x6BCF;&#x4E2A;&#x6570;&#x5B57; 20 &#x50CF;&#x7D20;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x5224;&#x65AD;&#x5DE6;&#x8FB9;&#x754C;&#x548C;&#x53F3;&#x8FB9;&#x754C;&#xFF0C;&#x540C;&#x4E4B;&#x524D;&#x4E00;&#x6837;&#x7684;&#x7B97;&#x6CD5;&#x3002;&#x4F46;&#x662F;&#x8FD9;&#x91CC;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5F97;&#x5230;&#x7684;&#x8FB9;&#x754C;&#xFF0C;&#x6BCF;&#x4E2A;&#x6570;&#x5B57;&#x7684;&#x5BBD;&#x5EA6;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x76F4;&#x63A5;&#x5207;&#x7247;&#x4F1A;&#x5BFC;&#x81F4;&#x77E9;&#x9635;&#x5927;&#x5C0F;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4F1A;&#x5F71;&#x54CD;&#x4E4B;&#x540E;&#x7684;&#x8BA1;&#x7B97;&#x3002;&#x56E0;&#x6B64;&#x8981;&#x5C06;&#x5C06;&#x5BBD;&#x5EA6;&#x7EDF;&#x4E00;&#x4E3A; 9 &#x50CF;&#x7D20;&#xFF0C;&#x5373;&#x4E3A;&#x6700;&#x5BBD;&#x7684;&#x6570;&#x5B57;&#x5BBD;&#x5EA6;&#x3002;</p>
+<p>先粗略裁剪为每个数字 20 像素，然后再判断左边界和右边界，同之前一样的算法。但是这里不能直接使用得到的边界，每个数字的宽度不一样，直接切片会导致矩阵大小不一样，会影响之后的计算。因此要将将宽度统一为 9 像素，即为最宽的数字宽度。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;5-1.png" alt><figcaption>&#x5207;&#x7247;&#x7ED3;&#x679C;-8</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-1.png" alt><figcaption>切片结果-8</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;5-2.png" alt><figcaption>&#x5207;&#x7247;&#x7ED3;&#x679C;-4</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-2.png" alt><figcaption>切片结果-4</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;5-3.png" alt><figcaption>&#x5207;&#x7247;&#x7ED3;&#x679C;-0</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-3.png" alt><figcaption>切片结果-0</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/&#x56FE;5-4.png" alt><figcaption>&#x5207;&#x7247;&#x7ED3;&#x679C;-3</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-4.png" alt><figcaption>切片结果-3</figcaption>
 </figure>
-<h2 id="&#x548C;&#x5B57;&#x5E93;&#x5BF9;&#x6BD4;">&#x548C;&#x5B57;&#x5E93;&#x5BF9;&#x6BD4;</h2>
+<h2 id="和字库对比">和字库对比</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>res <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> <span class="dv">10</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># &#x5C55;&#x5F00;&#x6210;&#x4E00;&#x7EF4;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># 展开成一维</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a>x <span class="op">=</span> imag_matrix_spited.flatten()</span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="co"># &#x4E00;&#x6B21;&#x53D6;&#x5B57;&#x5E93;&#x4E2D;&#x6807;&#x51C6;&#x6570;&#x636E;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="co"># 一次取字库中标准数据</span></span>
 <span id="cb7-6"><a href="#cb7-6"></a>    y <span class="op">=</span> data.array_map[j]</span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="co"># &#x901A;&#x8FC7;&#x5F02;&#x6216;&#x8BA1;&#x7B97;&#x4E0D;&#x540C;&#x5143;&#x7D20;&#x7684;&#x6570;&#x91CF;</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="co"># 通过异或计算不同元素的数量</span></span>
 <span id="cb7-8"><a href="#cb7-8"></a>    res[j] <span class="op">=</span> np.<span class="bu">sum</span>(x <span class="op">^</span> y)</span>
-<span id="cb7-9"><a href="#cb7-9"></a>    <span class="co"># &#x53D6;&#x5DEE;&#x5F02;&#x6700;&#x5C0F;&#x7684;&#x4E0B;&#x6807;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>    <span class="co"># 取差异最小的下标</span></span>
 <span id="cb7-10"><a href="#cb7-10"></a>codes[i] <span class="op">=</span> <span class="bu">str</span>(np.argmin(res))</span></code></pre></div>
-<p>&#x9996;&#x5148;&#x5C06;&#x539F;&#x5148;&#x7684;&#x4E8C;&#x7EF4;&#x77E9;&#x9635;&#x5C55;&#x5F00;&#x4E3A;&#x4E00;&#x7EF4;&#xFF0C;&#x518D;&#x4E0E;&#x5B57;&#x5E93;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5BF9;&#x6BD4;&#x627E;&#x5230;&#x5DEE;&#x5F02;&#x6700;&#x5C0F;&#x7684;&#x90A3;&#x4E2A;&#x65E2;&#x662F;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#xFF0C;&#x8FD9;&#x6837;&#x6574;&#x4E2A;&#x9A8C;&#x8BC1;&#x7801;&#x5C31;&#x8BC6;&#x522B;&#x51FA;&#x6765;&#x4E86;&#x3002;&#x5B57;&#x5E93;&#x5219;&#x9700;&#x8981;&#x5C06;&#x5C55;&#x5F00;&#x540E;&#x7684;&#x77E9;&#x9635;&#x6309;&#x7167;&#x987A;&#x5E8F;&#x6574;&#x7406;&#x4E00;&#x4E0B;&#x5F97;&#x5230;&#x3002;</p>
-<p>&#x4E0B;&#x9762;&#x662F;&#x9488;&#x5BF9;&#x8FD9;&#x79CD;&#x9A8C;&#x8BC1;&#x7801;&#x7684;&#x5B57;&#x5E93;&#xFF08;0~9&#xFF09;&#xFF1A;</p>
+<p>首先将原先的二维矩阵展开为一维，再与字库中的数据对比找到差异最小的那个既是最终结果，这样整个验证码就识别出来了。字库则需要将展开后的矩阵按照顺序整理一下得到。</p>
+<p>下面是针对这种验证码的字库（0~9）：</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-2"><a href="#cb8-2"></a></span>
 <span id="cb8-3"><a href="#cb8-3"></a>array_map <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> <span class="dv">10</span></span>
@@ -374,10 +374,10 @@
 <span id="cb8-41"><a href="#cb8-41"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
 <span id="cb8-42"><a href="#cb8-42"></a>     <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
 <span id="cb8-43"><a href="#cb8-43"></a>     <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span></code></pre></div>
-<p>&#x81F3;&#x6B64;&#x9A8C;&#x8BC1;&#x7801;&#x8BC6;&#x522B;&#x6210;&#x529F;&#x3002;</p>
-<h2 id="&#x6700;&#x540E;">&#x6700;&#x540E;</h2>
-<p>&#x5B8C;&#x6574;&#x7684;&#x4EE3;&#x7801;&#x548C;&#x4E00;&#x767E;&#x4E2A;&#x6D4B;&#x8BD5;&#x9A8C;&#x8BC1;&#x7801;&#x53EF;&#x4EE5;&#x5728; <a href="https://github.com/Dreace/IVC" target="_blank" rel="noopener">Dreace/IVC</a> &#x627E;&#x5230;&#x3002;</p>
-<p>&#x8981;&#x6C42;&#x73AF;&#x5883;&#x4E3A; Python 3+&#xFF0C;&#x8FD0;&#x884C;&#x524D;&#x8BF7;&#x5148;&#x5B89;&#x88C5; <code>requirements.txt</code> &#x4E2D;&#x7684;&#x4F9D;&#x8D56;&#x3002;</p>
+<p>至此验证码识别成功。</p>
+<h2 id="最后">最后</h2>
+<p>完整的代码和一百个测试验证码可以在 <a href="https://github.com/Dreace/IVC" target="_blank" rel="noopener">Dreace/IVC</a> 找到。</p>
+<p>要求环境为 Python 3+，运行前请先安装 <code>requirements.txt</code> 中的依赖。</p>
 
   </article>
   
@@ -431,7 +431,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596277000365"></script>
+<script src="/js/app.js?v=1596279502709"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

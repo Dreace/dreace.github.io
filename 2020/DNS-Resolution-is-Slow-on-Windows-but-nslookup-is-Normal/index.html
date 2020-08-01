@@ -19,7 +19,7 @@
 <meta property="og:description" content="今天一大早开始在电脑上所有的网站打开变得极慢，通过 SSH 连接服务器也非常慢，但 IP 直连速度又是正常的。初步猜测是 DNS 问题。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-15T09:54:12.000Z">
-<meta property="article:modified_time" content="2020-08-01T10:15:25.949Z">
+<meta property="article:modified_time" content="2020-08-01T10:57:01.736Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="DNS">
 <meta property="article:tag" content="Windows">
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596277000436">
+  <link rel="stylesheet" href="/css/style.css?v=1596279502765">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -74,7 +74,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5B9A;&#x4F4D;&#x95EE;&#x9898;"><span class="toc-text">&amp;#x5B9A;&amp;#x4F4D;&amp;#x95EE;&amp;#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x89E3;&#x51B3;&#x95EE;&#x9898;"><span class="toc-text">&amp;#x89E3;&amp;#x51B3;&amp;#x95EE;&amp;#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x540E;&#x8BB0;"><span class="toc-text">&amp;#x540E;&amp;#x8BB0;</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定位问题"><span class="toc-text">定位问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决问题"><span class="toc-text">解决问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -196,8 +196,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年04月15日</a>
-    <a><i class="nexmoefont icon-areachart"></i>528 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>486 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/Windows/">Windows</a>
     
@@ -206,21 +206,21 @@
     
   </div>
   <article>
-    <p>&#x4ECA;&#x5929;&#x4E00;&#x5927;&#x65E9;&#x5F00;&#x59CB;&#x5728;&#x7535;&#x8111;&#x4E0A;&#x6240;&#x6709;&#x7684;&#x7F51;&#x7AD9;&#x6253;&#x5F00;&#x53D8;&#x5F97;&#x6781;&#x6162;&#xFF0C;&#x901A;&#x8FC7; SSH &#x8FDE;&#x63A5;&#x670D;&#x52A1;&#x5668;&#x4E5F;&#x975E;&#x5E38;&#x6162;&#xFF0C;&#x4F46; IP &#x76F4;&#x8FDE;&#x901F;&#x5EA6;&#x53C8;&#x662F;&#x6B63;&#x5E38;&#x7684;&#x3002;&#x521D;&#x6B65;&#x731C;&#x6D4B;&#x662F; DNS &#x95EE;&#x9898;&#x3002;</p>
+    <p>今天一大早开始在电脑上所有的网站打开变得极慢，通过 SSH 连接服务器也非常慢，但 IP 直连速度又是正常的。初步猜测是 DNS 问题。</p>
 <a id="more"></a>
-<h2 id="&#x5B9A;&#x4F4D;&#x95EE;&#x9898;">&#x5B9A;&#x4F4D;&#x95EE;&#x9898;</h2>
-<p>&#x968F;&#x540E;&#x7528; ping &#x6D4B;&#x8BD5;&#x53D1;&#x73B0;&#x9700;&#x8981;&#x597D;&#x51E0;&#x79D2;&#x949F;&#x624D;&#x80FD;&#x89E3;&#x6790;&#x51FA; IP&#xFF0C;&#x800C;&#x7528; nslookup &#x6D4B;&#x8BD5;&#x89E3;&#x6790;&#x901F;&#x5EA6;&#x53C8;&#x662F;&#x6B63;&#x5E38;&#x7684;&#x3002;&#x8FD9;&#x4E0B;&#x5B50;&#x57FA;&#x672C;&#x77E5;&#x9053;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x53C8;&#x662F;&#x7CFB;&#x7EDF; DNS &#x670D;&#x52A1;&#x7684;&#x9505;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;<strong>&#x53C8;</strong>&#x5462;&#xFF1F;&#x56E0;&#x4E3A;&#x4E4B;&#x524D;&#x7CFB;&#x7EDF; DNS &#x670D;&#x52A1;&#x628A;&#x4E00;&#x4E9B;&#x57DF;&#x540D;&#x89E3;&#x6790;&#x5230;&#x4E86;&#x6559;&#x80B2;&#x7F51;&#xFF0C;&#x5BFC;&#x81F4;&#x4E00;&#x4E9B;&#x7F51;&#x7AD9; CSS &#x52A0;&#x8F7D;&#x5931;&#x8D25;&#xFF0C;&#x52A0;&#x4E86; hosts &#x4E4B;&#x540E;&#x624D;&#x52C9;&#x5F3A;&#x6B63;&#x5E38;&#x3002;&#x524D;&#x4E00;&#x6B21;&#x7684;&#x95EE;&#x9898;&#x5F71;&#x54CD;&#x4E0D;&#x662F;&#x5F88;&#x5927;&#xFF0C;&#x53EF;&#x8FD9;&#x6B21;&#x5C31;&#x4E0D;&#x4E00;&#x6837;&#x4E86;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x7F51;&#x7AD9;&#x6253;&#x5F00;&#x90FD;&#x8981;&#x7B49;&#x51E0;&#x79D2;&#x949F;&#xFF0C;&#x8FD9;&#x53EF;&#x5FCD;&#x4E0D;&#x4E86;&#x3002;</p>
-<p>&#x8FD9;&#x91CC;&#x8BF4;&#x4E00;&#x4E0B;&#x4E3A;&#x4EC0;&#x4E48;&#x901A;&#x8FC7; ping &#x548C; nslookup &#x5C31;&#x80FD;&#x65AD;&#x5B9A;&#x7CFB;&#x7EDF; DNS &#x670D;&#x52A1;&#x6709;&#x95EE;&#x9898;&#x5462;&#xFF0C;&#x56E0;&#x4E3A; ping &#x5728;&#x89E3;&#x6790;&#x57DF;&#x540D;&#x65F6;&#x7528;&#x7684;&#x65F6;&#x7CFB;&#x7EDF; DNS &#x670D;&#x52A1;&#xFF0C;&#x800C; nslookup &#x662F;&#x76F4;&#x63A5;&#x901A;&#x8FC7; <a href="https://zh.wikipedia.org/wiki/Winsock" target="_blank" rel="noopener">Winsock</a> &#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x67E5;&#x8BE2;&#x7684;<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>&#x3002;</p>
-<p>&#x7528; <a href="https://www.wireshark.org/" target="_blank" rel="noopener">Wireshark</a> &#x6293;&#x5305;&#x53D1;&#x73B0;&#x4F7F;&#x7528; ping &#x65F6; DNS &#x67E5;&#x8BE2;&#x62A5;&#x6587;&#x4E5F;&#x662F;&#x5F88;&#x5FEB;&#x54CD;&#x5E94;&#x4E86;&#x7684;&#xFF0C;&#x4F46;&#x662F; ping &#x5BA2;&#x6237;&#x7AEF;&#x4F3C;&#x4E4E;&#x6CA1;&#x6709;&#x6536;&#x5230;&#x3002;&#x5230;&#x8FD9;&#x91CC;&#x5C31;&#x9677;&#x5165;&#x6B7B;&#x80E1;&#x540C;&#x4E86;&#xFF0C;&#x6211;&#x5BF9; Windows &#x5185;&#x90E8;&#x7684;&#x7EC6;&#x8282;&#x4E0D;&#x4E86;&#x89E3;&#xFF0C;&#x4E0D;&#x80FD;&#x518D;&#x5F80;&#x4E0B;&#x5B9A;&#x4F4D;&#x95EE;&#x9898;&#x3002;</p>
-<h2 id="&#x89E3;&#x51B3;&#x95EE;&#x9898;">&#x89E3;&#x51B3;&#x95EE;&#x9898;</h2>
-<p>&#x7531;&#x4E8E;&#x4E0A;&#x5348;&#x4E8B;&#x60C5;&#x6BD4;&#x8F83;&#x591A;&#x5C31;&#x6682;&#x65F6;&#x628A;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x653E;&#x4E0B;&#x4E86;&#x3002;</p>
-<p>&#x5230;&#x4E86;&#x4E0B;&#x5348;&#x7A81;&#x7136;&#x60F3;&#x8D77;&#x4F1A;&#x4E0D;&#x4F1A;&#x53C8;&#x662F; <a href="https://www.vmware.com/" target="_blank" rel="noopener">VMware</a> &#x865A;&#x62DF;&#x7F51;&#x5361;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x8FD9;&#x91CC;&#x53C8;&#x662F;&#x4E00;&#x4E2A;<strong>&#x53C8;</strong>&#x1F62B;&#xFF0C;&#x56E0;&#x4E3A;&#x4E4B;&#x524D;&#x9047;&#x5230;&#x8FC7;&#x865A;&#x62DF;&#x7F51;&#x5361;&#x5BFC;&#x81F4;&#x79FB;&#x52A8;&#x70ED;&#x70B9; IP &#x51B2;&#x7A81;&#x95EE;&#x9898;&#x3002;&#x5C1D;&#x8BD5;&#x7981;&#x7528;&#x4EE5; <code>VMware Virtual Ethernet Adapter</code> &#x5F00;&#x5934;&#x7684;&#x7F51;&#x5361;&#xFF0C;&#x518D;&#x6B21;&#x6D4B;&#x8BD5;&#xFF0C;ping &#x548C;&#x6253;&#x5F00;&#x7F51;&#x9875;&#x90FD;&#x5DF2;&#x6B63;&#x5E38;&#x3002;</p>
-<h2 id="&#x540E;&#x8BB0;">&#x540E;&#x8BB0;</h2>
-<p>&#x8FD9;&#x6B21;&#x867D;&#x7136;&#x89E3;&#x51B3;&#x4E86;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x5177;&#x4F53;&#x539F;&#x56E0;&#x8FD8;&#x4E0D;&#x6E05;&#x695A;&#xFF0C;&#x65E5;&#x540E;&#x641E;&#x6E05;&#x695A;&#x95EE;&#x9898;&#x518D;&#x66F4;&#x65B0;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;</p>
+<h2 id="定位问题">定位问题</h2>
+<p>随后用 ping 测试发现需要好几秒钟才能解析出 IP，而用 nslookup 测试解析速度又是正常的。这下子基本知道问题了，又是系统 DNS 服务的锅，为什么是<strong>又</strong>呢？因为之前系统 DNS 服务把一些域名解析到了教育网，导致一些网站 CSS 加载失败，加了 hosts 之后才勉强正常。前一次的问题影响不是很大，可这次就不一样了，所有的网站打开都要等几秒钟，这可忍不了。</p>
+<p>这里说一下为什么通过 ping 和 nslookup 就能断定系统 DNS 服务有问题呢，因为 ping 在解析域名时用的时系统 DNS 服务，而 nslookup 是直接通过 <a href="https://zh.wikipedia.org/wiki/Winsock" target="_blank" rel="noopener">Winsock</a> 建立连接查询的<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。</p>
+<p>用 <a href="https://www.wireshark.org/" target="_blank" rel="noopener">Wireshark</a> 抓包发现使用 ping 时 DNS 查询报文也是很快响应了的，但是 ping 客户端似乎没有收到。到这里就陷入死胡同了，我对 Windows 内部的细节不了解，不能再往下定位问题。</p>
+<h2 id="解决问题">解决问题</h2>
+<p>由于上午事情比较多就暂时把这个问题放下了。</p>
+<p>到了下午突然想起会不会又是 <a href="https://www.vmware.com/" target="_blank" rel="noopener">VMware</a> 虚拟网卡的问题，这里又是一个<strong>又</strong>😫，因为之前遇到过虚拟网卡导致移动热点 IP 冲突问题。尝试禁用以 <code>VMware Virtual Ethernet Adapter</code> 开头的网卡，再次测试，ping 和打开网页都已正常。</p>
+<h2 id="后记">后记</h2>
+<p>这次虽然解决了问题，但是具体原因还不清楚，日后搞清楚问题再更新这篇文章</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1" role="doc-endnote"><p><a href="https://superuser.com/questions/495759/why-is-ping-unable-to-resolve-a-name-when-nslookup-works-fine" target="_blank" rel="noopener">https://superuser.com/questions/495759/why-is-ping-unable-to-resolve-a-name-when-nslookup-works-fine</a> &quot;Why is &apos;ping&apos; unable to resolve a name when &apos;nslookup&apos; works fine?&quot;<a href="#fnref1" class="footnote-back" role="doc-backlink">&#x21A9;&#xFE0E;</a></p></li>
+<li id="fn1" role="doc-endnote"><p><a href="https://superuser.com/questions/495759/why-is-ping-unable-to-resolve-a-name-when-nslookup-works-fine" target="_blank" rel="noopener">https://superuser.com/questions/495759/why-is-ping-unable-to-resolve-a-name-when-nslookup-works-fine</a> "Why is 'ping' unable to resolve a name when 'nslookup' works fine?"<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -276,7 +276,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596277000438"></script>
+<script src="/js/app.js?v=1596279502767"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

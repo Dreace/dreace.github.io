@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-implement-the-DES-algorithm/250px-DES-main-network.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-implement-the-DES-algorithm/250px-DES-f-function.png">
 <meta property="article:published_time" content="2020-07-07T08:15:36.000Z">
-<meta property="article:modified_time" content="2020-08-01T10:15:25.953Z">
+<meta property="article:modified_time" content="2020-08-01T10:57:01.736Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="DES">
@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596277000410">
+  <link rel="stylesheet" href="/css/style.css?v=1596279502746">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -78,7 +78,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5B50;&#x5BC6;&#x94A5;&#x751F;&#x6210;"><span class="toc-text">&amp;#x5B50;&amp;#x5BC6;&amp;#x94A5;&amp;#x751F;&amp;#x6210;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5206;&#x5757;&#x52A0;&#x5BC6;"><span class="toc-text">&amp;#x5206;&amp;#x5757;&amp;#x52A0;&amp;#x5BC6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x660E;&#x6587;&#x52A0;&#x5BC6;"><span class="toc-text">&amp;#x660E;&amp;#x6587;&amp;#x52A0;&amp;#x5BC6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x89E3;&#x5BC6;"><span class="toc-text">&amp;#x89E3;&amp;#x5BC6;</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#子密钥生成"><span class="toc-text">子密钥生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分块加密"><span class="toc-text">分块加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#明文加密"><span class="toc-text">明文加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解密"><span class="toc-text">解密</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -200,8 +200,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年07月07日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1.3k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/Python/">Python</a>
     
@@ -210,13 +210,13 @@
     
   </div>
   <article>
-    <p>&#x6CA1;&#x6709;&#x524D;&#x8A00;&#xFF0C;&#x76F4;&#x63A5;&#x8FDB;&#x5165;&#x6B63;&#x9898;&#xFF0C;&#x82E5;&#x9700;&#x8981;&#x5173;&#x4E8E; DES &#x7684;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#xFF0C;&#x8BF7;&#x770B; <a href="https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%A8%99%E6%BA%96" target="_blank" rel="noopener">&#x6570;&#x636E;&#x52A0;&#x5BC6;&#x6807;&#x51C6; - &#x7EF4;&#x57FA;&#x767E;&#x79D1;&#xFF0C;&#x81EA;&#x7531;&#x7684;&#x767E;&#x79D1;&#x5168;&#x4E66;</a>&#x3002;&#x82E5;&#x65E0;&#x7279;&#x6B8A;&#x8BF4;&#x660E;&#xFF0C;&#x672C;&#x6587;&#x7AE0;&#x6240;&#x6709;&#x914D;&#x56FE;&#x5747;&#x6765;&#x81EA;&#x7EF4;&#x57FA;&#x767E;&#x79D1;&#x3002;&#x7B2C;&#x4E00;&#x6B21;&#x4F7F;&#x7528;&#x5DE5;&#x5177;&#x51FD;&#x6570;&#x65F6;&#x4F1A;&#x8FDB;&#x884C;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x3002;&#x672C;&#x6587;&#x7AE0;&#x4F7F;&#x7528;&#x7684;&#x5168;&#x90E8;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x5728; <a href="https://gist.github.com/Dreace/4fc39e0ec2615ad06554e4ef9b9c64b6" target="_blank" rel="noopener">Gist</a> &#x4E0A;&#x627E;&#x5230;&#x3002;</p>
+    <p>没有前言，直接进入正题，若需要关于 DES 的详细介绍，请看 <a href="https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%A8%99%E6%BA%96" target="_blank" rel="noopener">数据加密标准 - 维基百科，自由的百科全书</a>。若无特殊说明，本文章所有配图均来自维基百科。第一次使用工具函数时会进行详细介绍。本文章使用的全部代码可以在 <a href="https://gist.github.com/Dreace/4fc39e0ec2615ad06554e4ef9b9c64b6" target="_blank" rel="noopener">Gist</a> 上找到。</p>
 <a id="more"></a>
-<h2 id="&#x5B50;&#x5BC6;&#x94A5;&#x751F;&#x6210;">&#x5B50;&#x5BC6;&#x94A5;&#x751F;&#x6210;</h2>
+<h2 id="子密钥生成">子密钥生成</h2>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-implement-the-DES-algorithm/250px-DES-key-schedule.png" alt><figcaption>&#x5B50;&#x5BC6;&#x94A5;&#x751F;&#x6210;&#x8FC7;&#x7A0B;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-implement-the-DES-algorithm/250px-DES-key-schedule.png" alt><figcaption>子密钥生成过程</figcaption>
 </figure>
-<p>&#x521D;&#x59CB;&#x5316;&#x65F6;&#x7531;&#x5916;&#x90E8;&#x63D0;&#x4F9B;&#x5BC6;&#x94A5;&#xFF0C;&#x82E5;&#x5BC6;&#x94A5;&#x957F;&#x5EA6;&#x4E0D;&#x8DB3; 8 &#x5B57;&#x8282;&#xFF08;64 &#x4F4D;&#xFF09;&#x53EF;&#x4EE5;&#x5728;&#x672B;&#x5C3E;&#x4F7F;&#x7528; 0 &#x8865;&#x8DB3;&#x957F;&#x5EA6;&#x3002;</p>
+<p>初始化时由外部提供密钥，若密钥长度不足 8 字节（64 位）可以在末尾使用 0 补足长度。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">if</span> <span class="bu">isinstance</span>(key, <span class="bu">str</span>):</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    key <span class="op">=</span> key.encode()</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="cf">if</span> <span class="bu">len</span>(key) <span class="op">&gt;</span> <span class="dv">8</span>:</span>
@@ -224,7 +224,7 @@
 <span id="cb1-5"><a href="#cb1-5"></a><span class="cf">elif</span> <span class="bu">len</span>(key) <span class="op">&lt;</span> <span class="dv">8</span>:</span>
 <span id="cb1-6"><a href="#cb1-6"></a>    key <span class="op">+=</span> b<span class="st">&quot;&quot;</span>.join(b<span class="st">&quot;</span><span class="ch">\x00</span><span class="st">&quot;</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span> <span class="op">-</span> <span class="bu">len</span>(key)))</span>
 <span id="cb1-7"><a href="#cb1-7"></a>key_bit_list <span class="op">=</span> <span class="va">self</span>._bytes_to_bit_list(key)</span></code></pre></div>
-<p>&#x63D0;&#x4F9B;&#x7684;&#x5BC6;&#x94A5;&#x53EF;&#x4EE5;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x6216;&#x8005;&#x662F;&#x5B57;&#x8282;&#xFF0C;&#x82E5;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x5219;&#x9700;&#x8981;&#x7F16;&#x7801;&#x5F97;&#x5230;&#x5B57;&#x8282;&#xFF0C;&#x65B9;&#x4FBF;&#x540E;&#x7EED;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x6700;&#x540E;&#x5C06;&#x957F;&#x5EA6;&#x88C1;&#x526A;&#x6216;&#x8865;&#x8DB3;&#x5230; 8 &#x5B57;&#x8282;&#x540E;&#x8F6C;&#x6362;&#x6210;&#x6BD4;&#x7279;&#x5217;&#x8868;&#x3002;&#x5B57;&#x8282;&#x5230;&#x6BD4;&#x7279;&#x5217;&#x8868;&#x7684;&#x51FD;&#x6570;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>提供的密钥可以是字符串或者是字节，若是字符串则需要编码得到字节，方便后续的处理，最后将长度裁剪或补足到 8 字节后转换成比特列表。字节到比特列表的函数如下：</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> _bytes_to_bit_list(input_bytes: <span class="bu">bytes</span>) <span class="op">-&gt;</span> List[<span class="bu">int</span>]:</span>
 <span id="cb2-2"><a href="#cb2-2"></a>    bit_list <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">*</span> <span class="bu">len</span>(input_bytes)</span>
 <span id="cb2-3"><a href="#cb2-3"></a>    index <span class="op">=</span> <span class="dv">0</span></span>
@@ -235,35 +235,35 @@
 <span id="cb2-8"><a href="#cb2-8"></a>            loc <span class="op">-=</span> <span class="dv">1</span></span>
 <span id="cb2-9"><a href="#cb2-9"></a>            index <span class="op">+=</span> <span class="dv">1</span></span>
 <span id="cb2-10"><a href="#cb2-10"></a>    <span class="cf">return</span> bit_list</span></code></pre></div>
-<p>&#x5B57;&#x8282;&#x4F7F;&#x7528; <code>for</code> &#x5F97;&#x5230;&#x7684;&#x5143;&#x7D20;&#x662F;&#x6570;&#x5B57;&#xFF0C;&#x8FD9;&#x91CC;&#x547D;&#x540D;&#x4E3A; <code>char_ascii</code>&#xFF0C;&#x4ECE;&#x9AD8;&#x4F4D;&#x5230;&#x4F4E;&#x4F4D;&#x4F9D;&#x6B21;&#x53D6;&#x51FA; <code>char_ascii</code> &#x7684;&#x6BCF;&#x4E00;&#x4F4D;&#x586B;&#x5145;&#x5230;&#x6BD4;&#x7279;&#x5217;&#x8868;&#x4E2D;&#x3002;</p>
-<p>&#x5F97;&#x5230;&#x5BC6;&#x94A5;&#x7684;&#x6BD4;&#x7279;&#x5217;&#x8868;&#x540E;&#x9700;&#x8981;&#x4F7F;&#x7528; PC-1 &#x751F;&#x6210;&#x4E24;&#x4E2A; 28 &#x4F4D;&#x534A;&#x5BC6;&#x94A5;&#xFF08;&#x603B;&#x5171;&#x53EA;&#x4F7F;&#x7528;&#x4E86; 56 &#x4F4D;&#x5BC6;&#x94A5;&#xFF0C;&#x5269;&#x4E0B;&#x7684; 8 &#x4F4D;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x5947;&#x5076;&#x6821;&#x9A8C;&#xFF09;&#x3002;</p>
+<p>字节使用 <code>for</code> 得到的元素是数字，这里命名为 <code>char_ascii</code>，从高位到低位依次取出 <code>char_ascii</code> 的每一位填充到比特列表中。</p>
+<p>得到密钥的比特列表后需要使用 PC-1 生成两个 28 位半密钥（总共只使用了 56 位密钥，剩下的 8 位可以作为奇偶校验）。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>left_half_key_block <span class="op">=</span> <span class="va">self</span>._transform(key_bit_list, pc1_left_table)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>right_half_key_block <span class="op">=</span> <span class="va">self</span>._transform(key_bit_list, pc1_right_table)</span></code></pre></div>
-<p>&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x7F6E;&#x6362;&#x5DE5;&#x5177;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5728; DES &#x7B97;&#x6CD5;&#x4E2D;&#x5E94;&#x8BE5;&#x662F;&#x6700;&#x5E38;&#x7528;&#x7684;&#x4E86;&#xFF0C;&#x901A;&#x8FC7;&#x67E5;&#x8868;&#x8FDB;&#x884C;&#x53D8;&#x6362;&#x3002;</p>
+<p>这里使用了一个置换工具函数，这个函数在 DES 算法中应该是最常用的了，通过查表进行变换。</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> _transform(raw_list: <span class="bu">list</span>, transform_table: List[<span class="bu">int</span>]) <span class="op">-&gt;</span> <span class="bu">list</span>:</span>
 <span id="cb4-2"><a href="#cb4-2"></a>    <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> index: raw_list[index], transform_table))</span></code></pre></div>
-<p>&#x5728;&#x5F97;&#x5230;&#x4E24;&#x4E2A;&#x534A;&#x5BC6;&#x94A5;&#x540E;&#x4E0B;&#x4E00;&#x6B65;&#x662F;&#x751F;&#x6210; 16 &#x4E2A;&#x5B50;&#x5BC6;&#x94A5;&#xFF0C;&#x9996;&#x5148;&#x5C06;&#x4E24;&#x4E2A;&#x534A;&#x5BC6;&#x94A5;&#x5FAA;&#x73AF;&#x5DE6;&#x79FB;&#xFF08;&#x5DE6;&#x79FB;&#x4F4D;&#x6570;&#x67E5;&#x8868;&#x5F97;&#xFF09;&#x5408;&#x5E76;&#xFF0C;&#x518D;&#x901A;&#x8FC7; PC-2 &#x5F97;&#x5230; 48 &#x4F4D;&#x7684;&#x5B50;&#x5BC6;&#x94A5;&#x3002;</p>
+<p>在得到两个半密钥后下一步是生成 16 个子密钥，首先将两个半密钥循环左移（左移位数查表得）合并，再通过 PC-2 得到 48 位的子密钥。</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>sub_key_list <span class="op">=</span> []</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="cf">for</span> round_index <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">16</span>):</span>
 <span id="cb5-3"><a href="#cb5-3"></a>    left_half_key_block <span class="op">=</span> <span class="va">self</span>._circle_left_shift(left_half_key_block, key_left_shift_bits[round_index])</span>
 <span id="cb5-4"><a href="#cb5-4"></a>    right_half_key_block <span class="op">=</span> <span class="va">self</span>._circle_left_shift(right_half_key_block, key_left_shift_bits[round_index])</span>
 <span id="cb5-5"><a href="#cb5-5"></a>    sub_key_list.append(<span class="va">self</span>._transform(left_half_key_block <span class="op">+</span> right_half_key_block, pc2_table))</span>
 <span id="cb5-6"><a href="#cb5-6"></a><span class="va">self</span>._sub_key_list <span class="op">=</span> sub_key_list</span></code></pre></div>
-<p><code>_circle_left_shift</code> &#x5B9E;&#x73B0;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><code>_circle_left_shift</code> 实现如下：</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> _circle_left_shift(input_list: <span class="bu">list</span>, bits: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">list</span>:</span>
 <span id="cb6-2"><a href="#cb6-2"></a>    <span class="cf">return</span> input_list[bits:] <span class="op">+</span> input_list[:bits]</span></code></pre></div>
-<p>&#x5C06;&#x8F93;&#x5165;&#x5217;&#x8868;&#x5207;&#x7247;&#x518D;&#x5408;&#x5E76;&#x5B9E;&#x73B0;&#x5FAA;&#x73AF;&#x5DE6;&#x79FB;&#x6548;&#x679C;&#x3002;</p>
-<h2 id="&#x5206;&#x5757;&#x52A0;&#x5BC6;">&#x5206;&#x5757;&#x52A0;&#x5BC6;</h2>
+<p>将输入列表切片再合并实现循环左移效果。</p>
+<h2 id="分块加密">分块加密</h2>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-implement-the-DES-algorithm/250px-DES-main-network.png" alt><figcaption>&#x6574;&#x4F53;&#x7ED3;&#x6784;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-implement-the-DES-algorithm/250px-DES-main-network.png" alt><figcaption>整体结构</figcaption>
 </figure>
-<p>&#x4E00;&#x6B21; DES &#x52A0;&#x5BC6;&#x9488;&#x5BF9; 64 &#x4F4D;&#x7684;&#x660E;&#x6587;&#xFF0C;&#x9996;&#x5148;&#x5C06;&#x660E;&#x6587;&#x8FDB;&#x884C; IP &#x540E;&#x518D;&#x5206;&#x4E3A;&#x4E24;&#x90E8;&#x5206;&#x3002;</p>
+<p>一次 DES 加密针对 64 位的明文，首先将明文进行 IP 后再分为两部分。</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>plain_block <span class="op">=</span> <span class="va">self</span>._transform(plain_block, ip_table)</span>
 <span id="cb7-2"><a href="#cb7-2"></a>left_half_block <span class="op">=</span> plain_block[:<span class="dv">32</span>]</span>
 <span id="cb7-3"><a href="#cb7-3"></a>right_half_block <span class="op">=</span> plain_block[<span class="dv">32</span>:]</span></code></pre></div>
-<p>&#x5C06;&#x5DE6;&#x534A;&#x90E8;&#x5206;&#x4E0E;&#x53F3;&#x534A;&#x90E8;&#x5206;&#x7ECF;&#x8FC7; F &#x51FD;&#x6570;&#x540E;&#x7684;&#x7ED3;&#x679C;&#x5F02;&#x6216;&#x5F97;&#x5230;&#x65B0;&#x7684;&#x5DE6;&#x534A;&#x90E8;&#x5206;&#xFF0C;&#x539F;&#x6765;&#x7684;&#x5DE6;&#x534A;&#x90E8;&#x5206;&#x4F5C;&#x4E3A;&#x65B0;&#x7684;&#x53F3;&#x534A;&#x90E8;&#x5206;&#x3002;&#x5982;&#x6B64;&#x8FDB;&#x884C;&#x5341;&#x516D;&#x6B21;&#x3002;</p>
+<p>将左半部分与右半部分经过 F 函数后的结果异或得到新的左半部分，原来的左半部分作为新的右半部分。如此进行十六次。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-implement-the-DES-algorithm/250px-DES-f-function.png" alt><figcaption>F &#x51FD;&#x6570;</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-implement-the-DES-algorithm/250px-DES-f-function.png" alt><figcaption>F 函数</figcaption>
 </figure>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="cf">for</span> round_index <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">16</span>):</span>
 <span id="cb8-2"><a href="#cb8-2"></a>    left_half_block, right_half_block <span class="op">=</span> right_half_block, <span class="op">\</span></span>
@@ -280,17 +280,17 @@
 <span id="cb8-13"><a href="#cb8-13"></a>                                            )</span>
 <span id="cb8-14"><a href="#cb8-14"></a>                                        )</span>
 <span id="cb8-15"><a href="#cb8-15"></a><span class="cf">return</span> <span class="va">self</span>._transform(right_half_block <span class="op">+</span> left_half_block, fp_table)</span></code></pre></div>
-<p>F &#x51FD;&#x6570;&#x7684;&#x8FC7;&#x7A0B;&#xFF1A;</p>
+<p>F 函数的过程：</p>
 <ol type="1">
-<li>&#x901A;&#x8FC7;&#x6269;&#x5F20;&#x7F6E;&#x6362;&#x5C06; 32 &#x4F4D;&#x7684;&#x534A;&#x5757;&#x6269;&#x5C55;&#x5230; 48 &#x4F4D;</li>
-<li>&#x4E0E; 48 &#x4F4D;&#x7684;&#x5B50;&#x5BC6;&#x94A5;&#x8FDB;&#x884C;&#x5F02;&#x6216;</li>
-<li>&#x6BCF; 6 &#x4F4D;&#x8FDB;&#x884C; S &#x76D2;&#x53D8;&#x6362;&#xFF0C;&#x5F97;&#x5230; 4 &#x4F4D;&#x7684;&#x8F93;&#x51FA;&#xFF0C;&#x5171; 32 &#x4F4D;</li>
-<li>&#x6700;&#x540E;&#x518D;&#x8FDB;&#x884C; P &#x7F6E;&#x6362;</li>
+<li>通过扩张置换将 32 位的半块扩展到 48 位</li>
+<li>与 48 位的子密钥进行异或</li>
+<li>每 6 位进行 S 盒变换，得到 4 位的输出，共 32 位</li>
+<li>最后再进行 P 置换</li>
 </ol>
-<p>&#x8FD9;&#x91CC;&#x6D89;&#x53CA;&#x5230;&#x4E00;&#x4E2A;&#x6BD4;&#x7279;&#x5217;&#x8868;&#x7684;&#x5F02;&#x6216;&#x64CD;&#x4F5C;&#xFF0C;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>这里涉及到一个比特列表的异或操作，实现如下：</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> _bit_list_xor(left: <span class="bu">list</span>, right: <span class="bu">list</span>) <span class="op">-&gt;</span> List[<span class="bu">str</span>]:</span>
 <span id="cb9-2"><a href="#cb9-2"></a>    <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x, y: x <span class="op">^</span> y, left, right))</span></code></pre></div>
-<p>&#x548C; S &#x76D2;&#x53D8;&#x6362;&#x5DE5;&#x5177;&#x51FD;&#x6570;&#xFF1A;</p>
+<p>和 S 盒变换工具函数：</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> _s_box_transform(input_list: <span class="bu">list</span>) <span class="op">-&gt;</span> <span class="bu">list</span>:</span>
 <span id="cb10-2"><a href="#cb10-2"></a>    transformed <span class="op">=</span> [<span class="dv">0</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">32</span>)]</span>
 <span id="cb10-3"><a href="#cb10-3"></a>    transformed_index <span class="op">=</span> <span class="dv">0</span></span>
@@ -306,22 +306,22 @@
 <span id="cb10-13"><a href="#cb10-13"></a>        r <span class="op">+=</span> <span class="dv">6</span></span>
 <span id="cb10-14"><a href="#cb10-14"></a>        transformed_index <span class="op">+=</span> <span class="dv">4</span></span>
 <span id="cb10-15"><a href="#cb10-15"></a>    <span class="cf">return</span> transformed</span></code></pre></div>
-<p>&#x6BCF;&#x6B21;&#x53D6;&#x51FA; 6 &#x516D;&#x4F4D;&#xFF0C;&#x6700;&#x9AD8;&#x4F4D;&#x548C;&#x6700;&#x4F4E;&#x4F4D;&#x8BA1;&#x7B97; <code>m</code> &#x4E3A;&#x884C;&#x53F7;&#xFF0C;&#x4E2D;&#x95F4;&#x56DB;&#x4F4D;&#x8BA1;&#x7B97; <code>n</code> &#x4E3A;&#x5217;&#x53F7;&#x3002;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x5904;&#x7406;&#x8FD9;&#x91CC;&#x5C06;&#x4E8C;&#x7EF4;&#x7684; S &#x76D2;&#x8868;&#x683C;&#x5C55;&#x5F00;&#x4E3A;&#x4E00;&#x7EF4;&#x6570;&#x7EC4;&#xFF0C;&#x6839;&#x636E; <code>m</code> &#x548C; <code>n</code> &#x53D6;&#x51FA; S &#x76D2;&#x4E2D;&#x5143;&#x7D20;&#x3002;</p>
-<p>&#x6700;&#x540E;&#x5C06;&#x5143;&#x7D20;&#x8F6C;&#x6362;&#x6210;&#x6BD4;&#x7279;&#x586B;&#x5145;&#x5230; <code>transformed</code> &#x4E2D;&#x3002;</p>
-<h2 id="&#x660E;&#x6587;&#x52A0;&#x5BC6;">&#x660E;&#x6587;&#x52A0;&#x5BC6;</h2>
-<p>&#x52A0;&#x5BC6;&#x51FD;&#x6570;&#x63A5;&#x53D7;&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x5B57;&#x8282;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x82E5;&#x660E;&#x6587;&#x957F;&#x5EA6;&#x4E0D;&#x662F; 8 &#x7684;&#x6574;&#x6570;&#x500D;&#x5B57;&#x8282;&#x5219;&#x9700;&#x8981;&#x8865;&#x8DB3;&#x3002;</p>
+<p>每次取出 6 六位，最高位和最低位计算 <code>m</code> 为行号，中间四位计算 <code>n</code> 为列号。为了方便处理这里将二维的 S 盒表格展开为一维数组，根据 <code>m</code> 和 <code>n</code> 取出 S 盒中元素。</p>
+<p>最后将元素转换成比特填充到 <code>transformed</code> 中。</p>
+<h2 id="明文加密">明文加密</h2>
+<p>加密函数接受字符串和字节作为参数，若明文长度不是 8 的整数倍字节则需要补足。</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="cf">if</span> <span class="bu">isinstance</span>(plain_text, <span class="bu">str</span>):</span>
 <span id="cb11-2"><a href="#cb11-2"></a>    plain_text <span class="op">=</span> plain_text.encode()</span>
 <span id="cb11-3"><a href="#cb11-3"></a>plain_text_len <span class="op">=</span> <span class="bu">len</span>(plain_text)</span>
 <span id="cb11-4"><a href="#cb11-4"></a><span class="cf">if</span> plain_text_len <span class="op">%</span> <span class="dv">8</span>:</span>
 <span id="cb11-5"><a href="#cb11-5"></a>    plain_text <span class="op">+=</span> b<span class="st">&quot;&quot;</span>.join(b<span class="st">&quot;</span><span class="ch">\x00</span><span class="st">&quot;</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span> <span class="op">-</span> plain_text_len <span class="op">%</span> <span class="dv">8</span>))</span></code></pre></div>
-<p>&#x5C06;&#x660E;&#x6587;&#x5206;&#x6210; 8 &#x5B57;&#x8282;&#x957F;&#x7684;&#x5757;&#x540E;&#x5206;&#x522B;&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#xFF0C;&#x5168;&#x90E8;&#x5757;&#x52A0;&#x5BC6;&#x5B8C;&#x6210;&#x540E;&#x5F97;&#x5230;&#x82E5;&#x5E72;&#x4E2A; 64 &#x4F4D;&#x957F;&#x7684;&#x6BD4;&#x7279;&#x5217;&#x8868;&#xFF0C;&#x5C06;&#x8FD9;&#x4E9B;&#x5217;&#x8868;&#x5408;&#x5E76;&#xFF0C;&#x518D;&#x8F6C;&#x6362;&#x6210;&#x5B57;&#x8282;&#x3002;</p>
+<p>将明文分成 8 字节长的块后分别进行加密，全部块加密完成后得到若干个 64 位长的比特列表，将这些列表合并，再转换成字节。</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>encrypted_blocks <span class="op">=</span> []</span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="cf">for</span> block <span class="kw">in</span> <span class="bu">map</span>(<span class="kw">lambda</span> s: plain_text[s:s <span class="op">+</span> <span class="dv">8</span>], <span class="bu">range</span>(<span class="dv">0</span>, plain_text_len, <span class="dv">8</span>)):</span>
 <span id="cb12-3"><a href="#cb12-3"></a>    encrypted_blocks.append(<span class="va">self</span>._encrypt_block(<span class="va">self</span>._bytes_to_bit_list(block)))</span>
 <span id="cb12-4"><a href="#cb12-4"></a>encrypted_bit_list <span class="op">=</span> <span class="bu">list</span>(chain(<span class="op">*</span>encrypted_blocks))</span>
 <span id="cb12-5"><a href="#cb12-5"></a><span class="cf">return</span> <span class="va">self</span>._bit_list_to_bytes(encrypted_bit_list)</span></code></pre></div>
-<p>&#x6BD4;&#x7279;&#x5217;&#x8868;&#x5230;&#x5B57;&#x8282;&#x51FD;&#x6570;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>比特列表到字节函数如下：</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> _bit_list_to_bytes(bit_list: List[<span class="bu">int</span>]) <span class="op">-&gt;</span> <span class="bu">bytes</span>:</span>
 <span id="cb13-2"><a href="#cb13-2"></a>    char_ascii <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a>    byte_list <span class="op">=</span> []</span>
@@ -331,13 +331,13 @@
 <span id="cb13-7"><a href="#cb13-7"></a>            byte_list.append(char_ascii)</span>
 <span id="cb13-8"><a href="#cb13-8"></a>            char_ascii <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb13-9"><a href="#cb13-9"></a>    <span class="cf">return</span> <span class="bu">bytes</span>(byte_list)</span></code></pre></div>
-<h2 id="&#x89E3;&#x5BC6;">&#x89E3;&#x5BC6;</h2>
-<p>&#x89E3;&#x5BC6;&#x8FC7;&#x7A0B;&#x548C;&#x52A0;&#x5BC6;&#x8FC7;&#x7A0B;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x5B50;&#x5BC6;&#x94A5;&#x4F7F;&#x7528;&#x987A;&#x5E8F;&#x76F8;&#x53CD;&#x3002;</p>
+<h2 id="解密">解密</h2>
+<p>解密过程和加密过程完全相同，只不过子密钥使用顺序相反。</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> decrypt(<span class="va">self</span>, cipher_text: <span class="bu">bytes</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
 <span id="cb14-2"><a href="#cb14-2"></a>    <span class="va">self</span>._sub_key_list.reverse()</span>
 <span id="cb14-3"><a href="#cb14-3"></a>    plain_text <span class="op">=</span> <span class="va">self</span>.encrypt(cipher_text)</span>
 <span id="cb14-4"><a href="#cb14-4"></a>    <span class="va">self</span>._sub_key_list.reverse()</span>
-<span id="cb14-5"><a href="#cb14-5"></a>    <span class="cf">return</span> plain_text.decode().rstrip(<span class="st">&apos;</span><span class="ch">\0</span><span class="st">&apos;</span>)</span></code></pre></div>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="cf">return</span> plain_text.decode().rstrip(<span class="st">&#39;</span><span class="ch">\0</span><span class="st">&#39;</span>)</span></code></pre></div>
 
   </article>
   
@@ -391,7 +391,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596277000418"></script>
+<script src="/js/app.js?v=1596279502753"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
