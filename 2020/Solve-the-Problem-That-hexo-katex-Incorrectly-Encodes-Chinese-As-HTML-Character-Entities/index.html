@@ -3,7 +3,7 @@
 
 <head>
   
-  <title>安装 Python - DreaceのBlog</title>
+  <title>解决 hexo-katex 错误地将中文编码为 HTML 字符实体 - DreaceのBlog</title>
   <meta charset="UTF-8">
   <meta name="description" content="一条咸鱼的垂死挣扎">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,31 +11,25 @@
   
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
-  <meta name="description" content="Python 2.x 将在「 2020年1月1日」停止支持，因此本文介绍的都是 Python 3.x 的安装。如果你还在用 Python 2.x，转向 Python 3.x 是一个明智的决定。">
+  <meta name="description" content="偶然发现博客正文中的中文都被编码成了 HTML 字符实体，也就是中文「静」被编码为 &amp;#x9759;，在 UTF-8 中一个中文字符原本由三个字符编码，而转成 HTML 字符实体后一个中文字符占 8 个字节，增加了 167%。而一篇博客中正文占据主要部分，四舍五入，转换后一篇博客的 HTML 文件体积比直接使用 UFT-8 编码大了一倍。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安装 Python">
-<meta property="og:url" content="https://blog.dreace.top/2019/How-to-Install-Python/index.html">
+<meta property="og:title" content="解决 hexo-katex 错误地将中文编码为 HTML 字符实体">
+<meta property="og:url" content="https://blog.dreace.top/2020/Solve-the-Problem-That-hexo-katex-Incorrectly-Encodes-Chinese-As-HTML-Character-Entities/index.html">
 <meta property="og:site_name" content="DreaceのBlog">
-<meta property="og:description" content="Python 2.x 将在「 2020年1月1日」停止支持，因此本文介绍的都是 Python 3.x 的安装。如果你还在用 Python 2.x，转向 Python 3.x 是一个明智的决定。">
+<meta property="og:description" content="偶然发现博客正文中的中文都被编码成了 HTML 字符实体，也就是中文「静」被编码为 &amp;#x9759;，在 UTF-8 中一个中文字符原本由三个字符编码，而转成 HTML 字符实体后一个中文字符占 8 个字节，增加了 167%。而一篇博客中正文占据主要部分，四舍五入，转换后一篇博客的 HTML 文件体积比直接使用 UFT-8 编码大了一倍。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/How-to-Install-Python/image-20191103132315293.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/How-to-Install-Python/image-20191104123856064.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/How-to-Install-Python/image-20191104124631417.png">
-<meta property="article:published_time" content="2019-11-03T04:05:21.000Z">
+<meta property="article:published_time" content="2020-08-01T12:32:12.000Z">
 <meta property="article:modified_time" content="2020-08-01T13:39:53.662Z">
 <meta property="article:author" content="Dreace">
-<meta property="article:tag" content="教程">
-<meta property="article:tag" content="Windows">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="macOS">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="npm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/How-to-Install-Python/image-20191103132315293.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596289217757">
+  <link rel="stylesheet" href="/css/style.css?v=1596289217630">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -81,7 +75,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#windows-下安装"><span class="toc-text">Windows 下安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装完成"><span class="toc-text">安装完成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证安装"><span class="toc-text">验证安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux-下安装"><span class="toc-text">Linux 下安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macos-下安装-1"><span class="toc-text">macOS 下安装 1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载安装程序安装"><span class="toc-text">下载安装程序安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用命令行安装"><span class="toc-text">使用命令行安装</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定位问题"><span class="toc-text">定位问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决"><span class="toc-text">解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#固定修改"><span class="toc-text">固定修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用更改"><span class="toc-text">应用更改</span></a></li></ol></li></ol>
       </div>
     </div>
   </div>
@@ -206,56 +200,72 @@
         <div class="nexmoe-post">
     <div class="nexmoe-post-cover"> 
 
-        <h1>安装 Python</h1>
+        <h1>解决 hexo-katex 错误地将中文编码为 HTML 字符实体</h1>
     </div>
   <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2019年11月03日</a>
-    <a><i class="nexmoefont icon-areachart"></i>540 字</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年08月01日</a>
+    <a><i class="nexmoefont icon-areachart"></i>627 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
     
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/Python/">Python</a>
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/Hexo/">Hexo</a>
     
     
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/Linux/" rel="tag">Linux</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/Python/" rel="tag">Python</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/Windows/" rel="tag">Windows</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/macOS/" rel="tag">macOS</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a>
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/Hexo/" rel="tag">Hexo</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/JavaScript/" rel="tag">JavaScript</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/npm/" rel="tag">npm</a>
     
   </div>
   <article>
-    <p>Python 2.x 将在「 <strong>2020年1月1日</strong>」停止支持，因此本文介绍的都是 Python 3.x 的安装。如果你还在用 Python 2.x，转向 Python 3.x 是一个明智的决定。</p>
+    <p>偶然发现博客正文中的中文都被编码成了 <a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E5%AE%9E%E4%BD%93%E5%BC%95%E7%94%A8" target="_blank" rel="noopener">HTML 字符实体</a>，也就是中文「静」被编码为 <code>&amp;#x9759;</code>，在 UTF-8 中一个中文字符原本由三个字符编码，而转成 HTML 字符实体后一个中文字符占 8 个字节，增加了 167%。而一篇博客中正文占据主要部分，四舍五入，转换后一篇博客的 HTML 文件体积比直接使用 UFT-8 编码大了一倍。</p>
 <a id="more"></a>
-<h2 id="windows-下安装">Windows 下安装</h2>
-<h3 id="下载">下载</h3>
-<p>Python 3.8.0 64位 安装包: <a href="https://www.python.org/ftp/python/3.7.5/python-3.7.5-amd64.exe" target="_blank" rel="noopener">官网下载</a> <a href="https://pan.baidu.com/s/1QEPxt8Lf3LTEE_fnIc8oAA" target="_blank" rel="noopener">百度云下载</a></p>
-<p>Python 3.8.0 32位 安装包: <a href="https://www.python.org/ftp/python/3.8.0/python-3.8.0.exe" target="_blank" rel="noopener">官网下载</a> <a href="https://pan.baidu.com/s/1VCIjSfY1jDJKIBL4VQsJkQ" target="_blank" rel="noopener">百度云下载</a></p>
-<p><strong>注意：Python 3.8 不支持 Windows XP 及更早期系统</strong></p>
+<h2 id="定位问题">定位问题</h2>
+<p>查阅资料得知可能是 cheerio 引起的问题<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>，在 node_modules 下查找发现 hexo-katex 引入了 cheerio 并设置了要编码实体，</p>
+<p>定位到的代码（node_modules/hexo-katex/index.js:16）：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">var</span> $ <span class="op">=</span> <span class="va">cheerio</span>.<span class="at">load</span>(<span class="va">data</span>.<span class="at">content</span><span class="op">,</span> <span class="op">{</span> <span class="dt">decodeEntities</span><span class="op">:</span> <span class="kw">true</span> <span class="op">}</span>)</span></code></pre></div>
+<h2 id="解决">解决</h2>
+<p>既然问题找到了，解决办法也很简单，将 <code>true</code> 改为 <code>false</code>：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">var</span> $ <span class="op">=</span> <span class="va">cheerio</span>.<span class="at">load</span>(<span class="va">data</span>.<span class="at">content</span><span class="op">,</span> <span class="op">{</span> <span class="dt">decodeEntities</span><span class="op">:</span> <span class="kw">false</span> <span class="op">}</span>)</span></code></pre></div>
+<p>但是，直接修改 node_modules 下的文件可能会丢失更改，或者需要在其他环境使用修改不能同步。由于我的博客是使用 CI/CD 自动编译并部署的，直接修改文件会比较麻烦。</p>
+<p>这时就需要 <a href="https://github.com/ds300/patch-package" target="_blank" rel="noopener">patch-package</a> 了，patch-package 可以将更改固定，在每次安装依赖时自动应用更改。</p>
 <h3 id="安装">安装</h3>
-<p>双击下载的安装包即可开始安装。</p>
-<figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/How-to-Install-Python/image-20191103132315293.png" alt><figcaption>准备安装 Python</figcaption>
-</figure>
-<p>如果你不熟悉如何设置环境变量可以勾选自动添加 Python 环境变量，若你需要安装多个 Python 版本请谨慎添加环境变量，否则会造成版本管理困难。</p>
-<p>点击「<strong>Insatall Now</strong>」开始安装。</p>
-<h3 id="安装完成">安装完成</h3>
-<figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/How-to-Install-Python/image-20191104123856064.png" alt><figcaption>安装完成</figcaption>
-</figure>
-<p>点击「<strong>Close</strong>」关闭安装窗口。</p>
-<h3 id="验证安装">验证安装</h3>
-<p>Python 3.8.0 默认安装在 <code>C:\Users\&lt;用户名&gt;\AppData\Local\Programs\Python\Python38</code> 目录，其中 <code>&lt;用户名&gt;</code> 是当前登录的用户名。该目录下有 <code>python.exe</code> 可执行文件，双击可打开 Python 的交互式命令行。如果已经配置环境变量可以在 <code>cmd</code> 中直接使用 <code>python</code> 命令完成上面的操作，或者使用 <code>python --version</code> 命令查看 Python 版本。</p>
-<figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/How-to-Install-Python/image-20191104124631417.png" alt><figcaption>Python 交互式命令行</figcaption>
-</figure>
-<h2 id="linux-下安装">Linux 下安装</h2>
-<p>在很多 Linux 发行版中 Python 已经内置，可以通过 <code>python</code> 命令来判断是否已安装 Python 及版本。若没有安装需要下载源代码自行编译，这需要一定的 Linux 管理经验，这里不展开介绍。Ubuntu 中可以使用 <code>sudo apt-get install python3.7</code> 直接安装 Python 3.7，如果你使用的发行版包管理提供安装也可以通过类似方法安装，否则需要自行编译源代码。</p>
-<h2 id="macos-下安装-1">macOS 下安装 <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
-<h3 id="下载安装程序安装">下载安装程序安装</h3>
-<p>Python 3.8.0 macOS 安装包: <a href="https://www.python.org/ftp/python/3.8.0/python-3.8.0-macosx10.9.pkg" target="_blank" rel="noopener">官网下载</a> <a href="https://pan.baidu.com/s/1KofWqeNkaYYHZFjfwdDPZQ" target="_blank" rel="noopener">百度云下载</a></p>
-<p>下载后双击运行并安装 。</p>
-<h3 id="使用命令行安装">使用命令行安装</h3>
-<p>如果安装了 <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a>，直接通过命令 <code>brew install python3</code> 安装即可 。</p>
+<p>首先要安装 patch-package：</p>
+<pre class="shell"><code>yarn add patch-package postinstall-postinstall</code></pre>
+<p>如果使用 npm 则是：</p>
+<pre class="shell"><code>npm i patch-package</code></pre>
+<p>然后在 package.json 的 <code>scripts</code> 字段下新增：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1"></a><span class="er">&quot;postinstall&quot;:</span> <span class="er">&quot;patch-package&quot;,</span></span></code></pre></div>
+<p>表明在依赖安装后会执行 <code>patch-package</code>。</p>
+<h3 id="固定修改">固定修改</h3>
+<p>首先保存已修改的文件，然后执行：</p>
+<pre class="shell"><code>yarn patch-package &lt;修改了的包名&gt;</code></pre>
+<p>或者使用 npx：</p>
+<pre class="shell"><code>npx patch-package &lt;修改了的包名&gt;</code></pre>
+<p>此时将看到类似：</p>
+<pre class="text"><code>yarn run v1.22.4
+$ patch-package
+patch-package 6.2.2
+Applying patches...
+hexo-katex@0.0.13 ✔
+Done in 1.13s.</code></pre>
+<p>的输出，表明修改已经固定。</p>
+<p>在 patches 目录下会有对应的 <code>.patch</code> 文件，本文对应的文件如下：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">diff --git a/node_modules/hexo-katex/index.js b/node_modules/hexo-katex/index.js</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>index cf8daf8..98fb8c6 100644</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="dt">--- a/node_modules/hexo-katex/index.js</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="dt">+++ b/node_modules/hexo-katex/index.js</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="dt">@@ -13,7 +13,7 @@ hexo.extend.filter.register(&#39;after_post_render&#39;, function(data) {</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a> </span>
+<span id="cb9-7"><a href="#cb9-7"></a>   if (!cheerio) cheerio = require(&#39;cheerio&#39;)</span>
+<span id="cb9-8"><a href="#cb9-8"></a> </span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="st">-  var $ = cheerio.load(data.content, { decodeEntities: true })</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="va">+  var $ = cheerio.load(data.content, { decodeEntities: false })</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a> </span>
+<span id="cb9-12"><a href="#cb9-12"></a>   if ($(&#39;.math&#39;).length &gt; 0) {</span>
+<span id="cb9-13"><a href="#cb9-13"></a>     linkTag = util.htmlTag(&#39;link&#39;, {</span></code></pre></div>
+<h3 id="应用更改">应用更改</h3>
+<p>只要将上述生成的文件提交到版本控制系统，在其他环境安装依赖时直接使用 <code>yarn install</code> 或 <code>npm install</code> 即可同步修改。</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1" role="doc-endnote"><p><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1016959856222624" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/1016959663602400/1016959856222624</a> "安装Python - 廖雪峰的官方网站"<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p><a href="https://github.com/hexojs/hexo/issues/657" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/657</a> "網頁能正常顯示中文，但查看HTML源代碼卻出現亂碼"<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -265,7 +275,7 @@
 <div class="nexmoe-post-copyright">
 <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
 <strong>本文作者：</strong>Dreace<br>
-<strong>本文链接：</strong><a href="https://blog.dreace.top/2019/How-to-Install-Python/" title="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2019&#x2F;How-to-Install-Python&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dreace.top&#x2F;2019&#x2F;How-to-Install-Python&#x2F;</a><br>
+<strong>本文链接：</strong><a href="https://blog.dreace.top/2020/Solve-the-Problem-That-hexo-katex-Incorrectly-Encodes-Chinese-As-HTML-Character-Entities/" title="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;Solve-the-Problem-That-hexo-katex-Incorrectly-Encodes-Chinese-As-HTML-Character-Entities&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;Solve-the-Problem-That-hexo-katex-Incorrectly-Encodes-Chinese-As-HTML-Character-Entities&#x2F;</a><br>
 
   <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
 
@@ -282,9 +292,9 @@
 var dsqjs = new DisqusJS({
     shortname: 'dreace',
     siteName: 'DreaceのBlog',
-    identifier: 'https://blog.dreace.top/2019/How-to-Install-Python/',
-    url: 'https://blog.dreace.top/2019/How-to-Install-Python/',
-    title: '安装 Python',
+    identifier: 'https://blog.dreace.top/2020/Solve-the-Problem-That-hexo-katex-Incorrectly-Encodes-Chinese-As-HTML-Character-Entities/',
+    url: 'https://blog.dreace.top/2020/Solve-the-Problem-That-hexo-katex-Incorrectly-Encodes-Chinese-As-HTML-Character-Entities/',
+    title: '解决 hexo-katex 错误地将中文编码为 HTML 字符实体',
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
     admin: 'Dreace',
@@ -311,7 +321,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596289217760"></script>
+<script src="/js/app.js?v=1596289217640"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
