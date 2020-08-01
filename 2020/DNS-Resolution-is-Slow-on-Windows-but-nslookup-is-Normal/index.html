@@ -12,21 +12,24 @@
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
   <meta name="description" content="今天一大早开始在电脑上所有的网站打开变得极慢，通过 SSH 连接服务器也非常慢，但 IP 直连速度又是正常的。初步猜测是 DNS 问题。">
-<meta name="keywords" content="DNS,Windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows 上 DNS 解析慢，但 nslookup 正常">
-<meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;DNS-Resolution-is-Slow-on-Windows-but-nslookup-is-Normal&#x2F;index.html">
+<meta property="og:url" content="https://blog.dreace.top/2020/DNS-Resolution-is-Slow-on-Windows-but-nslookup-is-Normal/index.html">
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="今天一大早开始在电脑上所有的网站打开变得极慢，通过 SSH 连接服务器也非常慢，但 IP 直连速度又是正常的。初步猜测是 DNS 问题。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-01T02:37:31.809Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-15T09:54:12.000Z">
+<meta property="article:modified_time" content="2020-08-01T10:15:25.949Z">
+<meta property="article:author" content="Dreace">
+<meta property="article:tag" content="DNS">
+<meta property="article:tag" content="Windows">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596249480055">
-<link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css?v=1596277000436">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -71,7 +74,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定位问题"><span class="toc-text">定位问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决问题"><span class="toc-text">解决问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5B9A;&#x4F4D;&#x95EE;&#x9898;"><span class="toc-text">&amp;#x5B9A;&amp;#x4F4D;&amp;#x95EE;&amp;#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x89E3;&#x51B3;&#x95EE;&#x9898;"><span class="toc-text">&amp;#x89E3;&amp;#x51B3;&amp;#x95EE;&amp;#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x540E;&#x8BB0;"><span class="toc-text">&amp;#x540E;&amp;#x8BB0;</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -249,7 +252,7 @@ var dsqjs = new DisqusJS({
     title: 'Windows 上 DNS 解析慢，但 nslookup 正常',
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
-    admin: 'Dreace233',
+    admin: 'Dreace',
     adminLabel: '书记！'
 });
 </script>
@@ -273,7 +276,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596249480059"></script>
+<script src="/js/app.js?v=1596277000438"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

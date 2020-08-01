@@ -12,21 +12,24 @@
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
   <meta name="description" content="最近写了个小工具，需要往 MySQL 中快速写入数据（5000 条数据左右）。刚开始很正常，跑了几分钟后报了一个错误 由于系统缓冲区空间不足或队列已满，不能执行套接字上的操作，这个问题以前也遇到过，只是通过简单的重启解决。虽然这次也通过重启把系统恢复正常了，可数据还没写到数据库里呢，于是花了点事件把这个问题彻底解决。">
-<meta name="keywords" content="Windows,注册表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决“由于系统缓冲区空间不足或队列已满，不能执行套接字上的操作”">
-<meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;Solve-An-operation-on-a-socket-could-not-be-performed-because-the-system-lacked-sufficient-buffer-space-or-because-a-queue-was-full&#x2F;index.html">
+<meta property="og:url" content="https://blog.dreace.top/2020/Solve-An-operation-on-a-socket-could-not-be-performed-because-the-system-lacked-sufficient-buffer-space-or-because-a-queue-was-full/index.html">
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="最近写了个小工具，需要往 MySQL 中快速写入数据（5000 条数据左右）。刚开始很正常，跑了几分钟后报了一个错误 由于系统缓冲区空间不足或队列已满，不能执行套接字上的操作，这个问题以前也遇到过，只是通过简单的重启解决。虽然这次也通过重启把系统恢复正常了，可数据还没写到数据库里呢，于是花了点事件把这个问题彻底解决。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-01T02:37:31.809Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-21T11:05:53.000Z">
+<meta property="article:modified_time" content="2020-08-01T10:15:25.953Z">
+<meta property="article:author" content="Dreace">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="注册表">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596249480063">
-<link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css?v=1596277000445">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -71,7 +74,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题分析"><span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决问题"><span class="toc-text">解决问题</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x95EE;&#x9898;&#x5206;&#x6790;"><span class="toc-text">&amp;#x95EE;&amp;#x9898;&amp;#x5206;&amp;#x6790;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x89E3;&#x51B3;&#x95EE;&#x9898;"><span class="toc-text">&amp;#x89E3;&amp;#x51B3;&amp;#x95EE;&amp;#x9898;</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -246,7 +249,7 @@ var dsqjs = new DisqusJS({
     title: '解决“由于系统缓冲区空间不足或队列已满，不能执行套接字上的操作”',
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
-    admin: 'Dreace233',
+    admin: 'Dreace',
     adminLabel: '书记！'
 });
 </script>
@@ -270,7 +273,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596249480065"></script>
+<script src="/js/app.js?v=1596277000447"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

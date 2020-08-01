@@ -12,21 +12,25 @@
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
   <meta name="description" content="注：本文提到的 WSL 均为 WSL 1。 最近在学网络编程，需要在 Linux 下编译 C 源码，可我日常使用 Windows，在虚拟机里操作又不是很方便。于是 Clion + WSL 成了几乎完美的解决方案，在 Windows 下编码，Linux 环境下编译运行。 但是由于一个意外需要卸载已安装的 WSL（Ubuntu 18.04 LTS），凑巧巨硬最近发布了 Ubuntu 20.04 LTS">
-<meta name="keywords" content="Clion,Ubuntu,WSL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决 Clion 无法识别 WSL Ubuntu 20.04 LTS">
-<meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;Solved-that-Clion-Does-not-recognize-WSL-Ubuntu-20-04-LTS&#x2F;index.html">
+<meta property="og:url" content="https://blog.dreace.top/2020/Solved-that-Clion-Does-not-recognize-WSL-Ubuntu-20-04-LTS/index.html">
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="注：本文提到的 WSL 均为 WSL 1。 最近在学网络编程，需要在 Linux 下编译 C 源码，可我日常使用 Windows，在虚拟机里操作又不是很方便。于是 Clion + WSL 成了几乎完美的解决方案，在 Windows 下编码，Linux 环境下编译运行。 但是由于一个意外需要卸载已安装的 WSL（Ubuntu 18.04 LTS），凑巧巨硬最近发布了 Ubuntu 20.04 LTS">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-01T02:37:31.809Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-10T13:23:16.000Z">
+<meta property="article:modified_time" content="2020-08-01T10:15:25.953Z">
+<meta property="article:author" content="Dreace">
+<meta property="article:tag" content="Clion">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="WSL">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596249480045">
-<link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css?v=1596277000420">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -71,7 +75,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改配置文件"><span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#再解决一个问题"><span class="toc-text">再解决一个问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-text">最后</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><span class="toc-text">&amp;#x4FEE;&amp;#x6539;&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x518D;&#x89E3;&#x51B3;&#x4E00;&#x4E2A;&#x95EE;&#x9898;"><span class="toc-text">&amp;#x518D;&amp;#x89E3;&amp;#x51B3;&amp;#x4E00;&amp;#x4E2A;&amp;#x95EE;&amp;#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x6700;&#x540E;"><span class="toc-text">&amp;#x6700;&amp;#x540E;</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -261,7 +265,7 @@ var dsqjs = new DisqusJS({
     title: '解决 Clion 无法识别 WSL Ubuntu 20.04 LTS',
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
-    admin: 'Dreace233',
+    admin: 'Dreace',
     adminLabel: '书记！'
 });
 </script>
@@ -285,7 +289,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596249480049"></script>
+<script src="/js/app.js?v=1596277000424"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

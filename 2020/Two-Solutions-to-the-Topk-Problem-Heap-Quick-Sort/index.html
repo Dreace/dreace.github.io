@@ -12,21 +12,24 @@
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
   <meta name="description" content="这里的 TopK 不单指最大的 k 个元素，也可以是最小的 k 个元素，具体的例题可以看 剑指 Offer 40. 最小的k个数。本文的代码均为可以在力扣提交的题解，故不包含头文件和 main 函数。">
-<meta name="keywords" content="算法,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TopK 问题两种解决方案：堆、快排变形">
-<meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;Two-Solutions-to-the-Topk-Problem-Heap-Quick-Sort&#x2F;index.html">
+<meta property="og:url" content="https://blog.dreace.top/2020/Two-Solutions-to-the-Topk-Problem-Heap-Quick-Sort/index.html">
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="这里的 TopK 不单指最大的 k 个元素，也可以是最小的 k 个元素，具体的例题可以看 剑指 Offer 40. 最小的k个数。本文的代码均为可以在力扣提交的题解，故不包含头文件和 main 函数。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-01T02:37:31.809Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-10T04:31:47.000Z">
+<meta property="article:modified_time" content="2020-08-01T10:15:25.953Z">
+<meta property="article:author" content="Dreace">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596249480027">
-<link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css?v=1596277000392">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -71,7 +74,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#堆"><span class="toc-text">堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快排"><span class="toc-text">快排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两种算法的选择"><span class="toc-text">两种算法的选择</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5806;"><span class="toc-text">&amp;#x5806;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x5FEB;&#x6392;"><span class="toc-text">&amp;#x5FEB;&amp;#x6392;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x4E24;&#x79CD;&#x7B97;&#x6CD5;&#x7684;&#x9009;&#x62E9;"><span class="toc-text">&amp;#x4E24;&amp;#x79CD;&amp;#x7B97;&amp;#x6CD5;&amp;#x7684;&amp;#x9009;&amp;#x62E9;</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -329,7 +332,7 @@ var dsqjs = new DisqusJS({
     title: 'TopK 问题两种解决方案：堆、快排变形',
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
-    admin: 'Dreace233',
+    admin: 'Dreace',
     adminLabel: '书记！'
 });
 </script>
@@ -353,7 +356,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596249480032"></script>
+<script src="/js/app.js?v=1596277000406"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

@@ -12,21 +12,24 @@
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
   <meta name="description" content="最近在研究优化在国内访问静态博客的时间，其中有一个方案是将生成的文件存储在对象存储，然后再通过 CDN 回源对象存储。确定方案后使用 七牛云 做一个加速实验，由于要将生成的文件上传，又要将这个过程尽可能自动化，而七牛云只提供 SDK，要上传只能将密钥硬编码在代码中，这是很危险的。 因此有了编写一个命令行工具的想法，由于最近在学习 TypeScript，就决定用它来写。">
-<meta name="keywords" content="npm,TypeScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 TypeScript 编写命令行工具并发布到 npm">
-<meta property="og:url" content="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;Use-TypeScript-to-Write-Command-Line-Tools-and-Publish-to-npm&#x2F;index.html">
+<meta property="og:url" content="https://blog.dreace.top/2020/Use-TypeScript-to-Write-Command-Line-Tools-and-Publish-to-npm/index.html">
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="最近在研究优化在国内访问静态博客的时间，其中有一个方案是将生成的文件存储在对象存储，然后再通过 CDN 回源对象存储。确定方案后使用 七牛云 做一个加速实验，由于要将生成的文件上传，又要将这个过程尽可能自动化，而七牛云只提供 SDK，要上传只能将密钥硬编码在代码中，这是很危险的。 因此有了编写一个命令行工具的想法，由于最近在学习 TypeScript，就决定用它来写。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-01T02:37:31.809Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-25T02:01:41.000Z">
+<meta property="article:modified_time" content="2020-08-01T10:15:25.953Z">
+<meta property="article:author" content="Dreace">
+<meta property="article:tag" content="npm">
+<meta property="article:tag" content="TypeScript">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1596249480011">
-<link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css?v=1596277000366">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -71,7 +74,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备环境"><span class="toc-text">准备环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-eslint2"><span class="toc-text">使用 ESLint2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-prettier"><span class="toc-text">使用 Prettier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在-webstorm-中启用-eslint-和-prettier"><span class="toc-text">在 WebStorm 中启用 ESLint 和 Prettier</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#启用-eslint"><span class="toc-text">启用 ESLint</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启用-prettier"><span class="toc-text">启用 Prettier</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-editorconfig"><span class="toc-text">使用 EditorConfig</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-typescript"><span class="toc-text">配置 TypeScript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编写代码"><span class="toc-text">编写代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-commander.js"><span class="toc-text">使用 Commander.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写逻辑代码"><span class="toc-text">编写逻辑代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布-npm-包"><span class="toc-text">发布 npm 包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#填写包信息"><span class="toc-text">填写包信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地测试"><span class="toc-text">本地测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布"><span class="toc-text">发布</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x51C6;&#x5907;&#x73AF;&#x5883;"><span class="toc-text">&amp;#x51C6;&amp;#x5907;&amp;#x73AF;&amp;#x5883;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x4F7F;&#x7528;-eslint2"><span class="toc-text">&amp;#x4F7F;&amp;#x7528; ESLint2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x4F7F;&#x7528;-prettier"><span class="toc-text">&amp;#x4F7F;&amp;#x7528; Prettier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x5728;-webstorm-&#x4E2D;&#x542F;&#x7528;-eslint-&#x548C;-prettier"><span class="toc-text">&amp;#x5728; WebStorm &amp;#x4E2D;&amp;#x542F;&amp;#x7528; ESLint &amp;#x548C; Prettier</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#&#x542F;&#x7528;-eslint"><span class="toc-text">&amp;#x542F;&amp;#x7528; ESLint</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#&#x542F;&#x7528;-prettier"><span class="toc-text">&amp;#x542F;&amp;#x7528; Prettier</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#&#x4F7F;&#x7528;-editorconfig"><span class="toc-text">&amp;#x4F7F;&amp;#x7528; EditorConfig</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x914D;&#x7F6E;-typescript"><span class="toc-text">&amp;#x914D;&amp;#x7F6E; TypeScript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x7F16;&#x5199;&#x4EE3;&#x7801;"><span class="toc-text">&amp;#x7F16;&amp;#x5199;&amp;#x4EE3;&amp;#x7801;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x4F7F;&#x7528;-commander.js"><span class="toc-text">&amp;#x4F7F;&amp;#x7528; Commander.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x7F16;&#x5199;&#x903B;&#x8F91;&#x4EE3;&#x7801;"><span class="toc-text">&amp;#x7F16;&amp;#x5199;&amp;#x903B;&amp;#x8F91;&amp;#x4EE3;&amp;#x7801;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#&#x53D1;&#x5E03;-npm-&#x5305;"><span class="toc-text">&amp;#x53D1;&amp;#x5E03; npm &amp;#x5305;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x586B;&#x5199;&#x5305;&#x4FE1;&#x606F;"><span class="toc-text">&amp;#x586B;&amp;#x5199;&amp;#x5305;&amp;#x4FE1;&amp;#x606F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x672C;&#x5730;&#x6D4B;&#x8BD5;"><span class="toc-text">&amp;#x672C;&amp;#x5730;&amp;#x6D4B;&amp;#x8BD5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#&#x53D1;&#x5E03;"><span class="toc-text">&amp;#x53D1;&amp;#x5E03;</span></a></li></ol></li></ol>
       </div>
     </div>
   </div>
@@ -460,7 +463,7 @@ var dsqjs = new DisqusJS({
     title: '使用 TypeScript 编写命令行工具并发布到 npm',
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
-    admin: 'Dreace233',
+    admin: 'Dreace',
     adminLabel: '书记！'
 });
 </script>
@@ -484,7 +487,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1596249480026"></script>
+<script src="/js/app.js?v=1596277000391"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
