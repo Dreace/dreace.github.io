@@ -1,0 +1,13 @@
+diff --git a/node_modules/hexo-katex/index.js b/node_modules/hexo-katex/index.js
+index cf8daf8..98fb8c6 100644
+--- a/node_modules/hexo-katex/index.js
++++ b/node_modules/hexo-katex/index.js
+@@ -13,7 +13,7 @@ hexo.extend.filter.register('after_post_render', function(data) {
+ 
+   if (!cheerio) cheerio = require('cheerio')
+ 
+-  var $ = cheerio.load(data.content, { decodeEntities: true })
++  var $ = cheerio.load(data.content, { decodeEntities: false })
+ 
+   if ($('.math').length > 0) {
+     linkTag = util.htmlTag('link', {
