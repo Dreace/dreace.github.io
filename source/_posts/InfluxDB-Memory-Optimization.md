@@ -61,9 +61,9 @@ environment:
 000000001-000000001.tsm  fields.idx  index
 ```
 
-### 更激进方法
+### 更激进的方法
 
-默认情况下 InfluxDB 会维护一个 `_internal` 库，来监控系统状态，如果禁用这个库可以减少磁盘和内容的使用，但是可以会发生一些不可预料的事故，因此官方**不推荐**在生产环境下禁用 `_internal` 库[^2]。
+默认情况下 InfluxDB 会维护一个 `_internal` 库，来监控系统状态，如果禁用这个库可以减少磁盘和内容的使用，但是可能会发生一些不可预料的事故，因此官方**不推荐**在生产环境下禁用 `_internal` 库[^2]。
 
 > InfluxData does **not** recommend using the `_internal` database in a production cluster. It creates unnecessary overhead, particularly for busy clusters, that can overload an already loaded cluster. Metrics stored in the `_internal` database primarily measure workload performance and should only be tested in non-production environments.
 
