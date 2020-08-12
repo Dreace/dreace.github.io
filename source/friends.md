@@ -14,3 +14,4 @@ permalink: friends.html
 - [![鸢尾花开](/images/friends/ishero.net.jpg)](http://ishero.net/ "鸢尾花开")
 - [![伞のBlog](/images/friends/farewell12345.github.io.png)](https://farewell12345.github.io/ "伞のBlog")
 - [![异国迷宫的十字路口](/images/friends/blog.fivezha.cn.png)](https://blog.fivezha.cn/ "异国迷宫的十字路口")
+- [![holk's blog](/images/friends/holk.tech.jpg)](http://holk.tech/ "holk's blog")
