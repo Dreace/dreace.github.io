@@ -3,7 +3,7 @@
 
 <head>
   
-  <title>MySQL 多关键词匹配 - DreaceのBlog</title>
+  <title>美团后端开发凉经，共两面 - DreaceのBlog</title>
   <meta charset="UTF-8">
   <meta name="description" content="一条咸鱼的垂死挣扎">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,28 +11,24 @@
   
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
-  <meta name="description" content="在 MySQL 中像搜索引擎一样查找多个关键词只使用 LIKE 实现比较困难，如果硬写也可以拼接很长的 SQL 实现，但有点太暴力了。因此需要一个简洁的方法来实现这个需求，这就是这篇文章要探讨的问题。">
+  <meta name="description" content="美团面得快，凉得也快。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL 多关键词匹配">
-<meta property="og:url" content="https://blog.dreace.top/2020/MySQL-Multiple-Keyword-Matching/index.html">
+<meta property="og:title" content="美团后端开发凉经，共两面">
+<meta property="og:url" content="https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/index.html">
 <meta property="og:site_name" content="DreaceのBlog">
-<meta property="og:description" content="在 MySQL 中像搜索引擎一样查找多个关键词只使用 LIKE 实现比较困难，如果硬写也可以拼接很长的 SQL 实现，但有点太暴力了。因此需要一个简洁的方法来实现这个需求，这就是这篇文章要探讨的问题。">
+<meta property="og:description" content="美团面得快，凉得也快。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/MySQL-Multiple-Keyword-Matching/image-20200320183837050.png">
-<meta property="article:published_time" content="2020-03-20T08:47:09.000Z">
+<meta property="article:published_time" content="2020-08-21T13:28:01.000Z">
 <meta property="article:modified_time" content="2020-08-22T01:47:10.962Z">
 <meta property="article:author" content="Dreace">
-<meta property="article:tag" content="MySQL">
-<meta property="article:tag" content="数据库">
-<meta property="article:tag" content="SQL">
-<meta property="article:tag" content="正则表达式">
+<meta property="article:tag" content="面经">
+<meta property="article:tag" content="美团">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/MySQL-Multiple-Keyword-Matching/image-20200320183837050.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1598060854346">
+  <link rel="stylesheet" href="/css/style.css?v=1598060854262">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -78,7 +74,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第-1-面"><span class="toc-text">第 1 面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第-2-面"><span class="toc-text">第 2 面</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -210,66 +206,65 @@
         <div class="nexmoe-post">
     <div class="nexmoe-post-cover"> 
 
-        <h1>MySQL 多关键词匹配</h1>
+        <h1>美团后端开发凉经，共两面</h1>
     </div>
   <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月20日</a>
-    <a><i class="nexmoefont icon-areachart"></i>998 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年08月21日</a>
+    <a><i class="nexmoefont icon-areachart"></i>278 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
     
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/MySQL/">MySQL</a>
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a>
     
     
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/MySQL/" rel="tag">MySQL</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/SQL/" rel="tag">SQL</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a>
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/%E7%BE%8E%E5%9B%A2/" rel="tag">美团</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag">面经</a>
     
   </div>
   <article>
-    <p>在 MySQL 中像搜索引擎一样查找多个关键词只使用 <code>LIKE</code> 实现比较困难，如果硬写也可以拼接很长的 SQL 实现，但有点太暴力了。因此需要一个简洁的方法来实现这个需求，这就是这篇文章要探讨的问题。</p>
+    <p>美团面得快，凉得也快。</p>
 <a id="more"></a>
-<h2 id="分析">分析</h2>
-<p>使用搜索引擎可以搜索使用空格分割的多个关键词，例如 <code>Python MySQL 回滚</code> 能够搜索到同时包含这个三个关键词的结果，并且是顺序无关的。要是用 <code>LIKE</code> 来进行模糊匹配就要拼接一个又臭又长的 SQL，这个可能并不是我们想要的，除了 <code>LIKE</code> 还有什么好的办法呢。正则表达式！用正则表达式可以很容易实现这个需求。</p>
-<p>既然有了办法开始写代码，首先考虑如何根据搜索输入 <code>Python MySQL 回滚</code> 匹配下面的字符串：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>Python 中回滚 MySQL 操作。</span></code></pre></div>
-<p>这个字符串中关键词输入顺序和输入的关键词顺序不同，但是顺序对结果不会产生影响。为了同时匹配多个关键词可以先拆分为多个独立的关键词分开匹配，若前一个成功则继续匹配知道所有关键词都成功匹配。</p>
-<p>我们可以使用正则中的零宽先行断言（<code>(?=exp)</code>）<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>，它可以匹配以 <code>exp</code> 为后缀的字符串，之后的匹配将从 <code>exp</code> 前一个位置继续。</p>
-<p>如果写成 <code>(?=.*exp)</code>，它将从后向前匹配以 <code>exp</code> 为后缀的字符串，若匹配式中包含多个零宽先行断言每一次匹配都从最后开始。</p>
-<p>这样关键问题已解决，对于 <code>Python MySQL 回滚</code> 完整的表达式为：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>(?<span class="op">=</span>.<span class="op">*</span>Python)(?<span class="op">=</span>.<span class="op">*</span>MySQL)(?<span class="op">=</span>.<span class="op">*</span>回滚)</span></code></pre></div>
-<p>上面这个正则表达式可以判断一个字符串是否包含这三个关键词，若要提取成功匹配的字符串可以写成：</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>(?<span class="op">=</span>.<span class="op">*</span>Python)(?<span class="op">=</span>.<span class="op">*</span>MySQL)(?<span class="op">=</span>.<span class="op">*</span>回滚)<span class="op">^</span>.<span class="op">*</span>$</span></code></pre></div>
-<h2 id="代码实现">代码实现</h2>
-<p>下面写一个用正则在 MySQL 中进行多关键词查找的实例。</p>
-<p>假设有一张表，结构如下：</p>
-<pre><code>CREATE TABLE `课程-2020-1`  (
-  `教学班编号` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `学院` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `课程名` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `教师` varchar(25) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `周次` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `星期` int(11) NOT NULL,
-  `开始节次` int(11) NULL DEFAULT NULL,
-  `时长节次` int(11) NULL DEFAULT NULL,
-  `教学楼` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `教室` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`教学班编号`, `课程名`, `星期`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;</code></pre>
-<p>我们希望能够同时匹配 <code>学院</code>、 <code>课程名</code>、<code>教师</code>三个字段中的值，例如输入 <code>工程 数据</code>，能够同时查找出「大数据学院」的「物联网工程技术基础」 和「信息与通信工程学院」的「大数据与云计算」课程，对应的 SQL 如下：</p>
-<pre><code>SELECT * FROM `课程-2020-1` WHERE CONCAT_WS(&#39;&#39;, `学院`, `课程名`, `教师`) REGEXP &#39;(?=.*工程)(?=.*数据)&#39;</code></pre>
-<p>其中 <code>CONCAT_WS('', `学院`, `课程名`, `教师`)</code> 将每行中 <code>学院</code>、 <code>课程名</code>、<code>教师</code> 字段的值连接形成一个字符串，第一个参数作为剩余参数间的分隔符<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>，<code>CONCAT_WS</code> 的作用类似 Python 和 JavaScript 中的 <code>join</code>。这里不使用 <code>CONCAT</code> 是因为 <code>教师</code> 字段可能为空值，进而导致 <code>CONCAT</code> 的返回结果也为空， 而 <code>CONCAT_WS</code> 会忽略空值。</p>
-<p>搜索结果为：</p>
-<figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/MySQL-Multiple-Keyword-Matching/image-20200320183837050.png" alt><figcaption>关键词"工程 数据"的搜索结果</figcaption>
-</figure>
-<p>完美实现！下面是输入关键词字符串生成对应 SQL 的 Python 代码：</p>
-<pre><code>keywords_map = &quot;&quot;.join(map(lambda k: &quot;(?=.*%s)&quot; % k, keywords.split(&quot; &quot;)))
-sql = &quot;SELECT * FROM `课程-2020-1` WHERE CONCAT_WS(&#39;&#39;, `学院`, `课程名`, `教师`) REGEXP &#39;%s^.*$&#39;&quot; % keywords_map</code></pre>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1" role="doc-endnote"><p><a href="https://www.cnblogs.com/symbol441/articles/957950.html" target="_blank" rel="noopener">https://www.cnblogs.com/symbol441/articles/957950.html</a> "正则表达式的分组"<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p><a href="https://www.cnblogs.com/locoy/archive/2006/10/28/542751.html" target="_blank" rel="noopener">https://www.cnblogs.com/locoy/archive/2006/10/28/542751.html</a> "CONCAT_WS的用法"<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<h2 id="第-1-面">第 1 面</h2>
+<ol type="1">
+<li>自我介绍</li>
+<li>项目模块划分</li>
+<li>MySQL
+<ol type="1">
+<li>主从</li>
+<li>隔离级别</li>
+<li>日志</li>
+<li>MVCC</li>
+<li>如何评估 SQL 语句的性能</li>
+<li>为什么选用 InnoDB</li>
+</ol></li>
+<li>B+ 树对比其他树结构的优点</li>
+<li>Redis 为什么高效</li>
+<li>Redis 持久化</li>
+<li>算法：<a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/" target="_blank" rel="noopener">剑指 Offer 40. 最小的k个数</a>
+<ol type="1">
+<li>说思路和时间复杂度</li>
+</ol></li>
+<li>一件自己比较自豪的事</li>
+<li>反问</li>
 </ol>
-</section>
+<h2 id="第-2-面">第 2 面</h2>
+<ol type="1">
+<li>GET 和 POST 区别</li>
+<li>DDoS 攻击，如何防御</li>
+<li>客户端如何保存登录状态</li>
+<li>跨域登录状态保持，从 taobao.com 切换到 tmall.com</li>
+<li>缓存（cache）和缓冲（buffer）的区别</li>
+<li>磁盘寻道算法
+<ol type="1">
+<li>针对存在高优先级任务如何改进</li>
+</ol></li>
+<li>软中断和硬中断</li>
+<li>用户态和内核态，什么情况会切换到内核态</li>
+<li>AVL 树和红黑树的对比</li>
+<li>如何优化快排</li>
+<li>为车牌号排序设计一个算法</li>
+<li>在二叉搜索树中找比指定值大的最小节点</li>
+<li>一片区域（矩阵）有若干水池（0）和陆地（1），求每个陆地节点到水池的最短距离</li>
+<li>反问</li>
+</ol>
 
   </article>
   
@@ -277,7 +272,7 @@ sql = &quot;SELECT * FROM `课程-2020-1` WHERE CONCAT_WS(&#39;&#39;, `学院`, 
 <div class="nexmoe-post-copyright">
 <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
 <strong>本文作者：</strong>Dreace<br>
-<strong>本文链接：</strong><a href="https://blog.dreace.top/2020/MySQL-Multiple-Keyword-Matching/" title="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;MySQL-Multiple-Keyword-Matching&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;MySQL-Multiple-Keyword-Matching&#x2F;</a><br>
+<strong>本文链接：</strong><a href="https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/" title="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times&#x2F;</a><br>
 
   <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
 
@@ -294,9 +289,9 @@ sql = &quot;SELECT * FROM `课程-2020-1` WHERE CONCAT_WS(&#39;&#39;, `学院`, 
 var dsqjs = new DisqusJS({
     shortname: 'dreace',
     siteName: 'DreaceのBlog',
-    identifier: 'https://blog.dreace.top/2020/MySQL-Multiple-Keyword-Matching/',
-    url: 'https://blog.dreace.top/2020/MySQL-Multiple-Keyword-Matching/',
-    title: 'MySQL 多关键词匹配',
+    identifier: 'https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/',
+    url: 'https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/',
+    title: '美团后端开发凉经，共两面',
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
     admin: 'Dreace',
@@ -323,7 +318,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1598060854347"></script>
+<script src="/js/app.js?v=1598060854266"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
