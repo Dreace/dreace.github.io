@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>C/C++ 编码规范 - DreaceのBlog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="一条咸鱼的垂死挣扎">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
+  <meta name="description" content="规范的编码能增强代码的可读性，提升 debug 效率。良好的代码规范还能提升团队间的协作效率，起码别人不用费心去研究表达式的含义。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++ 编码规范">
+<meta property="og:url" content="https://blog.dreace.top/2020/C-C-Coding-Standards/index.html">
+<meta property="og:site_name" content="DreaceのBlog">
+<meta property="og:description" content="规范的编码能增强代码的可读性，提升 debug 效率。良好的代码规范还能提升团队间的协作效率，起码别人不用费心去研究表达式的含义。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-27T12:25:24.000Z">
+<meta property="article:modified_time" content="2020-08-27T13:22:35.546Z">
+<meta property="article:author" content="Dreace">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="编码规范">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1598534579384">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url()"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png" alt="Dreace">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>21</div>
+        <div><span>标签</span>42</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章目录</h3>
+    <div class="nexmoe-widget">
+      <div id="toc" class="toc-article">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个例子"><span class="toc-text">一个例子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反面教材"><span class="toc-text">反面教材</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正面例子"><span class="toc-text">正面例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码原则"><span class="toc-text">编码原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于注释"><span class="toc-text">关于注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于空行"><span class="toc-text">关于空行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于空格"><span class="toc-text">关于空格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于缩进"><span class="toc-text">关于缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于控制语句"><span class="toc-text">关于控制语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一行只写一个语句"><span class="toc-text">一行只写一个语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命名"><span class="toc-text">命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不建议的操作"><span class="toc-text">不建议的操作</span></a></li></ol></li></ol>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">联系我</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/7686754" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Dreace" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://www.zhihu.com/people/dreace" target="_blank" mdui-tooltip="{content: '知乎'}" style="color: rgb(30, 136, 229);background-color: rgba(30, 136, 229, .15);">
+            <i class="nexmoefont icon-zhihu"></i>
+        </a><a class="mdui-ripple" href="https://steamcommunity.com/id/Dreace_Dreace/" target="_blank" mdui-tooltip="{content: 'Steam'}" style="color: rgb(37, 116, 196);background-color: rgba(37, 116, 196, .15);">
+            <i class="nexmoefont icon-steam"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Docker/">Docker</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Hexo/">Hexo</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Linux/">Linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/MySQL/">MySQL</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Python/">Python</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TypeScript/">TypeScript</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue-js/">Vue.js</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Windows/">Windows</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/建设日志/">建设日志</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/面经/">面经</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Dreace<br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+
+        <h1>C/C++ 编码规范</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年08月27日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/C-C/">C/C++</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/C-C/" rel="tag">C/C++</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">编码规范</a>
+    
+  </div>
+  <article>
+    <p>规范的编码能增强代码的可读性，提升 debug 效率。良好的代码规范还能提升团队间的协作效率，起码别人不用费心去研究表达式的含义。</p>
+<a id="more"></a>
+<h2 id="一个例子">一个例子</h2>
+<h3 id="反面教材">反面教材</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">for</span> (<span class="dt">int</span> i = n; i &gt;= <span class="dv">0</span>; i--) {</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="dt">int</span> d = pos - stop[i].f;</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="cf">while</span> (tank - d &lt; <span class="dv">0</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>{<span class="cf">if</span> (que.empty()) {</span>
+<span id="cb1-5"><a href="#cb1-5"></a>puts(<span class="st">&quot;-1&quot;</span>);</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb1-7"><a href="#cb1-7"></a>}</span>
+<span id="cb1-8"><a href="#cb1-8"></a>tank += que.top();</span>
+<span id="cb1-9"><a href="#cb1-9"></a>que.pop();ans++;}</span>
+<span id="cb1-10"><a href="#cb1-10"></a>tank -= d;pos = stop[i].f;</span>
+<span id="cb1-11"><a href="#cb1-11"></a>que.push(stop[i].s);</span>
+<span id="cb1-12"><a href="#cb1-12"></a>}</span></code></pre></div>
+<p>完全看不清这段代码在干什么，作用域尤其不清楚，如果看到上千行这样的代码会直接崩溃。</p>
+<h3 id="正面例子">正面例子</h3>
+<p>那么格式化后，是这样的：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="cf">for</span> (<span class="dt">int</span> i = n; i &gt;= <span class="dv">0</span>; --i) {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="dt">int</span> d = pos - stop[i].f;</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="cf">while</span> (tank - d &lt; <span class="dv">0</span>) {</span>
+<span id="cb2-4"><a href="#cb2-4"></a>        <span class="cf">if</span> (que.empty()) {</span>
+<span id="cb2-5"><a href="#cb2-5"></a>            puts(<span class="st">&quot;-1&quot;</span>);</span>
+<span id="cb2-6"><a href="#cb2-6"></a>            <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb2-7"><a href="#cb2-7"></a>        }</span>
+<span id="cb2-8"><a href="#cb2-8"></a>        tank += que.top();</span>
+<span id="cb2-9"><a href="#cb2-9"></a>        que.pop();</span>
+<span id="cb2-10"><a href="#cb2-10"></a>        ++ans;</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    }</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    tank -= d;</span>
+<span id="cb2-13"><a href="#cb2-13"></a>    pos = stop[i].f;</span>
+<span id="cb2-14"><a href="#cb2-14"></a>    que.push(stop[i].s);</span>
+<span id="cb2-15"><a href="#cb2-15"></a>}</span></code></pre></div>
+<p>代码含义一下子就明了了 。</p>
+<h2 id="编码原则">编码原则</h2>
+<ul>
+<li>增加代码可读性</li>
+<li>避免混淆</li>
+<li>保持代码风格一致</li>
+</ul>
+<h3 id="关于注释">关于注释</h3>
+<p>尽量使用单行注释 <code>// ...</code> 而不是多行注释 <code>/* ... */</code>，因为在大多数时候可以使用 IDE 快捷键 <code>Ctrl + /</code> 可以添加或取消单行注释，并且 <code>//</code> 后要添加空格，不同行的注释需要对齐，为函数和控制语句添加注释时，可以将注释放在上一行，例如：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">for</span> (<span class="dt">int</span> i = n; i &gt;= <span class="dv">0</span>; --i) {</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="dt">int</span> d = pos - stop[i].f;</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="co">// 一个操作</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="cf">while</span> (tank - d &lt; <span class="dv">0</span>) {</span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="co">// que 为空</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>        <span class="cf">if</span> (que.empty()) {</span>
+<span id="cb3-7"><a href="#cb3-7"></a>            puts(<span class="st">&quot;-1&quot;</span>); <span class="co">// 输出</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>            <span class="cf">return</span> <span class="dv">0</span>;   <span class="co">// 返回</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>        }</span>
+<span id="cb3-10"><a href="#cb3-10"></a>        tank += que.top();  <span class="co">// 取栈顶元素</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>        que.pop();          <span class="co">// 弹出栈顶</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>        ++ans;              <span class="co">// 更新答案</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>    }</span>
+<span id="cb3-14"><a href="#cb3-14"></a>    tank -= d;</span>
+<span id="cb3-15"><a href="#cb3-15"></a>    pos = stop[i].f;</span>
+<span id="cb3-16"><a href="#cb3-16"></a>    que.push(stop[i].s);</span>
+<span id="cb3-17"><a href="#cb3-17"></a>}</span></code></pre></div>
+<h3 id="关于空行">关于空行</h3>
+<p>头文件、宏定义与主要实现部分使用空行分开，如：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="dt">bool</span> cmp(<span class="dt">int</span> a, <span class="dt">int</span> b){</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="co">//Do something here</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>}</span></code></pre></div>
+<p>同一个函数不同功能代码间使用空行分开。</p>
+<h3 id="关于空格">关于空格</h3>
+<p>在赋值运算符、逻辑运算符、位运算符、算术运算符前后添加空格，例如 <code>name = "Alice"</code> 不能写成 <code>name="Alice"</code>。</p>
+<p>在引用操作符 <code>.</code>、<code>-&gt;</code>、<code>[]</code> 前后不能添加空格。</p>
+<p>添加空格的目的是让独立的 token 分开，加快阅读代码的速度。</p>
+<h3 id="关于缩进">关于缩进</h3>
+<p>按照代码逻辑水平缩进，缩进时使用 Tab 或四个 Space 或两个 Space 作为一个缩进单位，全局保持一致即可。 左大括号 <code>{</code> 使用 Java 风格，即放在上一行末，在前一个字符和 <code>{</code> 之间添加一个空格，也可选择左大括号放在新行，全局保持一致即可。</p>
+<p>平行逻辑代码列对齐，子逻辑与上层逻辑有一个单位的缩进，例如：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    scanf(<span class="st">&quot;</span><span class="sc">%s</span><span class="st">&quot;</span>, field[i]);</span>
+<span id="cb5-3"><a href="#cb5-3"></a>}</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++j) {</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; m; ++j) {</span>
+<span id="cb5-6"><a href="#cb5-6"></a>        <span class="cf">if</span> (field[i][j] == <span class="ch">&#39;W&#39;</span>) {</span>
+<span id="cb5-7"><a href="#cb5-7"></a>            dfs(i, j);</span>
+<span id="cb5-8"><a href="#cb5-8"></a>            ++count;</span>
+<span id="cb5-9"><a href="#cb5-9"></a>        }</span>
+<span id="cb5-10"><a href="#cb5-10"></a>    }</span>
+<span id="cb5-11"><a href="#cb5-11"></a>}</span></code></pre></div>
+<h3 id="关于控制语句">关于控制语句</h3>
+<p>无论控制语句有几行都要用使用 <code>{</code>、<code>}</code> 括起来，例如：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1"></a><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i) {</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    ++x;</span>
+<span id="cb6-3"><a href="#cb6-3"></a>}</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="cf">if</span> (!s.empty()) {</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    res = <span class="dv">1</span>;</span>
+<span id="cb6-6"><a href="#cb6-6"></a>}</span></code></pre></div>
+<p>不能写成：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; ++i)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    ++x;</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="cf">if</span> (!s.empty())</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    res = <span class="dv">1</span>;</span></code></pre></div>
+<h3 id="一行只写一个语句">一行只写一个语句</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1"></a><span class="cf">while</span> (x != s) {</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    ++x;</span>
+<span id="cb8-3"><a href="#cb8-3"></a>}</span></code></pre></div>
+<p>不能写成：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1"></a><span class="cf">while</span> (x != s) { ++x; }</span></code></pre></div>
+<p>或：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1"></a><span class="cf">while</span> (x != s) ++x;</span></code></pre></div>
+<h3 id="命名">命名</h3>
+<p><strong>不要使用拼音</strong>，尤其是拼音缩写，会给其他阅读代码的人带来困扰。</p>
+<p>在命名时尽量使变量名表达出它的含义，不要过度使用缩写。在 <code>for</code> 循环控制中可以使用 <code>i</code>、<code>j</code>、<code>k</code> 等简短的变量，以减少键入的时间。</p>
+<p>变量使用下划线分割，如 <code>list_name</code> 、 <code>lake_field</code>，当然也可以选择小驼峰命名风格 <code>listName</code> 、 <code>lakeField</code>，或者其他自己喜欢的风格。</p>
+<p>常量、宏定义使用全大写，如 <code>const int MAX = 100;</code> <code>#define MAXN 100005</code>。</p>
+<p>函数名使用小驼峰命名，如 <code>string getStudentNumber(...)</code>、<code>int maxOfTree(...)</code>。</p>
+<p><strong>强烈建议</strong>类名使用大驼峰命名，如 <code>class Solution{...};</code>。</p>
+<h3 id="不建议的操作">不建议的操作</h3>
+<p>编码时<strong>不建议</strong>使用第一眼看不出含义的特性，即使该特性是合法的。</p>
+<p>不要这样写：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1"></a>a = b = <span class="dv">5</span>;</span>
+<span id="cb11-2"><a href="#cb11-2"></a>c += d++;</span></code></pre></div>
+<p>而是写成这样：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1"></a>a = <span class="dv">5</span>;</span>
+<span id="cb12-2"><a href="#cb12-2"></a>b = <span class="dv">5</span>;</span>
+<span id="cb12-3"><a href="#cb12-3"></a>++d;</span>
+<span id="cb12-4"><a href="#cb12-4"></a>c += d;</span></code></pre></div>
+<p>不要这样写：</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1"></a><span class="cf">if</span> (m -= d) {</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="co">// Do something here</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>}</span></code></pre></div>
+<p>而是写成这样：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1"></a>m -= d;</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="cf">if</span> (m != <span class="dv">0</span>) {</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="co">// Do something here</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>}</span></code></pre></div>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Dreace<br>
+<strong>本文链接：</strong><a href="https://blog.dreace.top/2020/C-C-Coding-Standards/" title="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;C-C-Coding-Standards&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dreace.top&#x2F;2020&#x2F;C-C-Coding-Standards&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <!-- Unpkg -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.min.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.min.js"></script>
+<div id="disqus_thread"></div>
+<script>
+var dsqjs = new DisqusJS({
+    shortname: 'dreace',
+    siteName: 'DreaceのBlog',
+    identifier: 'https://blog.dreace.top/2020/C-C-Coding-Standards/',
+    url: 'https://blog.dreace.top/2020/C-C-Coding-Standards/',
+    title: 'C/C++ 编码规范',
+    api: 'https://disqus.dreace.top/api/',
+    apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
+    admin: 'Dreace',
+    adminLabel: '书记！'
+});
+</script>
+</section>
+</div>
+        
+    <div class="beian" >
+        
+            <a class="link" href="http://www.beian.miit.gov.cn/" target="_blank">蜀ICP备17035453号-1</a>
+        
+        
+            &nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51202202000022" target="_blank"><i class="govimg"></i>川公网安备 51202202000022 号</a>
+        
+    </div>
+
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1598534579418"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
+
+
+
+  
+    <!-- Google Analytics -->
+<script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-89152702-3', 'auto');
+    ga('send', 'pageview');
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+
+
+
+
+    <!-- Tencent Analytics -->
+<script>
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//tajs.qq.com/stats?sId=500701683";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+</body>
+
+</html>
