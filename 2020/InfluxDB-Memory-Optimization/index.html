@@ -20,7 +20,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/InfluxDB-Memory-Optimization/image-20200508120656188.png">
 <meta property="article:published_time" content="2020-05-08T03:27:20.000Z">
-<meta property="article:modified_time" content="2020-09-28T09:01:29.802Z">
+<meta property="article:modified_time" content="2020-10-10T01:07:46.729Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Docker">
@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1601283734694">
+  <link rel="stylesheet" href="/css/style.css?v=1602292091992">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -77,7 +77,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#罪魁祸首"><span class="toc-text">罪魁祸首</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试解决"><span class="toc-text">尝试解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#更改索引方式"><span class="toc-text">更改索引方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更激进的方法"><span class="toc-text">更激进的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果验证"><span class="toc-text">效果验证</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#罪魁祸首"><span class="toc-text">罪魁祸首</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试解决"><span class="toc-text">尝试解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#更改索引方式"><span class="toc-text">更改索引方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#禁用状态监控"><span class="toc-text">禁用状态监控</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果验证"><span class="toc-text">效果验证</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -220,8 +220,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年05月08日</a>
-    <a><i class="nexmoefont icon-areachart"></i>938 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>859 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/Docker/">Docker</a>
     
@@ -259,12 +259,11 @@
 [root@izuf6czs1dw6siz3zokdiez 1_day]# cd 15
 [root@izuf6czs1dw6siz3zokdiez 15]# ls
 000000001-000000001.tsm  fields.idx  index</code></pre>
-<h3 id="更激进的方法">更激进的方法</h3>
-<p>默认情况下 InfluxDB 会维护一个 <code>_internal</code> 库，来监控系统状态，如果禁用这个库可以减少磁盘和内容的使用，但是可能会发生一些不可预料的事故，因此官方<strong>不推荐</strong>在生产环境下禁用 <code>_internal</code> 库<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。</p>
+<h3 id="禁用状态监控">禁用状态监控</h3>
+<p>默认情况下 InfluxDB 会维护一个 <code>_internal</code> 库，来监控系统状，但是会产生不必要的数据，官方<strong>不推荐</strong>在生产环境下使用 <code>_internal</code> 库<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。</p>
 <blockquote>
 <p>InfluxData does <strong>not</strong> recommend using the <code>_internal</code> database in a production cluster. It creates unnecessary overhead, particularly for busy clusters, that can overload an already loaded cluster. Metrics stored in the <code>_internal</code> database primarily measure workload performance and should only be tested in non-production environments.</p>
 </blockquote>
-<p>但是在内存极度紧张的时候还是可以考虑禁用 <code>_internal</code> 库的。由于需要 InfluxDB 的是一个小项目，部署的机器内存又很小，就决定禁用 <code>_internal</code> 了。</p>
 <p>添加环境变量：</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">environment</span><span class="kw">:</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="at">    </span><span class="fu">INFLUXDB_DATA_INDEX_VERSION</span><span class="kw">:</span><span class="at"> tsi1</span></span>
@@ -332,7 +331,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1601283734695"></script>
+<script src="/js/app.js?v=1602292091994"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
