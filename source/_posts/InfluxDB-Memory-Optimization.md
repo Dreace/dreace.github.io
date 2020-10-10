@@ -63,7 +63,7 @@ environment:
 
 ### 禁用状态监控
 
-默认情况下 InfluxDB 会维护一个 `_internal` 库，来监控系统状，但是会产生不必要的数据，官方**不推荐**在生产环境下使用 `_internal` 库[^2]。
+默认情况下 InfluxDB 会维护一个 `_internal` 库，来监控系统状态，但是会产生不必要的数据，官方**不推荐**在生产环境下使用 `_internal` 库[^2]。
 
 > InfluxData does **not** recommend using the `_internal` database in a production cluster. It creates unnecessary overhead, particularly for busy clusters, that can overload an already loaded cluster. Metrics stored in the `_internal` database primarily measure workload performance and should only be tested in non-production environments.
 
