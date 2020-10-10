@@ -20,7 +20,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/InfluxDB-Memory-Optimization/image-20200508120656188.png">
 <meta property="article:published_time" content="2020-05-08T03:27:20.000Z">
-<meta property="article:modified_time" content="2020-10-10T01:07:46.729Z">
+<meta property="article:modified_time" content="2020-10-10T01:10:56.150Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Docker">
@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1602292091992">
+  <link rel="stylesheet" href="/css/style.css?v=1602292280207">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -220,7 +220,7 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年05月08日</a>
-    <a><i class="nexmoefont icon-areachart"></i>859 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>860 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/Docker/">Docker</a>
@@ -260,7 +260,7 @@
 [root@izuf6czs1dw6siz3zokdiez 15]# ls
 000000001-000000001.tsm  fields.idx  index</code></pre>
 <h3 id="禁用状态监控">禁用状态监控</h3>
-<p>默认情况下 InfluxDB 会维护一个 <code>_internal</code> 库，来监控系统状，但是会产生不必要的数据，官方<strong>不推荐</strong>在生产环境下使用 <code>_internal</code> 库<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。</p>
+<p>默认情况下 InfluxDB 会维护一个 <code>_internal</code> 库，来监控系统状态，但是会产生不必要的数据，官方<strong>不推荐</strong>在生产环境下使用 <code>_internal</code> 库<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。</p>
 <blockquote>
 <p>InfluxData does <strong>not</strong> recommend using the <code>_internal</code> database in a production cluster. It creates unnecessary overhead, particularly for busy clusters, that can overload an already loaded cluster. Metrics stored in the <code>_internal</code> database primarily measure workload performance and should only be tested in non-production environments.</p>
 </blockquote>
@@ -331,7 +331,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1602292091994"></script>
+<script src="/js/app.js?v=1602292280208"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
