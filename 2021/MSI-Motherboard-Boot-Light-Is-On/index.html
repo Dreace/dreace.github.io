@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>微星主板 boot 灯常亮 - DreaceのBlog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="一条咸鱼的垂死挣扎">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
+  <meta name="description" content="周五，本应该是一个美好的时间，但如果按下电脑开机键屏幕却没有点亮将会感受到整个世界的恶意。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微星主板 boot 灯常亮">
+<meta property="og:url" content="https://blog.dreace.top/2021/MSI-Motherboard-Boot-Light-Is-On/index.html">
+<meta property="og:site_name" content="DreaceのBlog">
+<meta property="og:description" content="周五，本应该是一个美好的时间，但如果按下电脑开机键屏幕却没有点亮将会感受到整个世界的恶意。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-03T07:19:00.000Z">
+<meta property="article:modified_time" content="2021-07-03T07:52:03.431Z">
+<meta property="article:author" content="Dreace">
+<meta property="article:tag" content="电脑">
+<meta property="article:tag" content="装机">
+<meta property="article:tag" content="启动">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1625298764482">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url()"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png" alt="Dreace">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>23</div>
+        <div><span>标签</span>46</div>
+        <div><span>分类</span>13</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章目录</h3>
+    <div class="nexmoe-widget">
+      <div id="toc" class="toc-article">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试解决"><span class="toc-text">尝试解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#拔插显卡"><span class="toc-text">拔插显卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更换显卡"><span class="toc-text">更换显卡</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">联系我</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/7686754" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Dreace" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://www.zhihu.com/people/dreace" target="_blank" mdui-tooltip="{content: '知乎'}" style="color: rgb(30, 136, 229);background-color: rgba(30, 136, 229, .15);">
+            <i class="nexmoefont icon-zhihu"></i>
+        </a><a class="mdui-ripple" href="https://steamcommunity.com/id/Dreace_Dreace/" target="_blank" mdui-tooltip="{content: 'Steam'}" style="color: rgb(37, 116, 196);background-color: rgba(37, 116, 196, .15);">
+            <i class="nexmoefont icon-steam"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Docker/">Docker</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Hexo/">Hexo</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Linux/">Linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/MySQL/">MySQL</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Python/">Python</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TypeScript/">TypeScript</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue-js/">Vue.js</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Windows/">Windows</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/建设日志/">建设日志</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/装机/">装机</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/面经/">面经</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 - 2021 Dreace<br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+
+        <h1>微星主板 boot 灯常亮</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年07月03日</a>
+    <a><i class="nexmoefont icon-areachart"></i>317 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E8%A3%85%E6%9C%BA/">装机</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%90%AF%E5%8A%A8/" rel="tag">启动</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E7%94%B5%E8%84%91/" rel="tag">电脑</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E8%A3%85%E6%9C%BA/" rel="tag">装机</a>
+    
+  </div>
+  <article>
+    <p>周五，本应该是一个美好的时间，但如果按下电脑开机键屏幕却没有点亮将会感受到整个世界的恶意。</p>
+<a id="more"></a>
+<h2 id="背景">背景</h2>
+<p>周五下班回家后开电脑发现屏幕一直没有反应，拔插 DP 线也没有效果，并且发现主板的 boot 灯一直亮着，说明在启动中但是没有成功。开关几次电源还是没有效果后开始慌了。</p>
+<h2 id="尝试解决">尝试解决</h2>
+<h3 id="拔插显卡">拔插显卡</h3>
+<p>显卡是刚买的 RX 6900 XT，在默默祈祷中拆下面板把显卡取下来再插回去，但是通电后依然没有效果，显示器依旧提示没有信号输入。</p>
+<h3 id="更换显卡">更换显卡</h3>
+<p>查阅资料后没有获得有效信息，但想起来之前用的亮机卡（750 Ti）还在，就换上了试试。</p>
+<p>换上 750 Ti 显示器有信号了，提示内存超频失败（内存是芝奇皇家戟 8Gx4，自动超频到 3600），这下问题找到了，进入 BIOS 禁用 XMP，然后重启，成功进入系统。</p>
+<p>此后多次尝试重启系统均成功，然后将显卡换回 RX 6900 XT 也成功启动。</p>
+<h2 id="总结">总结</h2>
+<p>原因未知，但是旧显卡留着还是有用的。</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Dreace<br>
+<strong>本文链接：</strong><a href="https://blog.dreace.top/2021/MSI-Motherboard-Boot-Light-Is-On/" title="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2021&#x2F;MSI-Motherboard-Boot-Light-Is-On&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dreace.top&#x2F;2021&#x2F;MSI-Motherboard-Boot-Light-Is-On&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <!-- Unpkg -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.min.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.min.js"></script>
+<div id="disqus_thread"></div>
+<script>
+var dsqjs = new DisqusJS({
+    shortname: 'dreace',
+    siteName: 'DreaceのBlog',
+    identifier: 'https://blog.dreace.top/2021/MSI-Motherboard-Boot-Light-Is-On/',
+    url: 'https://blog.dreace.top/2021/MSI-Motherboard-Boot-Light-Is-On/',
+    title: '微星主板 boot 灯常亮',
+    api: 'https://disqus.dreace.top/api/',
+    apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
+    admin: 'Dreace',
+    adminLabel: '书记！'
+});
+</script>
+</section>
+</div>
+        
+    <div class="beian" >
+        
+            <a class="link" href="http://www.beian.miit.gov.cn/" target="_blank">蜀ICP备17035453号-1</a>
+        
+        
+            &nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51202202000022" target="_blank"><i class="govimg"></i>川公网安备 51202202000022 号</a>
+        
+    </div>
+
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1625298764487"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
+
+
+
+  
+    <!-- Google Analytics -->
+<script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-89152702-3', 'auto');
+    ga('send', 'pageview');
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+
+
+
+
+    <!-- Tencent Analytics -->
+<script>
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//tajs.qq.com/stats?sId=500701683";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+</body>
+
+</html>
