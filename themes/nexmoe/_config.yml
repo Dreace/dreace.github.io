@@ -79,7 +79,7 @@ site_verification: # 向搜索引擎验证你对站点的所有权，用于向�
   baidu:
 
 analytics:
-  tencent_site_id: 500701683
+  # tencent_site_id: 500701683
   google_site_id: UA-89152702-3
 
 comment: disqusjs # 评论框，目前支持 gitalk,gitment,valine,disqus,disqusjs,changyan,livere,DiscussBot
@@ -94,7 +94,7 @@ disqusjs:
     - 1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn
     # DisqusJS 向 API 发起请求时使用的 API Key，你应该在配置 Disqus Application 时获取了 API Key;DisqusJS 支持填入一个 包含多个 API Key 的 Array，在每次请求时会随机使用其中一个；如果你只需要填入一个 API Key，则可以填入 String 或 Array。
   admin: Dreace # 你的站点的 Disqus Moderator 的用户名（也就是你的用户名）。你可以在 Disqus - Settings - Account - Username 获取你的 Username
-  adminLabel: 书记！ # 你想显示在 Disqus Moderator Badge 中的文字。该配置应和 Disqus Admin - Settings - Community - Moderator Badge Text 相同
+  # adminLabel: 书记！ # 你想显示在 Disqus Moderator Badge 中的文字。该配置应和 Disqus Admin - Settings - Community - Moderator Badge Text 相同
 
 copyright: '<strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可'
 
