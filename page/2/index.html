@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1626295811117">
+  <link rel="stylesheet" href="/css/style.css?v=1644755528015">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -40,7 +40,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
        </div>
     </div>
   </div>
@@ -48,13 +48,13 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png" alt="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>23</div>
-        <div><span>标签</span>46</div>
-        <div><span>分类</span>13</div>
+        <div><span>文章</span>24</div>
+        <div><span>标签</span>48</div>
+        <div><span>分类</span>14</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -171,6 +171,13 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/指南/">指南</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/算法/">算法</a>
           <span class="category-list-count">1</span>
         </li>
@@ -199,7 +206,7 @@
   
 </aside>
     <div class="nexmoe-copyright">
-        &copy; 2019 - 2021 Dreace<br>
+        &copy; 2019 - 2022 Dreace<br>
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
     </div>
@@ -208,6 +215,30 @@
   <div id="nexmoe-content">
     <div class="nexmoe-primary index ">
         <section class="nexmoe-posts" id="brand-waterfall">
+    
+    <div class="nexmoe-post">
+        <a href="/2020/Two-Solutions-to-the-Topk-Problem-Heap-Quick-Sort/">
+            <div class="nexmoe-post-cover"> 
+                <h1>TopK 问题两种解决方案：堆、快排变形</h1>
+            </div>
+        </a>
+        <div class="nexmoe-post-meta">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2020年07月10日</a>
+            <a><i class="nexmoefont icon-areachart"></i>937 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+            
+                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+            
+                <a class="nexmoefont icon-tag-fill -link" href="/tags/C/" rel="tag">C++</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+            
+        </div>
+        <article>
+            
+            <p>这里的 TopK 不单指最大的 <span class="math inline">k</span> 个元素，也可以是最小的 <span class="math inline">k</span> 个元素，具体的例题可以看 <a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/" target="_blank" rel="noopener">剑指 Offer 40. 最小的k个数</a>。本文的代码均为可以在力扣提交的题解，故不包含头文件和 <code>main</code> 函数。</p>
+            
+        </article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2020/Use-Python-to-implement-the-DES-algorithm/">
@@ -427,30 +458,6 @@
         </article>
     </div>
     
-    <div class="nexmoe-post">
-        <a href="/2019/Blog-Transfer-Record-1-From-WordPress-to-Hexo/">
-            <div class="nexmoe-post-cover"> 
-                <h1>博客迁移日志其一 从 WordPress 到 Hexo</h1>
-            </div>
-        </a>
-        <div class="nexmoe-post-meta">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2019年11月10日</a>
-            <a><i class="nexmoefont icon-areachart"></i>566 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%BB%BA%E8%AE%BE%E6%97%A5%E5%BF%97/">建设日志</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/Hexo/" rel="tag">Hexo</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E8%BF%81%E7%A7%BB/" rel="tag">迁移</a>
-            
-        </div>
-        <article>
-            
-            <p>用 WordPress 写博客已经很长时间，虽然写的东西不多，从最开始的托管空间开始到迁移至阿里的 ECS 上，这个博客已经存在了四五年了。也从最开始感叹 WordPress 功能强大到现在抱怨种种问题，例如 Markdown 支持不完善、由于主机上传带宽很小后台管理打开很慢等等。越用越感觉 WordPress 似乎不适合我，操作过于繁琐。一句话就是「<strong>不够 Geek</strong>」。</p>
-            
-        </article>
-    </div>
-    
 </section>
 
     <nav class="nexmoe-page-nav">
@@ -476,7 +483,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1626295811118"></script>
+<script src="/js/app.js?v=1644755528016"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
@@ -492,16 +499,6 @@
 
 
 
-
-    <!-- Tencent Analytics -->
-<script>
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//tajs.qq.com/stats?sId=500701683";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
 
 

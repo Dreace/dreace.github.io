@@ -18,20 +18,20 @@
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="最近给小程序的后端日志加上了实时输出到前端功能，为了展示就得保存日志，又考虑到日志是时序数据，自然就选择了时序数据库 InfluxDB，并且通过 Docker 部署。刚上线的一两天没有什么问题，各方面运行都很平稳，没过几天的一个早上突然收到了阿里云的报警，说内存占用超过了 95%。 这便是噩梦的开始。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/InfluxDB-Memory-Optimization/image-20200508120656188.png">
+<meta property="og:image" content="https://blog.dreace.top/images/InfluxDB-Memory-Optimization/image-20200508120656188.png">
 <meta property="article:published_time" content="2020-05-08T03:27:20.000Z">
-<meta property="article:modified_time" content="2021-07-14T20:49:48.229Z">
+<meta property="article:modified_time" content="2022-02-13T12:31:19.799Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="InfluxDB">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/InfluxDB-Memory-Optimization/image-20200508120656188.png">
+<meta name="twitter:image" content="https://blog.dreace.top/images/InfluxDB-Memory-Optimization/image-20200508120656188.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1626295810991">
+  <link rel="stylesheet" href="/css/style.css?v=1644755527901">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -44,7 +44,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
        </div>
     </div>
   </div>
@@ -52,13 +52,13 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png" alt="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>23</div>
-        <div><span>标签</span>46</div>
-        <div><span>分类</span>13</div>
+        <div><span>文章</span>24</div>
+        <div><span>标签</span>48</div>
+        <div><span>分类</span>14</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -77,7 +77,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#罪魁祸首"><span class="toc-text">罪魁祸首</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试解决"><span class="toc-text">尝试解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#更改索引方式"><span class="toc-text">更改索引方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#禁用状态监控"><span class="toc-text">禁用状态监控</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果验证"><span class="toc-text">效果验证</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#罪魁祸首"><span class="toc-number">1.</span> <span class="toc-text">罪魁祸首</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试解决"><span class="toc-number">2.</span> <span class="toc-text">尝试解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#更改索引方式"><span class="toc-number">2.1.</span> <span class="toc-text">更改索引方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#禁用状态监控"><span class="toc-number">2.2.</span> <span class="toc-text">禁用状态监控</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果验证"><span class="toc-number">3.</span> <span class="toc-text">效果验证</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -184,6 +184,13 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/指南/">指南</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/算法/">算法</a>
           <span class="category-list-count">1</span>
         </li>
@@ -212,7 +219,7 @@
   
 </aside>
     <div class="nexmoe-copyright">
-        &copy; 2019 - 2021 Dreace<br>
+        &copy; 2019 - 2022 Dreace<br>
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
     </div>
@@ -243,7 +250,7 @@
 <h2 id="罪魁祸首">罪魁祸首</h2>
 <p>收到报警后看了一下系统各项指标，不仅内存占用高，CPU、磁盘使用率都是满负荷。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/InfluxDB-Memory-Optimization/image-20200508120656188.png" alt><figcaption>报警时系统指标</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/InfluxDB-Memory-Optimization/image-20200508120656188.png" alt><figcaption>报警时系统指标</figcaption>
 </figure>
 <p>在凌晨一点半左右内存暴涨，紧接着 CPU 使用率也达到 100%。这个场景似曾相识，因为之前使用过 InfluxDB，也遇到过内存暴涨，结合前几天又用上了 InfluxDB，基本可以断定是 InfluxDB 的锅。</p>
 <p>重启服务器后一切都恢复正常，但是 InfluxDB 可能随时又出现状况，只能一直盯着各种指标，盯数据的时候发现 InfluxDB 的内存占用肉眼可见地增长，可以说很恐怖了。</p>
@@ -315,7 +322,7 @@ var dsqjs = new DisqusJS({
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
     admin: 'Dreace',
-    adminLabel: '书记！'
+    adminLabel: ''
 });
 </script>
 </section>
@@ -338,7 +345,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1626295810993"></script>
+<script src="/js/app.js?v=1644755527902"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
@@ -354,16 +361,6 @@ var dsqjs = new DisqusJS({
 
 
 
-
-    <!-- Tencent Analytics -->
-<script>
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//tajs.qq.com/stats?sId=500701683";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
 
 

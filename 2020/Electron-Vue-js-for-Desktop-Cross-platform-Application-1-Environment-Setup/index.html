@@ -18,36 +18,36 @@
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="最近突然有个想法打算做一个桌面应用，打算跨平台，技术选型在 Qt 和 Electron 之间定，经过一晚上的深思熟虑（并没有）最终决定采用 Electron + Vue.js 方案。谁让咱是个末流程序猿👨‍💻，UI &#x2F; UX 不会做，图也不会画，只能用用别人造好的轮子。Web 这边 UI 组件问题不用担心，起码做出来的东西外观看起来还可以，希望如此。 下面将使用最新的 Electron 和 V">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225427901.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225453779.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225857040.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225624117.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225701244.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225724202.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120231432550.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225816311.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121110345907.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111053872.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111846090.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121135306530.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121140443054.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141255491.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141916527.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121142011185.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225427901.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225453779.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225857040.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225624117.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225701244.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225724202.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120231432550.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225816311.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121110345907.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111053872.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111846090.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121135306530.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121140443054.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141255491.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141916527.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121142011185.png">
 <meta property="article:published_time" content="2020-01-20T14:03:48.000Z">
-<meta property="article:modified_time" content="2021-07-14T20:49:48.229Z">
+<meta property="article:modified_time" content="2022-02-13T12:31:19.799Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="Vue.js">
 <meta property="article:tag" content="Electron">
 <meta property="article:tag" content="跨平台">
 <meta property="article:tag" content="桌面端">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225427901.png">
+<meta name="twitter:image" content="https://blog.dreace.top/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225427901.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1626295811000">
+  <link rel="stylesheet" href="/css/style.css?v=1644755527910">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -60,7 +60,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
        </div>
     </div>
   </div>
@@ -68,13 +68,13 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png" alt="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>23</div>
-        <div><span>标签</span>46</div>
-        <div><span>分类</span>13</div>
+        <div><span>文章</span>24</div>
+        <div><span>标签</span>48</div>
+        <div><span>分类</span>14</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -93,7 +93,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建1"><span class="toc-text">环境搭建1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x01-环境配置"><span class="toc-text">0x01 环境配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x02-安装工具"><span class="toc-text">0x02 安装工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x03-创建初始项目"><span class="toc-text">0x03 创建初始项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#选择预设"><span class="toc-text">选择预设</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择工具"><span class="toc-text">选择工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择路由模式"><span class="toc-text">选择路由模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择-eslint-配置"><span class="toc-text">选择 ESLint 配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择何时进行格式检查"><span class="toc-text">选择何时进行格式检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择单元测试方案"><span class="toc-text">选择单元测试方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择在何处存放配置信息"><span class="toc-text">选择在何处存放配置信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择是否保存配置"><span class="toc-text">选择是否保存配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#等待安装"><span class="toc-text">等待安装</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x04-安装-electron-builder"><span class="toc-text">0x04 安装 electron-builder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#选择-electron-版本"><span class="toc-text">选择 Electron 版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#是否添加测试"><span class="toc-text">是否添加测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启用-devtools"><span class="toc-text">启用 Devtools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改-electron-版本"><span class="toc-text">修改 Electron 版本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装完成"><span class="toc-text">安装完成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x01-运行开发版"><span class="toc-text">0x01 运行开发版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x02-构建生产版"><span class="toc-text">0x02 构建生产版</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写在后面"><span class="toc-text">写在后面</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建1"><span class="toc-number">1.</span> <span class="toc-text">环境搭建1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x01-环境配置"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 环境配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x02-安装工具"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 安装工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x03-创建初始项目"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 创建初始项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#选择预设"><span class="toc-number">1.3.1.</span> <span class="toc-text">选择预设</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择工具"><span class="toc-number">1.3.2.</span> <span class="toc-text">选择工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择路由模式"><span class="toc-number">1.3.3.</span> <span class="toc-text">选择路由模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择-eslint-配置"><span class="toc-number">1.3.4.</span> <span class="toc-text">选择 ESLint 配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择何时进行格式检查"><span class="toc-number">1.3.5.</span> <span class="toc-text">选择何时进行格式检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择单元测试方案"><span class="toc-number">1.3.6.</span> <span class="toc-text">选择单元测试方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择在何处存放配置信息"><span class="toc-number">1.3.7.</span> <span class="toc-text">选择在何处存放配置信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择是否保存配置"><span class="toc-number">1.3.8.</span> <span class="toc-text">选择是否保存配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#等待安装"><span class="toc-number">1.3.9.</span> <span class="toc-text">等待安装</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x04-安装-electron-builder"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 安装 electron-builder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#选择-electron-版本"><span class="toc-number">1.4.1.</span> <span class="toc-text">选择 Electron 版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#是否添加测试"><span class="toc-number">1.4.2.</span> <span class="toc-text">是否添加测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启用-devtools"><span class="toc-number">1.4.3.</span> <span class="toc-text">启用 Devtools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改-electron-版本"><span class="toc-number">1.4.4.</span> <span class="toc-text">修改 Electron 版本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装完成"><span class="toc-number">2.</span> <span class="toc-text">安装完成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x01-运行开发版"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 运行开发版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x02-构建生产版"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 构建生产版</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写在后面"><span class="toc-number">3.</span> <span class="toc-text">写在后面</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -200,6 +200,13 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/指南/">指南</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/算法/">算法</a>
           <span class="category-list-count">1</span>
         </li>
@@ -228,7 +235,7 @@
   
 </aside>
     <div class="nexmoe-copyright">
-        &copy; 2019 - 2021 Dreace<br>
+        &copy; 2019 - 2022 Dreace<br>
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
     </div>
@@ -273,43 +280,43 @@
 <p>接下来设置项目的基础配置。</p>
 <h4 id="选择预设">选择预设</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225427901.png" alt><figcaption>选择预设</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225427901.png" alt><figcaption>选择预设</figcaption>
 </figure>
 <p>这里我选择手动设置（Manually select features）。</p>
 <h4 id="选择工具">选择工具</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225453779.png" alt><figcaption>选择工具</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225453779.png" alt><figcaption>选择工具</figcaption>
 </figure>
 <p>根据项目的需要选择工具（<code>空格</code> 选择），然后 <code>回车</code> 确认。</p>
 <h4 id="选择路由模式">选择路由模式</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225857040.png" alt><figcaption>选择路由模式</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225857040.png" alt><figcaption>选择路由模式</figcaption>
 </figure>
 <p>选择 history 还是 hash 样式的路由，history 链接格式比较好看，但是需要服务器支持，由于这是 Electron 项目只能选择 hash 样式（<code>n</code>）。反正用户看不到具体的链接，难看点也能接受。</p>
 <h4 id="选择-eslint-配置">选择 ESLint 配置</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225624117.png" alt><figcaption>选择 ESLint 配置</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225624117.png" alt><figcaption>选择 ESLint 配置</figcaption>
 </figure>
 <p>这里选择标准配置（ESLint + Standard config）。</p>
 <h4 id="选择何时进行格式检查">选择何时进行格式检查</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225701244.png" alt><figcaption>选择何时进行格式检查</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225701244.png" alt><figcaption>选择何时进行格式检查</figcaption>
 </figure>
 <p>这里选择仅在保存时检查（Lint on save）。</p>
 <h4 id="选择单元测试方案">选择单元测试方案</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225724202.png" alt><figcaption>选择单元测试方案</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225724202.png" alt><figcaption>选择单元测试方案</figcaption>
 </figure>
 <p>如果之前未选择单元测试则不会出现这个选项。</p>
 <p>这里选择 Mocha + Chai。</p>
 <h4 id="选择在何处存放配置信息">选择在何处存放配置信息</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120231432550.png" alt><figcaption>选择在何处存放配置信息</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120231432550.png" alt><figcaption>选择在何处存放配置信息</figcaption>
 </figure>
 <p>这里选择放在 <code>package.json</code> 文件中。</p>
 <h4 id="选择是否保存配置">选择是否保存配置</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225816311.png" alt><figcaption>选择是否保存配置</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200120225816311.png" alt><figcaption>选择是否保存配置</figcaption>
 </figure>
 <p>如果选择 <code>y</code> 先前的配置会保存为预设备以后的项目使用，这里选择 <code>n</code>。</p>
 <h4 id="等待安装">等待安装</h4>
@@ -320,16 +327,16 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">vue</span> add electron-builder</span></code></pre></div>
 <p>可能会出现更改未提交的提示，跳过即可。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121110345907.png" alt><figcaption>更改未提交</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121110345907.png" alt><figcaption>更改未提交</figcaption>
 </figure>
 <h4 id="选择-electron-版本">选择 Electron 版本</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111053872.png" alt><figcaption>选择 Electron 版本</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111053872.png" alt><figcaption>选择 Electron 版本</figcaption>
 </figure>
 <p>目前 Electron 最新版本是 7.x，但是这里没有 7.0.0 选择，先选择 6.0.0 安装完成后再手动升级。</p>
 <h4 id="是否添加测试">是否添加测试</h4>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111846090.png" alt><figcaption>是否添加测试</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121111846090.png" alt><figcaption>是否添加测试</figcaption>
 </figure>
 <p>根据项目需要添加测试，这里选择 <code>y</code>。</p>
 <h4 id="启用-devtools">启用 Devtools</h4>
@@ -377,7 +384,7 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">npm</span> run electron:serve</span></code></pre></div>
 <p>即可运行开发版本的应用， Devtools 可以正常使用。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121135306530.png" alt><figcaption>运行成功</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121135306530.png" alt><figcaption>运行成功</figcaption>
 </figure>
 <h3 id="x02-构建生产版">0x02 构建生产版</h3>
 <p>在项目根目录新建 <code>vue.config.js</code> 文件，并写入<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>：</p>
@@ -435,7 +442,7 @@
 <span id="cb10-52"><a href="#cb10-52"></a><span class="op">}</span></span></code></pre></div>
 <p>并将图标放置在 <code>./public</code> 路径下。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121140443054.png" alt><figcaption>图标位置</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121140443054.png" alt><figcaption>图标位置</figcaption>
 </figure>
 <p>这里配置在 Windows 环境下将构建 NSIS 安装包，并允许用户自定义安目录，更多的配置选项可查看 <a href="https://www.electron.build/" target="_blank" rel="noopener">electron-builder 文档</a>。</p>
 <p>然后执行：</p>
@@ -443,13 +450,13 @@
 <p><strong>若首次运行出现 winCodeSign 下载失败，可尝试将安全软件关闭后重试</strong></p>
 <p>执行完成后在 <code>./dist_electron</code> 路径下可找到构建的安装包，双击即可执行安装。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141255491.png" alt><figcaption>构建的安装包</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141255491.png" alt><figcaption>构建的安装包</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141916527.png" alt><figcaption>安装后的桌面图标</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121141916527.png" alt><figcaption>安装后的桌面图标</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121142011185.png" alt><figcaption>运行生产构建版本</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/image-20200121142011185.png" alt><figcaption>运行生产构建版本</figcaption>
 </figure>
 <h2 id="写在后面">写在后面</h2>
 <p>到此为止，一个最基础的 Electron + Vue.js 跨平台应用搭建完成，接下来就是具体的逻辑编写，希望这个项目不会流产。</p>
@@ -491,7 +498,7 @@ var dsqjs = new DisqusJS({
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
     admin: 'Dreace',
-    adminLabel: '书记！'
+    adminLabel: ''
 });
 </script>
 </section>
@@ -514,7 +521,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1626295811006"></script>
+<script src="/js/app.js?v=1644755527917"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
@@ -530,16 +537,6 @@ var dsqjs = new DisqusJS({
 
 
 
-
-    <!-- Tencent Analytics -->
-<script>
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//tajs.qq.com/stats?sId=500701683";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
 
 

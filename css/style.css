@@ -80,7 +80,7 @@ body {
   font-size: 0;
   width: calc(100% - 120px);
   overflow: hidden;
-  border-radius: 100%;
+  border-radius: 3px;
   box-shadow: 0 0.3rem 2rem rgba(161,177,204,0.6);
 }
 #nexmoe-header .nexmoe-avatar a {
@@ -777,7 +777,7 @@ article table {
   overflow: auto;
   white-space: nowrap;
   margin: auto;
-  border-radius: 6px;
+  border-radius: 3px;
 }
 article table::-webkit-scrollbar {
   width: 6px;

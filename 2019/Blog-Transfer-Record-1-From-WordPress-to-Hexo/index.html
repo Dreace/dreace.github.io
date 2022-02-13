@@ -18,23 +18,23 @@
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="用 WordPress 写博客已经很长时间，虽然写的东西不多，从最开始的托管空间开始到迁移至阿里的 ECS 上，这个博客已经存在了四五年了。也从最开始感叹 WordPress 功能强大到现在抱怨种种问题，例如 Markdown 支持不完善、由于主机上传带宽很小后台管理打开很慢等等。越用越感觉 WordPress 似乎不适合我，操作过于繁琐。一句话就是「不够 Geek」。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110180243358.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182226873.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182507063.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110180243358.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182226873.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182507063.png">
 <meta property="article:published_time" content="2019-11-10T03:03:36.000Z">
-<meta property="article:modified_time" content="2021-07-14T20:49:48.225Z">
+<meta property="article:modified_time" content="2022-02-13T12:31:19.799Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="记录">
 <meta property="article:tag" content="博客">
 <meta property="article:tag" content="迁移">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110180243358.png">
+<meta name="twitter:image" content="https://blog.dreace.top/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110180243358.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1626295811015">
+  <link rel="stylesheet" href="/css/style.css?v=1644755527924">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -47,7 +47,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
        </div>
     </div>
   </div>
@@ -55,13 +55,13 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png" alt="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>23</div>
-        <div><span>标签</span>46</div>
-        <div><span>分类</span>13</div>
+        <div><span>文章</span>24</div>
+        <div><span>标签</span>48</div>
+        <div><span>分类</span>14</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -80,7 +80,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始-hexo"><span class="toc-text">开始 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从-wordpress-导出"><span class="toc-text">从 WordPress 导出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-text">最后</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始-hexo"><span class="toc-number">1.</span> <span class="toc-text">开始 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从-wordpress-导出"><span class="toc-number">2.</span> <span class="toc-text">从 WordPress 导出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -187,6 +187,13 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/指南/">指南</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/算法/">算法</a>
           <span class="category-list-count">1</span>
         </li>
@@ -215,7 +222,7 @@
   
 </aside>
     <div class="nexmoe-copyright">
-        &copy; 2019 - 2021 Dreace<br>
+        &copy; 2019 - 2022 Dreace<br>
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
     </div>
@@ -260,14 +267,14 @@
 <pre class="shell"><code>hexo migrate wordpress &lt;source&gt;</code></pre>
 <p>其中 <code>&lt;source&gt;</code> 是文件路径。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110180243358.png" alt><figcaption>导入完成</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110180243358.png" alt><figcaption>导入完成</figcaption>
 </figure>
 <p>导入成功，虽然内容转移过来了但是排版惨不忍睹。比如文章中部分代码代码格式丢失、不忍直视的文件名。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182226873.png" alt><figcaption>丢失样式的 Python 代码</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182226873.png" alt><figcaption>丢失样式的 Python 代码</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182507063.png" alt><figcaption>不忍直视的文件名</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Blog-Transfer-Record-1-From-WordPress-to-Hexo/image-20191110182507063.png" alt><figcaption>不忍直视的文件名</figcaption>
 </figure>
 <p>只能先把这些文章移到 <code>_drafts</code> 文件夹中以后来慢慢整理。</p>
 <h2 id="最后">最后</h2>
@@ -308,7 +315,7 @@ var dsqjs = new DisqusJS({
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
     admin: 'Dreace',
-    adminLabel: '书记！'
+    adminLabel: ''
 });
 </script>
 </section>
@@ -331,7 +338,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1626295811016"></script>
+<script src="/js/app.js?v=1644755527925"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
@@ -347,16 +354,6 @@ var dsqjs = new DisqusJS({
 
 
 
-
-    <!-- Tencent Analytics -->
-<script>
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//tajs.qq.com/stats?sId=500701683";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
 
 

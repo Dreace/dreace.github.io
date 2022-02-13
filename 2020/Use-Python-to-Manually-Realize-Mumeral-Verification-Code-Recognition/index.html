@@ -18,27 +18,27 @@
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="（迁移文章，本文写于2019年8月3日）本人维护的一个项目 中北信息 小程序需要模拟登录来获取信息，这就需要在后台识别验证码。需要识别的验证码比较简单且为纯数字，有简单到可以忽略不计的变形，像下面这个样子。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE2.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE3-1595862311679.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE4.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-2.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-3.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-4.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE2.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE3-1595862311679.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE4.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-1.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-2.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-3.png">
+<meta property="og:image" content="https://blog.dreace.top/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/%E5%9B%BE5-4.png">
 <meta property="article:published_time" content="2020-07-27T14:11:37.000Z">
-<meta property="article:modified_time" content="2021-07-14T20:49:48.229Z">
+<meta property="article:modified_time" content="2022-02-13T12:31:19.799Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="网络">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="验证码识别">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png">
+<meta name="twitter:image" content="https://blog.dreace.top/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1626295810945">
+  <link rel="stylesheet" href="/css/style.css?v=1644755527851">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -51,7 +51,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
        </div>
     </div>
   </div>
@@ -59,13 +59,13 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/avatar.png" alt="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>23</div>
-        <div><span>标签</span>46</div>
-        <div><span>分类</span>13</div>
+        <div><span>文章</span>24</div>
+        <div><span>标签</span>48</div>
+        <div><span>分类</span>14</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -84,7 +84,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导入需要用到库"><span class="toc-text">导入需要用到库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#灰度化"><span class="toc-text">灰度化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二值化"><span class="toc-text">二值化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切割为单个数字"><span class="toc-text">切割为单个数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#和字库对比"><span class="toc-text">和字库对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-text">最后</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导入需要用到库"><span class="toc-number">1.</span> <span class="toc-text">导入需要用到库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#灰度化"><span class="toc-number">2.</span> <span class="toc-text">灰度化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二值化"><span class="toc-number">3.</span> <span class="toc-text">二值化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切割为单个数字"><span class="toc-number">4.</span> <span class="toc-text">切割为单个数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#和字库对比"><span class="toc-number">5.</span> <span class="toc-text">和字库对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">6.</span> <span class="toc-text">最后</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -191,6 +191,13 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/指南/">指南</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/算法/">算法</a>
           <span class="category-list-count">1</span>
         </li>
@@ -219,7 +226,7 @@
   
 </aside>
     <div class="nexmoe-copyright">
-        &copy; 2019 - 2021 Dreace<br>
+        &copy; 2019 - 2022 Dreace<br>
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
     </div>
@@ -247,7 +254,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous"><p>（迁移文章，本文写于2019年8月3日）本人维护的一个项目 <a href="https://github.com/Dreace/NUC-Information" target="_blank" rel="noopener">中北信息</a> 小程序需要模拟登录来获取信息，这就需要在后台识别验证码。需要识别的验证码比较简单且为纯数字，有简单到可以忽略不计的变形，像下面这个样子。</p>
 <a id="more"></a>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png" alt><figcaption>验证码样例</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/example.png" alt><figcaption>验证码样例</figcaption>
 </figure>
 <p>可以看到稍微有一点噪点，应该是压缩解压过程造成的（<a href="https://zh.wikipedia.org/zh-cn/JPEG" target="_blank" rel="noopener">JPG</a> 是有损压缩）。</p>
 <p>这是近乎标准印刷体的四位数字，只是有稍微倾斜，最开始想到的办法是 OCR 。</p>
@@ -274,7 +281,7 @@
 <h2 id="灰度化">灰度化</h2>
 <p>从之前的例子可以看到图像有一些噪点，为了不让其干扰识别需要进行降噪处理，第一步是将图片灰度化。所谓灰度化是将 RGB 色彩空间中三个量合并成一个量 L，这样原本的彩色图像变成灰度图了。每个像素的取值也由 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>25</mn><msup><mn>6</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">256^{3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">5</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span>（16777216）个减少到 256 个，能够减少后继的计算量。将上面的图片灰度化之后变成下面的样子。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图2.png" alt><figcaption>灰度化后</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图2.png" alt><figcaption>灰度化后</figcaption>
 </figure>
 <p>处理代码：</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 灰度处理并创建二维矩阵</span></span>
@@ -284,7 +291,7 @@
 <h2 id="二值化">二值化</h2>
 <p>二值化是将图像的像素与某个阈值比较，若大于这个阈值则设置为灰度最大值（这里是 1，白色），小于某个值则设为灰度最小值（这里是 0，黑色）。这样上一步的灰度图就转化为二值图，便于接下来的图像分割。选择合适的阈值还可以去除图像噪点。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图3-1595862311679.png" alt><figcaption>二值化后</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图3-1595862311679.png" alt><figcaption>二值化后</figcaption>
 </figure>
 <p>二值化后噪点已经完全消失，数字的边界更加锐利。</p>
 <p>处理代码：</p>
@@ -310,7 +317,7 @@
 <span id="cb4-7"><a href="#cb4-7"></a><span class="co"># 只取有图像的行</span></span>
 <span id="cb4-8"><a href="#cb4-8"></a>img_matrix <span class="op">=</span> img_matrix[row_start:<span class="op">-</span>row_end, :]</span></code></pre></div>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图4.png" alt><figcaption>去除上下空白</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图4.png" alt><figcaption>去除上下空白</figcaption>
 </figure>
 <p><code>row_min</code> 的值为</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>[<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span>]</span></code></pre></div>
@@ -335,16 +342,16 @@
 <span id="cb6-17"><a href="#cb6-17"></a>    imag_matrix_spited <span class="op">=</span> imag_matrix_spited[:, col_start:<span class="op">-</span>col_end]</span></code></pre></div>
 <p>先粗略裁剪为每个数字 20 像素，然后再判断左边界和右边界，同之前一样的算法。但是这里不能直接使用得到的边界，每个数字的宽度不一样，直接切片会导致矩阵大小不一样，会影响之后的计算。因此要将将宽度统一为 9 像素，即为最宽的数字宽度。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-1.png" alt><figcaption>切片结果-8</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-1.png" alt><figcaption>切片结果-8</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-2.png" alt><figcaption>切片结果-4</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-2.png" alt><figcaption>切片结果-4</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-3.png" alt><figcaption>切片结果-0</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-3.png" alt><figcaption>切片结果-0</figcaption>
 </figure>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="https://cdn.jsdelivr.net/gh/dreace/dreace.github.io@master/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-4.png" alt><figcaption>切片结果-3</figcaption>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/图5-4.png" alt><figcaption>切片结果-3</figcaption>
 </figure>
 <h2 id="和字库对比">和字库对比</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>res <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> <span class="dv">10</span></span>
@@ -436,7 +443,7 @@ var dsqjs = new DisqusJS({
     api: 'https://disqus.dreace.top/api/',
     apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
     admin: 'Dreace',
-    adminLabel: '书记！'
+    adminLabel: ''
 });
 </script>
 </section>
@@ -459,7 +466,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1626295810963"></script>
+<script src="/js/app.js?v=1644755527869"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
@@ -475,16 +482,6 @@ var dsqjs = new DisqusJS({
 
 
 
-
-    <!-- Tencent Analytics -->
-<script>
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//tajs.qq.com/stats?sId=500701683";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
 
 
