@@ -1031,15 +1031,6 @@ hexo-i18n@^1.0.0:
   dependencies:
     sprintf-js "^1.0.3"
 
-hexo-katex@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/hexo-katex/-/hexo-katex-0.0.13.tgz#f4525e1cf7b8eac377c8e96e98ed114224d0af8b"
-  integrity sha512-VYTIkjpQ9E2YcB6QSIK0M504sEA1BVbdH306RtO75S+wn+VEh0NS+vV5aqSJHSUX9DYEV0ew5hQYqVWx7Muwtg==
-  dependencies:
-    cheerio "^0.22.0"
-    hexo-util "^0.6.0"
-    katex "^0.10.1"
-
 hexo-log@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hexo-log/-/hexo-log-1.0.0.tgz#6f0d39e0e9e76b04a4617b242c3e101d5c4283c7"

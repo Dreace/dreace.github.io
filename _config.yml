@@ -99,7 +99,6 @@ plugins:
   - hexo-generator-index
   - hexo-generator-sitemap
   - hexo-generator-tag
-  - hexo-katex
   - hexo-renderer-ejs
   - hexo-renderer-pandoc
   - hexo-renderer-stylus
