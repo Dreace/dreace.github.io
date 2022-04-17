@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>在 Python 中调用 C/C++ 共享库 - DreaceのBlog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="一条咸鱼的垂死挣扎">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
+  <meta name="description" content="由于 Python 自身的特性（脚本语言、动态类型等）在性能和效率方面不是很理想，如果想在 Python 获得更高的运行性能可以通过调用 C&#x2F;C++ 编写的共享库实现。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Python 中调用 C&#x2F;C++ 共享库">
+<meta property="og:url" content="https://blog.dreace.top/2022/Calling-C-C-Shared-Library-Libraries-in-Python/index.html">
+<meta property="og:site_name" content="DreaceのBlog">
+<meta property="og:description" content="由于 Python 自身的特性（脚本语言、动态类型等）在性能和效率方面不是很理想，如果想在 Python 获得更高的运行性能可以通过调用 C&#x2F;C++ 编写的共享库实现。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-17T11:36:34.000Z">
+<meta property="article:modified_time" content="2022-04-17T13:30:55.485Z">
+<meta property="article:author" content="Dreace">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1650202306440">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url()"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>25</div>
+        <div><span>标签</span>48</div>
+        <div><span>分类</span>14</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章目录</h3>
+    <div class="nexmoe-widget">
+      <div id="toc" class="toc-article">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成共享库"><span class="toc-number">2.</span> <span class="toc-text">生成共享库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python-中使用共享库"><span class="toc-number">3.</span> <span class="toc-text">Python 中使用共享库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单函数"><span class="toc-number">3.1.</span> <span class="toc-text">简单函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非基础类型参数"><span class="toc-number">3.2.</span> <span class="toc-text">非基础类型参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用结构体"><span class="toc-number">3.3.</span> <span class="toc-text">使用结构体</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-cmake"><span class="toc-number">4.</span> <span class="toc-text">使用 CMake</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">联系我</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/7686754" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Dreace" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://www.zhihu.com/people/dreace" target="_blank" mdui-tooltip="{content: '知乎'}" style="color: rgb(30, 136, 229);background-color: rgba(30, 136, 229, .15);">
+            <i class="nexmoefont icon-zhihu"></i>
+        </a><a class="mdui-ripple" href="https://steamcommunity.com/id/Dreace_Dreace/" target="_blank" mdui-tooltip="{content: 'Steam'}" style="color: rgb(37, 116, 196);background-color: rgba(37, 116, 196, .15);">
+            <i class="nexmoefont icon-steam"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Docker/">Docker</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Hexo/">Hexo</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Linux/">Linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/MySQL/">MySQL</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Python/">Python</a>
+          <span class="category-list-count">5</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TypeScript/">TypeScript</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue-js/">Vue.js</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Windows/">Windows</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/建设日志/">建设日志</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/指南/">指南</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/装机/">装机</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/面经/">面经</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 - 2022 Dreace<br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+
+        <h1>在 Python 中调用 C/C++ 共享库</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年04月17日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/Python/">Python</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/C-C/" rel="tag">C/C++</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/Python/" rel="tag">Python</a>
+    
+  </div>
+  <article>
+    <p>由于 Python 自身的特性（脚本语言、动态类型等）在性能和效率方面不是很理想，如果想在 Python 获得更高的运行性能可以通过调用 C/C++ 编写的共享库实现。</p>
+<a id="more"></a>
+<h2 id="前言">前言</h2>
+<p>使用 C/C++ 编写的程序可以编译为共享库（Shared Library，Linux 中后缀为 <code>.so</code>）供其他程序在运行时加载并使用，Python 的标准库 <code>ctypes</code> 实现了加载、函数寻址、函数调用等方法可以方便地使用共享库<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。</p>
+<h2 id="生成共享库">生成共享库</h2>
+<p>假设有如下 C++ 代码实现了 64 位整型的加法和乘法、截取子字符串，以及一个名叫 <code>Point</code> 的结构体有 <code>x</code> 和 <code>y</code> 两个 32 位整型成员、两个 <code>Point*</code> 类型相加的函数。演示代码所以 <code>Substr</code> 函数实现偷懒了。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="pp">#include </span><span class="im">&lt;cstdint&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="at">extern</span> <span class="st">&quot;C&quot;</span> {</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="kw">typedef</span> <span class="kw">struct</span> Point {</span>
+<span id="cb1-6"><a href="#cb1-6"></a>        <span class="dt">int32_t</span> x;</span>
+<span id="cb1-7"><a href="#cb1-7"></a>        <span class="dt">int32_t</span> y;</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    } Point;</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    Point PointAdd(Point* a, Point* b) {</span>
+<span id="cb1-11"><a href="#cb1-11"></a>        Point result;</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        result.x = a -&gt; x + b -&gt; x;</span>
+<span id="cb1-13"><a href="#cb1-13"></a>        result.y = a -&gt; y + b -&gt; y;</span>
+<span id="cb1-14"><a href="#cb1-14"></a>        <span class="cf">return</span> result;</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    }</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a>    <span class="dt">int64_t</span> Add(<span class="dt">int64_t</span> a, <span class="dt">int64_t</span> b) {</span>
+<span id="cb1-18"><a href="#cb1-18"></a>        <span class="cf">return</span> a + b;</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    }</span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a>    <span class="dt">int64_t</span> Mul(<span class="dt">int64_t</span> a, <span class="dt">int64_t</span> b) {</span>
+<span id="cb1-22"><a href="#cb1-22"></a>        <span class="cf">return</span> a * b;</span>
+<span id="cb1-23"><a href="#cb1-23"></a>    }</span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a>    <span class="at">const</span> <span class="dt">char</span>* Substr(<span class="dt">char</span>* str, <span class="dt">int64_t</span> start, <span class="dt">int64_t</span> length) {</span>
+<span id="cb1-26"><a href="#cb1-26"></a>        <span class="cf">return</span> <span class="bu">std::</span>string(str).substr(start, length).c_str();</span>
+<span id="cb1-27"><a href="#cb1-27"></a>    }</span>
+<span id="cb1-28"><a href="#cb1-28"></a>}</span></code></pre></div>
+<p>假设源码文件名为 <code>functions.cpp</code>，使用 <code>g++</code> 编译上述代码生成共享库：</p>
+<pre class="shell"><code>g++ -fPIC -shared -lstdc++ -o libfunctions.so functions.cpp</code></pre>
+<p>参数含义：</p>
+<ul>
+<li><code>-fPIC</code>：生成地址无关代码，生成共享库时通常配合使用该参数，如果设置了该参数，宏<code>__pic__</code> 和 <code>__PIC__</code> 会被定义且值为 <code>2</code></li>
+<li><code>-shared</code>：生成共享库，通常需要同时设置 <code>-fPIC</code></li>
+<li><code>-lstdc++</code>：链接 C++ 标准库</li>
+<li><code>-o</code>：指定输出文件，这里为 <code>libfunctions.so</code></li>
+</ul>
+<p><code>extern "C"</code> 告诉编译器在编译时 <code>{}</code> 中的函数名字需要与 C 兼容，详见 <a href="https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c" target="_blank" rel="noopener">What is the effect of extern "C" in C++? - Stack Overflow</a>。</p>
+<h2 id="python-中使用共享库">Python 中使用共享库</h2>
+<p>Python 中导入 <code>ctypes</code> 指定共享库（<code>.so</code> 文件）加载后声明函数的参数列表和返回值类型（基础类型可声明返回值类型）即可调用共享库中的函数。</p>
+<h3 id="简单函数">简单函数</h3>
+<p>以调用 <code>Add</code> 函数为例：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> ctypes</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>functions <span class="op">=</span> ctypes.CDLL(<span class="st">&quot;./libfunctions.so&quot;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>functions.Add.argtypes <span class="op">=</span> [ctypes.c_int64, ctypes.c_int64]</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="bu">print</span>(functions.Add(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
+<p>其中 <code>argtypes</code> 声明了 <code>Add</code> 函数的参数列表：两个 <code>int64</code> 参数，执行 Python 文件就可以得到结果 <code>3</code>。</p>
+<p>调用 <code>Mul</code> 函数也是类似的：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>functions.Mul.argtypes <span class="op">=</span> [ctypes.c_int64, ctypes.c_int64]</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(functions.Mul(<span class="dv">233</span>, <span class="dv">2</span>))</span></code></pre></div>
+<p>可以得到结果 <code>466</code>。</p>
+<h3 id="非基础类型参数">非基础类型参数</h3>
+<p><code>Substr</code> 的第一个参数是字符指针（<code>char*</code>）因此第一个参数应该使用 <code>c_char_p</code>，同时返回值也是字符指针而不是基础类型因此需要声明返回值类型：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>functions.Substr.argtypes <span class="op">=</span> [ctypes.c_char_p, ctypes.c_int64, ctypes.c_int64]</span>
+<span id="cb5-2"><a href="#cb5-2"></a>functions.Substr.restype <span class="op">=</span> ctypes.c_char_p</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="bu">print</span>(functions.Substr(ctypes.c_char_p(<span class="st">&quot;Hello World&quot;</span>.encode()), <span class="dv">2</span>, <span class="dv">5</span>).decode())</span></code></pre></div>
+<p>构造 <code>c_char_p</code> 时可以使用 <code>bytes</code> 或者 <code>int</code>（指针），这里直接将字符串编码传入，执行得到结果 <code>llo W</code>。</p>
+<h3 id="使用结构体">使用结构体</h3>
+<p>在 Python 中定义结构体后可以将结构体作为参数传递给共享库中的函数：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">class</span> Point(ctypes.Structure):</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    _fields_ <span class="op">=</span> [(<span class="st">&quot;x&quot;</span>, ctypes.c_int32), (<span class="st">&quot;y&quot;</span>, ctypes.c_int32)]</span></code></pre></div>
+<p>定义 <code>Point</code> 结构体，有两个名为 <code>x</code> 和 <code>y</code>，类型是 <code>int32</code> 的参数，然后声明 <code>PointAdd</code> 函数：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>PointAdd <span class="op">=</span> functions.PointAdd</span>
+<span id="cb7-2"><a href="#cb7-2"></a>PointAdd.argtypes <span class="op">=</span> [ctypes.POINTER(Point), ctypes.POINTER(Point)]</span>
+<span id="cb7-3"><a href="#cb7-3"></a>PointAdd.restype <span class="op">=</span> Point</span></code></pre></div>
+<p>构造两个 <code>Point</code> 结构体调用 <code>PointAdd</code> 函数：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>p_a <span class="op">=</span> Point(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>p_b <span class="op">=</span> Point(<span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a>p_result <span class="op">=</span> PointAdd(p_a, p_b)</span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="bu">print</span>(p_result.x, p_result.y)</span></code></pre></div>
+<p>执行得到结果 <code>4 6</code>。</p>
+<h2 id="使用-cmake">使用 CMake</h2>
+<p>假设目录结构如下 ：</p>
+<pre class="plain"><code>.
+├── CMakeLists.txt
+├── include
+│   └── point.h
+└── src
+    └── functions.cpp</code></pre>
+<p><code>include</code> 存放项目头文件，<code>src</code> 存放源文件，<code>point.h</code> 中是 <code>Point</code> 结构体定义：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1"></a><span class="pp">#include </span><span class="im">&lt;cstdint&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="at">extern</span> <span class="st">&quot;C&quot;</span> {</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="kw">typedef</span> <span class="kw">struct</span> Point {</span>
+<span id="cb10-5"><a href="#cb10-5"></a>        <span class="dt">int32_t</span> x;</span>
+<span id="cb10-6"><a href="#cb10-6"></a>        <span class="dt">int32_t</span> y;</span>
+<span id="cb10-7"><a href="#cb10-7"></a>    } Point;</span>
+<span id="cb10-8"><a href="#cb10-8"></a>}</span></code></pre></div>
+<p><code>functions.cpp</code> 除移动到 <code>point.h</code> 中内的容外不变，最小化 <code>CMakeLists.txt</code> 文件：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> 2.8.9)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">project</span> (Functions)</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 11)</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="kw">include</span>_directories(./include)</span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="kw">aux_source_directory</span>(./src DIR_SRCS)</span>
+<span id="cb11-7"><a href="#cb11-7"></a></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="kw">add_library</span>(Functions <span class="ot">SHARED</span> <span class="dv">${</span>DIR_SRCS<span class="dv">}</span>)</span></code></pre></div>
+<p>编译后修改 Python 中的 <code>functions = ctypes.CDLL("./libfunctions.so")</code> 路径为新的 <code>.so</code> 路径即可使用。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1" role="doc-endnote"><p><a href="https://docs.python.org/zh-cn/3/library/ctypes.html" target="_blank" rel="noopener">https://docs.python.org/zh-cn/3/library/ctypes.html</a> "ctypes --- Python 的外部函数库 — Python 3.10.4 文档"<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Dreace<br>
+<strong>本文链接：</strong><a href="https://blog.dreace.top/2022/Calling-C-C-Shared-Library-Libraries-in-Python/" title="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2022&#x2F;Calling-C-C-Shared-Library-Libraries-in-Python&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dreace.top&#x2F;2022&#x2F;Calling-C-C-Shared-Library-Libraries-in-Python&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <!-- Unpkg -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.min.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.min.js"></script>
+<div id="disqus_thread"></div>
+<script>
+var dsqjs = new DisqusJS({
+    shortname: 'dreace',
+    siteName: 'DreaceのBlog',
+    identifier: 'https://blog.dreace.top/2022/Calling-C-C-Shared-Library-Libraries-in-Python/',
+    url: 'https://blog.dreace.top/2022/Calling-C-C-Shared-Library-Libraries-in-Python/',
+    title: '在 Python 中调用 C/C++ 共享库',
+    api: 'https://disqus.dreace.top/api/',
+    apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
+    admin: 'Dreace',
+    adminLabel: ''
+});
+</script>
+</section>
+</div>
+        
+    <div class="beian" >
+        
+            <a class="link" href="http://www.beian.miit.gov.cn/" target="_blank">蜀ICP备17035453号-1</a>
+        
+        
+            &nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51202202000022" target="_blank"><i class="govimg"></i>川公网安备 51202202000022 号</a>
+        
+    </div>
+
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1650202306456"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
+
+
+
+  
+    <!-- Google Analytics -->
+<script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-89152702-3', 'auto');
+    ga('send', 'pageview');
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+
+
+
+
+
+
+</body>
+
+</html>
