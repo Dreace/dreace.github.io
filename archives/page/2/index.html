@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1672472025183">
+  <link rel="stylesheet" href="/css/style.css?v=1673361080665">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -52,8 +52,8 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>26</div>
-        <div><span>标签</span>50</div>
+        <div><span>文章</span>27</div>
+        <div><span>标签</span>52</div>
         <div><span>分类</span>15</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
@@ -178,8 +178,8 @@
         
 
         <li class="category-list-item">
-          <a class="category-list-link" href="/categories/智能家居/">智能家居</a>
-          <span class="category-list-count">1</span>
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">2</span>
         </li>
 
         
@@ -213,7 +213,7 @@
   
 </aside>
     <div class="nexmoe-copyright">
-        &copy; 2019 - 2022 Dreace<br>
+        &copy; 2019 - 2023 Dreace<br>
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
     </div>
@@ -222,6 +222,30 @@
   <div id="nexmoe-content">
     <div class="nexmoe-primary index ">
         <section class="nexmoe-posts" id="brand-waterfall">
+    
+    <div class="nexmoe-post">
+        <a href="/2020/Solve-the-Problem-That-hexo-katex-Incorrectly-Encodes-Chinese-As-HTML-Character-Entities/">
+            <div class="nexmoe-post-cover"> 
+                <h1>解决 hexo-katex 错误地将中文编码为 HTML 字符实体</h1>
+            </div>
+        </a>
+        <div class="nexmoe-post-meta">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2020年08月01日</a>
+            <a><i class="nexmoefont icon-areachart"></i>618 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+            
+                <a class="nexmoefont icon-appstore-fill -link" href="/categories/Hexo/">Hexo</a>
+            
+            
+                <a class="nexmoefont icon-tag-fill -link" href="/tags/Hexo/" rel="tag">Hexo</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/JavaScript/" rel="tag">JavaScript</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/npm/" rel="tag">npm</a>
+            
+        </div>
+        <article>
+            
+            <p>偶然发现博客正文中的中文都被编码成了 <a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E5%AE%9E%E4%BD%93%E5%BC%95%E7%94%A8" target="_blank" rel="noopener">HTML 字符实体</a>，也就是中文「静」被编码为 <code>&amp;#x9759;</code>，在 UTF-8 中一个中文字符由三个字符编码，而转成 HTML 字符实体后一个中文字符占 8 个字节，增加了 167%。一篇博客正文占据主要部分，四舍五入，转换后 HTML 文件体积比直接使用 UFT-8 编码大了一倍。</p>
+            
+        </article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2020/Use-Python-to-Manually-Realize-Mumeral-Verification-Code-Recognition/">
@@ -443,31 +467,6 @@
         </article>
     </div>
     
-    <div class="nexmoe-post">
-        <a href="/2020/Electron-Vue-js-for-Desktop-Cross-platform-Application-1-Environment-Setup/">
-            <div class="nexmoe-post-cover"> 
-                <h1>Electron + Vue.js 打造桌面端跨平台应用#1 环境搭建</h1>
-            </div>
-        </a>
-        <div class="nexmoe-post-meta">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2020年01月20日</a>
-            <a><i class="nexmoefont icon-areachart"></i>1.4k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/Vue-js/">Vue.js</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/Electron/" rel="tag">Electron</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/Vue-js/" rel="tag">Vue.js</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E6%A1%8C%E9%9D%A2%E7%AB%AF/" rel="tag">桌面端</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/" rel="tag">跨平台</a>
-            
-        </div>
-        <article>
-            
-            <p>最近突然有个想法打算做一个桌面应用，打算跨平台，技术选型在 Qt 和 Electron 之间定，经过一晚上的深思熟虑（并没有）最终决定采用 Electron + Vue.js 方案。谁让咱是个末流程序猿👨‍💻，UI / UX 不会做，图也不会画，只能用用别人造好的轮子。Web 这边 UI 组件问题不用担心，起码做出来的东西外观看起来还可以，希望如此。</p>
-<p>下面将使用最新的 Electron 和 Vue CLI 搭建一个 demo 出来。</p>
-            
-        </article>
-    </div>
-    
 </section>
 
     <nav class="nexmoe-page-nav">
@@ -493,7 +492,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1672472025184"></script>
+<script src="/js/app.js?v=1673361080667"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
