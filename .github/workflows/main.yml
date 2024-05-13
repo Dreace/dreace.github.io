@@ -29,17 +29,26 @@ jobs:
       - name: Uninstall hexo-renderer-marked
         run: npm uninstall hexo-renderer-marked --save
 
-      - name: Generate site
-        run: ./node_modules/hexo/bin/hexo generate
+      - name: Save pre-generation timestamps
+        run: |
+          mkdir -p ${{ github.workspace }}/temp
+          find . -type f -print0 | xargs -0 stat --format="%n %Y" > ${{ github.workspace }}/temp/pre_gen_timestamps.txt
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/source'
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Clean site
+        run: npx hexo clean
+
+      - name: Generate site
+        run: npx hexo generate
+
+      - name: Restore timestamps for unchanged files
+        run: |
+          while IFS= read -r line; do
+            file=$(echo $line | cut -d" " -f1)
+            timestamp=$(echo $line | cut -d" " -f2)
+            if [[ -f "$file" && `git status $file --porcelain` == "" ]]; then
+              touch -d @$timestamp "$file"
+            fi
+          done < ${{ github.workspace }}/temp/pre_gen_timestamps.txt
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
