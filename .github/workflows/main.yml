@@ -1,0 +1,50 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '12'
+
+      - name: Install Pandoc
+        run: |
+          wget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb
+          sudo apt-get install -y ./pandoc-2.7.3-1-amd64.deb
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Uninstall hexo-renderer-marked
+        run: npm uninstall hexo-renderer-marked --save
+
+      - name: Generate site
+        run: ./node_modules/hexo/bin/hexo generate
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/source'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: master
+          keep_files: true # corresponds to keep-history in Travis CI
