@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>TabFlow：免费开源的 Mac 窗口切换工具 - DreaceのBlog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="一条咸鱼的垂死挣扎">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
+  <meta name="description" content="TabFlow 是免费、开源的 macOS 窗口切换工具，支持同一应用的多个窗口、窗口缩略图、多显示器和桌面空间。介绍使用方式、安装步骤和权限设置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TabFlow：免费开源的 Mac 窗口切换工具">
+<meta property="og:url" content="https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/index.html">
+<meta property="og:site_name" content="DreaceのBlog">
+<meta property="og:description" content="TabFlow 是免费、开源的 macOS 窗口切换工具，支持同一应用的多个窗口、窗口缩略图、多显示器和桌面空间。介绍使用方式、安装步骤和权限设置。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.dreace.top/images/TabFlow/01-switcher.jpg">
+<meta property="og:image" content="https://blog.dreace.top/images/TabFlow/02-list.jpg">
+<meta property="og:image" content="https://blog.dreace.top/images/TabFlow/03-settings.jpg">
+<meta property="article:published_time" content="2026-10-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-07T05:57:40.814Z">
+<meta property="article:author" content="Dreace">
+<meta property="article:tag" content="macOS">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="TabFlow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.dreace.top/images/TabFlow/01-switcher.jpg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1791352685730">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url()"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Dreace">
+            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>28</div>
+        <div><span>标签</span>52</div>
+        <div><span>分类</span>16</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章目录</h3>
+    <div class="nexmoe-widget">
+      <div id="toc" class="toc-article">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#按窗口切换"><span class="toc-number">1.</span> <span class="toc-text">按窗口切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择适合自己的布局"><span class="toc-number">2.</span> <span class="toc-text">选择适合自己的布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装与权限"><span class="toc-number">3.</span> <span class="toc-text">安装与权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据留在本机"><span class="toc-number">4.</span> <span class="toc-text">数据留在本机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载与源码"><span class="toc-number">5.</span> <span class="toc-text">下载与源码</span></a></li></ol>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">联系我</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/7686754" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Dreace" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://www.zhihu.com/people/dreace" target="_blank" mdui-tooltip="{content: '知乎'}" style="color: rgb(30, 136, 229);background-color: rgba(30, 136, 229, .15);">
+            <i class="nexmoefont icon-zhihu"></i>
+        </a><a class="mdui-ripple" href="https://steamcommunity.com/id/Dreace_Dreace/" target="_blank" mdui-tooltip="{content: 'Steam'}" style="color: rgb(37, 116, 196);background-color: rgba(37, 116, 196, .15);">
+            <i class="nexmoefont icon-steam"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/App/">App</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C-C/">C/C++</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Docker/">Docker</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Hexo/">Hexo</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Linux/">Linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/MySQL/">MySQL</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Python/">Python</a>
+          <span class="category-list-count">5</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TypeScript/">TypeScript</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue-js/">Vue.js</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Windows/">Windows</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/建设日志/">建设日志</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/生活/">生活</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/装机/">装机</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/软件/">软件</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/面经/">面经</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 - 2026 Dreace<br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+
+        <h1>TabFlow：免费开源的 Mac 窗口切换工具</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2026年10月07日</a>
+    <a><i class="nexmoefont icon-areachart"></i>682 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+    
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E8%BD%AF%E4%BB%B6/">软件</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/TabFlow/" rel="tag">TabFlow</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/macOS/" rel="tag">macOS</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%BC%80%E6%BA%90/" rel="tag">开源</a>
+    
+  </div>
+  <article>
+    <p>在 Mac 上同时打开几个浏览器窗口，或者用 VS Code 处理多个项目时，Command-Tab 只能先切到应用，接着还要找到具体的窗口。</p>
+<p>我开发了一个按窗口切换的小工具 <a href="https://apps.dreace.top/zh/tabflow/" target="_blank" rel="noopener">TabFlow</a>，同一个应用的多个窗口会分别列出来，可以直接选中目标。</p>
+<p>TabFlow 可以免费下载和使用，源码在 <a href="https://github.com/Dreace/TabFlow" target="_blank" rel="noopener">GitHub</a> 上公开，采用 <a href="https://github.com/Dreace/TabFlow/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0 许可证</a>，也支持自行修改和构建。</p>
+<a id="more"></a>
+<figure>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/TabFlow/01-switcher.jpg" alt><figcaption>TabFlow 窗口切换器，可通过缩略图、窗口标题和应用名称选择窗口</figcaption>
+</figure>
+<h2 id="按窗口切换">按窗口切换</h2>
+<p>默认快捷键是 <code>⌥ Tab</code>（Option-Tab）。按住 Option，再按 Tab 打开切换器，继续按 Tab 选择窗口，松开 Option 就会切过去。Shift-Tab 返回上一项，Esc 取消。快捷键可以自定义。</p>
+<p>比如开着两个 VS Code 项目窗口，可以根据标题或缩略图直接选择。TabFlow 也支持多显示器、macOS 桌面空间，以及恢复最小化窗口。窗口较多时，可以用搜索筛选目标。</p>
+<p>它切换的是 macOS 窗口，浏览器标签页不会单独列出，也不负责窗口平铺或调整大小。</p>
+<h2 id="选择适合自己的布局">选择适合自己的布局</h2>
+<p>TabFlow 有自动、横向、网格和列表布局。喜欢预览内容可以打开缩略图，习惯看文字可以使用列表。</p>
+<figure>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/TabFlow/02-list.jpg" alt><figcaption>TabFlow 列表布局，按行展示窗口标题和应用名称</figcaption>
+</figure>
+<p>卡片大小、标题和应用名称的显示，以及切换器位置，都可以调整。窗口范围、排序和分组也支持自定义。</p>
+<figure>
+<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/TabFlow/03-settings.jpg" alt><figcaption>TabFlow 外观设置，可以调整布局、卡片大小和显示内容</figcaption>
+</figure>
+<h2 id="安装与权限">安装与权限</h2>
+<p>TabFlow 支持 macOS 14.0 及以上版本，兼容 Intel 和 Apple Silicon Mac。从 <a href="https://github.com/Dreace/TabFlow/releases/latest" target="_blank" rel="noopener">GitHub Releases</a> 下载 DMG，把 TabFlow 拖入“应用程序”，首次启动时按照提示授予权限。</p>
+<table>
+<thead>
+<tr class="header">
+<th>权限</th>
+<th>是否必需</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>辅助功能</td>
+<td>必需</td>
+<td>读取窗口信息并切换窗口</td>
+</tr>
+<tr class="even">
+<td>输入监控</td>
+<td>必需</td>
+<td>响应全局快捷键</td>
+</tr>
+<tr class="odd">
+<td>屏幕录制</td>
+<td>可选</td>
+<td>显示窗口缩略图</td>
+</tr>
+</tbody>
+</table>
+<p>没有屏幕录制权限时，仍然可以通过应用图标和窗口标题进行切换。TabFlow 平时常驻菜单栏，也可以设置为登录时启动。</p>
+<h2 id="数据留在本机">数据留在本机</h2>
+<p>窗口信息和缩略图都在本机处理。可选的使用统计会记录完成切换的应用和本地时间，用来查看切换次数、常用应用和活动趋势，支持导出 CSV 或清除记录，数据不会上传。</p>
+<h2 id="下载与源码">下载与源码</h2>
+<ul>
+<li><a href="https://github.com/Dreace/TabFlow/releases/latest" target="_blank" rel="noopener">免费下载 TabFlow</a></li>
+<li><a href="https://github.com/Dreace/TabFlow" target="_blank" rel="noopener">查看源码与构建说明</a></li>
+<li><a href="https://apps.dreace.top/zh/tabflow/" target="_blank" rel="noopener">产品介绍</a></li>
+<li><a href="https://apps.dreace.top/" target="_blank" rel="noopener">应用主页</a></li>
+<li><a href="https://github.com/Dreace/TabFlow/issues" target="_blank" rel="noopener">提交问题或建议</a></li>
+</ul>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>本文作者：</strong>Dreace<br>
+<strong>本文链接：</strong><a href="https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/" title="https:&#x2F;&#x2F;blog.dreace.top&#x2F;2026&#x2F;TabFlow-Free-Open-Source-Mac-Window-Switcher&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.dreace.top&#x2F;2026&#x2F;TabFlow-Free-Open-Source-Mac-Window-Switcher&#x2F;</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <!-- Unpkg -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqusjs.min.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.6/dist/disqus.min.js"></script>
+<div id="disqus_thread"></div>
+<script>
+var dsqjs = new DisqusJS({
+    shortname: 'dreace',
+    siteName: 'DreaceのBlog',
+    identifier: 'https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/',
+    url: 'https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/',
+    title: 'TabFlow：免费开源的 Mac 窗口切换工具',
+    api: 'https://disqus.dreace.top/api/',
+    apikey: 'wWzaLh1lIGm4TQtRW4PdoHfZtFBQE4bk7srIXB2J7zRbjZdsLXcboiHY0qHloPgs,1OH6IP9AXbWa1lfMZfSJJCPiCEXUIk9GlNtTTuZ3iJQKyzdwvoWBYrfUm9hIlRDn'.split(","),
+    admin: 'Dreace',
+    adminLabel: ''
+});
+</script>
+</section>
+</div>
+        
+    <div class="beian" >
+        
+            <a class="link" href="http://www.beian.miit.gov.cn/" target="_blank">蜀ICP备17035453号-1</a>
+        
+        
+            &nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51202202000022" target="_blank"><i class="govimg"></i>川公网安备 51202202000022 号</a>
+        
+    </div>
+
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1791352685734"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
+
+
+
+  
+    <!-- Google Analytics -->
+<script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-89152702-3', 'auto');
+    ga('send', 'pageview');
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+
+
+
+
+
+
+</body>
+
+</html>
