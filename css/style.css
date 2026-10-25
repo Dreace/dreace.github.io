@@ -353,7 +353,8 @@ body {
   width: 100%;
   display: block;
 }
-#nexmoe-content .nexmoe-post .nexmoe-post-cover h1 {
+#nexmoe-content .nexmoe-post .nexmoe-post-cover h1,
+#nexmoe-content .nexmoe-post .nexmoe-post-cover h2 {
   bottom: 0;
   transition: all 0.2s ease-out;
   color: #000;
@@ -364,7 +365,8 @@ body {
   margin: 0;
   font-weight: 500;
 }
-#nexmoe-content .nexmoe-post .nexmoe-post-cover h1:hover {
+#nexmoe-content .nexmoe-post .nexmoe-post-cover h1:hover,
+#nexmoe-content .nexmoe-post .nexmoe-post-cover h2:hover {
   color: #ff4e6a;
 }
 #nexmoe-content .nexmoe-post .nexmoe-post-meta {

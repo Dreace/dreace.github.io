@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
 <head>
   
   <title>TabFlow：免费开源的 Mac 窗口切换工具 - DreaceのBlog</title>
   <meta charset="UTF-8">
-  <meta name="description" content="一条咸鱼的垂死挣扎">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/">
+  
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://blog.dreace.top/#author","name":"Dreace","url":"https://blog.dreace.top/"},{"@type":"WebSite","@id":"https://blog.dreace.top/#website","url":"https://blog.dreace.top/","name":"DreaceのBlog","description":"一条咸鱼的垂死挣扎","inLanguage":"zh-CN","publisher":{"@id":"https://blog.dreace.top/#author"}},{"@type":"WebPage","@id":"https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/#webpage","url":"https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/","name":"TabFlow：免费开源的 Mac 窗口切换工具 - DreaceのBlog","description":"TabFlow 是免费、开源的 macOS 窗口切换工具，支持同一应用的多个窗口、窗口缩略图、多显示器和桌面空间。介绍使用方式、安装步骤和权限设置。","inLanguage":"zh-CN","isPartOf":{"@id":"https://blog.dreace.top/#website"},"mainEntity":{"@id":"https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/#article"}},{"@type":"BlogPosting","@id":"https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/#article","headline":"TabFlow：免费开源的 Mac 窗口切换工具","description":"TabFlow 是免费、开源的 macOS 窗口切换工具，支持同一应用的多个窗口、窗口缩略图、多显示器和桌面空间。介绍使用方式、安装步骤和权限设置。","url":"https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/","inLanguage":"zh-CN","author":{"@id":"https://blog.dreace.top/#author"},"mainEntityOfPage":{"@id":"https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/#webpage"},"datePublished":"2026-10-06T16:00:00.000Z","image":"https://blog.dreace.top/images/TabFlow/01-switcher.jpg"}]}</script>
   
   
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
   <meta name="description" content="TabFlow 是免费、开源的 macOS 窗口切换工具，支持同一应用的多个窗口、窗口缩略图、多显示器和桌面空间。介绍使用方式、安装步骤和权限设置。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TabFlow：免费开源的 Mac 窗口切换工具">
-<meta property="og:url" content="https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/index.html">
+<meta property="og:title" content="TabFlow：免费开源的 Mac 窗口切换工具 - DreaceのBlog">
+<meta property="og:url" content="https://blog.dreace.top/2026/TabFlow-Free-Open-Source-Mac-Window-Switcher/">
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="TabFlow 是免费、开源的 macOS 窗口切换工具，支持同一应用的多个窗口、窗口缩略图、多显示器和桌面空间。介绍使用方式、安装步骤和权限设置。">
 <meta property="og:locale" content="zh_CN">
@@ -22,7 +24,6 @@
 <meta property="og:image" content="https://blog.dreace.top/images/TabFlow/02-list.jpg">
 <meta property="og:image" content="https://blog.dreace.top/images/TabFlow/03-settings.jpg">
 <meta property="article:published_time" content="2026-10-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-10-07T05:57:40.814Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="macOS">
 <meta property="article:tag" content="开源">
@@ -33,7 +34,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1791352685730">
+  <link rel="stylesheet" href="/css/style.css?v=1792918523311">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -46,7 +47,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img src="/images/avatar.png" loading="lazy" decoding="async"></a>
        </div>
     </div>
   </div>
@@ -54,17 +55,17 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
+            <img src="/images/avatar.png" alt="Dreace" loading="lazy" decoding="async">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>28</div>
-        <div><span>标签</span>52</div>
+        <div><span>文章</span>29</div>
+        <div><span>标签</span>55</div>
         <div><span>分类</span>16</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends.html" title="我的朋友">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends" title="我的朋友">
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 我的朋友
@@ -79,7 +80,7 @@
     <h3 class="nexmoe-widget-title">文章目录</h3>
     <div class="nexmoe-widget">
       <div id="toc" class="toc-article">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#按窗口切换"><span class="toc-number">1.</span> <span class="toc-text">按窗口切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择适合自己的布局"><span class="toc-number">2.</span> <span class="toc-text">选择适合自己的布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装与权限"><span class="toc-number">3.</span> <span class="toc-text">安装与权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据留在本机"><span class="toc-number">4.</span> <span class="toc-text">数据留在本机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载与源码"><span class="toc-number">5.</span> <span class="toc-text">下载与源码</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#按窗口切换"><span class="toc-number">1.</span> <span class="toc-text">按窗口切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#布局与外观"><span class="toc-number">2.</span> <span class="toc-text">布局与外观</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装与权限"><span class="toc-number">3.</span> <span class="toc-text">安装与权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据留在本机"><span class="toc-number">4.</span> <span class="toc-text">数据留在本机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载与源码"><span class="toc-number">5.</span> <span class="toc-text">下载与源码</span></a></li></ol>
       </div>
     </div>
   </div>
@@ -215,7 +216,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/软件/">软件</a>
-          <span class="category-list-count">1</span>
+          <span class="category-list-count">2</span>
         </li>
 
         
@@ -249,8 +250,8 @@
         <h1>TabFlow：免费开源的 Mac 窗口切换工具</h1>
     </div>
   <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2026年10月07日</a>
-    <a><i class="nexmoefont icon-areachart"></i>682 字</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i><time datetime="2026-10-06T16:00:00.000Z">2026年10月07日</time></a>
+    <a><i class="nexmoefont icon-areachart"></i>694 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E8%BD%AF%E4%BB%B6/">软件</a>
@@ -260,28 +261,29 @@
     
   </div>
   <article>
-    <p>在 Mac 上同时打开几个浏览器窗口，或者用 VS Code 处理多个项目时，Command-Tab 只能先切到应用，接着还要找到具体的窗口。</p>
-<p>我开发了一个按窗口切换的小工具 <a href="https://apps.dreace.top/zh/tabflow/" target="_blank" rel="noopener">TabFlow</a>，同一个应用的多个窗口会分别列出来，可以直接选中目标。</p>
-<p>TabFlow 可以免费下载和使用，源码在 <a href="https://github.com/Dreace/TabFlow" target="_blank" rel="noopener">GitHub</a> 上公开，采用 <a href="https://github.com/Dreace/TabFlow/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0 许可证</a>，也支持自行修改和构建。</p>
+    <p>在 Mac 上同时开着几个浏览器窗口，或用 VS Code 处理多个项目，按 Command-Tab 切到应用后，还得再找一次窗口。</p>
+<p>用 <a href="https://apps.dreace.top/zh/tabflow/" target="_blank" rel="noopener">TabFlow</a> 可以直接按窗口切换。同一应用的多个窗口分开列出，看着标题或缩略图就能选。</p>
+<p>免费下载、使用，也可以到 <a href="https://github.com/Dreace/TabFlow" target="_blank" rel="noopener">GitHub</a> 查看源码，按 <a href="https://github.com/Dreace/TabFlow/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0 许可证</a> 自行修改和构建。</p>
+<p>获取方式：<a href="https://github.com/Dreace/TabFlow/releases/latest" target="_blank" rel="noopener">从 GitHub Releases 免费下载 TabFlow 安装包</a>。</p>
 <a id="more"></a>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/TabFlow/01-switcher.jpg" alt><figcaption>TabFlow 窗口切换器，可通过缩略图、窗口标题和应用名称选择窗口</figcaption>
+<img src="/images/TabFlow/01-switcher.jpg" alt loading="lazy" decoding="async"><figcaption>TabFlow 窗口切换器，可通过缩略图、窗口标题和应用名称选择窗口</figcaption>
 </figure>
 <h2 id="按窗口切换">按窗口切换</h2>
-<p>默认快捷键是 <code>⌥ Tab</code>（Option-Tab）。按住 Option，再按 Tab 打开切换器，继续按 Tab 选择窗口，松开 Option 就会切过去。Shift-Tab 返回上一项，Esc 取消。快捷键可以自定义。</p>
-<p>比如开着两个 VS Code 项目窗口，可以根据标题或缩略图直接选择。TabFlow 也支持多显示器、macOS 桌面空间，以及恢复最小化窗口。窗口较多时，可以用搜索筛选目标。</p>
-<p>它切换的是 macOS 窗口，浏览器标签页不会单独列出，也不负责窗口平铺或调整大小。</p>
-<h2 id="选择适合自己的布局">选择适合自己的布局</h2>
-<p>TabFlow 有自动、横向、网格和列表布局。喜欢预览内容可以打开缩略图，习惯看文字可以使用列表。</p>
+<p>默认使用 <code>⌥ Tab</code>（Option-Tab）：按住 Option，再按 Tab 打开切换器。继续按 Tab 选择窗口，松开 Option 切过去；按 Shift-Tab 返回上一项，按 Esc 取消。也可以在设置里更换快捷键。</p>
+<p>比如同时开着两个 VS Code 项目，直接按项目标题或预览内容选择，不用先切到 VS Code 再找窗口。也能在多显示器和 macOS 桌面空间之间切换，或恢复最小化的窗口。开得太多时，输入关键词搜索。</p>
+<p>仅用于切换 macOS 窗口，不单独列出浏览器标签页，也不提供窗口平铺和大小调整。</p>
+<h2 id="布局与外观">布局与外观</h2>
+<p>可以选择自动、横向、网格或列表布局。想看窗口内容就打开缩略图，只看标题和应用名称就用列表。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/TabFlow/02-list.jpg" alt><figcaption>TabFlow 列表布局，按行展示窗口标题和应用名称</figcaption>
+<img src="/images/TabFlow/02-list.jpg" alt loading="lazy" decoding="async"><figcaption>TabFlow 列表布局，按行展示窗口标题和应用名称</figcaption>
 </figure>
-<p>卡片大小、标题和应用名称的显示，以及切换器位置，都可以调整。窗口范围、排序和分组也支持自定义。</p>
+<p>在设置里调整卡片大小、切换器位置，选择是否显示标题和应用名称，也能设置窗口范围、排序和分组。</p>
 <figure>
-<img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/TabFlow/03-settings.jpg" alt><figcaption>TabFlow 外观设置，可以调整布局、卡片大小和显示内容</figcaption>
+<img src="/images/TabFlow/03-settings.jpg" alt loading="lazy" decoding="async"><figcaption>TabFlow 外观设置，可以调整布局、卡片大小和显示内容</figcaption>
 </figure>
 <h2 id="安装与权限">安装与权限</h2>
-<p>TabFlow 支持 macOS 14.0 及以上版本，兼容 Intel 和 Apple Silicon Mac。从 <a href="https://github.com/Dreace/TabFlow/releases/latest" target="_blank" rel="noopener">GitHub Releases</a> 下载 DMG，把 TabFlow 拖入“应用程序”，首次启动时按照提示授予权限。</p>
+<p>需要 macOS 14.0 及以上版本，可在 Intel 和 Apple Silicon Mac 上使用。从 <a href="https://github.com/Dreace/TabFlow/releases/latest" target="_blank" rel="noopener">GitHub Releases</a> 下载 DMG，把 TabFlow 拖入“应用程序”，首次打开时按提示授予权限。</p>
 <table>
 <thead>
 <tr class="header">
@@ -308,9 +310,9 @@
 </tr>
 </tbody>
 </table>
-<p>没有屏幕录制权限时，仍然可以通过应用图标和窗口标题进行切换。TabFlow 平时常驻菜单栏，也可以设置为登录时启动。</p>
+<p>不授予屏幕录制权限也能使用，通过应用图标和窗口标题选择即可。平时从菜单栏打开设置，也可以开启登录时启动。</p>
 <h2 id="数据留在本机">数据留在本机</h2>
-<p>窗口信息和缩略图都在本机处理。可选的使用统计会记录完成切换的应用和本地时间，用来查看切换次数、常用应用和活动趋势，支持导出 CSV 或清除记录，数据不会上传。</p>
+<p>在本机处理窗口信息和缩略图，不上传数据。按需开启使用统计后，会记录切换到的应用和本地时间，可以查看切换次数、常用应用和活动趋势，也能导出 CSV 或清除记录。</p>
 <h2 id="下载与源码">下载与源码</h2>
 <ul>
 <li><a href="https://github.com/Dreace/TabFlow/releases/latest" target="_blank" rel="noopener">免费下载 TabFlow</a></li>
@@ -354,6 +356,7 @@ var dsqjs = new DisqusJS({
 </script>
 </section>
 </div>
+
         
     <div class="beian" >
         
@@ -372,7 +375,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1791352685734"></script>
+<script src="/js/app.js?v=1792918523313"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 

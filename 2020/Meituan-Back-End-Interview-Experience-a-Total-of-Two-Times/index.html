@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
 <head>
   
   <title>美团后端开发凉经，共两面 - DreaceのBlog</title>
   <meta charset="UTF-8">
-  <meta name="description" content="一条咸鱼的垂死挣扎">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/">
+  
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://blog.dreace.top/#author","name":"Dreace","url":"https://blog.dreace.top/"},{"@type":"WebSite","@id":"https://blog.dreace.top/#website","url":"https://blog.dreace.top/","name":"DreaceのBlog","description":"一条咸鱼的垂死挣扎","inLanguage":"zh-CN","publisher":{"@id":"https://blog.dreace.top/#author"}},{"@type":"WebPage","@id":"https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/#webpage","url":"https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/","name":"美团后端开发凉经，共两面 - DreaceのBlog","description":"美团面得快，凉得也快。","inLanguage":"zh-CN","isPartOf":{"@id":"https://blog.dreace.top/#website"},"mainEntity":{"@id":"https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/#article"}},{"@type":"BlogPosting","@id":"https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/#article","headline":"美团后端开发凉经，共两面","description":"美团面得快，凉得也快。","url":"https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/","inLanguage":"zh-CN","author":{"@id":"https://blog.dreace.top/#author"},"mainEntityOfPage":{"@id":"https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/#webpage"},"datePublished":"2020-08-21T13:28:01.000Z"}]}</script>
   
   
 
   <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
   <meta name="description" content="美团面得快，凉得也快。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="美团后端开发凉经，共两面">
-<meta property="og:url" content="https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/index.html">
+<meta property="og:title" content="美团后端开发凉经，共两面 - DreaceのBlog">
+<meta property="og:url" content="https://blog.dreace.top/2020/Meituan-Back-End-Interview-Experience-a-Total-of-Two-Times/">
 <meta property="og:site_name" content="DreaceのBlog">
 <meta property="og:description" content="美团面得快，凉得也快。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-21T13:28:01.000Z">
-<meta property="article:modified_time" content="2026-10-07T05:57:40.814Z">
 <meta property="article:author" content="Dreace">
 <meta property="article:tag" content="面经">
 <meta property="article:tag" content="美团">
@@ -28,7 +29,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.2/styles/github.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1791352685759">
+  <link rel="stylesheet" href="/css/style.css?v=1792918523364">
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="DreaceのBlog" type="application/atom+xml">
 </head>
 
@@ -41,7 +42,7 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png"></a>
+        <a href="/" title="Dreace" class="mdui-btn mdui-btn-icon"><img src="/images/avatar.png" loading="lazy" decoding="async"></a>
        </div>
     </div>
   </div>
@@ -49,17 +50,17 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="Dreace">
-            <img class="lazyload" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/images/avatar.png" alt="Dreace">
+            <img src="/images/avatar.png" alt="Dreace" loading="lazy" decoding="async">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>28</div>
-        <div><span>标签</span>52</div>
+        <div><span>文章</span>29</div>
+        <div><span>标签</span>55</div>
         <div><span>分类</span>16</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends.html" title="我的朋友">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friends" title="我的朋友">
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 我的朋友
@@ -210,7 +211,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/软件/">软件</a>
-          <span class="category-list-count">1</span>
+          <span class="category-list-count">2</span>
         </li>
 
         
@@ -244,7 +245,7 @@
         <h1>美团后端开发凉经，共两面</h1>
     </div>
   <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2020年08月21日</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i><time datetime="2020-08-21T13:28:01.000Z">2020年08月21日</time></a>
     <a><i class="nexmoefont icon-areachart"></i>278 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
     
@@ -335,6 +336,7 @@ var dsqjs = new DisqusJS({
 </script>
 </section>
 </div>
+
         
     <div class="beian" >
         
@@ -353,7 +355,7 @@ var dsqjs = new DisqusJS({
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.2/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1791352685761"></script>
+<script src="/js/app.js?v=1792918523365"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js"></script>
 
 
