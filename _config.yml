@@ -114,6 +114,7 @@ feed:
 
 sitemap:
   path: sitemap.xml
+  template: themes/nexmoe/sitemap.xml
 
 pandoc:
   mathEngine: katex

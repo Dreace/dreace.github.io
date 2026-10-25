@@ -1,5 +1,6 @@
 ---
 title: Technical Support
+lang: en
 typora-root-url: ../../source/
 date: 2025-12-14 11:55:57
 tags:

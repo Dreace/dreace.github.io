@@ -1,32 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= geo_metadata().language %>">
 
 <head>
   <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = __('archive');
-
-    if (is_month()){
-      title += '：' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += '：' + page.year;
-    }
-  } else if (is_category()){
-    title = __('count.categories') + '：' + page.category;
-  } else if (is_tag()){
-    title = __('count.tags') + '：' + page.tag;
-  }
+  var seo = geo_metadata();
   %>
-  <title><% if (title){ %><%= title %> - <% } %><%= config.title %></title>
+  <title><%= seo.title %></title>
   <meta charset="UTF-8">
-  <meta name="description" content="<%= config.description %>">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="<%= seo.canonical %>">
+  <% if (seo.noindex) { %><meta name="robots" content="noindex"><% } %>
+  <script type="application/ld+json"><%- seo.json %></script>
   <%- partial('_partial/_analytics/gtm-head') %>
   <%- partial('_partial/site-verification') %>
   <link rel="shortcut icon" href="<%= theme.favicon.href %>" type="<%= theme.favicon.type %>" />
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <%- open_graph({title: seo.title, description: seo.description, url: seo.canonical, language: seo.language, updated: false, date: is_post() ? page.date : false, twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
   <link rel="stylesheet" href="<%- theme.cdn.mdui.css %>">
   <link rel="stylesheet" href="<%- theme.cdn.highlight.css %>">
   <% if (theme.iconlib) { %>

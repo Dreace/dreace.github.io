@@ -37,7 +37,7 @@ menu:
   #   - /about.html
   #   - icon-info-circle
   我的朋友:
-    - /friends.html
+    - /friends
 
 widgets:
   - toc

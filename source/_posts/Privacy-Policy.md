@@ -1,5 +1,6 @@
 ---
 title: Privacy Policy
+lang: en
 typora-root-url: ../../source/
 date: 2025-12-14 13:50:50
 tags:
